@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <!--
   Trainingspilot · TSV Wetschen
-  Version: 4.7 (Stand: siehe Chat-Verlauf)
+  Version: 4.8 (Stand: siehe Chat-Verlauf)
 
   Changelog:
+  v4.8 - Echter Handy-Stilblock ergaenzt (max-width:480px), statt nur die Desktop-Ansicht
+         zu verkleinern: deutlich groessere Schrift ueberall (Uebungstitel 20px,
+         Beschreibungstext 15.5px mit mehr Zeilenabstand, Eingabefelder 17px, Chips 14.5px),
+         engere Aussenraender (mehr nutzbare Breite), groessere Buttons. Ziel: lesbar und
+         bedienbar direkt auf dem Sportplatz, nicht nur am Schreibtisch.
   v4.7 - Bugfix des v4.6-Mobile-Fixes: die dortige Schwelle von 680px war IMMER NOCH zu
          niedrig - echte iPads sind im Hochformat 744-1032px breit (recherchiert), also
          durchgehend ueber 680px. Die Ein-Spalten-Ansicht griff deshalb auf keinem einzigen
@@ -75,6 +80,11 @@
          Betreuungsteam-Mitglied die Uebung ohne Rueckfrage aufbauen und durchfuehren kann.
          Dabei 3 fehlerhafte Diagramme gefunden und behoben: "Hindernis-Rallye" und
          "Leiter   Changelog:
+  v4.8 - Echter Handy-Stilblock ergaenzt (max-width:480px), statt nur die Desktop-Ansicht
+         zu verkleinern: deutlich groessere Schrift ueberall (Uebungstitel 20px,
+         Beschreibungstext 15.5px mit mehr Zeilenabstand, Eingabefelder 17px, Chips 14.5px),
+         engere Aussenraender (mehr nutzbare Breite), groessere Buttons. Ziel: lesbar und
+         bedienbar direkt auf dem Sportplatz, nicht nur am Schreibtisch.
   v4.7 - Bugfix des v4.6-Mobile-Fixes: die dortige Schwelle von 680px war IMMER NOCH zu
          niedrig - echte iPads sind im Hochformat 744-1032px breit (recherchiert), also
          durchgehend ueber 680px. Die Ein-Spalten-Ansicht griff deshalb auf keinem einzigen
@@ -265,7 +275,7 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>Trainingspilot v4.7 · TSV Wetschen</title>
+<title>Trainingspilot v4.8 · TSV Wetschen</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
@@ -413,6 +423,49 @@
     .phase-time{flex-direction:row;align-items:baseline;gap:10px;}
   }
 
+  /* ===================== Echtes Handy-Format (App-Anmutung) =====================
+     Bisher wurde nur die Desktop-Ansicht "verkleinert" - das reicht nicht für eine
+     Nutzung draußen auf dem Sportplatz. Hier wird gezielt für die tatsächliche
+     Bildschirmbreite eines Handys (nicht Tablet) neu skaliert: deutlich größere Schrift,
+     mehr Zeilenabstand, engere Außenränder, damit mehr Platz für den Inhalt bleibt statt
+     für ungenutzten Rand. */
+  @media (max-width:480px){
+    .wrap{padding:14px 12px 50px;}
+
+    .form-panel{padding:20px 16px;}
+    .kicker{font-size:11px;gap:6px;}
+    .version-badge{font-size:11px;padding:2px 8px;}
+    .form-panel h1{font-size:24px;line-height:1.15;}
+    .form-panel .lead{font-size:14.5px;line-height:1.6;}
+    .field label{font-size:14px;}
+    .field .hint{font-size:13px;line-height:1.4;}
+    .field input[type="text"], .field input[type="number"], .field select{font-size:17px;padding:13px 14px;}
+    .chip span{font-size:14.5px;padding:10px 15px;}
+    #generate-btn{font-size:17px;padding:16px 20px;}
+
+    .plan-header{padding:22px 18px;}
+    .plan-header h2{font-size:23px;}
+    .plan-header .sub{font-size:15px;line-height:1.6;}
+    .meta span{font-size:13.5px;padding:7px 13px;}
+
+    .materials-box{padding:18px 16px;}
+    .materials-box h3{font-size:14px;}
+    .material-item{font-size:15px;padding:10px 13px;}
+
+    .phase{padding:16px;gap:14px;}
+    .phase-num{font-size:28px;}
+    .phase-body h4{font-size:20px;}
+    .phase-goal{font-size:14px;}
+    .phase-dims{font-size:13px;}
+    .phase-desc{font-size:15.5px;line-height:1.65;}
+    .phase-materials{font-size:14px;line-height:1.6;}
+    .steps-label{font-size:13px;}
+    .phase-steps li{font-size:15px;padding-left:30px;}
+    .coach-tip{font-size:14.5px;line-height:1.6;}
+    .rating-label{font-size:14px;}
+    .alt-none, .alt-status{font-size:13px;}
+  }
+
   @media print{
     .form-panel, .warn-msg, .error-box, #page-loading-overlay{display:none !important;}
     body, .wrap{background:#fff;padding:0;margin:0;}
@@ -436,7 +489,7 @@
   <div class="form-panel">
     <div class="form-header-row">
       <div class="form-header-text">
-        <p class="kicker">TSV Wetschen · Trainingspilot <span class="version-badge">v4.7</span></p>
+        <p class="kicker">TSV Wetschen · Trainingspilot <span class="version-badge">v4.8</span></p>
         <h1>Neuen Trainingsplan erstellen</h1>
         <p class="lead">Eckdaten eingeben, Plan erscheint direkt unten – inklusive Übungsskizzen, komplett offline. Jeder Plan hat Begrüßung, 2–3 Schwerpunkt-Übungen, ein Abschlussspiel im echten Wettkampfformat und einen Abschlusskreis. Übungen wechseln sich automatisch ab, damit nicht wöchentlich dieselbe drankommt.</p>
       </div>
