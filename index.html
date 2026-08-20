@@ -1,9 +1,24 @@
 <!DOCTYPE html>
 <!--
   Trainingspilot · TSV Wetschen
-  Version: 4.5 (Stand: siehe Chat-Verlauf)
+  Version: 4.7 (Stand: siehe Chat-Verlauf)
 
   Changelog:
+  v4.7 - Bugfix des v4.6-Mobile-Fixes: die dortige Schwelle von 680px war IMMER NOCH zu
+         niedrig - echte iPads sind im Hochformat 744-1032px breit (recherchiert), also
+         durchgehend ueber 680px. Die Ein-Spalten-Ansicht griff deshalb auf keinem einzigen
+         echten iPad. Schwelle jetzt auf 1080px angehoben und gegen alle bekannten iPad-
+         Modelle (Mini bis 13-Zoll-Pro) automatisiert verifiziert.
+  v4.6 - Zweiter Mobile-Optimierungsdurchgang nach konkretem Screenshot-Feedback: (1) Ein-
+         Spalten-Formular greift jetzt schon ab 680px statt nur 560px, damit auch das iPad-
+         Hochformat (ca. 768-834px) nicht mehr zweispaltig und gedraengt wirkt. (2) Zeit-
+         Stepper-Buttons von 22x22px auf 38-44px vergroessert (Apple-Empfehlung: min.
+         44x44pt Tippflaeche). (3) Bewertungs-, Alternative- und Dropdown-Buttons ebenfalls
+         vergroessert. (4) Eingabefelder auf 16px Schriftgroesse angehoben - verhindert das
+         automatische Hineinzoomen von iOS Safari beim Antippen. (5) Chips und Haupt-Button
+         vergroessert, Haupt-Button auf Handybreite volle Breite. (6) Versionsnummer als
+         sichtbares Badge im Header hervorgehoben, um Aktualisierungen leichter erkennbar zu
+         machen.
   v4.5 - Mobile-Optimierungsdurchgang, da das Tool fast ausschliesslich auf Handy/Tablet
          genutzt wird: (1) Ein-Spalten-Formular greift jetzt schon ab 680px statt 560px, also
          auch im iPad-Hochformat statt nur auf schmalen Handys. (2) Zeit-Stepper-Buttons von
@@ -60,6 +75,21 @@
          Betreuungsteam-Mitglied die Uebung ohne Rueckfrage aufbauen und durchfuehren kann.
          Dabei 3 fehlerhafte Diagramme gefunden und behoben: "Hindernis-Rallye" und
          "Leiter   Changelog:
+  v4.7 - Bugfix des v4.6-Mobile-Fixes: die dortige Schwelle von 680px war IMMER NOCH zu
+         niedrig - echte iPads sind im Hochformat 744-1032px breit (recherchiert), also
+         durchgehend ueber 680px. Die Ein-Spalten-Ansicht griff deshalb auf keinem einzigen
+         echten iPad. Schwelle jetzt auf 1080px angehoben und gegen alle bekannten iPad-
+         Modelle (Mini bis 13-Zoll-Pro) automatisiert verifiziert.
+  v4.6 - Zweiter Mobile-Optimierungsdurchgang nach konkretem Screenshot-Feedback: (1) Ein-
+         Spalten-Formular greift jetzt schon ab 680px statt nur 560px, damit auch das iPad-
+         Hochformat (ca. 768-834px) nicht mehr zweispaltig und gedraengt wirkt. (2) Zeit-
+         Stepper-Buttons von 22x22px auf 38-44px vergroessert (Apple-Empfehlung: min.
+         44x44pt Tippflaeche). (3) Bewertungs-, Alternative- und Dropdown-Buttons ebenfalls
+         vergroessert. (4) Eingabefelder auf 16px Schriftgroesse angehoben - verhindert das
+         automatische Hineinzoomen von iOS Safari beim Antippen. (5) Chips und Haupt-Button
+         vergroessert, Haupt-Button auf Handybreite volle Breite. (6) Versionsnummer als
+         sichtbares Badge im Header hervorgehoben, um Aktualisierungen leichter erkennbar zu
+         machen.
   v4.5 - Mobile-Optimierungsdurchgang, da das Tool fast ausschliesslich auf Handy/Tablet
          genutzt wird: (1) Ein-Spalten-Formular greift jetzt schon ab 680px statt 560px, also
          auch im iPad-Hochformat statt nur auf schmalen Handys. (2) Zeit-Stepper-Buttons von
@@ -235,7 +265,7 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>Trainingspilot v4.5 · TSV Wetschen</title>
+<title>Trainingspilot v4.7 · TSV Wetschen</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
@@ -251,7 +281,8 @@
 
   .form-panel{position:relative;padding:30px 26px;background:var(--pitch);border-radius:14px;color:var(--chalk);overflow:hidden;margin-bottom:22px;}
   .form-panel::before{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(90deg, rgba(255,255,255,0.045) 0 40px, transparent 40px 80px);}
-  .kicker{position:relative;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--sun);font-weight:700;margin:0 0 8px;}
+  .kicker{position:relative;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--sun);font-weight:700;margin:0 0 8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .version-badge{display:inline-block;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.35);border-radius:20px;padding:2px 10px;font-size:12px;letter-spacing:.04em;color:#fff;}
   .form-panel h1{position:relative;font-family:'Anton',sans-serif;font-weight:400;letter-spacing:.01em;font-size:clamp(24px,5vw,32px);line-height:1.1;margin:0 0 8px;text-transform:uppercase;}
   .form-panel .lead{position:relative;font-size:13.5px;line-height:1.5;color:#E7EDE5;margin:0 0 18px;max-width:560px;}
   .form-header-row{position:relative;display:flex;justify-content:space-between;align-items:flex-start;gap:18px;}
@@ -279,7 +310,7 @@
   .chip input:disabled{cursor:not-allowed;}
   .submit-row{position:relative;margin-top:20px;}
   #generate-btn{font-family:'Anton',sans-serif;font-size:16px;letter-spacing:.03em;text-transform:uppercase;background:var(--cone);color:#fff;border:none;border-radius:10px;padding:15px 24px;min-height:48px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:10px;}
-  @media (max-width:680px){
+  @media (max-width:1080px){
     #generate-btn{width:100%;}
   }
   #generate-btn:hover{background:#d8551f;}
@@ -319,7 +350,7 @@
   .dur-stepper{display:flex;align-items:center;gap:8px;}
   .dur-stepper button{font-family:'Work Sans',sans-serif;font-size:18px;font-weight:700;width:38px;height:38px;line-height:1;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--pitch);cursor:pointer;padding:0;flex-shrink:0;}
   .dur-stepper button:hover{background:#EAF1E7;border-color:var(--pitch);}
-  @media (max-width:680px){
+  @media (max-width:1080px){
     .dur-stepper button{width:44px;height:44px;font-size:20px;}
   }
   .duration-total{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin-bottom:20px;font-size:14px;color:var(--pitch);}
@@ -376,7 +407,7 @@
   }
   @keyframes spin{to{transform:rotate(360deg);}}
 
-  @media (max-width:680px){
+  @media (max-width:1080px){
     .form-grid{grid-template-columns:1fr;}
     .phase{grid-template-columns:1fr;}
     .phase-time{flex-direction:row;align-items:baseline;gap:10px;}
@@ -405,7 +436,7 @@
   <div class="form-panel">
     <div class="form-header-row">
       <div class="form-header-text">
-        <p class="kicker">TSV Wetschen · Trainingspilot · v4.5</p>
+        <p class="kicker">TSV Wetschen · Trainingspilot <span class="version-badge">v4.7</span></p>
         <h1>Neuen Trainingsplan erstellen</h1>
         <p class="lead">Eckdaten eingeben, Plan erscheint direkt unten – inklusive Übungsskizzen, komplett offline. Jeder Plan hat Begrüßung, 2–3 Schwerpunkt-Übungen, ein Abschlussspiel im echten Wettkampfformat und einen Abschlusskreis. Übungen wechseln sich automatisch ab, damit nicht wöchentlich dieselbe drankommt.</p>
       </div>
