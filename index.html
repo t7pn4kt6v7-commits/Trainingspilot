@@ -1,9 +1,18 @@
 <!DOCTYPE html>
 <!--
   Trainingspilot · TSV Wetschen
-  Version: 4.4 (Stand: siehe Chat-Verlauf)
+  Version: 4.5 (Stand: siehe Chat-Verlauf)
 
   Changelog:
+  v4.5 - Mobile-Optimierungsdurchgang, da das Tool fast ausschliesslich auf Handy/Tablet
+         genutzt wird: (1) Ein-Spalten-Formular greift jetzt schon ab 680px statt 560px, also
+         auch im iPad-Hochformat statt nur auf schmalen Handys. (2) Zeit-Stepper-Buttons von
+         22x22px auf 38-44px vergroessert (Apple-Empfehlung: min. 44x44pt Tippflaeche).
+         (3) Bewertungs-, Alternative- und Dropdown-Buttons ebenfalls vergroessert (min. 40px
+         Hoehe). (4) Eingabefelder auf 16px Schriftgroesse angehoben - verhindert das
+         automatische Hineinzoomen von iOS Safari beim Antippen (bekannter Effekt bei
+         Schriftgroessen unter 16px). (5) Chips und Haupt-Button vergroessert, Haupt-Button
+         auf Handybreite jetzt volle Breite.
   v4.4 - Bugfix: zwei Schwerpunkt-Chips ("Ballgewoehnung" und "Dribbling") hatten denselben
          internen Wert und waren technisch identisch - zu einem Chip "Ballgewoehnung &
          Dribbling" zusammengefuehrt (konsistent mit allen anderen Label-Stellen im Code).
@@ -51,6 +60,15 @@
          Betreuungsteam-Mitglied die Uebung ohne Rueckfrage aufbauen und durchfuehren kann.
          Dabei 3 fehlerhafte Diagramme gefunden und behoben: "Hindernis-Rallye" und
          "Leiter   Changelog:
+  v4.5 - Mobile-Optimierungsdurchgang, da das Tool fast ausschliesslich auf Handy/Tablet
+         genutzt wird: (1) Ein-Spalten-Formular greift jetzt schon ab 680px statt 560px, also
+         auch im iPad-Hochformat statt nur auf schmalen Handys. (2) Zeit-Stepper-Buttons von
+         22x22px auf 38-44px vergroessert (Apple-Empfehlung: min. 44x44pt Tippflaeche).
+         (3) Bewertungs-, Alternative- und Dropdown-Buttons ebenfalls vergroessert (min. 40px
+         Hoehe). (4) Eingabefelder auf 16px Schriftgroesse angehoben - verhindert das
+         automatische Hineinzoomen von iOS Safari beim Antippen (bekannter Effekt bei
+         Schriftgroessen unter 16px). (5) Chips und Haupt-Button vergroessert, Haupt-Button
+         auf Handybreite jetzt volle Breite.
   v4.4 - Bugfix: zwei Schwerpunkt-Chips ("Ballgewoehnung" und "Dribbling") hatten denselben
          internen Wert und waren technisch identisch - zu einem Chip "Ballgewoehnung &
          Dribbling" zusammengefuehrt (konsistent mit allen anderen Label-Stellen im Code).
@@ -217,7 +235,7 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>Trainingspilot v4.4 · TSV Wetschen</title>
+<title>Trainingspilot v4.5 · TSV Wetschen</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
@@ -245,22 +263,25 @@
   .form-grid{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:14px 16px;}
   .field{display:flex;flex-direction:column;gap:5px;}
   .field.full{grid-column:1 / -1;}
-  .field label{font-size:12.5px;font-weight:600;color:#cfe0c8;letter-spacing:.02em;}
-  .field .hint{font-size:11.5px;color:#a9c2a1;}
+  .field label{font-size:13px;font-weight:600;color:#cfe0c8;letter-spacing:.02em;}
+  .field .hint{font-size:12.5px;color:#a9c2a1;}
   .field input[type="text"], .field input[type="number"], .field select{
     background:rgba(255,255,255,0.94);border:1px solid rgba(255,255,255,0.4);border-radius:8px;
-    padding:9px 11px;font-size:14px;font-family:'Work Sans',sans-serif;color:var(--ink);outline:none;
+    padding:11px 12px;font-size:16px;font-family:'Work Sans',sans-serif;color:var(--ink);outline:none;
   }
   .field input:focus,.field select:focus{border-color:var(--sun);box-shadow:0 0 0 2px rgba(242,177,52,0.35);}
   .chips{display:flex;flex-wrap:wrap;gap:8px;}
   .chip{position:relative;}
   .chip input{position:absolute;opacity:0;width:100%;height:100%;cursor:pointer;margin:0;}
-  .chip span{display:inline-block;font-size:12.5px;font-weight:600;padding:6px 12px;border-radius:20px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.3);color:#E7EDE5;transition:background .15s,color .15s;}
+  .chip span{display:inline-block;font-size:13.5px;font-weight:600;padding:9px 14px;min-height:22px;border-radius:20px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.3);color:#E7EDE5;transition:background .15s,color .15s;}
   .chip input:checked + span{background:var(--sun);border-color:var(--sun);color:var(--ink);}
   .chip input:disabled + span{opacity:0.35;cursor:not-allowed;text-decoration:line-through;}
   .chip input:disabled{cursor:not-allowed;}
   .submit-row{position:relative;margin-top:20px;}
-  #generate-btn{font-family:'Anton',sans-serif;font-size:15px;letter-spacing:.03em;text-transform:uppercase;background:var(--cone);color:#fff;border:none;border-radius:10px;padding:12px 22px;cursor:pointer;display:inline-flex;align-items:center;gap:10px;}
+  #generate-btn{font-family:'Anton',sans-serif;font-size:16px;letter-spacing:.03em;text-transform:uppercase;background:var(--cone);color:#fff;border:none;border-radius:10px;padding:15px 24px;min-height:48px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:10px;}
+  @media (max-width:680px){
+    #generate-btn{width:100%;}
+  }
   #generate-btn:hover{background:#d8551f;}
   #generate-btn:disabled{opacity:.85;cursor:default;background:#c9552a;}
   #generate-btn.loading::before{
@@ -295,9 +316,12 @@
   .phase-time{display:flex;flex-direction:column;align-items:flex-start;gap:6px;}
   .phase-num{font-family:'Anton',sans-serif;font-size:34px;color:var(--pitch);line-height:1;}
   .phase-dur{font-size:12px;font-weight:700;letter-spacing:.04em;color:var(--cone);text-transform:uppercase;background:#FCE9DE;padding:3px 9px;border-radius:20px;}
-  .dur-stepper{display:flex;align-items:center;gap:6px;}
-  .dur-stepper button{font-family:'Work Sans',sans-serif;font-size:14px;font-weight:700;width:22px;height:22px;line-height:1;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--pitch);cursor:pointer;padding:0;flex-shrink:0;}
+  .dur-stepper{display:flex;align-items:center;gap:8px;}
+  .dur-stepper button{font-family:'Work Sans',sans-serif;font-size:18px;font-weight:700;width:38px;height:38px;line-height:1;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--pitch);cursor:pointer;padding:0;flex-shrink:0;}
   .dur-stepper button:hover{background:#EAF1E7;border-color:var(--pitch);}
+  @media (max-width:680px){
+    .dur-stepper button{width:44px;height:44px;font-size:20px;}
+  }
   .duration-total{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin-bottom:20px;font-size:14px;color:var(--pitch);}
   .coach-note-box{background:#EAF1E7;border:1px solid #cfe0c8;border-radius:12px;padding:12px 16px;margin-bottom:20px;}
   .coach-note-box p{margin:0 0 4px;font-size:13.5px;color:#2E5339;line-height:1.5;}
@@ -321,18 +345,18 @@
   .coach-tip{font-size:13px;line-height:1.55;background:#F4F0E4;border-left:3px solid var(--sun);padding:9px 13px;border-radius:0 8px 8px 0;color:#5c5433;}
   .coach-tip b{color:var(--ink);}
   .rating-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px;padding-top:12px;border-top:1px solid #ece7d9;}
-  .rating-label{font-size:12.5px;color:#7a7364;}
-  .rating-btn{font-family:'Work Sans',sans-serif;font-size:13px;font-weight:600;background:#fff;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;color:var(--ink);}
+  .rating-label{font-size:13px;color:#7a7364;}
+  .rating-btn{font-family:'Work Sans',sans-serif;font-size:14px;font-weight:600;background:#fff;border:1px solid var(--line);border-radius:8px;padding:9px 14px;min-height:40px;cursor:pointer;color:var(--ink);}
   .rating-btn:hover:not(:disabled){border-color:var(--sky);}
   .rating-btn:disabled{cursor:default;opacity:.65;}
   .rating-btn.voted-up{background:#E4F3E6;border-color:#7fb888;}
   .rating-btn.voted-down{background:#FBE6E3;border-color:#dd9a91;}
-  .rating-thanks{font-size:12.5px;color:var(--pitch);font-weight:600;}
+  .rating-thanks{font-size:13px;color:var(--pitch);font-weight:600;}
   .alt-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px;padding-top:12px;border-top:1px dashed #ece7d9;}
-  .alt-btn{font-family:'Work Sans',sans-serif;font-size:13px;font-weight:600;background:#EAF1E7;border:1px solid #cfe0c8;border-radius:8px;padding:6px 12px;cursor:pointer;color:var(--pitch);}
+  .alt-btn{font-family:'Work Sans',sans-serif;font-size:14px;font-weight:600;background:#EAF1E7;border:1px solid #cfe0c8;border-radius:8px;padding:9px 14px;min-height:40px;cursor:pointer;color:var(--pitch);}
   .alt-btn:hover{background:#dcebd6;}
   .alt-btn:disabled{cursor:default;opacity:.6;}
-  .ex-select{font-family:'Work Sans',sans-serif;font-size:13px;font-weight:600;background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 10px;cursor:pointer;color:var(--ink);max-width:220px;}
+  .ex-select{font-family:'Work Sans',sans-serif;font-size:14px;font-weight:600;background:#fff;border:1px solid var(--line);border-radius:8px;padding:9px 12px;min-height:40px;cursor:pointer;color:var(--ink);max-width:220px;}
   .ex-select:hover{border-color:var(--sky);}
   .ex-select:disabled{cursor:default;opacity:.6;}
   .alt-none{font-size:12.5px;color:#a39d8c;font-style:italic;}
@@ -352,7 +376,7 @@
   }
   @keyframes spin{to{transform:rotate(360deg);}}
 
-  @media (max-width:560px){
+  @media (max-width:680px){
     .form-grid{grid-template-columns:1fr;}
     .phase{grid-template-columns:1fr;}
     .phase-time{flex-direction:row;align-items:baseline;gap:10px;}
@@ -381,7 +405,7 @@
   <div class="form-panel">
     <div class="form-header-row">
       <div class="form-header-text">
-        <p class="kicker">TSV Wetschen · Trainingspilot · v4.4</p>
+        <p class="kicker">TSV Wetschen · Trainingspilot · v4.5</p>
         <h1>Neuen Trainingsplan erstellen</h1>
         <p class="lead">Eckdaten eingeben, Plan erscheint direkt unten – inklusive Übungsskizzen, komplett offline. Jeder Plan hat Begrüßung, 2–3 Schwerpunkt-Übungen, ein Abschlussspiel im echten Wettkampfformat und einen Abschlusskreis. Übungen wechseln sich automatisch ab, damit nicht wöchentlich dieselbe drankommt.</p>
       </div>
