@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Sperrtest">
+<meta name="theme-color" content="#2E5339">
+<title>Trainingspilot · Sperrbildschirm-Test</title>
+<style>
+  :root{--pitch:#2E5339;--cone:#E8622C;--paper:#FAF8F3;--line:#c9c2b2;--ink:#1b1f1a;--muted:#6f6a5c;--ok:#2f7d32;--bad:#b3261e;--warn:#9a6a00;--sky:#3f7fb5;}
+  *{box-sizing:border-box;}
+  html,body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.5;-webkit-text-size-adjust:100%;}
+  main{max-width:560px;margin:0 auto;padding:max(16px,env(safe-area-inset-top)) 16px max(28px,env(safe-area-inset-bottom));}
+  h1{font-size:22px;line-height:1.2;margin:8px 0 4px;color:var(--pitch);}
+  h2{font-size:17px;margin:22px 0 8px;color:var(--pitch);}
+  p{margin:0 0 10px;}
+  .muted{color:var(--muted);font-size:14px;}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:0 0 12px;}
+  .card h3{margin:0 0 4px;font-size:16px;color:var(--pitch);}
+  .card p{font-size:14px;margin:0 0 10px;color:#3a4136;}
+  button{font:inherit;cursor:pointer;}
+  .btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:52px;border:none;border-radius:12px;background:var(--cone);color:#fff;font-weight:700;font-size:16px;padding:0 16px;}
+  .btn.secondary{background:#fff;color:var(--pitch);border:1px solid var(--line);font-weight:600;}
+  .btn.small{min-height:44px;font-size:15px;}
+  .steps{margin:0 0 12px;padding-left:20px;font-size:15px;}
+  .steps li{margin-bottom:6px;}
+  .hint{background:#F3EFE2;border-left:4px solid #E9B23F;border-radius:8px;padding:10px 12px;font-size:14px;margin:0 0 12px;}
+  #screen-run,#screen-result{display:none;}
+  .big-count{font-size:56px;font-weight:700;text-align:center;color:var(--pitch);margin:6px 0 0;font-variant-numeric:tabular-nums;}
+  .center{text-align:center;}
+  .pill{display:inline-block;font-size:12px;font-weight:700;border-radius:999px;padding:2px 9px;background:#eef2ea;color:var(--pitch);}
+  .row{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-top:1px solid #eee8d8;font-size:14.5px;}
+  .row:first-child{border-top:none;}
+  .row .mark{flex:0 0 26px;font-weight:700;font-size:18px;line-height:1.2;text-align:center;}
+  .row .txt b{display:block;font-size:14.5px;}
+  .row .txt span{color:var(--muted);font-size:13.5px;}
+  .ok{color:var(--ok);} .bad{color:var(--bad);} .warn{color:var(--warn);} .info{color:var(--sky);}
+  label.q{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:15px;padding:6px 0;}
+  input[type=number]{width:76px;min-height:44px;font-size:17px;text-align:center;border:1px solid var(--line);border-radius:10px;}
+  pre{white-space:pre-wrap;word-break:break-word;font-size:12.5px;background:#f4f1e7;border-radius:10px;padding:10px 12px;margin:8px 0;}
+  .small-note{font-size:12.5px;color:var(--muted);}
+</style>
+</head>
+<body>
+<main>
+  <h1>Sperrbildschirm-Test</h1>
+  <p class="muted">Klärt, was Trainingspilot bei gesperrtem Handy in der Tasche leisten kann: Läuft der Timer weiter? Kommen Töne und Ansagen? Funktioniert „Weiter“ am Sperrbildschirm?</p>
+
+  <section id="screen-start">
+    <div class="hint" id="host-warning" style="display:none;background:#FBEAE6;border-left-color:#b3261e;"></div>
+    <div class="hint"><b>So geht es:</b>
+      <ol class="steps" style="margin-top:6px">
+        <li>Lautstärke hochdrehen. <b>iPhone:</b> Klingelschalter auf „laut“ (kein rotes Feld sichtbar).</li>
+        <li>Einen Test unten antippen. Er dauert ca. 3 Minuten.</li>
+        <li>Bildschirm sperren (Seitentaste) und das Handy in die Tasche stecken. Alle 30 Sekunden kommt ein Signal.</li>
+        <li>Nach Ablauf entsperren: das Ergebnis erscheint von selbst.</li>
+      </ol>
+      <span class="small-note">Am besten genau so testen, wie die Trainer die App nutzen: im Browser <i>und</i> als App vom Home-Bildschirm. Auf iPhone und Android.</span>
+    </div>
+
+    <div class="card">
+      <h3>Test A · Wie heute</h3>
+      <p>Piepton per Web Audio und Vibration, sonst nichts. So arbeitet Trainingspilot aktuell.</p>
+      <button class="btn" data-test="a">Test A starten</button>
+    </div>
+    <div class="card">
+      <h3>Test B · Mit Hintergrund-Audio</h3>
+      <p>Ein unhörbarer Dauerton hält die Seite wach. Dazu Piepton und Sprachansage. Tippe am Sperrbildschirm <b>einmal auf ⏭ Weiter</b> (Musik-Steuerung).</p>
+      <button class="btn" data-test="b">Test B starten</button>
+    </div>
+    <div class="card">
+      <h3>Test C · Bildschirm bleibt an</h3>
+      <p>Verhindert die automatische Bildschirmsperre (Wake Lock), dazu Piepton und Ansage. <b>Nicht sperren</b> – Handy mit leuchtendem Display ablegen oder einstecken.</p>
+      <button class="btn" data-test="c">Test C starten</button>
+    </div>
+
+    <h2>Bisherige Ergebnisse</h2>
+    <div id="history"><p class="muted">Noch keine Läufe auf diesem Gerät.</p></div>
+    <div id="history-actions" style="display:none">
+      <button class="btn small" id="copy-all">Alle Ergebnisse kopieren</button>
+      <div style="height:8px"></div>
+      <button class="btn small secondary" id="clear-all">Ergebnisse löschen</button>
+    </div>
+  </section>
+
+  <section id="screen-run">
+    <div class="card center">
+      <span class="pill" id="run-name"></span>
+      <div class="big-count" id="run-count">3:00</div>
+      <p id="run-status" style="margin-top:6px"></p>
+      <div class="hint" id="run-instruction" style="text-align:left"></div>
+      <button class="btn small secondary" id="run-abort">Test abbrechen</button>
+    </div>
+  </section>
+
+  <section id="screen-result">
+    <div class="card" id="result-card"></div>
+    <div class="card" id="answers-card">
+      <h3>Deine Beobachtung</h3>
+      <p>Diese Angaben kann nur du machen.</p>
+      <label class="q">Wie viele Signaltöne hast du gehört? <input type="number" id="ans-beeps" min="0" max="20" inputmode="numeric"></label>
+      <label class="q" id="ans-speech-wrap">Wie viele Ansagen (Sprache)? <input type="number" id="ans-speech" min="0" max="20" inputmode="numeric"></label>
+      <label class="q">Wie oft hat das Handy vibriert? <input type="number" id="ans-vib" min="0" max="20" inputmode="numeric"></label>
+      <div style="height:6px"></div>
+      <button class="btn small" id="save-answers">Angaben speichern</button>
+    </div>
+    <div class="card">
+      <h3>Ergebnis für den Chat</h3>
+      <pre id="result-text"></pre>
+      <button class="btn small" id="copy-one">Ergebnis kopieren</button>
+      <p id="copy-note" class="small-note" style="margin:8px 0 0"></p>
+    </div>
+    <button class="btn secondary" id="back-start">Zurück zur Auswahl</button>
+  </section>
+</main>
+
+<script>
+(function(){
+  'use strict';
+
+  var FAST = /[?&]schnell=1/.test(location.search);
+  var SIGNAL_EVERY_MS = FAST ? 4000 : 30000;
+  var SIGNAL_COUNT = 6;
+  var GRACE_MS = FAST ? 3000 : 10000;
+  var TOTAL_MS = SIGNAL_EVERY_MS * SIGNAL_COUNT + GRACE_MS;
+  var LATE_MS = 1500;          // ab dieser Verspaetung gilt ein Signal als nicht puenktlich
+  var GAP_LIMIT_MS = 2500;     // Luecke im 250-ms-Takt, ab der JavaScript als angehalten gilt
+  var STORE_KEY = 'sperrtest:runs:v1';
+
+  var TESTS = {
+    a:{ name:'Test A · Wie heute', bgAudio:false, wake:false, speech:false, vibrate:true,
+        instr:'Sperre jetzt den Bildschirm (Seitentaste) und stecke das Handy in die Tasche.' },
+    b:{ name:'Test B · Mit Hintergrund-Audio', bgAudio:true, wake:false, speech:true, vibrate:true,
+        instr:'Sperre jetzt den Bildschirm und stecke das Handy in die Tasche. Tippe einmal am Sperrbildschirm auf ⏭ Weiter (falls die Musik-Steuerung erscheint).' },
+    c:{ name:'Test C · Bildschirm bleibt an', bgAudio:false, wake:true, speech:true, vibrate:true,
+        instr:'Sperre den Bildschirm NICHT. Lege das Handy ab oder stecke es mit leuchtendem Display ein.' }
+  };
+
+  var $ = function(id){ return document.getElementById(id); };
+  var screens = { start:$('screen-start'), run:$('screen-run'), result:$('screen-result') };
+  function show(name){
+    Object.keys(screens).forEach(function(k){ screens[k].style.display = (k === name) ? 'block' : 'none'; });
+    window.scrollTo(0, 0);
+  }
+
+  // ---------- Hilfsfunktionen ----------
+  function fmtClock(ms){
+    var s = Math.max(0, Math.round(ms / 1000));
+    return Math.floor(s / 60) + ':' + ('0' + (s % 60)).slice(-2);
+  }
+  function fmtSec(ms){ return (ms / 1000).toFixed(1).replace('.', ',') + ' s'; }
+  function esc(t){ return String(t).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+  function deviceInfo(){
+    var ua = navigator.userAgent || '';
+    var os = /iPhone|iPad|iPod/.test(ua) ? 'iOS ' + ((ua.match(/OS (\d+[_\d]*)/) || [])[1] || '?').replace(/_/g, '.')
+           : /Android/.test(ua) ? 'Android ' + ((ua.match(/Android (\d+[.\d]*)/) || [])[1] || '?')
+           : 'anderes System';
+    var browser = /CriOS/.test(ua) ? 'Chrome (iOS)' : /FxiOS/.test(ua) ? 'Firefox (iOS)' : /SamsungBrowser/.test(ua) ? 'Samsung Internet'
+                : /Firefox/.test(ua) ? 'Firefox' : /Edg/.test(ua) ? 'Edge' : /Chrome/.test(ua) ? 'Chrome' : /Safari/.test(ua) ? 'Safari' : 'unbekannt';
+    var standalone = (window.navigator.standalone === true) || (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches);
+    return os + ' · ' + browser + ' · ' + (standalone ? 'Home-Bildschirm-App' : 'Browser-Tab');
+  }
+
+  function loadRuns(){ try{ return JSON.parse(localStorage.getItem(STORE_KEY) || '[]'); }catch(e){ return []; } }
+  function saveRuns(list){ try{ localStorage.setItem(STORE_KEY, JSON.stringify(list)); }catch(e){} }
+
+  // ---------- Signale: Web Audio ----------
+  var audioCtx = null;
+  function ensureAudioCtx(){
+    try{
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if(!AC){ return null; }
+      if(!audioCtx){ audioCtx = new AC(); }
+      if(audioCtx.state !== 'running' && audioCtx.resume){ audioCtx.resume().catch(function(){}); }
+      return audioCtx;
+    }catch(e){ return null; }
+  }
+  function playBeep(ctx){
+    if(!ctx){ return; }
+    var t0 = ctx.currentTime + 0.02;
+    [0, 0.35].forEach(function(off){
+      var osc = ctx.createOscillator(), gain = ctx.createGain();
+      osc.type = 'sine'; osc.frequency.value = 880;
+      gain.gain.setValueAtTime(0.0001, t0 + off);
+      gain.gain.exponentialRampToValueAtTime(0.6, t0 + off + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.0001, t0 + off + 0.28);
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.start(t0 + off); osc.stop(t0 + off + 0.3);
+    });
+  }
+
+  // ---------- Hintergrund-Audio (unhoerbarer Dauerton) ----------
+  // v2: Safari/iOS meldet bei new Audio(blobUrl) in manchen Versionen "The operation is not
+  // supported" (bekannter WebKit-Fehler mit blob:-URLs bei Audio-Elementen). Eine data:-URI
+  // umgeht das zuverlaessig - dieselben WAV-Bytes, nur als Base64 statt als Blob-URL.
+  function makeQuietWavDataUrl(){
+    var rate = 8000, seconds = 2, n = rate * seconds, buf = new ArrayBuffer(44 + n * 2), v = new DataView(buf);
+    function str(o, s){ for(var i = 0; i < s.length; i++){ v.setUint8(o + i, s.charCodeAt(i)); } }
+    str(0, 'RIFF'); v.setUint32(4, 36 + n * 2, true); str(8, 'WAVE'); str(12, 'fmt ');
+    v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true);
+    v.setUint32(24, rate, true); v.setUint32(28, rate * 2, true); v.setUint16(32, 2, true); v.setUint16(34, 16, true);
+    str(36, 'data'); v.setUint32(40, n * 2, true);
+    for(var i = 0; i < n; i++){ v.setInt16(44 + i * 2, Math.round(Math.sin(2 * Math.PI * 30 * i / rate) * 4), true); } // ~ -78 dB, nicht hoerbar
+    var bytes = new Uint8Array(buf), bin = '';
+    for(var j = 0; j < bytes.length; j++){ bin += String.fromCharCode(bytes[j]); }
+    return 'data:audio/wav;base64,' + btoa(bin);
+  }
+
+  // ---------- Lauf ----------
+  var run = null;
+
+  function startRun(key){
+    var cfg = TESTS[key];
+    var ctx = ensureAudioCtx();   // in der Nutzergeste freischalten (iOS)
+    var now = Date.now();
+    run = {
+      key: key, name: cfg.name, device: deviceInfo(), startedAt: now, endsAt: now + TOTAL_MS, fast: FAST,
+      signals: [], lastTick: now, maxGap: 0, gapCount: 0, hiddenMs: 0, hiddenSince: (document.hidden ? now : null),
+      ctxStates: {}, bg: { wanted: cfg.bgAudio, started: false, pausedEvents: 0, runningAtSignal: [] },
+      media: { supported: !!(navigator.mediaSession), next: 0, prev: 0, play: 0, pause: 0 },
+      speech: { wanted: cfg.speech, supported: ('speechSynthesis' in window), started: 0, ended: 0, errors: [] },
+      wake: { wanted: cfg.wake, supported: !!(navigator.wakeLock), acquired: false, releases: 0, error: '' },
+      vib: { supported: !!navigator.vibrate },
+      events: [], answers: null, done: false
+    };
+    for(var i = 1; i <= SIGNAL_COUNT; i++){
+      run.signals.push({ n: i, plannedAt: now + i * SIGNAL_EVERY_MS, firedAt: null, delayMs: null });
+    }
+    run.ctxStates[ctx ? ctx.state : 'kein Web Audio'] = 1;
+    if(ctx){ ctx.onstatechange = function(){ run.ctxStates[ctx.state] = (run.ctxStates[ctx.state] || 0) + 1; }; }
+
+    if(cfg.bgAudio){ startBgAudio(); }
+    if(cfg.speech && run.speech.supported){ try{ var u = new SpeechSynthesisUtterance(' '); u.volume = 0; window.speechSynthesis.speak(u); }catch(e){} } // Sprache freischalten
+    if(cfg.wake){ requestWake(); }
+
+    $('run-name').textContent = cfg.name;
+    $('run-instruction').innerHTML = '<b>' + esc(cfg.instr) + '</b><br><span class="small-note">Alle ' + (SIGNAL_EVERY_MS / 1000) + ' Sekunden kommt ein Signal, insgesamt ' + SIGNAL_COUNT + '. Danach entsperren – das Ergebnis erscheint von selbst.</span>';
+    show('run');
+    run.timer = setInterval(tick, 250);
+    tick();
+  }
+
+  var bgEl = null, bgUrl = null;
+  function startBgAudio(){
+    try{
+      bgUrl = bgUrl || makeQuietWavDataUrl();
+      // Als <audio>-Element im DOM (statt nur im Speicher) - auf manchen iOS-Versionen
+      // zuverlaessiger fuer Hintergrundwiedergabe und fuer die Media-Session-Kopplung.
+      bgEl = document.getElementById('bg-audio-el');
+      if(!bgEl){
+        bgEl = document.createElement('audio');
+        bgEl.id = 'bg-audio-el';
+        bgEl.setAttribute('playsinline', ''); bgEl.setAttribute('webkit-playsinline', '');
+        bgEl.preload = 'auto';
+        bgEl.style.display = 'none';
+        document.body.appendChild(bgEl);
+      }
+      bgEl.loop = true; bgEl.volume = 1; bgEl.src = bgUrl; bgEl.load();
+      bgEl.addEventListener('pause', function(){ if(run && !run.done){ run.bg.pausedEvents++; } });
+      var p = bgEl.play();
+      if(p && p.then){ p.then(function(){ run.bg.started = true; }).catch(function(err){ run.bg.error = String(err && err.message || err); }); }
+      else { run.bg.started = true; }
+      if(navigator.mediaSession){
+        navigator.mediaSession.metadata = new MediaMetadata({ title:'Trainingspilot · Sperrtest', artist:'Signal 0 von ' + SIGNAL_COUNT, album:'TSV Wetschen' });
+        var set = function(a, fn){ try{ navigator.mediaSession.setActionHandler(a, fn); }catch(e){} };
+        set('nexttrack', function(){ run.media.next++; run.events.push({ t:Date.now(), e:'Weiter (nexttrack)' }); });
+        set('previoustrack', function(){ run.media.prev++; });
+        set('play', function(){ run.media.play++; if(bgEl){ bgEl.play(); } });
+        set('pause', function(){ run.media.pause++; });
+      }
+    }catch(err){ run.bg.error = String(err && err.message || err); }
+  }
+  function stopBgAudio(){
+    try{ if(bgEl){ bgEl.pause(); } }catch(e){}
+    bgEl = null;
+    if(navigator.mediaSession){
+      ['nexttrack','previoustrack','play','pause'].forEach(function(a){ try{ navigator.mediaSession.setActionHandler(a, null); }catch(e){} });
+      try{ navigator.mediaSession.metadata = null; }catch(e){}
+    }
+  }
+
+  var wakeSentinel = null;
+  function requestWake(){
+    if(!navigator.wakeLock){ return; }
+    navigator.wakeLock.request('screen').then(function(s){
+      wakeSentinel = s; run.wake.acquired = true;
+      s.addEventListener('release', function(){ if(run){ run.wake.releases++; } });
+    }).catch(function(err){ run.wake.error = String(err && err.message || err); });
+  }
+
+  function fireSignal(sig, now){
+    sig.firedAt = now; sig.delayMs = now - sig.plannedAt;
+    var ctx = ensureAudioCtx();
+    var st = ctx ? ctx.state : 'kein Web Audio';
+    sig.ctxState = st; run.ctxStates[st] = (run.ctxStates[st] || 0) + 1;
+    playBeep(ctx);
+    if(run.bg.wanted){ sig.bgRunning = !!(bgEl && !bgEl.paused); run.bg.runningAtSignal.push(sig.bgRunning); }
+    if(TESTS[run.key].vibrate && navigator.vibrate){ try{ navigator.vibrate([250, 120, 250, 120, 250]); }catch(e){} }
+    if(run.speech.wanted && run.speech.supported){
+      try{
+        var u = new SpeechSynthesisUtterance('Signal ' + sig.n + '. Nächste Übung: Zweikampf. Zehn Minuten.');
+        u.lang = 'de-DE'; u.rate = 1;
+        u.onstart = function(){ run.speech.started++; };
+        u.onend = function(){ run.speech.ended++; };
+        u.onerror = function(ev){ run.speech.errors.push(String(ev && ev.error || 'Fehler')); };
+        window.speechSynthesis.speak(u);
+      }catch(e){ run.speech.errors.push(String(e && e.message || e)); }
+    }
+    if(navigator.mediaSession && run.bg.wanted){
+      try{ navigator.mediaSession.metadata = new MediaMetadata({ title:'Trainingspilot · Sperrtest', artist:'Signal ' + sig.n + ' von ' + SIGNAL_COUNT, album:'TSV Wetschen' }); }catch(e){}
+    }
+  }
+
+  function tick(){
+    if(!run || run.done){ return; }
+    var now = Date.now();
+    var gap = now - run.lastTick;
+    if(gap > run.maxGap){ run.maxGap = gap; }
+    if(gap > GAP_LIMIT_MS){ run.gapCount++; }
+    run.lastTick = now;
+    run.signals.forEach(function(s){ if(s.firedAt === null && now >= s.plannedAt){ fireSignal(s, now); } });
+    var left = run.endsAt - now;
+    $('run-count').textContent = fmtClock(left);
+    var fired = run.signals.filter(function(s){ return s.firedAt !== null; }).length;
+    $('run-status').textContent = fired + ' von ' + SIGNAL_COUNT + ' Signalen ausgelöst';
+    if(left <= 0){ finishRun(); }
+  }
+
+  document.addEventListener('visibilitychange', function(){
+    if(!run || run.done){ return; }
+    var now = Date.now();
+    if(document.hidden){ run.hiddenSince = now; run.events.push({ t:now, e:'Seite unsichtbar (gesperrt/gewechselt)' }); }
+    else {
+      if(run.hiddenSince){ run.hiddenMs += now - run.hiddenSince; run.hiddenSince = null; }
+      run.events.push({ t:now, e:'Seite wieder sichtbar' });
+      if(run.wake.wanted && (!wakeSentinel || wakeSentinel.released)){ requestWake(); }
+    }
+  });
+
+  function finishRun(){
+    if(!run || run.done){ return; }
+    run.done = true; clearInterval(run.timer);
+    var now = Date.now();
+    if(run.hiddenSince){ run.hiddenMs += now - run.hiddenSince; run.hiddenSince = null; }
+    stopBgAudio();
+    try{ if(wakeSentinel){ wakeSentinel.release(); } }catch(e){}
+    wakeSentinel = null;
+    try{ if(window.speechSynthesis){ window.speechSynthesis.cancel(); } }catch(e){}
+    if(audioCtx && audioCtx.state === 'running'){ /* bewusst offen lassen, naechster Test nutzt ihn */ }
+    var list = loadRuns(); list.push(serialize(run)); saveRuns(list);
+    showResult(run);
+  }
+
+  function abortRun(){
+    if(!run || run.done){ show('start'); return; }
+    run.done = true; clearInterval(run.timer); stopBgAudio();
+    try{ if(wakeSentinel){ wakeSentinel.release(); } }catch(e){}
+    try{ if(window.speechSynthesis){ window.speechSynthesis.cancel(); } }catch(e){}
+    run = null; show('start'); renderHistory();
+  }
+
+  function serialize(r){
+    var copy = JSON.parse(JSON.stringify(r, function(k, v){ return (k === 'timer') ? undefined : v; }));
+    return copy;
+  }
+
+  // ---------- Auswertung ----------
+  function evaluate(r){
+    var rows = [];
+    var lateOnes = r.signals.filter(function(s){ return s.firedAt === null || s.delayMs > LATE_MS; });
+    var onTime = r.signals.length - lateOnes.length;
+    var locked = r.hiddenMs / 1000;
+    var expectHidden = (r.key !== 'c');
+
+    // 1) War der Bildschirm ueberhaupt gesperrt?
+    if(expectHidden){
+      if(locked >= (r.fast ? 5 : 60)){ rows.push({ m:'✓', c:'ok', t:'Bildschirm war gesperrt', d:'Die Seite war ' + Math.round(locked) + ' s unsichtbar – der Test ist aussagekräftig.' }); }
+      else { rows.push({ m:'!', c:'warn', t:'Bildschirm kaum gesperrt', d:'Nur ' + Math.round(locked) + ' s unsichtbar. Für ein gültiges Ergebnis den Test wiederholen und wirklich sperren.' }); }
+    } else {
+      rows.push({ m:'i', c:'info', t:'Bildschirm-Sperre nicht nötig', d: locked >= 5 ? 'Die Seite war trotzdem ' + Math.round(locked) + ' s unsichtbar – der Bildschirm ist also doch ausgegangen.' : 'Die Seite blieb sichtbar.' });
+    }
+
+    // 2) Lief JavaScript durch?
+    if(r.maxGap <= GAP_LIMIT_MS){ rows.push({ m:'✓', c:'ok', t:'Timer lief durch', d:'Längste Pause im Takt: ' + fmtSec(r.maxGap) + '.' }); }
+    else { rows.push({ m:'✗', c:'bad', t:'Timer wurde angehalten', d:'Längste Pause: ' + fmtSec(r.maxGap) + ', ' + r.gapCount + ' Unterbrechung(en). Das Betriebssystem hat die Seite eingefroren.' }); }
+
+    // 3) Signale puenktlich?
+    if(lateOnes.length === 0){ rows.push({ m:'✓', c:'ok', t:'Alle Signale pünktlich', d:r.signals.length + ' von ' + r.signals.length + ' innerhalb von ' + fmtSec(LATE_MS) + '.' }); }
+    else {
+      var delays = lateOnes.map(function(s){ return s.firedAt === null ? 'Signal ' + s.n + ' nie' : 'Signal ' + s.n + ' +' + fmtSec(s.delayMs); }).join(', ');
+      rows.push({ m:'✗', c:'bad', t: onTime + ' von ' + r.signals.length + ' Signalen pünktlich', d:'Verspätet: ' + delays + '.' });
+    }
+
+    // 4) Audio-Kontext
+    var states = Object.keys(r.ctxStates).join(', ');
+    var badState = Object.keys(r.ctxStates).some(function(k){ return k !== 'running'; });
+    rows.push({ m: badState ? '!' : '✓', c: badState ? 'warn' : 'ok', t:'Web-Audio-Zustand: ' + states, d: badState ? 'Nicht nur „running“ – Töne können still geblieben sein (iOS „interrupted/suspended“).' : 'Durchgehend aktiv.' });
+
+    // 5) Hintergrund-Audio + Sperrbildschirm-Steuerung
+    if(r.bg.wanted){
+      var runningCount = (r.bg.runningAtSignal || []).filter(Boolean).length;
+      if(r.bg.error){ rows.push({ m:'✗', c:'bad', t:'Hintergrund-Audio nicht gestartet', d:r.bg.error }); }
+      else { rows.push({ m: runningCount === r.signals.length ? '✓' : '✗', c: runningCount === r.signals.length ? 'ok' : 'bad', t:'Hintergrund-Audio lief bei ' + runningCount + ' von ' + r.signals.length + ' Signalen', d: r.bg.pausedEvents ? 'Das System hat es ' + r.bg.pausedEvents + '× pausiert.' : 'Nie vom System pausiert.' }); }
+      if(!r.media.supported){ rows.push({ m:'✗', c:'bad', t:'Sperrbildschirm-Steuerung nicht verfügbar', d:'Dieser Browser kennt die Media-Session-Schnittstelle nicht.' }); }
+      else { rows.push({ m: r.media.next > 0 ? '✓' : '?', c: r.media.next > 0 ? 'ok' : 'warn', t: r.media.next > 0 ? '⏭ Weiter vom Sperrbildschirm kam an (' + r.media.next + '×)' : 'Keine ⏭-Taste erkannt', d: r.media.next > 0 ? 'Damit könnte „Nächste Übung“ ohne Entsperren gehen.' : 'Entweder nicht getippt oder die Steuerung erschien nicht am Sperrbildschirm.' }); }
+    }
+
+    // 6) Sprache
+    if(r.speech.wanted){
+      if(!r.speech.supported){ rows.push({ m:'✗', c:'bad', t:'Sprachausgabe nicht verfügbar', d:'Dieser Browser hat keine speechSynthesis.' }); }
+      else {
+        var ok = r.speech.started >= r.signals.length;
+        rows.push({ m: ok ? '✓' : '✗', c: ok ? 'ok' : 'bad', t:'Ansagen gestartet: ' + r.speech.started + ' von ' + r.signals.length, d: (r.speech.errors.length ? 'Fehler: ' + r.speech.errors.join(', ') + '. ' : '') + 'Ob du sie hörst, trägst du unten ein.' });
+      }
+    }
+
+    // 7) Wake Lock
+    if(r.wake.wanted){
+      if(!r.wake.supported){ rows.push({ m:'✗', c:'bad', t:'Wake Lock nicht verfügbar', d:'Dieser Browser kann die Bildschirmsperre nicht verhindern.' }); }
+      else if(!r.wake.acquired){ rows.push({ m:'✗', c:'bad', t:'Wake Lock nicht erhalten', d:r.wake.error || 'Unbekannter Grund.' }); }
+      else { rows.push({ m: r.wake.releases === 0 ? '✓' : '!', c: r.wake.releases === 0 ? 'ok' : 'warn', t:'Wake Lock aktiv', d: r.wake.releases === 0 ? 'Wurde nie freigegeben.' : 'Wurde ' + r.wake.releases + '× vom System freigegeben.' }); }
+    }
+
+    // 8) Vibration
+    rows.push({ m: r.vib.supported ? '✓' : '✗', c: r.vib.supported ? 'ok' : 'bad', t: r.vib.supported ? 'Vibration wird unterstützt' : 'Vibration nicht unterstützt', d: r.vib.supported ? 'Ob sie gespürt wurde, trägst du unten ein.' : 'Auf dem iPhone gibt es keine Web-Vibration.' });
+
+    return rows;
+  }
+
+  function textSummary(r){
+    var lines = [];
+    lines.push(r.name + ' · ' + r.device + (r.fast ? ' · (Schnelltest)' : ''));
+    evaluate(r).forEach(function(x){ lines.push(x.m + ' ' + x.t + ' – ' + x.d); });
+    if(r.answers){
+      var a = r.answers, parts = [];
+      if(a.beeps !== null){ parts.push('Töne gehört: ' + a.beeps + ' von ' + r.signals.length); }
+      if(a.speech !== null && r.speech.wanted){ parts.push('Ansagen gehört: ' + a.speech + ' von ' + r.signals.length); }
+      if(a.vib !== null){ parts.push('Vibrationen gespürt: ' + a.vib); }
+      if(parts.length){ lines.push('Beobachtung: ' + parts.join(' · ')); }
+    }
+    return lines.join('\n');
+  }
+
+  function showResult(r){
+    var rows = evaluate(r);
+    var html = '<h3>' + esc(r.name) + '</h3><p class="small-note" style="margin-bottom:6px">' + esc(r.device) + '</p>';
+    rows.forEach(function(x){
+      html += '<div class="row"><div class="mark ' + x.c + '">' + x.m + '</div><div class="txt"><b>' + esc(x.t) + '</b><span>' + esc(x.d) + '</span></div></div>';
+    });
+    $('result-card').innerHTML = html;
+    $('ans-speech-wrap').style.display = r.speech.wanted ? 'flex' : 'none';
+    ['ans-beeps','ans-speech','ans-vib'].forEach(function(id){ $(id).value = ''; });
+    $('result-text').textContent = textSummary(r);
+    $('copy-note').textContent = '';
+    show('result');
+    renderHistory();
+  }
+
+  function currentIndex(){ var l = loadRuns(); return l.length - 1; }
+
+  function renderHistory(){
+    var list = loadRuns(), el = $('history');
+    if(!list.length){ el.innerHTML = '<p class="muted">Noch keine Läufe auf diesem Gerät.</p>'; $('history-actions').style.display = 'none'; return; }
+    var html = '';
+    list.slice().reverse().forEach(function(r){
+      var rows = evaluate(r);
+      var bad = rows.filter(function(x){ return x.c === 'bad'; }).length;
+      var warn = rows.filter(function(x){ return x.c === 'warn'; }).length;
+      html += '<div class="card" style="padding:10px 14px"><b style="font-size:14.5px">' + esc(r.name) + '</b><br><span class="small-note">' + esc(r.device) + '</span><br><span class="' + (bad ? 'bad' : warn ? 'warn' : 'ok') + '" style="font-size:13.5px;font-weight:600">' + (bad ? bad + ' Problem(e)' : warn ? warn + ' Hinweis(e)' : 'alles in Ordnung') + '</span></div>';
+    });
+    el.innerHTML = html;
+    $('history-actions').style.display = 'block';
+  }
+
+  function copyText(text, noteEl){
+    function fallback(){
+      var ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      var ok = false; try{ ok = document.execCommand('copy'); }catch(e){}
+      document.body.removeChild(ta);
+      if(noteEl){ noteEl.textContent = ok ? '✓ Kopiert. Jetzt im Chat einfügen.' : 'Kopieren nicht möglich – markiere den Text oben und kopiere ihn von Hand.'; }
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){ if(noteEl){ noteEl.textContent = '✓ Kopiert. Jetzt im Chat einfügen.'; } }).catch(fallback);
+    } else { fallback(); }
+  }
+
+  // ---------- Events ----------
+  Array.prototype.forEach.call(document.querySelectorAll('[data-test]'), function(b){
+    b.addEventListener('click', function(){ startRun(b.getAttribute('data-test')); });
+  });
+  $('run-abort').addEventListener('click', abortRun);
+  $('back-start').addEventListener('click', function(){ show('start'); renderHistory(); });
+  $('save-answers').addEventListener('click', function(){
+    var list = loadRuns(); if(!list.length){ return; }
+    var last = list[list.length - 1];
+    function num(id){ var v = $(id).value; return v === '' ? null : parseInt(v, 10); }
+    last.answers = { beeps:num('ans-beeps'), speech:num('ans-speech'), vib:num('ans-vib') };
+    saveRuns(list);
+    $('result-text').textContent = textSummary(last);
+    $('copy-note').textContent = '✓ Angaben gespeichert.';
+  });
+  $('copy-one').addEventListener('click', function(){ copyText($('result-text').textContent, $('copy-note')); });
+  $('copy-all').addEventListener('click', function(){
+    var all = loadRuns().map(textSummary).join('\n\n');
+    copyText(all, null);
+    $('copy-all').textContent = '✓ Kopiert – im Chat einfügen';
+    setTimeout(function(){ $('copy-all').textContent = 'Alle Ergebnisse kopieren'; }, 3000);
+  });
+  $('clear-all').addEventListener('click', function(){
+    if($('clear-all').getAttribute('data-armed') !== '1'){ $('clear-all').setAttribute('data-armed', '1'); $('clear-all').textContent = 'Wirklich löschen?'; return; }
+    $('clear-all').removeAttribute('data-armed'); $('clear-all').textContent = 'Ergebnisse löschen';
+    saveRuns([]); renderHistory();
+  });
+
+  // Kommt der Nutzer nach der Sperre zurueck und der Lauf ist zeitlich schon vorbei, wird er sofort beendet.
+  document.addEventListener('visibilitychange', function(){ if(!document.hidden && run && !run.done){ tick(); } });
+
+  // Wake Lock (Test C) und manche Audio-Funktionen brauchen eine sichere Adresse
+  // (https:// oder localhost). Als Datei geoeffnet (file://) schlagen sie fehl, ohne dass das
+  // etwas ueber iOS/Android aussagt - deshalb vorab deutlich sichtbar warnen.
+  (function checkHost(){
+    var isFile = location.protocol === 'file:';
+    var isSecure = location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+    if(isFile || !isSecure){
+      var box = $('host-warning');
+      box.style.display = 'block';
+      box.innerHTML = '<b>⚠️ Diese Seite läuft ' + (isFile ? 'als lokale Datei' : 'ohne https') + '.</b> '
+        + 'Test C (Bildschirm bleibt an) und Teile von Test B funktionieren dann nicht zuverlässig – '
+        + 'das ist eine Einschränkung dieser Testumgebung, keine Aussage über das Handy. '
+        + 'Bitte diese Datei auf eine ganz normale Adresse mit <code>https://</code> hochladen und von dort öffnen.';
+    }
+  })();
+
+  window.__sperrtest = { evaluate:evaluate, textSummary:textSummary };
+  renderHistory();
+  show('start');
+})();
+</script>
+</body>
+</html>
