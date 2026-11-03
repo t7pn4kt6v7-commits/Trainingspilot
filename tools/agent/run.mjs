@@ -1,8 +1,12 @@
 #!/usr/bin/env node
-// Übungs-Agent des Trainingspiloten. Läuft wöchentlich als GitHub Action
-// (.github/workflows/uebungs-agent.yml), kann aber auch lokal gestartet werden:
+// Übungs-Agent des Trainingspiloten. Wird NUR von Hand gestartet (GitHub Action
+// .github/workflows/uebungs-agent.yml oder lokal) - es gibt keinen Zeitplan.
 //
-//   ANTHROPIC_API_KEY=... GITHUB_TOKEN=... GITHUB_REPOSITORY=owner/repo node tools/agent/run.mjs
+// KOSTEN: Standardmäßig ruft der Agent die Claude API NICHT auf, sondern zeigt nur, was er
+// tun würde (kostenlos). Kostenpflichtige API-Aufrufe erfolgen ausschließlich mit
+// ALLOW_API_COSTS=1 UND gesetztem ANTHROPIC_API_KEY:
+//
+//   ALLOW_API_COSTS=1 ANTHROPIC_API_KEY=... GITHUB_REPOSITORY=owner/repo node tools/agent/run.mjs
 //
 // Ablauf: offene Rückmeldungs-Issues lesen -> dringendste Kombinationen aus Altersstufe und
 // Kategorie bestimmen (kleiner Pool, "kommt zu oft dran", Vorschläge, 👎) -> je Kombination
@@ -10,7 +14,7 @@
 // (Formeln, Skizze, Duplikate) -> data/exercises/*.json + index.html aktualisieren ->
 // Text für den Pull Request schreiben. Ein Mensch prüft und gibt frei; nichts geht direkt live.
 //
-// Umgebungsvariablen: MAX_NEW (Standard 4), DRY_RUN=1 (nur planen, keine API-Kosten),
+// Umgebungsvariablen: MAX_NEW (Standard 4), ALLOW_API_COSTS=1 (API-Aufrufe erlauben),
 // AGENT_MODEL (Standard claude-opus-5-5), AGENT_SUMMARY_FILE (Pfad für den PR-Text).
 
 import fs from 'node:fs';
@@ -207,7 +211,9 @@ export function summaryMarkdown({ added, skipped, flagged, unassignedFb, targets
 
 export async function main({ env = process.env, client = null, issues = null, log = console.log } = {}) {
   const maxNew = Math.max(0, parseInt(env.MAX_NEW || '4', 10) || 0);
-  const dryRun = /^(1|true|yes)$/i.test(env.DRY_RUN || '');
+  // Kostenfrei, solange nicht ausdrücklich freigegeben (DRY_RUN erzwingt den Probelauf zusätzlich).
+  const allowApiCosts = /^(1|true|yes)$/i.test(env.ALLOW_API_COSTS || '');
+  const dryRun = !allowApiCosts || /^(1|true|yes)$/i.test(env.DRY_RUN || '');
   const model = env.AGENT_MODEL || DEFAULT_MODEL;
   const summaryFile = env.AGENT_SUMMARY_FILE || path.join(os.tmpdir(), 'uebungs-agent-pr.md');
   const today = env.AGENT_TODAY || new Date().toISOString().slice(0, 10);
@@ -222,7 +228,11 @@ export async function main({ env = process.env, client = null, issues = null, lo
   const week = Math.floor(Date.parse(today + 'T00:00:00Z') / (7 * 86400000));
   const targets = planTargets(data, feedback, maxNew, 'w' + week);
   log('Ausgewählt: ' + (targets.map((t) => `${t.tier}/${t.cat} (Pool ${t.pool}, Dringlichkeit ${t.score})`).join(', ') || 'nichts'));
-  if (dryRun || !targets.length) return { added: [], targets };
+  if (dryRun) {
+    log('Probelauf: keine API-Aufrufe, keine Kosten, keine Änderungen. (Kostenpflichtiger Lauf nur mit ALLOW_API_COSTS=1.)');
+    return { added: [], targets };
+  }
+  if (!targets.length) return { added: [], targets };
 
   if (!client && !env.ANTHROPIC_API_KEY) {
     throw new Error('ANTHROPIC_API_KEY fehlt - im Repository unter Settings → Secrets and variables → Actions als Secret anlegen (siehe tools/agent/README.md).');

@@ -4045,7 +4045,7 @@ var scriptStartTime = Date.now();
   // Update-Check per einfachem Marker-Block ausgelesen und im Update-Popup angezeigt.
   // USER_CHANGELOG_START
   // - Neu: „🔁 Kommt zu oft dran“ – die Übung wird vorerst seltener vorgeschlagen
-  // - Feedback und Vorschläge fließen in die wöchentliche Übungs-Aktualisierung ein (🆕 neue Übungen)
+  // - Feedback und Vorschläge fließen in die Weiterentwicklung der Übungen ein (🆕 neue Übungen)
   // - Mehr Abwechslung: kürzlich gezeigte oder trainierte Übungen werden vorerst nicht erneut vorgeschlagen
   // - Gespeicherte und gestartete Trainings zählen als „trainiert“ – auch getauschte Übungen
   // - Bei wenigen gewählten Schwerpunkten werden zuletzt nicht trainierte Bereiche ergänzt
@@ -4280,7 +4280,7 @@ var scriptStartTime = Date.now();
   }
 
   // v5.162: Rückmeldungen gehen als GitHub-Issue an das Repository - dort liest sie der
-  // Übungs-Agent (tools/agent) wöchentlich aus und schlägt passende neue Übungen vor. Der
+  // Übungs-Agent (tools/agent, nur von Hand gestartet) aus und schlägt neue Übungen vor. Der
   // HTML-Kommentar am Ende des Textes enthält die Angaben maschinenlesbar (für den Agenten);
   // Trainer*innen sehen ihn im fertigen Issue nicht. Ohne GitHub-Konto bleibt der E-Mail-Weg.
   var FEEDBACK_REPO_URL = 'https://github.com/t7pn4kt6v7-commits/Trainingspilot';
@@ -5012,7 +5012,7 @@ var scriptStartTime = Date.now();
     html += '<textarea class="comment-input" maxlength="200" rows="1" placeholder="Kurzer Kommentar zur Übung (optional)">' + escapeHtml(p.ratingComment || '') + '</textarea>';
     html += '</div>';
     html += '<button type="button" class="comment-send-btn" style="display:none;" aria-label="Feedback an das Trainerteam senden">📨 Feedback senden</button>';
-    html += '<p class="mail-hint" style="display:none;">Öffnet ein vorausgefülltes Formular auf GitHub (kostenloses Konto nötig) – dort nur noch auf „Create“ tippen. Deine Rückmeldung fließt in die wöchentliche Übungs-Aktualisierung ein. <a href="#" class="feedback-mail-fallback">Kein GitHub-Konto? Per E-Mail senden</a></p>';
+    html += '<p class="mail-hint" style="display:none;">Öffnet ein vorausgefülltes Formular auf GitHub (kostenloses Konto nötig) – dort nur noch auf „Create“ tippen. Deine Rückmeldung fließt in die Weiterentwicklung der Übungen ein. <a href="#" class="feedback-mail-fallback">Kein GitHub-Konto? Per E-Mail senden</a></p>';
     html += '<span class="comment-status"></span>';
     if(p.category){
       html += '<div class="suggest-new-row">';
@@ -5023,7 +5023,7 @@ var scriptStartTime = Date.now();
       html += '<textarea class="suggest-new-input" maxlength="200" rows="1" placeholder="Deine Idee kurz beschreiben"></textarea>';
       html += '</div>';
       html += '<button type="button" class="suggest-new-send" aria-label="Vorschlag an das Trainerteam senden">📨 Vorschlag senden</button>';
-      html += '<p class="mail-hint">Öffnet ein vorausgefülltes Formular auf GitHub (kostenloses Konto nötig). Gute Vorschläge nimmt die wöchentliche Übungs-Aktualisierung auf. <a href="#" class="suggest-mail-fallback">Kein GitHub-Konto? Per E-Mail senden</a></p>';
+      html += '<p class="mail-hint">Öffnet ein vorausgefülltes Formular auf GitHub (kostenloses Konto nötig). Gute Vorschläge werden in die Übungsbibliothek aufgenommen. <a href="#" class="suggest-mail-fallback">Kein GitHub-Konto? Per E-Mail senden</a></p>';
       html += '<span class="suggest-new-status"></span>';
       html += '</div>';
       html += '</div>';

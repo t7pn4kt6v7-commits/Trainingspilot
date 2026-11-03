@@ -1,8 +1,15 @@
 # Übungs-Agent
 
-Der Agent ergänzt die Übungsbibliothek jede Woche um neue Übungen. Damit geht er die häufigste Kritik der Trainer*innen an, dass sich Übungen zu oft wiederholen. **Nichts geht ungeprüft live:** Jeder Vorschlag kommt als Pull Request, den jemand aus dem Trainerteam freigibt.
+Der Agent ergänzt die Übungsbibliothek auf Knopfdruck um neue Übungen. Damit geht er die häufigste Kritik der Trainer*innen an, dass sich Übungen zu oft wiederholen. **Nichts geht ungeprüft live:** Jeder Vorschlag kommt als Pull Request, den jemand aus dem Trainerteam freigibt.
 
-## Ablauf (montags 04:17 UTC)
+## Kosten: Standardmäßig keine
+
+- **Kein Zeitplan.** Der Workflow startet nur, wenn ihn jemand unter *Actions → Übungs-Agent → Run workflow* von Hand auslöst.
+- **Standard ist ein kostenloser Probelauf.** Ohne Haken bei „Kostenpflichtige API-Aufrufe erlauben“ liest der Agent nur die Issues und zeigt in der Zusammenfassung, welche Bereiche drankämen. Er ruft die Claude API nicht auf und ändert nichts.
+- **Doppelte Sicherung.** Kostenpflichtige Aufrufe brauchen *beide*: den Haken beim Start (bzw. `ALLOW_API_COSTS=1` lokal) **und** ein hinterlegtes `ANTHROPIC_API_KEY`. Ohne Secret kann nie etwas abgerechnet werden.
+- **GitHub Actions** sind für öffentliche Repositories kostenlos.
+
+## Ablauf
 
 ```
 Trainer*in in der App            GitHub                         Übungs-Agent (GitHub Action)
@@ -33,15 +40,19 @@ Die Bereiche mit den meisten Punkten bekommen je eine neue Übung, höchstens `M
 
 ## Einrichtung (einmalig)
 
-1. **API-Schlüssel:** Unter https://console.anthropic.com einen API-Schlüssel erstellen. Ihn im Repository unter *Settings → Secrets and variables → Actions → New repository secret* als `ANTHROPIC_API_KEY` speichern.
+Für den kostenlosen Probelauf ist nichts einzurichten: *Actions → Übungs-Agent → Run workflow*, ohne Haken.
+
+Nur falls später doch Übungen erzeugt werden sollen (kostenpflichtig):
+
+1. **API-Schlüssel:** Unter https://console.anthropic.com einen API-Schlüssel erstellen. Ihn im Repository unter *Settings → Secrets and variables → Actions → New repository secret* als `ANTHROPIC_API_KEY` speichern. In der Console lässt sich zusätzlich ein monatliches Ausgabelimit setzen.
 2. **Pull Requests durch Actions erlauben:** *Settings → Actions → General → Workflow permissions* auf „Read and write permissions“ stellen und „Allow GitHub Actions to create and approve pull requests“ anhaken.
-3. **Erster Test:** *Actions → Übungs-Agent → Run workflow* mit „Probelauf“ starten. Der Lauf zeigt, welche Bereiche drankämen, ohne API-Kosten und ohne PR. Danach einmal ohne Probelauf starten.
+3. **Lauf starten** mit Haken bei „Kostenpflichtige API-Aufrufe erlauben“.
 
 **Rückmeldungen ohne GitHub-Konto:** Trainer*innen brauchen ein kostenloses GitHub-Konto, um Issues zu öffnen. Ohne Konto bleibt in der App der Link „Per E-Mail senden“. Solche Mails liest der Agent nicht; wer sie bekommt, kann sie über das Formular *Issues → New issue → Rückmeldung zu einer Übung* übertragen.
 
-## Kosten
+## Kosten eines freigegebenen Laufs
 
-Ein Lauf macht bis zu `MAX_NEW` Anfragen an Claude Opus 5.5, bei einem ungültigen Ergebnis je eine Korrekturrunde. Das sind grob 10.000 bis 20.000 Eingabe- und bis zu 16.000 Ausgabe-Token pro Übung. Bei vier Übungen pro Woche liegen die Kosten im Bereich weniger Euro im Monat. Die tatsächlichen Werte stehen in der Anthropic-Console unter *Usage*.
+Ein Lauf macht bis zu `MAX_NEW` Anfragen an Claude Opus 5.5, bei einem ungültigen Ergebnis je eine Korrekturrunde. Das sind grob 10.000 bis 20.000 Eingabe- und bis zu 16.000 Ausgabe-Token pro Übung. Ein Lauf mit vier Übungen kostet grob im Bereich von einem Euro. Die tatsächlichen Werte stehen in der Anthropic-Console unter *Usage*.
 
 ## Sicherheit
 
@@ -56,14 +67,15 @@ Ein Lauf macht bis zu `MAX_NEW` Anfragen an Claude Opus 5.5, bei einem ungültig
 ```bash
 npm ci --prefix tools/agent
 node tools/agent/test.mjs                           # Tests ohne API-Aufrufe
-DRY_RUN=1 GITHUB_REPOSITORY=t7pn4kt6v7-commits/Trainingspilot node tools/agent/run.mjs
-ANTHROPIC_API_KEY=… GITHUB_REPOSITORY=… MAX_NEW=1 node tools/agent/run.mjs
+GITHUB_REPOSITORY=t7pn4kt6v7-commits/Trainingspilot node tools/agent/run.mjs   # Probelauf, kostenlos
+ALLOW_API_COSTS=1 ANTHROPIC_API_KEY=… GITHUB_REPOSITORY=… MAX_NEW=1 node tools/agent/run.mjs  # kostenpflichtig
 ```
 
 | Variable | Bedeutung |
 |---|---|
 | `MAX_NEW` | Höchstzahl neuer Übungen (Standard 4) |
-| `DRY_RUN=1` | Nur planen, keine API-Aufrufe |
+| `ALLOW_API_COSTS=1` | Kostenpflichtige API-Aufrufe erlauben (sonst immer Probelauf) |
+| `DRY_RUN=1` | Erzwingt den Probelauf, auch mit Freigabe |
 | `AGENT_MODEL` | Modell (Standard `claude-opus-5-5`) |
 | `AGENT_SUMMARY_FILE` | Wohin der PR-Text geschrieben wird |
 

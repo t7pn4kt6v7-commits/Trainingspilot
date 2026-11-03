@@ -116,7 +116,7 @@ await test('Kompletter Lauf (simuliert) schreibt Daten, index.html und PR-Text',
   try {
     const summary = path.join(backup, 'pr.md');
     const issues = [{ number: 42, html_url: 'u', body: marker({ v: 1, art: 'neu', tier: 'jung', kategorie: 'passspiel' }) }];
-    const res = await main({ env: { MAX_NEW: '1', AGENT_SUMMARY_FILE: summary, AGENT_TODAY: '2026-11-03' }, client: stubClient([goodOut]), issues, log: () => {} });
+    const res = await main({ env: { ALLOW_API_COSTS: '1', MAX_NEW: '1', AGENT_SUMMARY_FILE: summary, AGENT_TODAY: '2026-11-03' }, client: stubClient([goodOut]), issues, log: () => {} });
     assert.equal(res.added.length, 1);
     const after = loadData();
     assert.ok(after.tiers.jung.passspiel.some((e) => e.title === goodOut.title));
@@ -130,9 +130,16 @@ await test('Kompletter Lauf (simuliert) schreibt Daten, index.html und PR-Text',
   }
 });
 
-await test('Probelauf (DRY_RUN) ruft keine API auf', async () => {
-  const res = await main({ env: { DRY_RUN: '1' }, client: { beta: { messages: { parse: () => { throw new Error('API aufgerufen'); } } } }, issues: [], log: () => {} });
+const noApi = { beta: { messages: { parse: () => { throw new Error('API aufgerufen'); } } } };
+await test('Standard ohne Freigabe: keine API-Aufrufe, auch mit API-Schlüssel', async () => {
+  const res = await main({ env: { ANTHROPIC_API_KEY: 'sk-test' }, client: noApi, issues: [], log: () => {} });
   assert.ok(res.targets.length > 0);
+  assert.equal(res.added.length, 0);
+});
+
+await test('DRY_RUN erzwingt Probelauf auch mit Freigabe', async () => {
+  const res = await main({ env: { ALLOW_API_COSTS: '1', DRY_RUN: '1' }, client: noApi, issues: [], log: () => {} });
+  assert.equal(res.added.length, 0);
 });
 
 console.log(failed ? `\n${failed} Test(s) fehlgeschlagen` : '\nAlle Tests bestanden');
