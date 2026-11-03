@@ -1,0 +1,459 @@
+{
+  "tier": "c",
+  "categories": {
+    "ballgewoehnung": [
+      {
+        "id": "1-gegen-1-finten-battle",
+        "title": "1-gegen-1-Finten-Battle",
+        "goal": "Ziel: Individualtechnik unter echtem Gegnerdruck festigen",
+        "desc": "Zwei Hütchentore im Abstand von ca. 10 m gegenüber aufstellen. Zwei Kinder starten sich gegenüber mit je einem Ball; auf Kommando dribbeln beide gleichzeitig los und versuchen, mit einer Finte am jeweils anderen vorbei durch dessen Tor zu dribbeln. Nach jeder Aktion sofort neu starten, Partner nach 4–5 Durchgängen wechseln.",
+        "coachTip": "Bewusst unterschiedliche Finten vorgeben (Übersteiger, Ausfallschritt, Ballanziehen), damit nicht jeder nur seine Lieblingsfinte übt.",
+        "materials": "{ceil(k/2)} Bälle · {4 * parallelFields(k,2)} Hütchen",
+        "dims": "{fieldLabel(parallelFields(k,2))} à ca. 10 × 6 m",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            1,
+            1,
+            {
+              "caption": "1 gegen 1 auf Hütchentore (hier: ein Feld)"
+            }
+          ]
+        }
+      },
+      {
+        "id": "doppelpass-dribbling-unter-zeitdruck",
+        "title": "Doppelpass-Dribbling unter Zeitdruck",
+        "goal": "Ziel: Enge Ballführung mit Kombinationselement unter Tempo",
+        "desc": "Einen Parcours aus 5–6 Hütchen im Slalom-Abstand von ca. 2,5 m aufstellen, direkt gefolgt von einem kurzen Doppelpass mit einem wartenden Mitspieler (ca. 5 m Abstand) und einem Sprint zum Ziel-Hütchen. Zeit pro Durchgang stoppen und mit dem letzten Versuch vergleichen. Rollen (Dribbler/Doppelpass-Partner) nach jedem Durchgang tauschen.",
+        "coachTip": "Sauberer erster Kontakt nach dem Doppelpass geht vor Schnelligkeit – erst wenn das sitzt, auf Zeit steigern.",
+        "materials": "{ceil(k/2)} Bälle · 6 Hütchen · 1 Stoppuhr",
+        "dims": "{fieldDims(18, 0.6, k)}",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k,14)",
+            {
+              "withBall": true,
+              "cones": 6,
+              "showDribblePath": true,
+              "caption": "Slalom, Doppelpass, Sprint zum Ziel"
+            }
+          ]
+        }
+      }
+    ],
+    "passspiel": [
+      {
+        "id": "verlagerung-ueber-die-seite",
+        "title": "Verlagerung über die Seite",
+        "goal": "Ziel: Präzise lange Bälle über größere Distanz (Großfeld-Gewöhnung)",
+        "desc": "Zwei Gruppen an den beiden Außenseiten eines Großfeld-Abschnitts (ca. 30 m Breite) postieren. Der Ball wird über kurze Pässe innerhalb einer Gruppe zirkuliert, bis auf Zuruf ein weiter, diagonaler Verlagerungspass zur gegenüberliegenden Gruppe gespielt wird. Diese nimmt kontrolliert an und zirkuliert weiter, bevor sie zurückverlagert.",
+        "coachTip": "Auf sauberen Spann-Kontakt beim langen Pass achten – nicht nur draufschießen, sondern gezielt in den Lauf des Mitspielers spielen.",
+        "materials": "{ceil(k/6)} Bälle · {pylonCountForBoundary((fieldWidthMeters(30, 0.5, k)))} gelbe Pilonen zur Feldmarkierung · 4 Hütchen zur Gruppenmarkierung",
+        "dims": "{fieldDims(30, 0.5, k)}",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k,16)",
+            {
+              "showBoundary": true,
+              "extraBoundaryPylons": "=pylonCountForBoundary((fieldWidthMeters(30, 0.5, k))) >= 6",
+              "cones": 4,
+              "showPassPath": true,
+              "caption": "Verlagerung von Seite zu Seite"
+            }
+          ]
+        }
+      },
+      {
+        "id": "passfolge-mit-tempowechsel",
+        "title": "Passfolge mit Tempowechsel",
+        "goal": "Ziel: Passschärfe und Timing bei wechselndem Spieltempo",
+        "desc": "Vier bis fünf Kinder in einem Kreis von ca. 12 m Durchmesser postieren, ein Kind presst in der Mitte. Der Ball wird zunächst in ruhigem Tempo zirkuliert; auf Zuruf „Tempo!\" muss jeder Pass sofort mit maximal einem Kontakt weitergespielt werden, bis erneut „Ruhig!\" ertönt. Presser wechselt nach Ballverlust der Außenspieler.",
+        "coachTip": "Tempowechsel bewusst unangekündigt und unregelmäßig einstreuen – das schult echte Spielintelligenz statt reines Reagieren auf Muster.",
+        "materials": "{parallelFields(k,5)} Bälle · {parallelFields(k,5)*6} Hütchen",
+        "dims": "{fieldLabel(parallelFields(k,5))} à ca. 12 × 12 m",
+        "diagram": {
+          "fn": "diagramCircle",
+          "args": [
+            5,
+            {
+              "caption": "Rondo mit Tempowechsel (hier: eine Gruppe)"
+            }
+          ]
+        }
+      }
+    ],
+    "torschuss": [
+      {
+        "id": "abschluss-aus-der-bewegung",
+        "title": "Abschluss aus der Bewegung",
+        "goal": "Ziel: Torabschluss nach Ballannahme im Lauf, verschiedene Anlaufwinkel",
+        "desc": "Ein Tor mit Torhüter*in aufbauen, drei Zuspielpunkte in unterschiedlichen Winkeln markieren (zentral, halbrechts, halblinks, je ca. 16–18 m Distanz). Von wechselnden Punkten wird den Kindern der Ball zugespielt; sie nehmen im Lauf an und schließen möglichst ohne zusätzlichen Kontakt ab. Nach jedem Versuch Punkt wechseln.",
+        "coachTip": "Auf den letzten Schritt vor dem Abschluss achten – kurze, kontrollierte Schritte statt Vollgas bis zum Ball.",
+        "materials": "{(stationCount(k))} Tore mit Netz · {(stationCount(k))*3} Bälle · {(stationCount(k))*3} Hütchen",
+        "dims": "{stationLabel(stationCount(k))} à ca. 20 × 16 m",
+        "diagram": {
+          "fn": "diagramStations",
+          "args": [
+            "=stationCount(k)",
+            {
+              "caption": "Abschluss im Lauf aus drei Anspielwinkeln"
+            }
+          ]
+        }
+      },
+      {
+        "id": "distanzschuss-nach-ballmitnahme",
+        "title": "Distanzschuss nach Ballmitnahme",
+        "goal": "Ziel: Schusstechnik aus größerer Distanz mit vorbereitendem Kontakt",
+        "desc": "Ein Tor mit Torhüter*in aufbauen, Abschlusszone bei ca. 20–22 m markieren. Die Kinder nehmen einen zugespielten Ball mit einem gezielten Kontakt in Schussposition mit und schließen direkt mit dem Innenspann oder Vollspann ab. Reihenfolge und Zuspielrichtung regelmäßig wechseln.",
+        "coachTip": "Vor allem auf den vorbereitenden Kontakt achten – der entscheidet, ob der Distanzschuss überhaupt sauber gelingen kann.",
+        "materials": "{(stationCount(k))} Tore mit Netz · {(stationCount(k))*3} Bälle",
+        "dims": "{stationLabel(stationCount(k))} à ca. 24 × 16 m",
+        "diagram": {
+          "fn": "diagramStations",
+          "args": [
+            "=stationCount(k)",
+            {
+              "caption": "Ballmitnahme und Distanzabschluss"
+            }
+          ]
+        }
+      }
+    ],
+    "bewegung": [
+      {
+        "id": "raumaufteilung-im-grossfeld-drittel",
+        "title": "Raumaufteilung im Großfeld-Drittel",
+        "goal": "Ziel: Positionsspezifisches Freilaufen in Linien und Halbräumen",
+        "desc": "Ein Feldabschnitt von ca. 35 × 25 m in drei Längszonen (linker Halbraum, Zentrum, rechter Halbraum) mit Hütchen markieren. Zwei Teams spielen auf Ballbesitz; Provokationsregel: Ein Pass, der einen gegnerischen Spieler in einer anderen Zone überspringt, zählt doppelt. Kinder müssen sich also aktiv in freie Zonen bewegen, um anspielbar zu bleiben.",
+        "coachTip": "Immer wieder einfrieren und fragen: „Welche Zone war gerade frei – und wer hätte sie besetzen können?\"",
+        "materials": "1–2 Bälle · {6 + ceil(k/4)} Hütchen · {ceil(k/6)} Leibchensätze ({(teamSplit(k)).a}/{(teamSplit(k)).b})",
+        "dims": "{fieldDims(35, 0.6, k)}",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            "=(teamSplit(k)).a",
+            "=(teamSplit(k)).b",
+            {
+              "caption": "Ballbesitzspiel über drei Längszonen",
+              "showBuildupArrows": true
+            }
+          ]
+        }
+      },
+      {
+        "id": "tiefenlaeufe-hinter-die-kette",
+        "title": "Tiefenläufe hinter die Kette",
+        "goal": "Ziel: Timing von Tiefenläufen im größeren Raum des Großfelds",
+        "desc": "Ein Feldabschnitt mit einer markierten „Abwehrlinie\" (Hütchenreihe bei ca. 18 m) aufbauen. Angreifer starten vor der Linie, ein Zuspieler steht dahinter. Auf ein Startsignal starten die Angreifer ihren Tiefenlauf erst im richtigen Moment (nicht zu früh, sonst „Abseits\" durch die Hütchenlinie), um den Steilpass hinter die Linie zu erhalten.",
+        "coachTip": "Bewusst betonen: Der Lauf beginnt erst, wenn der Passgeber wirklich spielbereit ist – zu frühes Starten wird konsequent als „Abseits\" gewertet.",
+        "materials": "{parallelFields(k,3)} Bälle · {parallelFields(k,3)*6} Hütchen",
+        "dims": "{fieldLabel(parallelFields(k,3))} à ca. 30 × 15 m",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k,12)",
+            {
+              "showBoundary": true,
+              "cones": 6,
+              "showRunPath": true,
+              "caption": "Timing der Tiefenläufe hinter die Abwehrlinie"
+            }
+          ]
+        }
+      }
+    ],
+    "zweikampf": [
+      {
+        "id": "1-gegen-1-mit-koerperkontakt-schulung",
+        "title": "1 gegen 1 mit Körperkontakt-Schulung",
+        "goal": "Ziel: Faires, konsequentes Zweikampfverhalten mit legalem Körpereinsatz",
+        "desc": "Zwei Kinder auf einem kleinen Feld (ca. 10 × 8 m) mit einem Minitor gegenüberstellen. Der Angreifer startet mit Ball, der Verteidiger übt gezielt legalen Körpereinsatz (Schulter an Schulter, Stellungsspiel) statt nur Beinarbeit. Nach Balleroberung oder Torerfolg neu starten, Rollen nach 4–5 Durchgängen tauschen.",
+        "coachTip": "Klar zwischen fairem Körpereinsatz und Foulspiel unterscheiden – gerade in dieser Altersstufe wichtig, da der Körperkontakt spürbar zunimmt.",
+        "materials": "{(parallelFields(k,2))} Minitore · {(parallelFields(k,2))} Bälle",
+        "dims": "{fieldLabel(parallelFields(k,2))} à ca. 10 × 8 m",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            1,
+            1,
+            {
+              "caption": "1 gegen 1 mit legalem Körpereinsatz (hier: ein Feld)"
+            }
+          ]
+        }
+      },
+      {
+        "id": "2-gegen-2-auf-grossfeld-tore",
+        "title": "2 gegen 2 auf Großfeld-Tore",
+        "goal": "Ziel: Zweikampf- und Verschiebeverhalten mit echten Toren statt Minitoren",
+        "desc": "Kleine Felder (ca. 16 × 12 m) mit je einem Großfeld-Tor (oder Ersatztor mit Netz) und Torhüter*in an einer Seite markieren. 2 gegen 2 auf ein Tor spielen, das gegnerische Duo verteidigt gemeinsam und verschiebt situativ, statt nur den Ballführenden zu attackieren.",
+        "coachTip": "Verschieben als Duo loben, nicht nur individuelle Balleroberungen – das Zusammenspiel zählt.",
+        "materials": "{(parallelFields(k,4))} Tore mit Netz · {(parallelFields(k,4))} Bälle · {ceil(k/6)} Leibchensätze",
+        "dims": "{fieldLabel(parallelFields(k,4))} à ca. 16 × 12 m",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            2,
+            2,
+            {
+              "caption": "2 gegen 2 auf ein Tor mit Torhüter*in (hier: ein Feld)",
+              "showBuildupArrows": true
+            }
+          ]
+        }
+      }
+    ],
+    "spielaufbau": [
+      {
+        "id": "aufbau-ueber-die-aussenverteidiger",
+        "title": "Aufbau über die Außenverteidiger",
+        "goal": "Ziel: Systematisches Öffnen des Spiels über die Breite",
+        "desc": "Zwei Teams auf einem Feldabschnitt (ca. 40 × 28 m) mit zwei Toren spielen normal gegeneinander. Provokationsregel: Ein erfolgreicher Torabschluss zählt nur, wenn der Ball zuvor mindestens einmal über einen der beiden äußeren Korridore (mit Hütchen markiert) gespielt wurde, statt ausschließlich durchs Zentrum.",
+        "coachTip": "Nach einem gelungenen Außenangriff kurz einfrieren und die Passfolge gemeinsam nachvollziehen – Muster erkennbar machen.",
+        "materials": "2 Bälle · 2 Tore mit Netz · {4 + ceil(k/4)} Hütchen · {ceil(k/6)} Leibchensätze ({(teamSplit(k)).a}/{(teamSplit(k)).b})",
+        "dims": "{fieldDims(40, 0.7, k)}",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            "=(teamSplit(k)).a",
+            "=(teamSplit(k)).b",
+            {
+              "caption": "='Aufbau über die äußeren Korridore, ' + (teamSplit(k)).a + ' gegen ' + (teamSplit(k)).b",
+              "showBuildupArrows": true
+            }
+          ]
+        }
+      },
+      {
+        "id": "anspielstation-im-rueckraum",
+        "title": "Anspielstation im Rückraum",
+        "goal": "Ziel: Sichere erste Anspielstation nach Ballgewinn im eigenen Drittel schaffen",
+        "desc": "Ein Feldabschnitt mit klar markiertem eigenem Drittel aufbauen. Nach jedem Ballgewinn muss zunächst ein fest zugeteiltes Kind im Rückraum angespielt werden, bevor das Spiel nach vorne fortgesetzt werden darf – so wird eine ruhige erste Anspielstation zur Gewohnheit statt eines hektischen langen Balls nach vorne.",
+        "coachTip": "Betonen: Ruhig bleiben nach dem Ballgewinn, nicht sofort den Druck rausspielen wollen.",
+        "materials": "2 Bälle · 2 Tore mit Netz · {ceil(k/6)} Leibchensätze ({(teamSplit(k)).a}/{(teamSplit(k)).b})",
+        "dims": "{fieldDims(38, 0.65, k)}",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            "=(teamSplit(k)).a",
+            "=(teamSplit(k)).b",
+            {
+              "caption": "Erste Anspielstation im Rückraum nach Ballgewinn",
+              "showBuildupArrows": true
+            }
+          ]
+        }
+      }
+    ],
+    "koordination": [
+      {
+        "id": "athletische-grundlagen-sprung-und-sprintkoordination",
+        "title": "Athletische Grundlagen: Sprung- und Sprintkoordination",
+        "goal": "Ziel: Koordinative Basis für die anstehende Kraft-/Schnelligkeitsentwicklung legen",
+        "desc": "Einen Parcours aus Koordinationsleiter, 3–4 niedrigen Hürden und einem abschließenden 10-m-Sprint aufbauen. Die Kinder durchlaufen die Leiter mit schneller Fußarbeit, überspringen die Hürden beidbeinig, springen zusätzlich zweimal seitlich über ein Hütchen und sprinten abschließend zum Ziel.",
+        "coachTip": "Gerade im Wachstumsschub auf saubere Landungen achten – lieber ein Element weniger, aber technisch korrekt.",
+        "materials": "{10 + ceil(k/2)} flache Hütchen · {3 * stationCount(k)} niedrige Hürden · {stationCount(k)} Bahnen",
+        "dims": "{stationCount(k)} Bahnen à ca. 12 × 3 m",
+        "diagram": {
+          "fn": "diagramParcours",
+          "args": [
+            [
+              "leiter",
+              "slalom"
+            ],
+            {
+              "caption": "Leiter, Hürden, Sprint - athletische Grundlagen"
+            }
+          ]
+        }
+      },
+      {
+        "id": "reaktionsparcours-mit-ball",
+        "title": "Reaktionsparcours mit Ball",
+        "goal": "Ziel: Koordinative Schulung direkt mit Ballkontakt verbinden",
+        "desc": "Kinder in Paare einteilen, jedes Paar bekommt ein Feld von ca. 6 × 6 m. Ein Kind dribbelt frei im Feld, das andere gibt per Zuruf spontane Richtungswechsel vor („links\", „rechts\", „Stopp\"), die sofort mit dem Ball umgesetzt werden müssen. Nach 30 Sekunden Rollentausch.",
+        "coachTip": "Kommandos unregelmäßig und ohne Muster geben – so bleibt es eine echte Reaktionsaufgabe.",
+        "materials": "{ceil(k/2)} Bälle · {4 * parallelFields(k,2)} Hütchen",
+        "dims": "{fieldLabel(parallelFields(k,2))} à ca. 6 × 6 m",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k,14)",
+            {
+              "withBall": true,
+              "showBoundary": true,
+              "cones": 4,
+              "showDribblePath": true,
+              "caption": "Reaktions-Dribbling auf Zuruf"
+            }
+          ]
+        }
+      }
+    ],
+    "torwart": [
+      {
+        "id": "stellungsspiel-im-grossfeld-tor",
+        "title": "Stellungsspiel im Großfeld-Tor",
+        "goal": "Ziel: Korrekte Grundposition und Winkelverkürzung im großen Tor",
+        "desc": "Am Großfeld-Tor (oder Ersatztor mit vergleichbarer Größe) verschiedene Schusspunkte im Halbkreis markieren. Der Torwart nimmt vor jedem Schuss aktiv die richtige Stellung ein (Winkel verkürzen, mittig zum Ball), bevor der Schütze abschließt. Torwartrolle nach 6–8 Aktionen wechseln.",
+        "coachTip": "Vor jedem Schuss kurz einfrieren und gemeinsam die Stellung überprüfen, bevor geschossen wird.",
+        "materials": "{(parallelFields(k,4))} Tore mit Netz · {(parallelFields(k,4))*3} Bälle",
+        "dims": "{stationLabel(parallelFields(k,4))} à ca. 20 × 14 m",
+        "diagram": {
+          "fn": "diagramStations",
+          "args": [
+            "=parallelFields(k,4)",
+            {
+              "caption": "Stellungsspiel und Winkelverkürzung"
+            }
+          ]
+        }
+      },
+      {
+        "id": "abschlag-und-kommunikation-mit-der-abwehr",
+        "title": "Abschlag und Kommunikation mit der Abwehr",
+        "goal": "Ziel: Präzise Abschläge und Coaching der eigenen Abwehrkette",
+        "desc": "Torwart übt Abschläge (Abwurf oder Abstoß) gezielt auf zwei markierte Zielzonen im Mittelfeld, während zwei Kinder als Abwehrspieler auf Zuruf des Torwarts ihre Position anpassen. Der Torwart muss dabei laut kommunizieren, bevor er abschlägt.",
+        "coachTip": "Aktives, lautes Coaching einfordern – das gehört ab dieser Altersstufe fest zur Torwartrolle dazu.",
+        "materials": "{(parallelFields(k,4))} Tore mit Netz · {(parallelFields(k,4))*3} Bälle · {(parallelFields(k,4))*4} Hütchen",
+        "dims": "{stationLabel(parallelFields(k,4))} à ca. 30 × 20 m",
+        "diagram": {
+          "fn": "diagramStations",
+          "args": [
+            "=parallelFields(k,4)",
+            {
+              "caption": "Abschlag auf Zielzonen mit Abwehr-Coaching"
+            }
+          ]
+        }
+      }
+    ],
+    "kopfball": [
+      {
+        "id": "kopfballduell-im-zweikampf",
+        "title": "Kopfballduell im Zweikampf",
+        "goal": "Ziel: Timing und Durchsetzungsfähigkeit im Kopfballduell, kontrollierter Umfang",
+        "desc": "Zwei Kinder gegenüberstellen (ca. 3 m Abstand), ein drittes Kind wirft locker hohe Bälle dazwischen. Beide Kinder versuchen im fairen Duell, den Ball zuerst und kontrolliert per Kopf zu verlängern. Wenig Wiederholungen (max. 5–6 pro Paar), danach Rollentausch.",
+        "coachTip": "Umfang bewusst gering halten, auf faires Verhalten und sauberen Nackeneinsatz statt Härte achten.",
+        "materials": "{ceil(k/3)} Bälle",
+        "dims": "{fieldDims(6, 0.2, k)} pro Gruppe",
+        "diagram": {
+          "fn": "diagramCircle",
+          "args": [
+            "=clamp(min(k,6),3,6)",
+            {
+              "caption": "Kopfballduell im Dreiergruppen-Wechsel"
+            }
+          ]
+        }
+      },
+      {
+        "id": "kopfball-nach-flanke",
+        "title": "Kopfball nach Flanke",
+        "goal": "Ziel: Timing des Laufwegs zur Flanke mit Kopfballabschluss verbinden",
+        "desc": "Ein Kind flankt von der Außenlinie (ca. 12–15 m) locker in den Strafraum, ein anderes Kind timt seinen Laufweg und versucht, den Ball im Sprung per Kopf aufs Tor zu bringen. Wenig Wiederholungen, danach Rollentausch (Flanke/Abschluss).",
+        "coachTip": "Auf den richtigen Zeitpunkt des Anlaufs achten – zu früh oder zu spät gestartet, verpufft die beste Flanke.",
+        "materials": "{(stationCount(k))} Tore mit Netz · {(stationCount(k))*4} Bälle (leicht entlüftet)",
+        "dims": "{stationLabel(stationCount(k))} à ca. 20 × 16 m",
+        "diagram": {
+          "fn": "diagramStations",
+          "args": [
+            "=stationCount(k)",
+            {
+              "caption": "Flanke und Kopfballabschluss"
+            }
+          ]
+        }
+      }
+    ],
+    "umschalten": [
+      {
+        "id": "umschalten-im-grossfeld-drittel",
+        "title": "Umschalten im Großfeld-Drittel",
+        "goal": "Ziel: Schnelles Umschalten über die größeren Distanzen des Großfelds",
+        "desc": "Ein Feldabschnitt von ca. 40 × 25 m mit zwei Toren aufbauen. Zwei Teams spielen normal gegeneinander; nach jedem Ballgewinn muss das gewinnende Team so schnell wie möglich mindestens drei Spieler in Richtung des gegnerischen Tores in Bewegung setzen, statt den Ball erst zu sichern.",
+        "coachTip": "Nach Balleroberung sofort laut coachen: „Nach vorne, alle mit!\" – das Tempo im Kopf entscheidet über die Umschaltsituation.",
+        "materials": "{(teamSplit(k)).a}/{(teamSplit(k)).b} Leibchensätze · 2 Tore mit Netz · {max(2, ceil(k/4))} Bälle",
+        "dims": "{fieldDims(40, 0.6, k)}",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            "=(teamSplit(k)).a",
+            "=(teamSplit(k)).b",
+            {
+              "caption": "Ballgewinn = sofortiges Umschalten mit mehreren Läufern",
+              "showBuildupArrows": true
+            }
+          ]
+        }
+      },
+      {
+        "id": "kontertor-nach-balleroberung",
+        "title": "Kontertor nach Balleroberung",
+        "goal": "Ziel: Direktes Umschalten mit klarem Zielspiel nach Ballgewinn",
+        "desc": "Zwei große Tore und zusätzlich ein Kontertor mittig auf der jeweils gegnerischen Spielfeldhälfte markieren. Sobald ein Team den Ball erobert, darf es für 8 Sekunden zusätzlich auf das Kontertor spielen – gelingt kein schneller Abschluss, gilt danach nur noch das große Tor.",
+        "coachTip": "Bewusst laut mitzählen – der Zeitdruck erzeugt genau die Entscheidungsschnelligkeit, die im Umschaltmoment gebraucht wird.",
+        "materials": "{(teamSplit(k)).a}/{(teamSplit(k)).b} Leibchensätze · 2 Tore mit Netz · 1 Minitor (Kontertor) · {max(2, ceil(k/4))} Bälle",
+        "dims": "{fieldDims(38, 0.65, k)}",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            "=(teamSplit(k)).a",
+            "=(teamSplit(k)).b",
+            {
+              "caption": "8 Sekunden Zeitfenster fürs Kontertor nach Ballgewinn",
+              "showBuildupArrows": true
+            }
+          ]
+        }
+      }
+    ],
+    "aufwaermen": [
+      {
+        "id": "athletisches-aufwaermen-mit-koordinationsanteil",
+        "title": "Athletisches Aufwärmen mit Koordinationsanteil",
+        "goal": "Ziel: Aufwärmen, Aktivierung und koordinative Vorbereitung auf den Wachstumsschub",
+        "desc": "Lauf-ABC über ca. 20 m (Anfersen, Kniehebelauf, Seitgalopp, Skippings), anschließend dynamisches Dehnen der großen Muskelgruppen sowie einige beidbeinige Sprünge und kurze Antritte über 5–8 m.",
+        "coachTip": "Konsequent durchziehen, gerade jetzt sinnvoll – der Körper verändert sich in dieser Phase spürbar, das erhöht das Verletzungsrisiko ohne gute Aktivierung.",
+        "materials": "keine Materialien nötig",
+        "dims": "{fieldDims(20, 0.3, k)}",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k,16)",
+            {
+              "caption": "Lauf-ABC und dynamisches Aufwärmen in Bahnen"
+            }
+          ]
+        }
+      },
+      {
+        "id": "ballnahes-aufwaermen-mit-tempowechsel",
+        "title": "Ballnahes Aufwärmen mit Tempowechsel",
+        "goal": "Ziel: Aufwärmen direkt mit Ballkontakt und Aktivierung verbinden",
+        "desc": "Jedes Kind dribbelt frei mit eigenem Ball im Feld. Auf Zuruf wechseln Tempo und Bewegungsform: „locker\" = ruhiges Dribbeln, „Antritt\" = 5 m Sprint mit Ball, „Stopp\" = Ball sofort unter der Sohle stoppen und kurz dehnen.",
+        "coachTip": "Tempowechsel unregelmäßig einstreuen, damit der Kreislauf wirklich hochgefahren wird, nicht nur gleichmäßig trabt.",
+        "materials": "{k} Bälle · {pylonCountForBoundary((fieldWidthMeters(22, 0.5, k)))} gelbe Pilonen zur Feldmarkierung · 4 Hütchen",
+        "dims": "{fieldDims(22, 0.5, k)}",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k,16)",
+            {
+              "withBall": true,
+              "showBoundary": true,
+              "extraBoundaryPylons": "=pylonCountForBoundary((fieldWidthMeters(22, 0.5, k))) >= 6",
+              "cones": 4,
+              "showDribblePath": true,
+              "caption": "Dribbeln mit Tempowechsel-Kommandos"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,515 @@
+{
+  "tier": "jung",
+  "categories": {
+    "ballgewoehnung": [
+      {
+        "id": "dribbel-zoo",
+        "title": "Dribbel-Zoo",
+        "goal": "Ziel: Ballkontrolle, jedes Kind mit eigenem Ball in Bewegung",
+        "desc": "Hütchen locker im Feld verteilen. Jedes Kind bekommt einen Ball und dribbelt frei zwischen den Hütchen hindurch. Der Trainer ruft Tiernamen, worauf alle sofort die passende Ballführung zeigen: „Hase\" = ganz enge, kleine Schritte, „Elefant\" = kräftiger Schuss nach vorne mit Hinterherlaufen. Namen häufig wechseln, damit die Kinder ständig reagieren.",
+        "coachTip": "Kurze, bildhafte Kommandos wirken besser als technische Erklärungen.",
+        "materials": "{k} Bälle · {min(6, ceil(k/3))} Hütchen",
+        "dims": "{fieldDims(10, 0.5, k)}",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k,16)",
+            {
+              "withBall": true,
+              "cones": "=min(6, ceil(k/3))",
+              "caption": "Freies Dribbeln zwischen Hütchen",
+              "showDribblePath": true
+            }
+          ]
+        }
+      },
+      {
+        "id": "ampel-dribbling",
+        "title": "Ampel-Dribbling",
+        "goal": "Ziel: Ballkontrolle mit Tempowechsel und Reaktionsschulung",
+        "desc": "Hütchen locker im Feld verteilen. Jedes Kind dribbelt frei mit eigenem Ball zwischen den Hütchen. Der Trainer ruft Ampelfarben: „Rot\" = Ball sofort unter der Fußsohle stoppen und stehen bleiben, „Gelb\" = langsam weiterdribbeln, „Grün\" = volles Tempo. Farben in beliebiger Reihenfolge und im Wechsel rufen.",
+        "coachTip": "Ampelfarben auch mit Handzeichen zeigen, damit auch Kinder mit wenig Konzentration mitkommen.",
+        "materials": "{k} Bälle · {pylonCountForBoundary((fieldWidthMeters(10, 0.5, k)))} gelbe Pilonen zur Feldmarkierung · 4 Hütchen",
+        "dims": "{fieldDims(10, 0.5, k)}",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k,16)",
+            {
+              "showBoundary": true,
+              "extraBoundaryPylons": "=pylonCountForBoundary((fieldWidthMeters(10, 0.5, k))) >= 6",
+              "withBall": true,
+              "cones": 4,
+              "showDribblePath": true,
+              "caption": "Freies Dribbeln mit Ampel-Kommandos"
+            }
+          ]
+        }
+      },
+      {
+        "id": "autorennen",
+        "title": "Autorennen",
+        "goal": "Ziel: Ballführung mit Tempowechseln spielerisch verpackt",
+        "desc": "Hütchen als Straßenbegrenzung im Feld aufstellen. Jedes Kind dribbelt seinen Ball als „Auto\" frei durchs Feld. Auf Zuruf wechseln die Fahrmodi: „Ampel rot\" = sofort anhalten, Ball unter der Sohle stoppen, „Vollgas\" = schnelles Dribbeln, „Hupe\" = kurz stehen bleiben und laut hupen. Modi häufig und in beliebiger Reihenfolge wechseln.",
+        "coachTip": "Die Fantasie der Kinder für eigene Fahrgeräusche nutzen – das steigert die Motivation deutlich.",
+        "materials": "{k} Bälle · 4 Hütchen als Straßenbegrenzung",
+        "dims": "{fieldDims(10, 0.5, k)}",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k,16)",
+            {
+              "withBall": true,
+              "cones": 4,
+              "showDribblePath": true,
+              "caption": "Autorennen: freies Dribbeln mit Fahrmodi"
+            }
+          ]
+        }
+      }
+    ],
+    "passspiel": [
+      {
+        "id": "zupass-kreis",
+        "title": "Zupass-Kreis",
+        "goal": "Ziel: Erste Passtechnik, Innenseite, genaues Zuspiel",
+        "desc": "Kinder in Gruppen von mindestens 5 einteilen (mit nur 4 Kindern lässt sich kein sinnvoller Kreis bilden - bei einer ungünstigen Gesamtzahl lieber eine Gruppe etwas größer als 5 bis 6 lassen, statt eine Gruppe auf 4 zu reduzieren), jede Gruppe bildet einen Kreis mit ca. 3–4 m Abstand zueinander, ein Ball pro Gruppe. Die Kinder passen sich den Ball reihum mit der Innenseite zu; wer den Ball bekommt, ruft vorher laut den Namen des nächsten Kindes.",
+        "coachTip": "Immer mit Blick zum Ball passen lassen, nicht einfach draufschießen.",
+        "materials": "{max(1, ceil(k/5))} Bälle · keine weiteren Hilfsmittel",
+        "dims": "{fieldDims(6, 0.15, k)} pro Gruppe",
+        "diagram": {
+          "fn": "diagramCircle",
+          "args": [
+            "=clamp(min(k,8),5,8)",
+            {
+              "caption": "Passkreis in Kleingruppen (hier: eine Gruppe)"
+            }
+          ]
+        }
+      },
+      {
+        "id": "nummern-pass",
+        "title": "Nummern-Pass",
+        "goal": "Ziel: Passtechnik mit Reaktion und Namen lernen verbinden",
+        "desc": "Kinder in einer Reihe im Abstand von ca. 3 m aufstellen und von 1 beginnend durchnummerieren (Nummern laut ansagen und merken lassen). Ein Ball startet bei Nummer 1. Vor jedem Pass ruft das ballführende Kind laut die nächste Nummer, bevor es dorthin passt.",
+        "coachTip": "Reihenfolge gelegentlich mischen, damit alle aufmerksam bleiben.",
+        "materials": "{ceil(k/5)} Bälle · keine weiteren Hilfsmittel",
+        "dims": "{fieldDims(8, 0.2, k)} pro Reihe",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k,10)",
+            {
+              "showPassPath": true,
+              "caption": "Passreihe nach Nummern (hier: eine Reihe)"
+            }
+          ]
+        }
+      }
+    ],
+    "torschuss": [
+      {
+        "id": "wer-kippt-den-huetchen-turm",
+        "title": "Wer kippt den Hütchen-Turm?",
+        "goal": "Ziel: Torschuss mit Erfolgserlebnis für alle",
+        "desc": "An jeder Station einen kleinen Hütchen-Turm bauen: ein kleines Hütchen kopfüber auf ein großes Hütchen stellen, ca. 6–8 m vor einem kleinen Tor. Die Kinder stellen sich in einer Reihe vor jeder Station an und dribbeln nacheinander los, um den Turm mit einem Schuss umzukicken. Nach jedem Versuch den Turm wieder aufbauen und das nächste Kind starten lassen.",
+        "coachTip": "Laut mitjubeln bei jedem Treffer – das Erfolgserlebnis zählt mehr als die Technik.",
+        "materials": "{(stationCount(k))} kleine Tore · {(stationCount(k))*4} große Hütchen · {(stationCount(k))*4} kleine Hütchen zum Aufstapeln · {(stationCount(k))}–{(stationCount(k))*2} Bälle",
+        "dims": "{stationLabel(stationCount(k))} à ca. 8 × 6 m",
+        "diagram": {
+          "fn": "diagramStations",
+          "args": [
+            "=stationCount(k)",
+            {
+              "caption": "=stationCount(k) + ' Torschuss-Stationen im Wechsel'"
+            }
+          ]
+        }
+      },
+      {
+        "id": "schatzsuche-im-tor",
+        "title": "Schatzsuche im Tor",
+        "goal": "Ziel: Torschuss mit spielerischem Sammel-Anreiz",
+        "desc": "Pro Tor mehrere bunte Hütchen als „Schätze\" locker im Torraum verteilen. Die Kinder stellen sich in einer Reihe vor dem Tor an und schießen nacheinander auf die verteilten Hütchen, um sie herauszubefördern. Wer ein Hütchen aus dem Tor schießt, darf es aufsammeln und behalten.",
+        "coachTip": "Am Ende gemeinsam auszählen, wer wie viele „Schätze\" gesammelt hat – ohne Rangliste, nur zum Staunen.",
+        "materials": "{(stationCount(k))} kleine Tore · {(stationCount(k))*6} bunte Hütchen · {(stationCount(k))}–{(stationCount(k))*2} Bälle",
+        "dims": "{stationLabel(stationCount(k))} à ca. 8 × 6 m",
+        "diagram": {
+          "fn": "diagramStations",
+          "args": [
+            "=stationCount(k)",
+            {
+              "caption": "='Schatzsuche im Tor an ' + stationLabel(stationCount(k))"
+            }
+          ]
+        }
+      }
+    ],
+    "bewegung": [
+      {
+        "id": "freies-feld-erobern",
+        "title": "Freies Feld erobern",
+        "goal": "Ziel: Anbieten und Freilaufen spielerisch entdecken",
+        "desc": "Ein Feld markieren, alle Kinder verteilen sich frei darin, ein Kind hat den Ball. Auf Zuruf „Frei!\" müssen sich alle ballfreien Kinder sofort einen offenen Platz suchen, an dem sie vom Ball erreicht werden könnten – der Ballbesitzer versucht, tatsächlich zu jemandem zu passen. Ballbesitz wechselt nach jedem Pass zum Empfänger.",
+        "coachTip": "Kinder loben, die sich von Mitspielern lösen, statt dicht daneben stehen zu bleiben.",
+        "materials": "1–2 Bälle · {pylonCountForBoundary((fieldWidthMeters(12, 0.5, k)))} gelbe Pilonen zur Feldmarkierung · 4 Hütchen",
+        "dims": "{fieldDims(12, 0.5, k)}",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k,16)",
+            {
+              "showBoundary": true,
+              "extraBoundaryPylons": "=pylonCountForBoundary((fieldWidthMeters(12, 0.5, k))) >= 6",
+              "cones": 4,
+              "caption": "Freilaufen und Anbieten im Feld"
+            }
+          ]
+        }
+      },
+      {
+        "id": "verstecken-vorm-faenger",
+        "title": "Verstecken vorm Fänger",
+        "goal": "Ziel: Sich clever positionieren, um anspielbar zu bleiben",
+        "desc": "Ein Kind als „Fänger\" ohne Ball bestimmen, ein weiteres Kind bekommt den Ball, der Rest verteilt sich frei im Feld. Der Fänger versucht, sich zwischen Ballbesitzer und die anderen Kinder zu stellen, um Pässe zu blockieren. Alle ballfreien Kinder bewegen sich ständig, um trotzdem anspielbar zu bleiben. Fängerrolle nach 1–2 Minuten wechseln.",
+        "coachTip": "Fängerrolle oft wechseln, damit jedes Kind beide Rollen erlebt.",
+        "materials": "1–2 Bälle · {pylonCountForBoundary((fieldWidthMeters(12, 0.5, k)))} gelbe Pilonen zur Feldmarkierung · 4 Hütchen",
+        "dims": "{fieldDims(12, 0.5, k)}",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k,16)",
+            {
+              "showBoundary": true,
+              "extraBoundaryPylons": "=pylonCountForBoundary((fieldWidthMeters(12, 0.5, k))) >= 6",
+              "cones": 4,
+              "caption": "Anbieten und Ausweichen vor dem Fänger"
+            }
+          ]
+        }
+      },
+      {
+        "id": "spinne-und-bruecke",
+        "title": "Spinne und Brücke",
+        "goal": "Ziel: Freilaufen und Ausweichen spielerisch mit Fangspiel verbinden",
+        "desc": "Ein Kind als Fänger ohne Ball bestimmen, alle anderen bekommen je einen Ball und verteilen sich im Feld. Der Fänger jagt die Kinder mit Ball; wer abgeschlagen wird, legt sich sofort als „Brücke\" (Liegestütz-Position, Beine gespreizt) hin oder stellt sich als „Spinne\" (Arme und Beine gespreizt) auf. Mitspieler befreien Gefangene, indem sie unter der Brücke hindurchkriechen oder die Spinne abklatschen. Fängerrolle regelmäßig wechseln.",
+        "coachTip": "Fängerrolle regelmäßig wechseln – so bleibt die Motivation für alle hoch.",
+        "materials": "1–2 Bälle · {pylonCountForBoundary((fieldWidthMeters(12, 0.5, k)))} gelbe Pilonen zur Feldmarkierung · 4 Hütchen",
+        "dims": "{fieldDims(12, 0.5, k)}",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k,16)",
+            {
+              "showBoundary": true,
+              "extraBoundaryPylons": "=pylonCountForBoundary((fieldWidthMeters(12, 0.5, k))) >= 6",
+              "cones": 4,
+              "caption": "Fangspiel mit Befreiung durch Mitspieler"
+            }
+          ]
+        }
+      }
+    ],
+    "zweikampf": [
+      {
+        "id": "ball-behaupten",
+        "title": "Ball behaupten",
+        "goal": "Ziel: Ball im 1-gegen-1 sicher behaupten und erobern",
+        "desc": "Kinder in Zweier-Paare einteilen, jedes Paar bekommt ein eigenes kleines Feld (ca. 4×4 m) mit einem Ball. Ein Kind pro Paar startet mit dem Ball, das andere versucht, ihn zu erobern, ohne zu foulen (kein Ziehen, Schubsen). Nach 30 Sekunden per Zuruf Rollenwechsel. Reichen die Felder nicht für alle Paare gleichzeitig, wechseln sich die Paare reihum an den vorhandenen Feldern ab.",
+        "coachTip": "Fair-Play-Regeln vorher klar und einfach erklären, dann selbst vormachen.",
+        "materials": "{(parallelFields(k,2))} Bälle · {(parallelFields(k,2))*4} gelbe Pilonen für Kleinfelder",
+        "dims": "{fieldLabel(parallelFields(k,2))} à ca. 4 × 4 m",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            1,
+            1,
+            {
+              "caption": "1 gegen 1 in mehreren Kleinfeldern (hier: ein Feld)"
+            }
+          ]
+        }
+      },
+      {
+        "id": "rettungsinsel",
+        "title": "Rettungsinsel",
+        "goal": "Ziel: Zweikampfverhalten mit kurzer Verschnaufpause verbinden",
+        "desc": "Pro Paar ein kleines Feld (ca. 4×4 m) mit einem Ball markieren, in einer Ecke mit einem Hütchen die „Rettungsinsel\" kennzeichnen. Beide Kinder spielen 1 gegen 1; wer mit Ball die Rettungsinsel erreicht, ist dort kurz sicher (ca. 3 Sekunden) und muss dann weiterspielen. Reichen die Felder nicht für alle Paare gleichzeitig, wechseln sich die Paare reihum ab.",
+        "coachTip": "Zeit auf der Insel bewusst kurz halten, damit der Zweikampf im Fokus bleibt.",
+        "materials": "{(parallelFields(k,2))} Bälle · {(parallelFields(k,2))*4} gelbe Pilonen für Kleinfelder",
+        "dims": "{fieldLabel(parallelFields(k,2))} à ca. 4 × 4 m",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            1,
+            1,
+            {
+              "caption": "1 gegen 1 mit Rettungsinsel (hier: ein Feld)"
+            }
+          ]
+        }
+      },
+      {
+        "id": "hund-und-katze",
+        "title": "Hund und Katze",
+        "goal": "Ziel: Ball im Laufduell behaupten, spielerisch verpackt",
+        "desc": "Kinder in Paare einteilen, ein Ball pro Paar. Ein Kind („Katze\") startet mit dem Ball und dribbelt frei im Feld, das andere Kind („Hund\") verfolgt und versucht, den Ball zu erobern. Nach ca. 20 Sekunden oder sobald der Ball erobert wurde, Rollen tauschen.",
+        "coachTip": "Kurze Zeitfenster (ca. 20 Sekunden) wählen, damit die Intensität hochbleibt.",
+        "materials": "{ceil(k/2)} Bälle",
+        "dims": "{fieldDims(8, 0.3, k)} pro Paar",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            1,
+            1,
+            {
+              "caption": "Verfolgungsduell zu zweit (hier: ein Paar)"
+            }
+          ]
+        }
+      },
+      {
+        "id": "torjaeger-duell",
+        "title": "Torjäger-Duell",
+        "goal": "Ziel: Erste Torschuss-Erfahrung im spielerischen Zweikampf",
+        "desc": "Kinder in Paare einteilen, pro Paar ein kleines Feld (ca. 4×4 m) mit zwei Minitoren an gegenüberliegenden Seiten. Ein Kind startet mit Ball und versucht, im 1 gegen 1 das gegnerische Minitor zu treffen; das andere Kind verteidigt sein eigenes Tor. Nach jedem Versuch (Tor oder Ballgewinn) Rollen tauschen. Reichen die Felder nicht für alle Paare gleichzeitig, wechseln sich die Paare reihum ab.",
+        "coachTip": "Laut mitjubeln bei jedem Torerfolg – der Spaß am Abschluss steht in diesem Alter im Vordergrund, nicht die Zweikampf-Statistik.",
+        "materials": "{(parallelFields(k,2))*2} Minitore · {(parallelFields(k,2))} Bälle · {(parallelFields(k,2))*4} gelbe Pilonen für Kleinfelder",
+        "dims": "{fieldLabel(parallelFields(k,2))} à ca. 4 × 4 m",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            1,
+            1,
+            {
+              "caption": "1 gegen 1 mit Rollenwechsel nach jedem Abschluss (hier: ein Feld)"
+            }
+          ]
+        }
+      }
+    ],
+    "spielaufbau": [
+      {
+        "id": "von-huetchen-zu-huetchen",
+        "title": "Von Hütchen zu Hütchen",
+        "goal": "Ziel: Ersten Pass mit Zielspiel verbinden",
+        "desc": "Zwei Hütchentore (je 2 Hütchen im Abstand von ca. 1 m) im Feld verteilt aufstellen. Kinder in Zweiergruppen einteilen. Der Ball wird abwechselnd durch die Hütchentore zueinander gepasst; nach mehreren gelungenen Pässen schließt eines der Kinder mit einem kleinen Torschuss ab.",
+        "coachTip": "Auf sauberen ersten Kontakt in Richtung des nächsten Passes achten.",
+        "materials": "{ceil(k/2)} Bälle · 6 Hütchen",
+        "dims": "{fieldDims(10, 0.4, k)}",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k,12)",
+            {
+              "cones": 6,
+              "showPassPath": true,
+              "caption": "Passen durch Hütchentore"
+            }
+          ]
+        }
+      },
+      {
+        "id": "bruecken-bauen",
+        "title": "Brücken bauen",
+        "goal": "Ziel: Präzision im Pass spielerisch durch ein „Tor aus Beinen\" schulen",
+        "desc": "Kinder in Dreiergruppen einteilen. Zwei Kinder stellen sich mit gegrätschten Beinen ca. 3 m voneinander entfernt auf und bilden so eine „Brücke\". Das dritte Kind muss den Ball flach durch die Beine eines der beiden spielen. Rollen nach jedem Versuch tauschen.",
+        "coachTip": "Abstand der Brücken an das Können der Gruppe anpassen – näher für mehr Erfolgserlebnisse.",
+        "materials": "{ceil(k/3)} Bälle · keine weiteren Hilfsmittel",
+        "dims": "{fieldDims(8, 0.3, k)}",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k,12)",
+            {
+              "caption": "Passen durch die „Beinbrücke\" der Mitspieler"
+            }
+          ]
+        }
+      }
+    ],
+    "koordination": [
+      {
+        "id": "hindernis-rallye",
+        "title": "Hindernis-Rallye",
+        "goal": "Ziel: Allgemeine Bewegungsschule – Laufen, Springen, Balancieren",
+        "desc": "Einen kleinen Parcours aufbauen: 3–4 Reifen hintereinander (zum Hüpfen), eine Bank (zum Balancieren), danach 4–5 Hütchen im Slalom-Abstand von ca. 1 m. Die Kinder durchlaufen den Parcours nacheinander ohne Ball: durch die Reifen hüpfen, über die Bank balancieren, durch den Hütchen-Slalom laufen. Am Ende wartet der Trainer zum Abklatschen.",
+        "coachTip": "Zwei Parcours-Stationen parallel aufbauen, damit niemand lange in der Schlange steht.",
+        "materials": "2–4 Reifen · 1 Bank · 3 Hütchen (Slalom)",
+        "dims": "{fieldDims(12, 0.4, k)}",
+        "diagram": {
+          "fn": "diagramParcours",
+          "args": [
+            [
+              "reifen",
+              "reifen",
+              "bank",
+              "slalom"
+            ],
+            {
+              "caption": "Reifen · Bank · Hütchen-Slalom nacheinander"
+            }
+          ]
+        }
+      },
+      {
+        "id": "zahlen-parcours",
+        "title": "Zahlen-Parcours",
+        "goal": "Ziel: Reaktionsschnelligkeit und Orientierung im Raum",
+        "desc": "Hütchen mit aufgeklebten oder aufgemalten Zahlen (1 bis Anzahl der Kinder) im Feld verteilen, alle Kinder sammeln sich in der Mitte. Der Trainer ruft eine Zahl; alle Kinder laufen so schnell wie möglich zum passenden Hütchen und wieder zurück zur Mitte.",
+        "coachTip": "Mit zwei Zahlen gleichzeitig steigern („Erst zur 3, dann zur 7\"), sobald die Gruppe sicher ist.",
+        "materials": "6 nummerierte Hütchen",
+        "dims": "{fieldDims(12, 0.4, k)}",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k,16)",
+            {
+              "cones": 6,
+              "caption": "Zahlen-Hütchen anlaufen und zurück"
+            }
+          ]
+        }
+      },
+      {
+        "id": "umschalt-fangen",
+        "title": "Umschalt-Fangen",
+        "goal": "Ziel: Schnelles Reagieren und Umschalten spielerisch schulen",
+        "desc": "Ein Feld markieren, 2–3 Kinder als Fänger bestimmen, der Rest läuft frei umher. Auf ein Startsignal fangen die Fänger die anderen Kinder. Auf ein zweites Signal (z. B. Pfiff) wechseln sofort die Rollen: Wer eben noch Fänger war, wird nun selbst gejagt, und umgekehrt. Signal in unregelmäßigen Abständen geben.",
+        "coachTip": "Wirkungsvoller als Koordinationsleiter oder Hütchen-Sprünge, weil die Kinder auf echte Bewegungen reagieren statt ein festes Muster abzulaufen.",
+        "materials": "{pylonCountForBoundary((fieldWidthMeters(10, 0.4, k)))} gelbe Pilonen zur Feldmarkierung",
+        "dims": "{fieldDims(10, 0.4, k)}",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k,16)",
+            {
+              "showBoundary": true,
+              "extraBoundaryPylons": "=pylonCountForBoundary((fieldWidthMeters(10, 0.4, k))) >= 6",
+              "caption": "Fangen mit plötzlichem Rollenwechsel auf Signal"
+            }
+          ]
+        }
+      }
+    ],
+    "torwart": [
+      {
+        "id": "fang-mich-wenn-du-kannst",
+        "title": "Fang mich, wenn du kannst",
+        "goal": "Ziel: Erstes Ballgefühl mit den Händen, jeder mal Torwart",
+        "desc": "Kleingruppen von 3–4 Kindern bilden, jede Gruppe bekommt ein kleines Tor und einen Ball. Ein Kind stellt sich als Torwart ins Tor, die anderen werfen sich den Ball locker zu und schießen abwechselnd flach aufs Tor; der Torwart versucht, mit den Händen zu fangen oder abzuwehren. Nach jedem Versuch die Torwartrolle im Uhrzeigersinn weitergeben.",
+        "coachTip": "Weiche, leichte Bälle verwenden und kurze Distanzen wählen, damit alle Erfolgserlebnisse haben.",
+        "materials": "{(parallelFields(k,4))} Bälle (leicht entlüftet) · {(parallelFields(k,4))} kleine Tore",
+        "dims": "{stationLabel(parallelFields(k,4))} à ca. 5 × 5 m",
+        "diagram": {
+          "fn": "diagramStations",
+          "args": [
+            "=parallelFields(k,4)",
+            {
+              "caption": "Torwart-Fangspiel an mehreren Mini-Toren"
+            }
+          ]
+        }
+      },
+      {
+        "id": "zick-zack-faenger",
+        "title": "Zick-Zack-Fänger",
+        "goal": "Ziel: Seitliche Beweglichkeit als Torwart spielerisch erproben",
+        "desc": "Zwei Hütchen im Abstand von ca. 2 m vor einem kleinen Tor aufstellen. Ein Kind steht als Torwart im Tor und bewegt sich seitlich zwischen den beiden Hütchen hin und her. Die anderen Kinder rollen nacheinander flache Bälle aufs Tor, die der Torwart abwehren soll. Torwartrolle nach jeweils 4–5 Versuchen wechseln.",
+        "coachTip": "Rollweite an das Können anpassen – lieber viele Erfolgserlebnisse als schwer zu erreichende Bälle.",
+        "materials": "{(parallelFields(k,4))} Bälle (leicht entlüftet) · {(parallelFields(k,4))*2} Hütchen",
+        "dims": "{stationLabel(parallelFields(k,4))} à ca. 5 × 3 m",
+        "diagram": {
+          "fn": "diagramStations",
+          "args": [
+            "=parallelFields(k,4)",
+            {
+              "caption": "Seitliches Abwehren zwischen zwei Hütchen"
+            }
+          ]
+        }
+      }
+    ],
+    "kopfball": [
+      {
+        "id": "ball-hoch-halten",
+        "title": "Ball hoch halten",
+        "goal": "Ziel: Gefühl für Flugbälle spielerisch entwickeln, ohne echten Kopfballkontakt",
+        "desc": "Kinder in Kleingruppen von 3–4 einteilen, jede Gruppe bekommt einen leicht entlüfteten Ball und bildet einen kleinen Kreis. Die Kinder versuchen gemeinsam, den Ball möglichst lange in der Luft zu halten – Kontakt mit Kopf, Schulter und Fuß ist erlaubt, mit den Händen nicht.",
+        "coachTip": "Einen Ball bewusst etwas weicher pumpen – echtes Kopfballtraining mit hartem Ball ist in diesem Alter nicht sinnvoll.",
+        "materials": "{ceil(k/4)} Bälle (leicht entlüftet)",
+        "dims": "{fieldDims(6, 0.2, k)} pro Gruppe",
+        "diagram": {
+          "fn": "diagramCircle",
+          "args": [
+            "=clamp(min(k,6),3,6)",
+            {
+              "caption": "Ball in der Luft halten in Kleingruppen"
+            }
+          ]
+        }
+      },
+      {
+        "id": "ball-tennis-ueber-die-stange",
+        "title": "Ball-Tennis über die Stange",
+        "goal": "Ziel: Spielerisches Zusammenspiel mit Flugbällen, ohne echten Kopfballkontakt",
+        "desc": "Zwei kleine Hütchen-Türme (je 3–4 Hütchen gestapelt) im Abstand von ca. 4 m aufstellen, eine Slalomstange tief darüberlegen als Ersatz-Netz. Zwei Kleingruppen stellen sich auf beiden Seiten auf. Mit einem leicht entlüfteten Ball wird abwechselnd über die Stange gespielt – Kontakt mit Kopf, Schulter oder Hand ist erlaubt.",
+        "coachTip": "Einen Ball bewusst etwas weicher pumpen – auch hier ist echtes Kopfballtraining in diesem Alter nicht sinnvoll.",
+        "materials": "{ceil(k/4)} Bälle (leicht entlüftet) · 1 Slalomstange · 4 Hütchen (als Ständer)",
+        "dims": "{fieldDims(6, 0.2, k)} pro Gruppe",
+        "diagram": {
+          "fn": "diagramCircle",
+          "args": [
+            "=clamp(min(k,6),3,6)",
+            {
+              "caption": "Ball-Tennis über die Stange in Kleingruppen"
+            }
+          ]
+        }
+      }
+    ],
+    "aufwaermen": [
+      {
+        "id": "drachenschwanz",
+        "title": "Drachenschwanz",
+        "goal": "Ziel: Aufwärmen, Reaktionsschnelligkeit, Spaß von der ersten Minute",
+        "desc": "Jedes Kind steckt sich den Zipfel eines Leibchens locker in den Hosenbund. Auf ein Startsignal versuchen alle Kinder gleichzeitig, sich gegenseitig die Leibchen-Zipfel zu klauen, ohne dabei den eigenen zu verlieren. Wer seinen Zipfel verliert, macht sofort 3 Hampelmänner und ist danach wieder dabei.",
+        "coachTip": "Regel selbst vormachen statt lange erklären. Feld klein halten, damit alle ständig in Aktion sind.",
+        "materials": "{k} Leibchen (als Drachenschwanz-Zipfel) · 4 gelbe Pilonen zur Feldmarkierung",
+        "dims": "{fieldDims(10, 0.3, k)}",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k,16)",
+            {
+              "showBoundary": true,
+              "cones": 4,
+              "caption": "Freies Laufen · Zipfel klauen"
+            }
+          ]
+        }
+      },
+      {
+        "id": "feuer-wasser-blitz",
+        "title": "Feuer, Wasser, Blitz",
+        "goal": "Ziel: Aufwärmen, Reaktionsschnelligkeit, allgemeine Bewegungsschule",
+        "desc": "Alle Kinder laufen frei im Feld umher. Auf Zuruf reagieren sie mit einer festgelegten Bewegung: „Feuer\" = so schnell wie möglich wegrennen, „Wasser\" = auf ein Hütchen oder eine Bank klettern, „Blitz\" = sofort blitzschnell hinsetzen. Für jüngere Kinder reichen anfangs zwei Signale.",
+        "coachTip": "Signale immer selbst vormachen und ruhig übertreiben – je lustiger der Trainer, desto mehr Spaß die Kinder.",
+        "materials": "{pylonCountForBoundary((fieldWidthMeters(10, 0.3, k)))} gelbe Pilonen zur Feldmarkierung · 4 Hütchen",
+        "dims": "{fieldDims(10, 0.3, k)}",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k,16)",
+            {
+              "showBoundary": true,
+              "extraBoundaryPylons": "=pylonCountForBoundary((fieldWidthMeters(10, 0.3, k))) >= 6",
+              "cones": 4,
+              "caption": "Freies Laufen · Reaktion auf Zuruf"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

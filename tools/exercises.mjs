@@ -1,0 +1,155 @@
+#!/usr/bin/env node
+// Werkzeug für die Übungsbibliothek des Trainingspiloten (nur Node.js, keine Abhängigkeiten).
+//
+//   node tools/exercises.mjs check   Prüft data/exercises/*.json (Pflichtfelder, doppelte
+//                                    Titel/IDs, Formeln, jede Übung für 1-40 Kinder und 1-4
+//                                    Trainer*innen durchgerechnet) und ob der in index.html
+//                                    eingebettete Block aktuell ist.
+//   node tools/exercises.mjs build   Bettet data/exercises/*.json in index.html ein
+//                                    (<script id="exercise-data">). Danach "check" ausführen.
+//
+// Quelle der Wahrheit sind die JSON-Dateien. index.html enthält eine eingebettete Kopie,
+// damit die App weiterhin als einzelne Datei (offline, per WhatsApp geteilt) funktioniert.
+
+import fs from 'node:fs';
+import path from 'node:path';
+import vm from 'node:vm';
+import { fileURLToPath } from 'node:url';
+
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const HTML = path.join(ROOT, 'index.html');
+const DATA_DIR = path.join(ROOT, 'data', 'exercises');
+
+// Reihenfolge der Altersstufen im eingebetteten Block (wie vor v5.161 im Code).
+const TIER_ORDER = ['jung', 'alt', 'mittel', 'c', 'b', 'a'];
+const CATEGORIES = ['aufwaermen', 'ballgewoehnung', 'passspiel', 'torschuss', 'bewegung', 'zweikampf',
+  'spielaufbau', 'koordination', 'torwart', 'kopfball', 'umschalten'];
+const TEXT_FIELDS = ['title', 'goal', 'desc', 'coachTip', 'materials', 'dims'];
+const ALLOWED_FIELDS = new Set(['id', ...TEXT_FIELDS, 'diagram', 'custom']);
+
+const DATA_START = '<!-- EXERCISE_DATA_START (generiert von tools/exercises.mjs build - nicht von Hand bearbeiten) -->';
+const DATA_END = '<!-- EXERCISE_DATA_END -->';
+const ENGINE_START = '// EXERCISE_ENGINE_START';
+const ENGINE_END = '// EXERCISE_ENGINE_END';
+
+function loadData() {
+  const files = fs.readdirSync(DATA_DIR).filter((f) => f.endsWith('.json'));
+  const byTier = {};
+  for (const f of files) {
+    const json = JSON.parse(fs.readFileSync(path.join(DATA_DIR, f), 'utf8'));
+    if (json.tier + '.json' !== f) throw new Error(`${f}: Feld "tier" (${json.tier}) passt nicht zum Dateinamen`);
+    byTier[json.tier] = json.categories;
+  }
+  const tiers = {};
+  for (const t of TIER_ORDER) if (byTier[t]) tiers[t] = byTier[t];
+  for (const t of Object.keys(byTier)) if (!tiers[t]) tiers[t] = byTier[t];
+  return { tiers };
+}
+
+function embeddedBlock(data) {
+  // "</" escapen, damit ein Text wie "</script>" den Block nicht vorzeitig beendet.
+  const json = JSON.stringify(data).replace(/<\//g, '<\\/');
+  return `${DATA_START}\n<script type="application/json" id="exercise-data">${json}</script>\n${DATA_END}`;
+}
+
+function between(text, start, end, label) {
+  const a = text.indexOf(start);
+  const b = text.indexOf(end);
+  if (a === -1 || b === -1 || b < a) throw new Error(`Markierung für ${label} in index.html nicht gefunden`);
+  // inner beginnt erst in der Zeile nach der Start-Markierung (dort darf noch ein Kommentar stehen).
+  return { a, b: b + end.length, inner: text.slice(text.indexOf('\n', a) + 1, b) };
+}
+
+function validate(data, html) {
+  const errors = [];
+  const warnings = [];
+  const err = (where, msg) => errors.push(`${where}: ${msg}`);
+
+  for (const [tier, cats] of Object.entries(data.tiers)) {
+    if (!TIER_ORDER.includes(tier)) err(tier, 'unbekannte Altersstufe');
+    const ids = new Set();
+    for (const [cat, list] of Object.entries(cats)) {
+      if (!CATEGORIES.includes(cat)) err(`${tier}/${cat}`, 'unbekannte Kategorie');
+      if (!Array.isArray(list) || !list.length) { err(`${tier}/${cat}`, 'leere Kategorie'); continue; }
+      const titles = new Set();
+      list.forEach((ex, i) => {
+        const where = `${tier}/${cat}/${ex && ex.title ? ex.title : '#' + i}`;
+        for (const f of Object.keys(ex)) if (!ALLOWED_FIELDS.has(f)) err(where, `unbekanntes Feld "${f}"`);
+        for (const f of ['id', ...TEXT_FIELDS]) {
+          if (typeof ex[f] !== 'string' || !ex[f].trim()) err(where, `Pflichtfeld "${f}" fehlt oder ist leer`);
+        }
+        if (typeof ex.id === 'string' && !/^[a-z0-9]+(-[a-z0-9]+)*$/.test(ex.id)) err(where, `id "${ex.id}" nur a-z, 0-9 und Bindestriche`);
+        if (ids.has(ex.id)) err(where, `id "${ex.id}" in dieser Altersstufe doppelt`);
+        ids.add(ex.id);
+        // Bewertungen werden pro Titel gespeichert - doppelte Titel würden sich vermischen.
+        if (titles.has(ex.title)) err(where, 'Titel in dieser Kategorie doppelt');
+        titles.add(ex.title);
+        if (typeof ex.goal === 'string' && !ex.goal.startsWith('Ziel: ')) warnings.push(`${where}: goal beginnt nicht mit "Ziel: "`);
+        if (!ex.diagram || typeof ex.diagram !== 'object') err(where, 'diagram fehlt');
+        if ('custom' in ex && ex.custom !== true) err(where, '"custom" nur als true angeben (oder weglassen)');
+      });
+    }
+  }
+  if (errors.length) return { errors, warnings };
+
+  // Formeln mit genau der Engine aus index.html durchrechnen.
+  const engine = between(html, ENGINE_START, ENGINE_END, 'Übungs-Engine').inner;
+  const ctx = { console: { error: (...a) => errors.push('Engine: ' + a.join(' ')) }, DATA: data };
+  vm.createContext(ctx);
+  vm.runInContext(engine + '\n;this.hydrate = hydrateExercise; this.setT = setTrainerCount;', ctx);
+  for (const [tier, cats] of Object.entries(data.tiers)) {
+    for (const [cat, list] of Object.entries(cats)) {
+      for (const ex of list) {
+        const where = `${tier}/${cat}/${ex.title}`;
+        let h;
+        try { h = ctx.hydrate(ex); } catch (e) { err(where, e.message); continue; }
+        try {
+          for (let t = 1; t <= 4; t++) {
+            ctx.setT(t);
+            for (let k = 1; k <= 40; k++) {
+              for (const f of ['materials', 'dims']) {
+                const v = h[f](k);
+                if (typeof v !== 'string' || /NaN|undefined|Infinity|\[object/.test(v)) throw new Error(`${f} ergibt "${v}" bei ${k} Kindern/${t} Trainer*innen`);
+              }
+              const svg = h.diagram(k);
+              if (typeof svg !== 'string' || !svg.startsWith('<svg') || /NaN|undefined/.test(svg)) throw new Error(`Skizze ungültig bei ${k} Kindern/${t} Trainer*innen`);
+            }
+          }
+        } catch (e) { err(where, e.message); }
+      }
+    }
+  }
+  return { errors, warnings };
+}
+
+function main() {
+  const cmd = process.argv[2];
+  const data = loadData();
+  let html = fs.readFileSync(HTML, 'utf8');
+  if (cmd === 'build') {
+    const { a, b } = between(html, DATA_START, DATA_END, 'Übungsdaten');
+    html = html.slice(0, a) + embeddedBlock(data) + html.slice(b);
+    fs.writeFileSync(HTML, html);
+    const n = Object.values(data.tiers).reduce((s, c) => s + Object.values(c).reduce((x, l) => x + l.length, 0), 0);
+    console.log(`index.html aktualisiert: ${n} Übungen eingebettet.`);
+    return;
+  }
+  if (cmd === 'check') {
+    const { errors, warnings } = validate(data, html);
+    warnings.forEach((w) => console.log('Hinweis: ' + w));
+    const { a, b } = between(html, DATA_START, DATA_END, 'Übungsdaten');
+    if (html.slice(a, b) !== embeddedBlock(data)) {
+      errors.push('index.html ist nicht aktuell - bitte "node tools/exercises.mjs build" ausführen und mit committen');
+    }
+    if (errors.length) {
+      errors.forEach((e) => console.error('FEHLER: ' + e));
+      process.exit(1);
+    }
+    console.log('Übungsbibliothek OK.');
+    return;
+  }
+  console.error('Aufruf: node tools/exercises.mjs <check|build>');
+  process.exit(2);
+}
+
+main();
