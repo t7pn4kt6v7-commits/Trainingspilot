@@ -1,0 +1,90 @@
+name: Übungs-Agent
+
+# Wertet die Rückmeldungs-Issues aus und zeigt, wo neue Übungen gebraucht werden.
+#
+# KOSTEN: Es gibt bewusst KEINEN Zeitplan - der Workflow läuft nur, wenn ihn jemand unter
+# Actions → Übungs-Agent → Run workflow von Hand startet. Standardmäßig ist das ein
+# kostenloser Probelauf (keine Claude-API-Aufrufe, keine Änderungen). Nur wenn beim Start
+# ausdrücklich "Kostenpflichtige API-Aufrufe erlauben" angehakt wird UND das Secret
+# ANTHROPIC_API_KEY existiert, erzeugt Claude neue Übungen und es wird ein Pull Request geöffnet.
+# Einrichtung: siehe tools/agent/README.md
+
+on:
+  workflow_dispatch:
+    inputs:
+      kosten_erlauben:
+        description: 'Kostenpflichtige API-Aufrufe erlauben (Claude erzeugt neue Übungen). Ohne Haken: kostenloser Probelauf.'
+        type: boolean
+        default: false
+      max_new:
+        description: 'Höchstens so viele neue Übungen'
+        default: '4'
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: read
+
+concurrency:
+  group: uebungs-agent
+  cancel-in-progress: false
+
+jobs:
+  vorschlaege:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Läuft schon ein offener Agent-PR?
+        id: offen
+        run: |
+          n=$(gh pr list --state open --json headRefName --jq '[.[] | select(.headRefName | startswith("agent/"))] | length')
+          echo "anzahl=$n" >> "$GITHUB_OUTPUT"
+          if [ "$n" != "0" ]; then
+            echo "Es gibt noch einen offenen Pull Request des Übungs-Agenten - erst prüfen und zusammenführen oder schließen." | tee -a "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - uses: actions/setup-node@v4
+        if: steps.offen.outputs.anzahl == '0'
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: tools/agent/package-lock.json
+
+      - name: Abhängigkeiten installieren
+        if: steps.offen.outputs.anzahl == '0'
+        run: npm ci --prefix tools/agent
+
+      - name: Agent ausführen
+        if: steps.offen.outputs.anzahl == '0'
+        env:
+          # Der API-Schlüssel wird nur bei ausdrücklicher Kostenfreigabe überhaupt übergeben.
+          ANTHROPIC_API_KEY: ${{ inputs.kosten_erlauben && secrets.ANTHROPIC_API_KEY || '' }}
+          ALLOW_API_COSTS: ${{ inputs.kosten_erlauben && '1' || '' }}
+          GITHUB_TOKEN: ${{ github.token }}
+          MAX_NEW: ${{ inputs.max_new || '4' }}
+          AGENT_SUMMARY_FILE: ${{ runner.temp }}/pr-text.md
+        run: node tools/agent/run.mjs | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Pull Request öffnen
+        if: steps.offen.outputs.anzahl == '0' && inputs.kosten_erlauben
+        run: |
+          if git diff --quiet -- data/exercises index.html; then
+            echo "Keine neuen Übungen in diesem Lauf." | tee -a "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          node tools/exercises.mjs check
+          branch="agent/uebungen-$(date -u +%Y-%m-%d)-${GITHUB_RUN_ID}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add data/exercises index.html
+          git commit -m "Übungs-Agent: neue Übungen ($(date -u +%Y-%m-%d))"
+          git push -u origin "$branch"
+          gh pr create --base "${{ github.event.repository.default_branch }}" --head "$branch" \
+            --title "Übungs-Agent: neue Übungen zur Freigabe ($(date -u +%d.%m.%Y))" \
+            --body-file "$RUNNER_TEMP/pr-text.md"
+          cat "$RUNNER_TEMP/pr-text.md" >> "$GITHUB_STEP_SUMMARY"

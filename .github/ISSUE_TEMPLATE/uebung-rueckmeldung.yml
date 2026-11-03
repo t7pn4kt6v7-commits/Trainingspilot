@@ -1,0 +1,71 @@
+name: Rückmeldung zu einer Übung
+description: Übung kommt zu oft dran, passt nicht oder du hast eine Idee für eine neue Übung
+title: "[Feedback] "
+labels: ["uebungs-feedback"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Danke für deine Rückmeldung! Der Übungs-Agent wertet sie wöchentlich aus und schlägt passende neue Übungen vor. Ein Mensch aus dem Trainerteam prüft jeden Vorschlag, bevor er in der App erscheint.
+        Am einfachsten geht es direkt in der App über „💬 Feedback zu dieser Übung“, dann ist alles schon ausgefüllt.
+  - type: dropdown
+    id: art
+    attributes:
+      label: Art der Rückmeldung
+      options:
+        - Rückmeldung zu einer Übung
+        - Kommt zu oft dran
+        - Neue Übung vorschlagen
+    validations:
+      required: true
+  - type: dropdown
+    id: altersklasse
+    attributes:
+      label: Altersklasse
+      options:
+        - U6 (G-Jugend)
+        - U7 (G-Jugend)
+        - U8 (F-Jugend)
+        - U9 (F-Jugend)
+        - U10 (E-Jugend)
+        - U11 (E-Jugend)
+        - U12 (D-Jugend)
+        - U13 (D-Jugend)
+        - U14 (C-Jugend)
+        - U15 (C-Jugend)
+        - U16 (B-Jugend)
+        - U17 (B-Jugend)
+        - U18 (A-Jugend)
+        - U19 (A-Jugend)
+    validations:
+      required: true
+  - type: dropdown
+    id: kategorie
+    attributes:
+      label: Kategorie
+      options:
+        - Aufwärmen
+        - Ballgewöhnung & Dribbling
+        - Passspiel
+        - Torschuss
+        - Bewegung ohne Ball & Taktik
+        - Zweikämpfe gewinnen
+        - Passwege & Spielaufbau
+        - Koordination & Beweglichkeit
+        - Torwart-Grundlagen
+        - Kopfball & Luftduell
+        - Kontern nach Ballgewinn
+    validations:
+      required: true
+  - type: input
+    id: uebung
+    attributes:
+      label: Übung
+      description: Titel der Übung, um die es geht (bei einem neuen Vorschlag leer lassen)
+  - type: textarea
+    id: text
+    attributes:
+      label: Rückmeldung
+      description: Was passt nicht, was wünschst du dir? Bei neuen Ideen kurz den Ablauf beschreiben.
+    validations:
+      required: true

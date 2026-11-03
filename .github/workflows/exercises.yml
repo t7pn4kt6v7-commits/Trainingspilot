@@ -1,0 +1,23 @@
+name: Übungsbibliothek und Agent prüfen
+
+on:
+  push:
+    paths: ['data/exercises/**', 'index.html', 'tools/**', '.github/workflows/exercises.yml']
+  pull_request:
+    paths: ['data/exercises/**', 'index.html', 'tools/**', '.github/workflows/exercises.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node tools/exercises.mjs check
+      - run: npm ci --prefix tools/agent
+      - name: Tests Übungs-Agent (ohne API-Aufrufe)
+        run: node tools/agent/test.mjs

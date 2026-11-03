@@ -1,0 +1,288 @@
+{
+  "tier": "mittel",
+  "categories": {
+    "torschuss": [
+      {
+        "id": "abschluss-gegen-torhueter",
+        "title": "Abschluss gegen Torhüter",
+        "goal": "Ziel: Torschuss unter echten Bedingungen mit Torhüter*in",
+        "desc": "Ein Kleinfeldtor mit einem Torhüter aufbauen, die restlichen Kinder stellen sich in einer Reihe seitlich versetzt an (mehrere Startpunkte in unterschiedlichen Winkeln markieren). Die Kinder schließen nacheinander aus ihrem Winkel gegen den Torhüter ab. Torhüterrolle nach jedem Versuch weitergeben.",
+        "coachTip": "Torhüterrolle bewusst oft wechseln – ab der F-Jugend soll jedes Kind Torwarterfahrung sammeln.",
+        "materials": "{(stationCount(k))} Tore mit Netz · {(stationCount(k))*2} Bälle",
+        "dims": "{stationLabel(stationCount(k))} à ca. 16 × 12 m",
+        "diagram": {
+          "fn": "diagramStations",
+          "args": [
+            "=stationCount(k)",
+            {
+              "caption": "Abschluss gegen rotierenden Torhüter"
+            }
+          ]
+        }
+      },
+      {
+        "id": "1-gegen-1-zum-abschluss",
+        "title": "1 gegen 1 zum Abschluss",
+        "goal": "Ziel: Torschuss nach Eins-gegen-Eins mit Entscheidung unter Druck",
+        "desc": "Ein Tor mit Torhüter aufbauen, ein Verteidiger positioniert sich mittig davor. Ein Kind wird von der Seite angespielt, nimmt den Ball an und muss sich im 1 gegen 1 gegen den Verteidiger durchsetzen, bevor es gegen den Torhüter abschließt. Rollen nach jeder Aktion wechseln (Angreifer → Verteidiger → Torhüter).",
+        "coachTip": "Klare Reihenfolge betonen: erst der Zweikampf, dann erst zählt der Abschluss.",
+        "materials": "{(stationCount(k))} Tore mit Netz · {(stationCount(k))*2} Bälle",
+        "dims": "{stationLabel(stationCount(k))} à ca. 16 × 12 m",
+        "diagram": {
+          "fn": "diagramStations",
+          "args": [
+            "=stationCount(k)",
+            {
+              "caption": "1 gegen 1 vor dem Torabschluss"
+            }
+          ]
+        }
+      }
+    ],
+    "bewegung": [
+      {
+        "id": "positionsspiel-mit-torhueter-innen",
+        "title": "Positionsspiel mit Torhüter*innen",
+        "goal": "Ziel: Freilaufen und Anbieten im Spielformat mit Torhüter",
+        "desc": "Zwei Teams auf einem Feld mit zwei Kleinfeldtoren inklusive Torhüter*innen aufstellen. Beide Teams spielen normal gegeneinander, wobei der Trainer besonders auf ständiges Anbieten und Freilaufen achtet und coacht – das Ergebnis ist zweitrangig.",
+        "coachTip": "Immer wieder einwerfen: „Wer war gerade frei und wurde nicht gesehen?\"",
+        "materials": "2 Bälle · 2 Tore mit Netz · {ceil(k/6)} Leibchensätze ({(teamSplit(k)).a}/{(teamSplit(k)).b})",
+        "dims": "{fieldDims(28, 0.9, k)}",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            "=(teamSplit(k)).a",
+            "=(teamSplit(k)).b",
+            {
+              "caption": "='Spiel mit Torhüter*innen, ' + (teamSplit(k)).a + ' gegen ' + (teamSplit(k)).b",
+              "showBuildupArrows": true
+            }
+          ]
+        }
+      },
+      {
+        "id": "doppelpass-zur-uebergabe",
+        "title": "Doppelpass zur Übergabe",
+        "goal": "Ziel: Sich per Doppelpass aus Bedrängnis lösen",
+        "desc": "Im normalen Spiel mit Torhüter*innen (siehe Feldaufbau) wird gezielt nach Doppelpass-Gelegenheiten in der eigenen Zone gesucht: Wird ein Kind unter Druck gesetzt, spielt es kurz zu einem freien Mitspieler und bekommt den Ball sofort im Lauf zurück, um sich aus der Bedrängnis zu befreien.",
+        "coachTip": "Gelungene Doppelpässe kurz hervorheben – auch wenn danach kein Tor fällt.",
+        "materials": "2 Bälle · 2 Tore mit Netz · {ceil(k/6)} Leibchensätze ({(teamSplit(k)).a}/{(teamSplit(k)).b})",
+        "dims": "{fieldDims(28, 0.9, k)}",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            "=(teamSplit(k)).a",
+            "=(teamSplit(k)).b",
+            {
+              "caption": "='Doppelpass-Suche, ' + (teamSplit(k)).a + ' gegen ' + (teamSplit(k)).b",
+              "showBuildupArrows": true
+            }
+          ]
+        }
+      }
+    ],
+    "spielaufbau": [
+      {
+        "id": "aufbau-ueber-den-torhueter",
+        "title": "Aufbau über den Torhüter",
+        "goal": "Ziel: Ersten Aufbau-Pass vom Torhüter sicher verarbeiten",
+        "desc": "Ein Kleinfeldtor mit Torhüter aufbauen, 2–3 Feldspieler positionieren sich davor. Der Torhüter rollt oder wirft den Ball kurz und flach zu einem Feldspieler an; dieser nimmt kontrolliert an und spielt sofort nach vorne weiter, bevor ein kleines Zielspiel (z. B. auf ein Minitor) folgt.",
+        "coachTip": "Auf offene Körperstellung des anspielbereiten Kindes achten, bevor der Torhüter abgibt.",
+        "materials": "2 Bälle · 2 Tore mit Netz · 4 Hütchen",
+        "dims": "{fieldDims(20, 0.6, k)}",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k,10)",
+            {
+              "cones": 4,
+              "showPassPath": true,
+              "caption": "Aufbau vom Torhüter in den ersten Pass"
+            }
+          ]
+        }
+      },
+      {
+        "id": "dreieckspaesse-zum-aufbau",
+        "title": "Dreieckspässe zum Aufbau",
+        "goal": "Ziel: Sicheren ersten Pass im Dreieck vor dem eigenen Tor finden",
+        "desc": "Drei Feldspieler vor dem eigenen Tor als Dreieck aufstellen (je ca. 5 m Abstand), der Torhüter steht im Tor. Der Torhüter spielt den Ball zu einem der drei Feldspieler; gemeinsam wird durch Pässe im Dreieck der sicherste erste Weg nach vorne gesucht, bevor der Ball weiter aufs Feld gespielt wird.",
+        "coachTip": "Bewusst auch den Rückpass zum Torhüter als gültige, sichere Option anerkennen.",
+        "materials": "2 Bälle · 2 Tore mit Netz · 4 Hütchen",
+        "dims": "{fieldDims(20, 0.6, k)}",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k,10)",
+            {
+              "cones": 4,
+              "showPassPath": "double",
+              "caption": "Dreieckspässe vor dem eigenen Tor"
+            }
+          ]
+        }
+      }
+    ],
+    "zweikampf": [
+      {
+        "id": "2-gegen-2-um-den-ball",
+        "title": "2 gegen 2 um den Ball",
+        "goal": "Ziel: Gemeinsames Verteidigen im größeren Spielformat erproben",
+        "desc": "Kleine Felder markieren, pro Feld 2 Minitore pro Team gegenüberstellen. Zwei Teams zu je 2 Kindern spielen 2 gegen 2; nach jedem Ballgewinn soll das Team sofort gemeinsam nach vorne umschalten und auf die gegnerischen Minitore abschließen. Reichen die Felder nicht für alle Vierergruppen gleichzeitig, wechseln sich die Gruppen ab.",
+        "coachTip": "Nach Ballgewinn bewusst loben, wenn beide Kinder gemeinsam den Umschaltmoment nutzen.",
+        "materials": "{(parallelFields(k,4))*4} Minitore · {(parallelFields(k,4))} Bälle",
+        "dims": "{fieldLabel(parallelFields(k,4))} à ca. 12 × 10 m",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            2,
+            2,
+            {
+              "caption": "2 gegen 2 mit Umschaltmoment (hier: ein Feld)",
+              "goalsPerSide": 2,
+              "showBuildupArrows": true
+            }
+          ]
+        }
+      },
+      {
+        "id": "verteidigen-mit-rueckendeckung",
+        "title": "Verteidigen mit Rückendeckung",
+        "goal": "Ziel: Kommunikation beim gemeinsamen Verteidigen fördern",
+        "desc": "Kleine Felder markieren, jeweils 2 verteidigende Kinder gegen 1 angreifendes Kind mit Minitor. Ein Kind verteidigt direkt im 1 gegen 1, das zweite Kind sichert im Rücken ab und ruft laut, wenn es unterstützen kann. Nach jeder Aktion Rollenwechsel (Angreifer wird zum Verteidiger). Reichen die Felder nicht für alle Dreiergruppen gleichzeitig, wechseln sich die Gruppen ab.",
+        "coachTip": "Kommunikation einfordern: Das absichernde Kind soll laut ansagen, wenn es unterstützt.",
+        "materials": "{(parallelFields(k,3))*2} Minitore · {(parallelFields(k,3))} Bälle",
+        "dims": "{fieldLabel(parallelFields(k,3))} à ca. 12 × 10 m",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            2,
+            1,
+            {
+              "caption": "1 gegen 1 mit Rückendeckung (hier: ein Feld)"
+            }
+          ]
+        }
+      },
+      {
+        "id": "torjaeger-duell",
+        "title": "Torjäger-Duell",
+        "goal": "Ziel: Zweikampfverhalten mit klarer Abschluss-Chance verbinden",
+        "desc": "Kinder in Paare einteilen, pro Paar ein kleines Feld (ca. 4×4 m) mit zwei Minitoren an gegenüberliegenden Seiten. Ein Kind startet mit Ball und versucht, im 1 gegen 1 das gegnerische Minitor zu treffen; das andere Kind verteidigt sein eigenes Tor. Nach jedem Abschlussversuch (Tor oder Ballgewinn) wechseln die Rollen. Reichen die Felder nicht für alle Paare gleichzeitig, wechseln sich die Paare reihum ab.",
+        "coachTip": "Der DFB empfiehlt gerade bei jüngeren Kindern kleine Spielformen wie diese, weil dadurch viele 1-gegen-1-Situationen und Ballaktionen entstehen.",
+        "materials": "{(parallelFields(k,2))*2} Minitore · {(parallelFields(k,2))} Bälle · {(parallelFields(k,2))*4} gelbe Pilonen für Kleinfelder",
+        "dims": "{fieldLabel(parallelFields(k,2))} à ca. 4 × 4 m",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            1,
+            1,
+            {
+              "caption": "1 gegen 1 mit Rollenwechsel nach jedem Abschluss (hier: ein Feld)"
+            }
+          ]
+        }
+      }
+    ],
+    "umschalten": [
+      {
+        "id": "blitzkonter-nach-ballgewinn",
+        "title": "Blitzkonter nach Ballgewinn",
+        "goal": "Ziel: Nach Ballgewinn sofort schnell und zielstrebig nach vorne spielen",
+        "desc": "Ein Minitor-Paar an einem Ende des Feldes aufstellen, zwei Teams spielen frei gegeneinander um den Ball. Sobald ein Team den Ball erobert, hat es 6 Sekunden Zeit (laut mitzählen), ein Tor zu erzielen; gelingt das nicht, wird der Ball freigegeben und beide Teams spielen normal weiter.",
+        "coachTip": "Laut mitzählen (\"6 – 5 – 4 – 3 – 2 – 1!\") – das erzeugt echten Zeitdruck und macht das schnelle Umschalten erlebbar.",
+        "materials": "{(teamSplit(k)).a}/{(teamSplit(k)).b} Leibchensätze · {ceil(k/4)*2} Minitore · {max(2, ceil(k/4))} Bälle",
+        "dims": "{fieldDims(20, 0.6, k)}",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            "=(teamSplit(k)).a",
+            "=(teamSplit(k)).b",
+            {
+              "caption": "Nach Ballgewinn: 6 Sekunden bis zum Torabschluss",
+              "showBuildupArrows": true
+            }
+          ]
+        }
+      },
+      {
+        "id": "konter-ueber-die-mittellinie",
+        "title": "Konter über die Mittellinie",
+        "goal": "Ziel: Nach Balleroberung schnell die Linien wechseln und in die Tiefe spielen",
+        "desc": "Das Feld mit einer Hütchenreihe in der Mitte in zwei Hälften teilen, an jedem Ende ein Tor aufstellen. Erobert ein Team den Ball in der eigenen Hälfte, muss es so schnell wie möglich über die Mittellinie kombinieren (mind. 2 Pässe) und zum Abschluss kommen, bevor sich der Gegner zurückzieht und sortiert.",
+        "coachTip": "Betonen: Der erste Pass nach Ballgewinn geht nach vorne, nicht zurück – das ist der Kern des schnellen Umschaltens.",
+        "materials": "{(teamSplit(k)).a}/{(teamSplit(k)).b} Leibchensätze · 2 Tore mit Netz · {max(2, ceil(k/4))} Bälle",
+        "dims": "{fieldDims(24, 0.7, k)}",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            "=(teamSplit(k)).a",
+            "=(teamSplit(k)).b",
+            {
+              "caption": "Nach Ballgewinn schnell über die Mittellinie zum Abschluss",
+              "showBuildupArrows": true
+            }
+          ]
+        }
+      }
+    ],
+    "aufwaermen": [
+      {
+        "id": "zahlenfangen",
+        "title": "Zahlenfangen",
+        "goal": "Ziel: Aufwärmen mit Reaktionsschnelligkeit und Orientierung",
+        "desc": "Alle Kinder laufen frei im Feld, jedes Kind bekommt abwechselnd die Zahl 1 oder 2 zugeteilt (laut ansagen und merken lassen). Ruft der Trainer eine Zahl, versuchen alle Kinder mit dieser Zahl für ca. 20 Sekunden, die Kinder mit der jeweils anderen Zahl abzuschlagen. Danach kurze Pause und Rollen tauschen.",
+        "coachTip": "Immer nur kurze Runden (20–30 Sekunden), dann kurze Pause und neue Zuordnung – hält die Intensität hoch.",
+        "materials": "{pylonCountForBoundary((fieldWidthMeters(12, 0.35, k)))} gelbe Pilonen zur Feldmarkierung · 4 Hütchen",
+        "dims": "{fieldDims(12, 0.35, k)}",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k,16)",
+            {
+              "showBoundary": true,
+              "extraBoundaryPylons": "=pylonCountForBoundary((fieldWidthMeters(12, 0.35, k))) >= 6",
+              "cones": 4,
+              "caption": "Freies Laufen · Fangen nach zugerufener Zahl"
+            }
+          ]
+        }
+      },
+      {
+        "id": "dribbel-baendchenjagd",
+        "title": "Dribbel-Bändchenjagd",
+        "goal": "Ziel: Aufwärmen mit erstem Ballkontakt und Ballkontrolle unter Druck",
+        "desc": "Jedes Kind bekommt einen Ball und steckt sich zusätzlich den Zipfel eines Leibchens in den Hosenbund. Alle dribbeln frei im Feld und versuchen gleichzeitig, anderen den Zipfel zu klauen, während sie den eigenen Ball unter Kontrolle behalten. Wer seinen Zipfel verliert, dribbelt eine kurze Ehrenrunde um das Feld und ist danach wieder dabei.",
+        "coachTip": "Betonen, dass der Ball während der ganzen Übung am Fuß bleiben soll – das schult nebenbei die Ballkontrolle unter Ablenkung.",
+        "materials": "{k} Bälle · {k} Leibchen (als Zipfel) · 4 gelbe Pilonen zur Feldmarkierung",
+        "dims": "{fieldDims(12, 0.35, k)}",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k,16)",
+            {
+              "showBoundary": true,
+              "cones": 4,
+              "withBall": true,
+              "showDribblePath": true,
+              "caption": "Freies Dribbeln · Zipfel klauen"
+            }
+          ]
+        }
+      },
+      {
+        "id": "loewe-und-tiger",
+        "title": "Löwe und Tiger",
+        "goal": "Ziel: Aufwärmen mit Reaktionsschnelligkeit und Sprintstarts",
+        "desc": "Zwei gleich große Gruppen stellen sich mit ca. 2 m Abstand gegenüber auf: die eine Gruppe ist „Löwe\", die andere „Tiger\". Einige Meter hinter jeder Gruppe verläuft eine eigene Ziellinie. Ruft der Trainer eine der beiden Gruppen, muss die jeweils andere Gruppe sofort losrennen und ihre eigene Ziellinie erreichen, bevor sie abgeschlagen wird – die gerufene Gruppe versucht, möglichst viele der Fliehenden noch vorher zu fangen. Nach jedem Durchgang neu aufstellen und dabei Ausgangsposition sowie Rufreihenfolge bewusst variieren.",
+        "coachTip": "Den Ruf bewusst verzögern oder mit ähnlich klingenden Wörtern einleiten (z. B. „Löwen…zahn!\") – das schult zusätzlich das genaue Zuhören, nicht nur die reine Schnelligkeit.",
+        "custom": true,
+        "materials": "{pylonCountForBoundary((fieldWidthMeters(18, 0.5, k)))} gelbe Pilonen zur Feldmarkierung · 4 Hütchen für die beiden Ziellinien",
+        "dims": "{fieldDims(18, 0.5, k)}",
+        "diagram": {
+          "custom": "mittel-aufwaermen-loewe-und-tiger"
+        }
+      }
+    ]
+  }
+}

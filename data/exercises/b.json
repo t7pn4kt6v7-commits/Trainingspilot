@@ -1,0 +1,451 @@
+{
+  "tier": "b",
+  "categories": {
+    "ballgewoehnung": [
+      {
+        "id": "isolationsdribbling-unter-hohem-tempo",
+        "title": "Isolationsdribbling unter hohem Tempo",
+        "goal": "Ziel: Technik unter wettkampfnahem Zeit- und Gegnerdruck sichern",
+        "desc": "Zwei Kinder starten sich in einem ca. 12 × 8 m großen Feld gegenüber, ein Ball pro Duo. Auf Kommando dribbelt ein Kind mit maximalem Tempo, das andere presst konsequent von hinten. Ziel: den Ball trotz Verfolgungsdruck über die gegenüberliegende Linie führen. Rollen nach jedem Durchgang tauschen.",
+        "coachTip": "Auf Körperabschirmung unter Vollgas achten – genau das unterscheidet Wettkampftempo von Trainingstempo.",
+        "materials": "{ceil(k/2)} Bälle · {4 * parallelFields(k,2)} Hütchen",
+        "dims": "{fieldLabel(parallelFields(k,2))} à ca. 12 × 8 m",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            1,
+            1,
+            {
+              "caption": "Dribbling unter Verfolgungsdruck (hier: ein Feld)"
+            }
+          ]
+        }
+      },
+      {
+        "id": "spielnahe-isolationsuebung-mit-abschluss",
+        "title": "Spielnahe Isolationsübung mit Abschluss",
+        "goal": "Ziel: 1-gegen-1-Technik direkt mit Torabschluss verbinden",
+        "desc": "Ein Tor mit Torhüter*in aufbauen, Angreifer und Verteidiger starten von zwei markierten Punkten ca. 20 m vor dem Tor gleichzeitig auf einen zugespielten Ball zu. Wer zuerst am Ball ist, greift an bzw. verteidigt; das 1 gegen 1 geht direkt in den Torabschluss über.",
+        "coachTip": "Klar herausstellen: Das Startsignal entscheidet über Angreifer/Verteidiger – volle Konzentration von der ersten Sekunde an fordern.",
+        "materials": "{(stationCount(k))} Tore mit Netz · {(stationCount(k))*3} Bälle",
+        "dims": "{stationLabel(stationCount(k))} à ca. 24 × 18 m",
+        "diagram": {
+          "fn": "diagramStations",
+          "args": [
+            "=stationCount(k)",
+            {
+              "caption": "1 gegen 1 nach gleichzeitigem Antritt zum Abschluss"
+            }
+          ]
+        }
+      }
+    ],
+    "passspiel": [
+      {
+        "id": "kombinationsspiel-im-drittel",
+        "title": "Kombinationsspiel im Drittel",
+        "goal": "Ziel: Systematisches Kombinationsspiel unter Zeitdruck in einem Systemrahmen",
+        "desc": "Ein Feldabschnitt von ca. 25 × 20 m mit 4 gegen 4 plus 2 neutralen Spielern bespielen (Ballbesitzteam nutzt die Neutralen). Provokationsregel: Ein Doppelpass über drei Stationen (inkl. mindestens einem neutralen Spieler) innerhalb von 8 Sekunden zählt als „gewonnene Ballbesitzphase\" und wird laut mitgezählt.",
+        "coachTip": "Nach einer erfolgreichen Kombination kurz einfrieren und die Passfolge gemeinsam benennen – Muster bewusst sichtbar machen.",
+        "materials": "1–2 Bälle · {pylonCountForBoundary((fieldWidthMeters(25, 0.5, k)))} gelbe Pilonen zur Feldmarkierung · {ceil(k/6)} Leibchensätze",
+        "dims": "{fieldDims(25, 0.5, k)}",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            4,
+            4,
+            {
+              "caption": "4 gegen 4 plus 2 Neutrale, Kombination unter Zeitdruck",
+              "extraBoundaryPylons": "=pylonCountForBoundary((fieldWidthMeters(25, 0.5, k))) >= 6",
+              "showBuildupArrows": true
+            }
+          ]
+        }
+      },
+      {
+        "id": "verlagerungsspiel-mit-systemvorgabe",
+        "title": "Verlagerungsspiel mit Systemvorgabe",
+        "goal": "Ziel: Spielverlagerung als taktisches Mittel zum Öffnen von Räumen einsetzen",
+        "desc": "Auf einem Feldabschnitt von ca. 35 × 25 m spielen zwei Teams normal gegeneinander. Provokationsregel: Presst der Gegner auf einer Seite konsequent, muss innerhalb von drei Kontakten auf die freie Seite verlagert werden – gelingt das, zählt der nächste Torabschluss doppelt.",
+        "coachTip": "Bewusst fragen: „Wo war der Druck, wo war der Raum?\" – das schärft das Auge für Verlagerungsmomente.",
+        "materials": "2 Bälle · 2 Tore mit Netz · {ceil(k/6)} Leibchensätze ({(teamSplit(k)).a}/{(teamSplit(k)).b})",
+        "dims": "{fieldDims(35, 0.6, k)}",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            "=(teamSplit(k)).a",
+            "=(teamSplit(k)).b",
+            {
+              "caption": "Verlagerungsspiel bei einseitigem Pressing",
+              "showBuildupArrows": true
+            }
+          ]
+        }
+      }
+    ],
+    "torschuss": [
+      {
+        "id": "abschluss-unter-wettkampfdruck",
+        "title": "Abschluss unter Wettkampfdruck",
+        "goal": "Ziel: Torabschlussqualität bei echtem Verteidigerdruck sichern",
+        "desc": "Ein Tor mit Torhüter*in aufbauen, ein aktiver Verteidiger startet zeitversetzt (ca. 1 Sekunde) hinter dem Angreifer und versucht, den Abschluss noch zu stören. Der Angreifer bekommt den Ball zugespielt und muss trotz Verfolgungsdruck sauber abschließen.",
+        "coachTip": "Auf die Entscheidung „schnell abschließen oder Tempo rausnehmen\" achten – beide Lösungen können richtig sein, je nach Situation.",
+        "materials": "{(stationCount(k))} Tore mit Netz · {(stationCount(k))*3} Bälle",
+        "dims": "{stationLabel(stationCount(k))} à ca. 22 × 16 m",
+        "diagram": {
+          "fn": "diagramStations",
+          "args": [
+            "=stationCount(k)",
+            {
+              "caption": "Abschluss unter zeitversetztem Verteidigerdruck"
+            }
+          ]
+        }
+      },
+      {
+        "id": "standardsituationen-freistoss-abschluss",
+        "title": "Standardsituationen: Freistoß-Abschluss",
+        "goal": "Ziel: Variantenreiche Abschlüsse aus ruhenden Bällen trainieren",
+        "desc": "Freistoßpositionen im Halbkreis um den Strafraum markieren (direkt und indirekt). Die Kinder üben nacheinander verschiedene Ausführungen: direkter Torschuss über die Mauer, kurz abgelegt für einen nachrückenden Mitspieler, oder Flanke in den Strafraum. Mauer ggf. mit Hütchen simulieren.",
+        "coachTip": "Mehrere Varianten fest einstudieren, statt nur den direkten Schuss – Standards entscheiden oft enge Spiele.",
+        "materials": "{(stationCount(k))} Tore mit Netz · {(stationCount(k))*4} Bälle · {(stationCount(k))*5} Hütchen (Mauer-Simulation)",
+        "dims": "{stationLabel(stationCount(k))} à ca. 24 × 18 m",
+        "diagram": {
+          "fn": "diagramStations",
+          "args": [
+            "=stationCount(k)",
+            {
+              "caption": "Freistoß-Varianten im Wechsel"
+            }
+          ]
+        }
+      }
+    ],
+    "bewegung": [
+      {
+        "id": "raumverhalten-in-der-grundordnung",
+        "title": "Raumverhalten in der Grundordnung",
+        "goal": "Ziel: Positionstreue und Raumaufteilung in einer taktischen Grundordnung erleben",
+        "desc": "Ein Team in einer einfachen Grundordnung (z. B. Viererkette plus drei Mittelfeldspieler) auf die Positionen im Feld verteilen und gegen ein anderes Team im Ballbesitzspiel antreten lassen. Provokationsregel: Verlässt ein Kind seine markierte Zone, ist der nächste Ballkontakt ungültig.",
+        "coachTip": "Es geht nicht um starre Systemtreue, sondern ums Bewusstsein für die eigene Grundposition – danach wieder freier spielen lassen.",
+        "materials": "1–2 Bälle · {8 + ceil(k/3)} Hütchen (Zonenmarkierung) · {ceil(k/6)} Leibchensätze",
+        "dims": "{fieldDims(38, 0.7, k)}",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            "=(teamSplit(k)).a",
+            "=(teamSplit(k)).b",
+            {
+              "caption": "Ballbesitzspiel mit markierten Positionszonen",
+              "showBuildupArrows": true
+            }
+          ]
+        }
+      },
+      {
+        "id": "freilaufen-gegen-organisierten-gegner",
+        "title": "Freilaufen gegen organisierten Gegner",
+        "goal": "Ziel: Sich gegen ein bewusst verschiebendes Abwehrverhalten lösen",
+        "desc": "Vier Angreifer gegen drei Verteidiger auf einem Feldabschnitt (ca. 30 × 22 m) mit einem Tor spielen lassen. Die drei Verteidiger verschieben bewusst gemeinsam als Kette; die Angreifer müssen Räume zwischen den Linien finden, statt nur in die Ballnähe zu laufen.",
+        "coachTip": "Nach jeder Balleroberung der Verteidiger kurz fragen: „Wo war die Lücke, die wir zugelassen haben?\"",
+        "materials": "1–2 Bälle · 1 Tor mit Netz · {ceil(k/6)} Leibchensätze (4/3)",
+        "dims": "{fieldDims(30, 0.6, k)}",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            4,
+            3,
+            {
+              "caption": "4 gegen 3 gegen organisiert verschiebende Kette",
+              "showBuildupArrows": true
+            }
+          ]
+        }
+      }
+    ],
+    "zweikampf": [
+      {
+        "id": "zweikampf-im-pressing-kontext",
+        "title": "Zweikampf im Pressing-Kontext",
+        "goal": "Ziel: Zweikampfverhalten als Teil eines koordinierten Anlaufens erleben",
+        "desc": "Drei gegen drei auf einem kleinen Feld (ca. 18 × 14 m) mit zwei Toren spielen lassen. Provokationsregel: Presst ein Kind den Ballführenden an, müssen die anderen beiden sofort die Anspielstationen zustellen – gelingt der Balleroberung binnen 5 Sekunden, zählt das laut mitgezählt als „gewonnenes Pressing\".",
+        "coachTip": "Betonen, dass der Zweikampf nur der letzte Baustein ist – das gemeinsame Zustellen davor entscheidet oft schon.",
+        "materials": "{(parallelFields(k,6))} Bälle · {(parallelFields(k,6))*2} Tore mit Netz · {ceil(k/6)} Leibchensätze",
+        "dims": "{fieldLabel(parallelFields(k,6))} à ca. 18 × 14 m",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            3,
+            3,
+            {
+              "caption": "3 gegen 3 mit koordiniertem Anlaufen (hier: ein Feld)"
+            }
+          ]
+        }
+      },
+      {
+        "id": "zweikampfintensitaet-im-direkten-duell",
+        "title": "Zweikampfintensität im direkten Duell",
+        "goal": "Ziel: Zweikampfhärte und -intelligenz bei hoher Intensität festigen",
+        "desc": "Zwei Kinder in einem ca. 8 × 8 m großen Feld gegenüberstellen, ein Ball. Beide Kinder kämpfen im direkten 1-gegen-1 um den Ball; nach Balleroberung endet die Aktion sofort und wird neu gestartet. Kurze, intensive Serien (ca. 6–8 Duelle), danach längere Pause und Partnerwechsel.",
+        "coachTip": "Auf saubere Stellungsspiel-Technik statt reiner Härte achten – Intensität ja, unfaires Spiel nein.",
+        "materials": "{(parallelFields(k,2))} Bälle · {4 * (parallelFields(k,2))} Hütchen",
+        "dims": "{fieldLabel(parallelFields(k,2))} à ca. 8 × 8 m",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            1,
+            1,
+            {
+              "caption": "Intensive 1-gegen-1-Serien (hier: ein Feld)"
+            }
+          ]
+        }
+      }
+    ],
+    "spielaufbau": [
+      {
+        "id": "systematischer-spielaufbau-mit-staffelung",
+        "title": "Systematischer Spielaufbau mit Staffelung",
+        "goal": "Ziel: Klare Anspielstationen in unterschiedlichen Höhen und Breiten schaffen",
+        "desc": "Ein Team in klar gestaffelten Linien (Abwehr, Mittelfeld, Angriff) gegen ein pressendes Team auf Ballbesitz spielen lassen. Provokationsregel: Jede Linie darf nur von der jeweils benachbarten Linie angespielt werden (kein direkter Ball von Abwehr zu Angriff) – so wird sauberes Durchspielen über die Stationen erzwungen.",
+        "coachTip": "Bei Regelverstoß freundlich, aber konsequent zurückpfeifen – die Struktur muss zur Gewohnheit werden.",
+        "materials": "1–2 Bälle · {6 + ceil(k/4)} Hütchen (Linienmarkierung) · {ceil(k/6)} Leibchensätze",
+        "dims": "{fieldDims(38, 0.75, k)}",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            "=(teamSplit(k)).a",
+            "=(teamSplit(k)).b",
+            {
+              "caption": "Aufbau über gestaffelte Linien, nur Nachbar-Anspiel erlaubt",
+              "showBuildupArrows": true
+            }
+          ]
+        }
+      },
+      {
+        "id": "aufbau-gegen-erstes-anlaufen",
+        "title": "Aufbau gegen erstes Anlaufen",
+        "goal": "Ziel: Ruhigen Spielaufbau auch bei früh startendem Gegnerdruck sichern",
+        "desc": "Ein Team baut das Spiel von der eigenen Grundlinie auf, während 1–2 Spieler des Gegners das Spiel früh anlaufen dürfen (der Rest bleibt passiv). Ziel: durch sauberes Kurzpassspiel und Rochade den Anlaufdruck aushebeln und ins Mittelfeld durchspielen.",
+        "coachTip": "Auf ruhige Körperstellung und offene Anspielwinkel achten, statt unter Druck einfach lang zu klären.",
+        "materials": "1–2 Bälle · 1 Tor mit Netz · {ceil(k/6)} Leibchensätze",
+        "dims": "{fieldDims(35, 0.65, k)}",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            "=(teamSplit(k)).a",
+            "=(teamSplit(k)).b",
+            {
+              "caption": "Aufbau gegen frühes Anlaufen von 1–2 Gegenspielern",
+              "showBuildupArrows": true
+            }
+          ]
+        }
+      }
+    ],
+    "koordination": [
+      {
+        "id": "funktionelle-athletik-mit-ball",
+        "title": "Funktionelle Athletik mit Ball",
+        "goal": "Ziel: Athletiktraining direkt mit Ballkontakt statt isoliert durchführen",
+        "desc": "Einen Zirkel aus 4 Stationen aufbauen: Koordinationsleiter mit Ballführung, seitliche Sprünge über niedrige Hürden mit Ball am Fuß, kurze Antritte mit Richtungswechsel und Ball, sowie Rumpfstabilisation (Unterarmstütz mit Ballrollen). Je Station ca. 30–40 Sekunden, danach Wechsel.",
+        "coachTip": "Auf saubere Rumpfspannung bei allen Übungen achten – das ist die Basis für Verletzungsprävention in dieser Belastungsstufe.",
+        "materials": "{10 + ceil(k/2)} Hütchen · {3 * stationCount(k)} niedrige Hürden · {ceil(k/4)} Bälle · {stationCount(k)} Zirkel-Stationen",
+        "dims": "{stationLabel(stationCount(k))} à ca. 10 × 4 m",
+        "diagram": {
+          "fn": "diagramParcours",
+          "args": [
+            [
+              "leiter",
+              "slalom"
+            ],
+            {
+              "caption": "Athletik-Zirkel mit Ballkontakt",
+              "withBall": true
+            }
+          ]
+        }
+      },
+      {
+        "id": "reaktionsschnelligkeit-unter-belastung",
+        "title": "Reaktionsschnelligkeit unter Belastung",
+        "goal": "Ziel: Koordinative Schulung bei erhöhter läuferischer Vorbelastung",
+        "desc": "Kinder in Paare einteilen. Ein Kind absolviert zunächst 20 m lockeren Antritt, danach folgt sofort eine kurze Reaktionsaufgabe (Partner gibt Handzeichen, Richtungswechsel unter Zeitdruck). So wird koordinative Leistungsfähigkeit auch unter leichter Ermüdung trainiert.",
+        "coachTip": "Auf saubere Ausführung auch nach der Vorbelastung achten – genau das simuliert echte Spielsituationen im späteren Spielverlauf.",
+        "materials": "{4 * parallelFields(k,2)} Hütchen",
+        "dims": "{fieldLabel(parallelFields(k,2))} à ca. 20 × 6 m",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            1,
+            1,
+            {
+              "caption": "Antritt gefolgt von Reaktionsaufgabe (hier: ein Feld)"
+            }
+          ]
+        }
+      }
+    ],
+    "torwart": [
+      {
+        "id": "mitspielender-torwart-im-spielaufbau",
+        "title": "Mitspielender Torwart im Spielaufbau",
+        "goal": "Ziel: Torwart aktiv als zusätzliche Anspielstation im Aufbauspiel einbinden",
+        "desc": "Ein Team baut das Spiel von hinten auf, der Torwart wird dabei bewusst als zusätzliche Anspielstation genutzt (Rückpass erlaubt und gewünscht). Ein passiver Gegenspieler läuft leicht an, um realistischen Entscheidungsdruck zu erzeugen, ob der Torwart kurz abspielt oder lang klärt.",
+        "coachTip": "Auf klare Kommunikation zwischen Torwart und Abwehr achten – der Torwart sollte aktiv ansagen, wohin gespielt werden soll.",
+        "materials": "{(parallelFields(k,5))} Tore mit Netz · {(parallelFields(k,5))*2} Bälle · {(parallelFields(k,5))*4} Hütchen",
+        "dims": "{stationLabel(parallelFields(k,5))} à ca. 35 × 22 m",
+        "diagram": {
+          "fn": "diagramStations",
+          "args": [
+            "=parallelFields(k,5)",
+            {
+              "caption": "Torwart als aktive Anspielstation im Aufbau"
+            }
+          ]
+        }
+      },
+      {
+        "id": "reflexparcours-mit-nachfassen",
+        "title": "Reflexparcours mit Nachfassen",
+        "goal": "Ziel: Schnelle Reflexe und sicheres Nachfassen bei Abprallern",
+        "desc": "Von drei Positionen im Abstand von 10–12 m werden zügig Schüsse aufs Tor abgegeben. Pariert der Torwart nicht sicher (Abpraller), muss er den Ball sofort aktiv sichern, bevor der nächste Schuss folgt. Torwartrolle nach jeder Runde wechseln.",
+        "coachTip": "Sicheres Abfangen des Abprallers genauso wichtig nehmen wie den ersten Reflex selbst.",
+        "materials": "{(parallelFields(k,4))} Tore mit Netz · {(parallelFields(k,4))*4} Bälle",
+        "dims": "{stationLabel(parallelFields(k,4))} à ca. 16 × 12 m",
+        "diagram": {
+          "fn": "diagramStations",
+          "args": [
+            "=parallelFields(k,4)",
+            {
+              "caption": "Reflexparcours mit sicherem Nachfassen"
+            }
+          ]
+        }
+      }
+    ],
+    "kopfball": [
+      {
+        "id": "kopfballduell-im-strafraum",
+        "title": "Kopfballduell im Strafraum",
+        "goal": "Ziel: Timing und Durchsetzungsfähigkeit bei ruhenden Bällen in den Strafraum",
+        "desc": "Ecken oder Freistöße von der Seite in den Strafraum flanken, jeweils ein Angreifer und ein Verteidiger stellen sich zum Kopfballduell. Wenig Wiederholungen (max. 6–8), Rollen und Flankengeber regelmäßig wechseln.",
+        "coachTip": "Auf sauberen Absprungzeitpunkt und Armeinsatz zum Freihalten des Raums achten (ohne zu foulen).",
+        "materials": "{(stationCount(k))} Tore mit Netz · {(stationCount(k))*5} Bälle",
+        "dims": "{stationLabel(stationCount(k))} à ca. 22 × 16 m",
+        "diagram": {
+          "fn": "diagramStations",
+          "args": [
+            "=stationCount(k)",
+            {
+              "caption": "Kopfballduell nach Standardsituation"
+            }
+          ]
+        }
+      },
+      {
+        "id": "defensiv-kopfball-zur-befreiung",
+        "title": "Defensiv-Kopfball zur Befreiung",
+        "goal": "Ziel: Kontrollierte Abwehrköpfe unter Druck statt nur Wegköpfen",
+        "desc": "Hohe Bälle werden gezielt in den eigenen Strafraum eingeworfen, ein Verteidiger klärt per Kopf möglichst gezielt in eine markierte Zielzone am Spielfeldrand, statt einfach nur hoch und weit wegzuköpfen.",
+        "coachTip": "Betonen: Klären mit Ziel ist besser als planloses Wegköpfen – auch unter Druck lohnt sich der kurze Blick vorher.",
+        "materials": "{ceil(k/4)} Bälle · 4 Hütchen (Zielzone)",
+        "dims": "{fieldDims(20, 0.4, k)}",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k,10)",
+            {
+              "cones": 4,
+              "caption": "Kopfball-Klärung in markierte Zielzone"
+            }
+          ]
+        }
+      }
+    ],
+    "umschalten": [
+      {
+        "id": "gegenpressing-als-mannschaftskonzept",
+        "title": "Gegenpressing als Mannschaftskonzept",
+        "goal": "Ziel: Koordiniertes, sofortiges Gegenpressing nach eigenem Ballverlust",
+        "desc": "Zwei Teams spielen normal auf einem Feldabschnitt (ca. 35 × 25 m) mit zwei Toren. Bei Ballverlust müssen mindestens zwei Spieler des verlierenden Teams sofort gemeinsam gegenpressen; gelingt die Balleroberung innerhalb von 6 Sekunden, darf sofort auf beide Tore abgeschlossen werden.",
+        "coachTip": "Nach Ballverlust laut coachen: „Sofort zu zweit drauf!\" – das gemeinsame Anlaufen ist entscheidend, nicht Einzelaktionen.",
+        "materials": "{(teamSplit(k)).a}/{(teamSplit(k)).b} Leibchensätze · 2 Tore mit Netz · {max(2, ceil(k/4))} Bälle",
+        "dims": "{fieldDims(35, 0.65, k)}",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            "=(teamSplit(k)).a",
+            "=(teamSplit(k)).b",
+            {
+              "caption": "Koordiniertes Gegenpressing zu zweit nach Ballverlust",
+              "showBuildupArrows": true
+            }
+          ]
+        }
+      },
+      {
+        "id": "konter-ueber-die-spitze",
+        "title": "Konter über die Spitze",
+        "goal": "Ziel: Schnelles, zielgerichtetes Umschalten mit klarem ersten Pass nach vorne",
+        "desc": "Nach jedem Ballgewinn muss der erste Pass so schnell wie möglich in Richtung eines vorne postierten Zielspielers gespielt werden, der sich sofort in die Tiefe löst. Von dort geht es direkt in den Abschluss – kein Rückpass in der ersten Aktion erlaubt.",
+        "coachTip": "Auf das Timing des Tiefenlaufs des Zielspielers achten – er darf nicht zu früh starten (Abseitsregel gilt im Kopf mit).",
+        "materials": "{(teamSplit(k)).a}/{(teamSplit(k)).b} Leibchensätze · 2 Tore mit Netz · {max(2, ceil(k/4))} Bälle",
+        "dims": "{fieldDims(40, 0.7, k)}",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            "=(teamSplit(k)).a",
+            "=(teamSplit(k)).b",
+            {
+              "caption": "Direkter Konter über einen tiefen Zielspieler",
+              "showBuildupArrows": true
+            }
+          ]
+        }
+      }
+    ],
+    "aufwaermen": [
+      {
+        "id": "leistungsorientiertes-aufwaermprogramm",
+        "title": "Leistungsorientiertes Aufwärmprogramm",
+        "goal": "Ziel: Aktivierung mit steigender Intensität, direkt wettkampfnah aufgebaut",
+        "desc": "Lauf-ABC über ca. 20–25 m mit steigender Intensität, gefolgt von dynamischem Dehnen, kurzen Antritten mit Richtungswechsel und abschließend 2–3 kurzen, intensiven Sprints über 15–20 m.",
+        "coachTip": "Intensität wirklich bis zum Trainingsniveau steigern – ein zu lasches Aufwärmen bereitet nicht ausreichend auf intensive Trainingsinhalte vor.",
+        "materials": "{pylonCountForBoundary((fieldWidthMeters(22, 0.4, k)))} gelbe Pilonen zur Feldmarkierung",
+        "dims": "{fieldDims(22, 0.4, k)}",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k,16)",
+            {
+              "showBoundary": true,
+              "extraBoundaryPylons": "=pylonCountForBoundary((fieldWidthMeters(22, 0.4, k))) >= 6",
+              "caption": "Aufwärmprogramm mit steigender Intensität"
+            }
+          ]
+        }
+      },
+      {
+        "id": "ballzirkulation-mit-pressing-einstieg",
+        "title": "Ballzirkulation mit Pressing-Einstieg",
+        "goal": "Ziel: Aufwärmen direkt mit taktischer Aktivierung verbinden",
+        "desc": "Rondo in Gruppen von 5–6 Kindern (ein Presser in der Mitte), zunächst in ruhigem Tempo zur Aktivierung, danach das Pressing-Tempo schrittweise erhöhen, bis das reguläre Trainingstempo erreicht ist.",
+        "coachTip": "Schrittweise steigern statt sofort volles Tempo – der Körper braucht diese Übergangsphase.",
+        "materials": "{parallelFields(k,6)} Bälle · {parallelFields(k,6)*6} Hütchen",
+        "dims": "{fieldLabel(parallelFields(k,6))} à ca. 14 × 14 m",
+        "diagram": {
+          "fn": "diagramCircle",
+          "args": [
+            5,
+            {
+              "caption": "Rondo mit steigendem Pressing-Tempo (hier: eine Gruppe)"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
