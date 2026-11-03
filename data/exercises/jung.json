@@ -66,6 +66,32 @@
             }
           ]
         }
+      },
+      {
+        "id": "ab-in-die-garage",
+        "title": "Ab in die Garage",
+        "goal": "Ziel: Ballführung mit Tempowechsel und Anhalten des Balls",
+        "desc": "Im Feld stehen mehrere Minitore als „Garagen“. Jedes Kind ist mit seinem Ball als Auto unterwegs und fährt (dribbelt) frei herum. Ruft die Trainer*in „Garage!“, parkt jedes Auto so schnell wie möglich in einer Garage: Ball ins Minitor dribbeln und mit der Sohle stoppen. Danach rückwärts ausparken und weiterfahren. Abwandlungen: „Tankstelle!“ (Ball an einem Hütchen anhalten), „Waschanlage!“ (einmal um ein Hütchen herum).",
+        "coachTip": "Langsames, kontrolliertes Einparken ist wichtiger als Tempo – loben, wenn der Ball wirklich ruhig in der Garage liegt.",
+        "materials": "{k} Bälle · {max(2, min(4, ceil(k/4)))} Minitore · 4 Hütchen · {pylonCountForBoundary(fieldWidthMeters(12, 0.45, k))} gelbe Pilonen zur Feldmarkierung",
+        "dims": "{fieldDims(12, 0.45, k)}",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k, 16)",
+            {
+              "showBoundary": true,
+              "withBall": true,
+              "cones": 4,
+              "showDribblePath": true,
+              "caption": "Dribbeln · auf Zuruf ins Minitor „einparken“"
+            }
+          ]
+        },
+        "sources": [
+          "https://training-service.fussball.de/fileadmin/_dfbdam/320-bam-sp3-01.pdf"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "passspiel": [
@@ -105,6 +131,30 @@
             }
           ]
         }
+      },
+      {
+        "id": "durch-das-tor-zum-freund",
+        "title": "Durch das Tor zum Freund",
+        "goal": "Ziel: Erste gezielte Pässe mit festem Partner",
+        "desc": "Im Feld viele kleine Hütchentore (ca. 1,5 m breit) verteilen. Immer zwei Kinder sind ein Team mit einem Ball. Gemeinsam ziehen sie durch das Feld: Ein Kind dribbelt zu einem freien Tor, der Partner stellt sich auf die andere Seite, dann wird der Ball durch das Tor gepasst und gestoppt. Danach suchen sich beide das nächste Tor. Welches Team schafft in 2 Minuten die meisten Tore? Leichter: Ball vor dem Pass auf die Torlinie legen und aus dem Stand spielen.",
+        "coachTip": "Feste Partner machen es Bambini leichter. Mit der Innenseite passen und den Ball vor dem nächsten Pass zuerst stoppen lassen.",
+        "materials": "{ceil(k/2)} Bälle · {2 * max(4, ceil(k/2))} Hütchen (Hütchentore)",
+        "dims": "{fieldDims(14, 0.5, k)}",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k, 12)",
+            {
+              "cones": 6,
+              "showPassPath": true,
+              "caption": "Paare passen durch freie Hütchentore"
+            }
+          ]
+        },
+        "sources": [
+          "https://dfb.de/fileadmin/_dfbdam/59912-361-bam-te.pdf"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "torschuss": [
@@ -143,6 +193,28 @@
             }
           ]
         }
+      },
+      {
+        "id": "tor-gewitter",
+        "title": "Tor-Gewitter",
+        "goal": "Ziel: Viele Torschüsse in kurzer Zeit, mit rechts und links",
+        "desc": "Mehrere Minitore nebeneinander an einer Seite aufstellen, ca. 5–6 m davor eine Schusslinie markieren. Jedes Kind legt seinen Ball auf ein flaches Hütchen an der Linie. Auf das Kommando „Gewitter!“ schießen alle gleichzeitig, holen ihren Ball und dribbeln zurück an die Linie. Gemeinsam werden alle Tore gezählt: Schafft die Gruppe im nächsten Durchgang mehr? Jeden zweiten Durchgang mit dem anderen Fuß schießen. Bei mehr als 8 Kindern in zwei Gruppen abwechselnd schießen – die andere Gruppe sammelt und zählt mit.",
+        "coachTip": "Abstand zum Tor so wählen, dass fast jedes Kind trifft – Erfolgserlebnisse sind in der G-Jugend wichtiger als Schusskraft.",
+        "materials": "{k} Bälle · {max(2, min(4, ceil(k/3)))} Minitore · {k} flache Hütchen",
+        "dims": "ca. {max(12, k)} × 8 m (Schusslinie 5–6 m vor den Toren)",
+        "diagram": {
+          "fn": "diagramStations",
+          "args": [
+            "=max(2, min(4, ceil(k/3)))",
+            {
+              "caption": "Alle schießen gleichzeitig auf die Minitore"
+            }
+          ]
+        },
+        "sources": [
+          "https://scfreiburg.com/fileadmin/01_Content/01_Bilder/08_Engagement/PDFs/Zurueck_auf_den_Platz_/Woche_2_G-F-_und_E-Jugend_Torabschluss.pdf"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "bewegung": [
@@ -208,6 +280,27 @@
             }
           ]
         }
+      },
+      {
+        "id": "burgball",
+        "title": "Burgball",
+        "goal": "Ziel: Freilaufen und Anbieten – ohne Ball den freien Platz finden",
+        "desc": "Ein Feld mit einer „Burg“ (Zone von ca. 2 m Tiefe) an jedem Ende markieren. Zwei kleine Teams spielen mit einem Ball, der mit den Händen zugeworfen wird. Mit dem Ball in der Hand darf man nicht laufen, nur werfen. Ein Punkt zählt, wenn ein Kind den Ball in der gegnerischen Burg fängt. Fällt der Ball auf den Boden oder wird abgefangen, wechselt der Ballbesitz. Bei vielen Kindern auf mehreren Feldern parallel spielen.",
+        "coachTip": "Immer wieder fragen: „Wo ist ein freier Platz, an dem dich dein Freund anwerfen kann?“ – genau das ist Freilaufen.",
+        "materials": "{parallelFields(k, 6)} Bälle · {ceil(k/6)} Leibchensätze · {8 * parallelFields(k, 6)} Hütchen (Feld und Burgen)",
+        "dims": "{fieldLabel(parallelFields(k, 6))} à ca. 15 × 10 m",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            3,
+            3,
+            {}
+          ]
+        },
+        "sources": [
+          "https://fussballtraining.com/artikel/f-junioren-kindgerecht-das-passen-kennenlernen"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "zweikampf": [
@@ -286,6 +379,27 @@
             }
           ]
         }
+      },
+      {
+        "id": "linienritter",
+        "title": "Linienritter",
+        "goal": "Ziel: Mutig ins 1 gegen 1 gehen und an einer Gegenspielerin vorbeidribbeln",
+        "desc": "Pro Paar ein kleines Feld (ca. 6 × 5 m) mit zwei gegenüberliegenden Linien markieren; die Felder liegen direkt nebeneinander und teilen sich die Hütchen. Ein Kind ist Angreifer mit Ball, das andere „Ritter“ und bewacht seine Linie. Der Angreifer versucht, über die Linie des Ritters zu dribbeln (1 Punkt). Der Ritter darf sich anfangs nur auf seiner Linie bewegen, später auch ins Feld kommen. Nach jedem Versuch Rollen tauschen; nach 2 Minuten neue Paare.",
+        "coachTip": "Für den Anfang den Ritter nur auf der Linie verteidigen lassen – so gelingt den Angreifern das Dribbling öfter und der Mut wächst.",
+        "materials": "{ceil(k/2)} Bälle · {2 * ceil(k/2) + 2} Hütchen",
+        "dims": "{fieldLabel(ceil(k/2))} à ca. 6 × 5 m",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            1,
+            1,
+            {}
+          ]
+        },
+        "sources": [
+          "https://www.sbfv.de/fileadmin/user_upload/Nav_Fussball/Kinder/Trainingsformen/F-Jugend/F-Jugend_Phase_2_Spielform_1_Dribbelfussball_0.pdf"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "spielaufbau": [
@@ -390,6 +504,32 @@
             }
           ]
         }
+      },
+      {
+        "id": "kaenguru-parcours",
+        "title": "Känguru-Parcours",
+        "goal": "Ziel: Springen, Laufen und Balancieren mit dem Ball in der Hand",
+        "desc": "Einen kurzen Parcours aufbauen: zuerst eine Reihe Reifen, dann ein Hütchen-Slalom, dann wieder Reifen. Jedes Kind hält seinen Ball mit beiden Händen vor dem Bauch und hüpft wie ein Känguru beidbeinig durch die Reifen, läuft im Slalom um die Hütchen und hüpft zum Schluss auf einem Bein durch die letzten Reifen. Am Ende den Ball ablegen und mit dem Fuß zurück zum Start dribbeln. Nächster Durchgang: Ball hinter dem Rücken oder über dem Kopf halten.",
+        "coachTip": "Mehrere Parcours nebeneinander aufbauen, damit nie mehr als 3–4 Kinder anstehen.",
+        "materials": "{k} Bälle · {6 * stationCount(k)} Ringe/Reifen · {3 * stationCount(k)} Hütchen",
+        "dims": "{stationLabel(stationCount(k))} à ca. 10 m Länge",
+        "diagram": {
+          "fn": "diagramParcours",
+          "args": [
+            [
+              "reifen",
+              "slalom",
+              "reifen"
+            ],
+            {
+              "caption": "Reifen hüpfen · Slalom · Reifen auf einem Bein"
+            }
+          ]
+        },
+        "sources": [
+          "https://www.trainertalk.de/attachment/520-f-junioren-te-04-pdf"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "torwart": [
@@ -428,6 +568,30 @@
             }
           ]
         }
+      },
+      {
+        "id": "torwart-ruf",
+        "title": "Torwart-Ruf",
+        "goal": "Ziel: Bälle sicher fangen und laut „Torwart!“ rufen",
+        "desc": "Immer zwei Kinder arbeiten zusammen: Eines steht als Torwart in einem Hütchentor (ca. 2 m breit), das andere 3–4 m davor. Der Werfer rollt oder wirft den Ball locker aufs Tor. Der Torwart fängt den Ball mit beiden Händen und ruft dabei laut „Torwart!“. Nach 5 Würfen Rollen tauschen. Steigerung: Werfer wirft abwechselnd flach, halbhoch und etwas seitlich.",
+        "coachTip": "Handschuhe sind in diesem Alter nicht nötig – entscheidend sind Hände, die den Ball „wie eine Schüssel“ umschließen.",
+        "materials": "{ceil(k/2)} Bälle · {2 * ceil(k/2)} Hütchen",
+        "dims": "{ceil(k/2)} Hütchentore à ca. 2 m, Wurfabstand 3–4 m",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k, 12)",
+            {
+              "cones": 4,
+              "showPassPath": true,
+              "caption": "Werfer und Torwart im Wechsel"
+            }
+          ]
+        },
+        "sources": [
+          "https://www.trainertalk.de/attachment/420-torwarttrainingf%C3%BCralle-einsteiger-pdf"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "kopfball": [
@@ -509,6 +673,31 @@
             }
           ]
         }
+      },
+      {
+        "id": "balldiebe",
+        "title": "Balldiebe",
+        "goal": "Ziel: Aufwärmen mit eigenem Ball, Ball abschirmen und wieder einfangen",
+        "desc": "Ein Feld markieren, jedes Kind dribbelt mit einem eigenen Ball frei darin. Zwei Kinder ohne Ball sind „Balldiebe“ und versuchen, den anderen den Ball mit dem Fuß aus dem Feld zu spitzeln. Wessen Ball draußen landet, holt ihn sofort zurück, macht einen kleinen Zaubertrick (z. B. dreimal mit der Sohle auf den Ball tippen) und dribbelt weiter. Nach ca. 45 Sekunden übernehmen zwei neue Kinder die Rolle der Balldiebe.",
+        "coachTip": "Die Kinder dürfen ihren Ball mit dem Körper schützen – zeigen, dass „Körper zwischen Dieb und Ball“ die beste Versteck-Idee ist.",
+        "materials": "{k} Bälle · {pylonCountForBoundary(fieldWidthMeters(12, 0.4, k))} gelbe Pilonen zur Feldmarkierung · 2 Leibchen",
+        "dims": "{fieldDims(12, 0.4, k)}",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k, 16)",
+            {
+              "showBoundary": true,
+              "extraBoundaryPylons": "=pylonCountForBoundary(fieldWidthMeters(12, 0.4, k)) >= 6",
+              "withBall": true,
+              "caption": "Alle dribbeln · 2 Balldiebe ohne Ball"
+            }
+          ]
+        },
+        "sources": [
+          "https://www.sbfv.de/fileadmin/user_upload/Nav_Fussball/Kinder/Trainingsformen/E-Jugend/Beispiel-Trainingseinheit_von_Julian_Schuster_-_E-Jugend.pdf"
+        ],
+        "added": "2026-11-03"
       }
     ]
   }
