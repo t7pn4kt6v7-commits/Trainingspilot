@@ -36,7 +36,7 @@ jobs:
     env:
       GH_TOKEN: ${{ github.token }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Läuft schon ein offener Agent-PR?
         id: offen
@@ -47,12 +47,13 @@ jobs:
             echo "Es gibt noch einen offenen Pull Request des Übungs-Agenten - erst prüfen und zusammenführen oder schließen." | tee -a "$GITHUB_STEP_SUMMARY"
           fi
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         if: steps.offen.outputs.anzahl == '0'
         with:
           node-version: 22
-          cache: npm
-          cache-dependency-path: tools/agent/package-lock.json
+          # Kein Abhängigkeits-Cache: dieser Workflow hat Schreibrechte, und npm ci für die
+          # zwei Pakete dauert nur Sekunden (Empfehlung von actions/setup-node).
+          package-manager-cache: false
 
       - name: Abhängigkeiten installieren
         if: steps.offen.outputs.anzahl == '0'
