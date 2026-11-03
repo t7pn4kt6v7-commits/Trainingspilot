@@ -14,25 +14,27 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const HTML = path.join(ROOT, 'index.html');
-const DATA_DIR = path.join(ROOT, 'data', 'exercises');
+export const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+export const HTML = path.join(ROOT, 'index.html');
+export const DATA_DIR = path.join(ROOT, 'data', 'exercises');
 
 // Reihenfolge der Altersstufen im eingebetteten Block (wie vor v5.161 im Code).
-const TIER_ORDER = ['jung', 'alt', 'mittel', 'c', 'b', 'a'];
-const CATEGORIES = ['aufwaermen', 'ballgewoehnung', 'passspiel', 'torschuss', 'bewegung', 'zweikampf',
+export const TIER_ORDER = ['jung', 'alt', 'mittel', 'c', 'b', 'a'];
+export const CATEGORIES = ['aufwaermen', 'ballgewoehnung', 'passspiel', 'torschuss', 'bewegung', 'zweikampf',
   'spielaufbau', 'koordination', 'torwart', 'kopfball', 'umschalten'];
 const TEXT_FIELDS = ['title', 'goal', 'desc', 'coachTip', 'materials', 'dims'];
-const ALLOWED_FIELDS = new Set(['id', ...TEXT_FIELDS, 'diagram', 'custom']);
+// added (JJJJ-MM-TT) + origin ("agent"): von tools/agent vorgeschlagene Übungen. Die App zeigt
+// Übungen mit "added" in den ersten 60 Tagen als 🆕 und schlägt sie etwas häufiger vor.
+const ALLOWED_FIELDS = new Set(['id', ...TEXT_FIELDS, 'diagram', 'custom', 'added', 'origin']);
 
 const DATA_START = '<!-- EXERCISE_DATA_START (generiert von tools/exercises.mjs build - nicht von Hand bearbeiten) -->';
 const DATA_END = '<!-- EXERCISE_DATA_END -->';
 const ENGINE_START = '// EXERCISE_ENGINE_START';
 const ENGINE_END = '// EXERCISE_ENGINE_END';
 
-function loadData() {
+export function loadData() {
   const files = fs.readdirSync(DATA_DIR).filter((f) => f.endsWith('.json'));
   const byTier = {};
   for (const f of files) {
@@ -46,7 +48,7 @@ function loadData() {
   return { tiers };
 }
 
-function embeddedBlock(data) {
+export function embeddedBlock(data) {
   // "</" escapen, damit ein Text wie "</script>" den Block nicht vorzeitig beendet.
   const json = JSON.stringify(data).replace(/<\//g, '<\\/');
   return `${DATA_START}\n<script type="application/json" id="exercise-data">${json}</script>\n${DATA_END}`;
@@ -60,7 +62,7 @@ function between(text, start, end, label) {
   return { a, b: b + end.length, inner: text.slice(text.indexOf('\n', a) + 1, b) };
 }
 
-function validate(data, html) {
+export function validate(data, html = fs.readFileSync(HTML, 'utf8')) {
   const errors = [];
   const warnings = [];
   const err = (where, msg) => errors.push(`${where}: ${msg}`);
@@ -87,6 +89,8 @@ function validate(data, html) {
         if (typeof ex.goal === 'string' && !ex.goal.startsWith('Ziel: ')) warnings.push(`${where}: goal beginnt nicht mit "Ziel: "`);
         if (!ex.diagram || typeof ex.diagram !== 'object') err(where, 'diagram fehlt');
         if ('custom' in ex && ex.custom !== true) err(where, '"custom" nur als true angeben (oder weglassen)');
+        if ('added' in ex && !/^\d{4}-\d{2}-\d{2}$/.test(ex.added)) err(where, '"added" im Format JJJJ-MM-TT angeben');
+        if ('origin' in ex && ex.origin !== 'agent') err(where, '"origin" ist nur als "agent" vorgesehen');
       });
     }
   }
@@ -122,25 +126,40 @@ function validate(data, html) {
   return { errors, warnings };
 }
 
+// Schreibt eine Altersstufe zurück (gleiches Format wie die übrigen Dateien).
+export function saveTier(tier, categories) {
+  fs.writeFileSync(path.join(DATA_DIR, tier + '.json'), JSON.stringify({ tier, categories }, null, 2) + '\n');
+}
+
+// Bettet die Daten in index.html ein. Gibt die Zahl der Übungen zurück.
+export function build(data = loadData()) {
+  let html = fs.readFileSync(HTML, 'utf8');
+  const { a, b } = between(html, DATA_START, DATA_END, 'Übungsdaten');
+  html = html.slice(0, a) + embeddedBlock(data) + html.slice(b);
+  fs.writeFileSync(HTML, html);
+  return Object.values(data.tiers).reduce((s, c) => s + Object.values(c).reduce((x, l) => x + l.length, 0), 0);
+}
+
+// Vollständige Prüfung inkl. Aktualität des eingebetteten Blocks.
+export function check(data = loadData()) {
+  const html = fs.readFileSync(HTML, 'utf8');
+  const { errors, warnings } = validate(data, html);
+  const { a, b } = between(html, DATA_START, DATA_END, 'Übungsdaten');
+  if (html.slice(a, b) !== embeddedBlock(data)) {
+    errors.push('index.html ist nicht aktuell - bitte "node tools/exercises.mjs build" ausführen und mit committen');
+  }
+  return { errors, warnings };
+}
+
 function main() {
   const cmd = process.argv[2];
-  const data = loadData();
-  let html = fs.readFileSync(HTML, 'utf8');
   if (cmd === 'build') {
-    const { a, b } = between(html, DATA_START, DATA_END, 'Übungsdaten');
-    html = html.slice(0, a) + embeddedBlock(data) + html.slice(b);
-    fs.writeFileSync(HTML, html);
-    const n = Object.values(data.tiers).reduce((s, c) => s + Object.values(c).reduce((x, l) => x + l.length, 0), 0);
-    console.log(`index.html aktualisiert: ${n} Übungen eingebettet.`);
+    console.log(`index.html aktualisiert: ${build()} Übungen eingebettet.`);
     return;
   }
   if (cmd === 'check') {
-    const { errors, warnings } = validate(data, html);
+    const { errors, warnings } = check();
     warnings.forEach((w) => console.log('Hinweis: ' + w));
-    const { a, b } = between(html, DATA_START, DATA_END, 'Übungsdaten');
-    if (html.slice(a, b) !== embeddedBlock(data)) {
-      errors.push('index.html ist nicht aktuell - bitte "node tools/exercises.mjs build" ausführen und mit committen');
-    }
     if (errors.length) {
       errors.forEach((e) => console.error('FEHLER: ' + e));
       process.exit(1);
@@ -152,4 +171,4 @@ function main() {
   process.exit(2);
 }
 
-main();
+if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) main();

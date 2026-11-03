@@ -1,0 +1,13 @@
+{
+  "name": "trainingspilot-uebungs-agent",
+  "private": true,
+  "type": "module",
+  "description": "Hintergrund-Agent: schlägt neue Übungen für den Trainingspiloten vor (Pull Request zur Freigabe).",
+  "scripts": {
+    "start": "node run.mjs"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.4.0",
+    "zod": "^4.6.7"
+  }
+}

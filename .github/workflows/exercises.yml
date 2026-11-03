@@ -1,10 +1,10 @@
-name: Übungsbibliothek prüfen
+name: Übungsbibliothek und Agent prüfen
 
 on:
   push:
-    paths: ['data/exercises/**', 'index.html', 'tools/exercises.mjs', '.github/workflows/exercises.yml']
+    paths: ['data/exercises/**', 'index.html', 'tools/**', '.github/workflows/exercises.yml']
   pull_request:
-    paths: ['data/exercises/**', 'index.html', 'tools/exercises.mjs', '.github/workflows/exercises.yml']
+    paths: ['data/exercises/**', 'index.html', 'tools/**', '.github/workflows/exercises.yml']
 
 permissions:
   contents: read
@@ -18,3 +18,6 @@ jobs:
         with:
           node-version: 22
       - run: node tools/exercises.mjs check
+      - run: npm ci --prefix tools/agent
+      - name: Tests Übungs-Agent (ohne API-Aufrufe)
+        run: node tools/agent/test.mjs
