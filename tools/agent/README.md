@@ -9,6 +9,15 @@ Der Agent ergänzt die Übungsbibliothek auf Knopfdruck um neue Übungen. Damit 
 - **Doppelte Sicherung.** Kostenpflichtige Aufrufe brauchen *beide*: den Haken beim Start (bzw. `ALLOW_API_COSTS=1` lokal) **und** ein hinterlegtes `ANTHROPIC_API_KEY`. Ohne Secret kann nie etwas abgerechnet werden.
 - **GitHub Actions** sind für öffentliche Repositories kostenlos.
 
+## Internet-Recherche und Umfang
+
+- **Umfang „alle“ (Standard):** Der Agent arbeitet alle Kombinationen aus Altersstufe und Kategorie ab, die die App anbietet. Das sind 63; gesperrte wie Kopfball in der G-Jugend fehlen. Für die F-/E-Jugend legt er dabei auch eigene Übungen in Kategorien an, die bisher nur den G-Jugend-Pool nutzen. Pro Lauf übernimmt er `max_new` Kombinationen: zuerst die mit Rückmeldungen oder kleinem Pool, dann die mit den wenigsten bisher ergänzten Übungen. Mehrere Läufe decken so nach und nach alles ab.
+- **Umfang „bedarf“:** nur Bereiche mit Rückmeldungen oder weniger als 4 Übungen.
+- **Internet-Recherche (Standard: an):** Vor jeder Übung sucht Claude im Internet nach passenden Übungsideen. Dafür nutzt er die serverseitige Websuche und den Seitenabruf der Claude API, mit Vorrang für DFB, Landesverbände, fussball.de und Trainerausbildung. Das Ergebnis ist eine kurze Ideenliste mit Quellen.
+- **Aus der Recherche wird eine eigene Übung.** Claude übernimmt die Spielidee, formuliert aber alles selbst neu und passt es an die Regeln der Bibliothek an: Alter, Sicherheit, vorhandenes Material, Formeln. Wörtliche Übernahmen sind ausgeschlossen, damit keine fremden Texte im Repository landen.
+- **Quellen:** Sie stehen im Pull Request und im Feld `sources` der Übung; die App zeigt sie nicht an. Übernommen werden nur Adressen, die tatsächlich in der Recherche vorkamen, erfundene Links verwirft der Agent.
+- **Webinhalte sind nicht vertrauenswürdig.** Sie gelangen nur als gekennzeichnete Zitate zu Claude. Die Ausgabe bleibt auf das feste Schema beschränkt und wird geprüft; ein Mensch gibt frei.
+
 ## Ablauf
 
 ```
@@ -16,7 +25,7 @@ Trainer*in in der App            GitHub                         Übungs-Agent (G
 ─────────────────────            ──────                         ────────────────────────────
 💬 Feedback senden        ──▶   Issue (vorausgefüllt)   ──▶   1. offene Issues lesen
 🔁 Kommt zu oft dran      ──▶   Issue                         2. dringendste Bereiche wählen
-💡 Neue Übung vorschlagen ──▶   Issue                         3. je Bereich 1 Übung mit Claude
+💡 Neue Übung vorschlagen ──▶   Issue                         3. Internet-Recherche, dann je Bereich 1 eigene Übung mit Claude
                                                                 4. automatisch prüfen (Formeln, Skizze, Duplikate)
                                  Pull Request          ◀──     5. data/exercises + index.html, PR-Text
 Trainerteam prüft & merged ──▶  App zeigt 🆕 Übung
@@ -52,7 +61,9 @@ Nur falls später doch Übungen erzeugt werden sollen (kostenpflichtig):
 
 ## Kosten eines freigegebenen Laufs
 
-Ein Lauf macht bis zu `MAX_NEW` Anfragen an Claude Opus 5.5, bei einem ungültigen Ergebnis je eine Korrekturrunde. Das sind grob 10.000 bis 20.000 Eingabe- und bis zu 16.000 Ausgabe-Token pro Übung. Ein Lauf mit vier Übungen kostet grob im Bereich von einem Euro. Die tatsächlichen Werte stehen in der Anthropic-Console unter *Usage*.
+Mit Internet-Recherche kommen pro Übung bis zu 5 Websuchen (10 $ je 1.000 Suchen) und das Lesen gefundener Seiten dazu. Das sind deutlich mehr Eingabe-Token, grob 0,50 bis 1 $ pro Übung. Alle 63 Kombinationen einmal abzuarbeiten kostet damit grob 30 bis 60 $. Am besten in Etappen, etwa 4 bis 8 pro Lauf, das bleibt auch beim Prüfen der Pull Requests übersichtlich.
+
+Ohne Recherche gilt: Ein Lauf macht bis zu `MAX_NEW` Anfragen an Claude Opus 5.5, bei einem ungültigen Ergebnis je eine Korrekturrunde. Das sind grob 10.000 bis 20.000 Eingabe- und bis zu 16.000 Ausgabe-Token pro Übung. Ein Lauf mit vier Übungen kostet grob im Bereich von einem Euro. Die tatsächlichen Werte stehen in der Anthropic-Console unter *Usage*.
 
 ## Sicherheit
 
@@ -75,6 +86,8 @@ ALLOW_API_COSTS=1 ANTHROPIC_API_KEY=… GITHUB_REPOSITORY=… MAX_NEW=1 node too
 |---|---|
 | `MAX_NEW` | Höchstzahl neuer Übungen (Standard 4) |
 | `ALLOW_API_COSTS=1` | Kostenpflichtige API-Aufrufe erlauben (sonst immer Probelauf) |
+| `UMFANG` | `alle` (alle Altersstufen und Kategorien) oder `bedarf` (Standard lokal: `bedarf`) |
+| `RECHERCHE=0` | Internet-Recherche abschalten (Standard: an) |
 | `DRY_RUN=1` | Erzwingt den Probelauf, auch mit Freigabe |
 | `AGENT_MODEL` | Modell (Standard `claude-opus-5-5`) |
 | `AGENT_SUMMARY_FILE` | Wohin der PR-Text geschrieben wird |

@@ -5,8 +5,8 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { loadData, HTML, DATA_DIR } from '../exercises.mjs';
-import { parseIssue, planTargets, flaggedExercises, readAltersklassen, effectivePoolSize } from './feedback.mjs';
-import { toExercise, generateExercise, buildUserPrompt, main } from './run.mjs';
+import { parseIssue, planTargets, flaggedExercises, readAltersklassen, readRelevantCategories, effectivePoolSize } from './feedback.mjs';
+import { toExercise, generateExercise, buildUserPrompt, researchIdeas, RESEARCH_TOOLS, main } from './run.mjs';
 
 let failed = 0;
 async function test(name, fn) {
@@ -20,13 +20,23 @@ const goodOut = {
   title: 'Testübung Farbenjagd', goal: 'Ziel: Dribbeln mit Blick nach oben', desc: 'Kinder dribbeln frei.',
   coachTip: 'Viel loben.', materials: '{k} Bälle · {min(8, ceil(k/2))} Hütchen', dims: '{fieldDims(12, 0.4, k)}',
   diagram_fn: 'diagramScatter', diagram_args_json: '["=min(k, 16)", {"withBall": true, "caption": "Farbenjagd"}]',
-  begruendung: 'Neu, weil …'
+  begruendung: 'Neu, weil …',
+  quellen: []
 };
-function stubClient(outputs) {
+const researchText = 'Idee 1: Farbenjagd …\nQuelle: https://www.dfb.de/training/farbenjagd.\nIdee 2: …\nQuelle: https://example.org/uebung';
+function stubClient(outputs, researchReplies = []) {
   const calls = [];
+  const createCalls = [];
   return {
-    calls,
-    beta: { messages: { parse: async (params) => {
+    calls, createCalls,
+    beta: { messages: {
+      create: async (params) => {
+        createCalls.push({ ...params, messages: params.messages.slice() });
+        const r = researchReplies.length ? researchReplies.shift() : 'text';
+        if (r === 'pause') return { stop_reason: 'pause_turn', content: [{ type: 'server_tool_use', id: 's1', name: 'web_search', input: {} }] };
+        return { stop_reason: 'end_turn', content: [{ type: 'text', text: r === 'text' ? researchText : r }] };
+      },
+      parse: async (params) => {
       calls.push({ ...params, messages: params.messages.slice() });
       const o = outputs.shift();
       if (o === 'refusal') return { stop_reason: 'refusal', stop_details: { category: 'test' }, content: [], parsed_output: null };
@@ -116,18 +126,72 @@ await test('Kompletter Lauf (simuliert) schreibt Daten, index.html und PR-Text',
   try {
     const summary = path.join(backup, 'pr.md');
     const issues = [{ number: 42, html_url: 'u', body: marker({ v: 1, art: 'neu', tier: 'jung', kategorie: 'passspiel' }) }];
-    const res = await main({ env: { ALLOW_API_COSTS: '1', MAX_NEW: '1', AGENT_SUMMARY_FILE: summary, AGENT_TODAY: '2026-11-03' }, client: stubClient([goodOut]), issues, log: () => {} });
+    const client = stubClient([{ ...goodOut, quellen: ['https://www.dfb.de/training/farbenjagd'] }]);
+    const res = await main({ env: { ALLOW_API_COSTS: '1', MAX_NEW: '1', AGENT_SUMMARY_FILE: summary, AGENT_TODAY: '2026-11-03' }, client, issues, log: () => {} });
     assert.equal(res.added.length, 1);
+    assert.equal(client.createCalls.length, 1, 'Recherche lief');
+    assert.ok(client.calls[0].messages[0].content.includes('<recherche>'));
+    assert.deepEqual(loadData().tiers.jung.passspiel.at(-1).sources, ['https://www.dfb.de/training/farbenjagd']);
     const after = loadData();
     assert.ok(after.tiers.jung.passspiel.some((e) => e.title === goodOut.title));
     assert.ok(fs.readFileSync(HTML, 'utf8').includes('Testübung Farbenjagd'));
     const md = fs.readFileSync(summary, 'utf8');
-    assert.ok(md.includes('Testübung Farbenjagd') && md.includes('#42'));
+    assert.ok(md.includes('Testübung Farbenjagd') && md.includes('#42') && md.includes('https://www.dfb.de/training/farbenjagd'));
+
+    // Umfang "alle", ohne Recherche: legt bei Bedarf eine neue Kategorie für F-/E-Jugend an
+    const c2 = stubClient([{ ...goodOut, title: 'Testübung Zwei' }, { ...goodOut, title: 'Testübung Drei' }]);
+    const before = Object.keys(loadData().tiers.mittel).length;
+    const r2 = await main({ env: { ALLOW_API_COSTS: '1', MAX_NEW: '2', UMFANG: 'alle', RECHERCHE: '0', AGENT_SUMMARY_FILE: summary, AGENT_TODAY: '2026-11-03' }, client: c2, issues: [], log: () => {} });
+    assert.equal(c2.createCalls.length, 0, 'keine Recherche bei RECHERCHE=0');
+    assert.equal(r2.added.length, 2);
+    assert.ok(r2.added.every((a) => !a.exercise.sources));
+    assert.ok(Object.keys(loadData().tiers.mittel).length >= before);
   } finally {
     for (const f of files) fs.copyFileSync(path.join(backup, f), path.join(DATA_DIR, f));
     fs.copyFileSync(path.join(backup, 'index.html'), HTML);
     fs.rmSync(backup, { recursive: true, force: true });
   }
+});
+
+await test('Recherche: Websuche + Seitenabruf, Fortsetzung bei pause_turn, Quellen ausgelesen', async () => {
+  const client = stubClient([], ['pause', 'text']);
+  const r = await researchIdeas(client, 'm', data, { tier: 'b', cat: 'bewegung', feedback: [] }, () => {});
+  assert.equal(client.createCalls.length, 2);
+  assert.deepEqual(client.createCalls[0].tools.map((t) => t.type), ['web_search_20260209', 'web_fetch_20260209']);
+  assert.ok(!RESEARCH_TOOLS.some((t) => String(t.type).startsWith('code_execution')));
+  assert.equal(client.createCalls[1].messages.length, 2);
+  assert.equal(client.createCalls[1].messages[1].role, 'assistant');
+  assert.deepEqual(r.urls, ['https://www.dfb.de/training/farbenjagd', 'https://example.org/uebung']);
+});
+
+await test('Recherche bricht nach 5 Unterbrechungen ab', async () => {
+  const client = stubClient([], ['pause', 'pause', 'pause', 'pause', 'pause', 'pause']);
+  assert.equal(await researchIdeas(client, 'm', data, { tier: 'b', cat: 'bewegung', feedback: [] }, () => {}), null);
+  assert.equal(client.createCalls.length, 5);
+});
+
+await test('Quellen: nur Adressen aus der Recherche, erfundene werden verworfen', () => {
+  const out = { ...goodOut, quellen: ['https://www.dfb.de/training/farbenjagd', 'https://erfunden.example/x', 'javascript:alert(1)'] };
+  const r = toExercise(data, 'jung', 'passspiel', out, '2026-11-03', ['https://www.dfb.de/training/farbenjagd']);
+  assert.deepEqual(r.exercise.sources, ['https://www.dfb.de/training/farbenjagd'], JSON.stringify(r.errors));
+  const ohne = toExercise(data, 'jung', 'passspiel', out, '2026-11-03', []);
+  assert.equal(ohne.exercise.sources, undefined);
+});
+
+await test('Recherche-Ergebnis landet als Zitat im Prompt', () => {
+  const p = buildUserPrompt(data, { tier: 'b', cat: 'bewegung', feedback: [] }, { text: 'Idee X', urls: [] });
+  assert.ok(p.includes('<recherche>\nIdee X\n</recherche>'));
+});
+
+await test('Umfang "alle": jede angebotene Kombination, gesperrte nicht', () => {
+  const relevant = readRelevantCategories(fs.readFileSync(HTML, 'utf8'));
+  assert.ok(!relevant.jung.has('kopfball'));
+  assert.ok(relevant.mittel.has('kopfball'));
+  const all = planTargets(data, [], 1000, '', { scope: 'alle', relevant });
+  const n = Object.values(relevant).reduce((s, c) => s + c.size, 0);
+  assert.equal(all.length, n);
+  assert.ok(all.some((t) => t.tier === 'mittel' && t.cat === 'ballgewoehnung'));
+  assert.ok(!all.some((t) => t.tier === 'jung' && t.cat === 'umschalten'));
 });
 
 const noApi = { beta: { messages: { parse: () => { throw new Error('API aufgerufen'); } } } };

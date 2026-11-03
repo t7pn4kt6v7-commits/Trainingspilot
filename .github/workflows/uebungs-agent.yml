@@ -1,6 +1,7 @@
 name: Übungs-Agent
 
-# Wertet die Rückmeldungs-Issues aus und zeigt, wo neue Übungen gebraucht werden.
+# Sucht (optional im Internet) nach neuen Übungen für alle Altersstufen und Kategorien bzw. die
+# Bereiche mit Bedarf laut Rückmeldungs-Issues.
 #
 # KOSTEN: Es gibt bewusst KEINEN Zeitplan - der Workflow läuft nur, wenn ihn jemand unter
 # Actions → Übungs-Agent → Run workflow von Hand startet. Standardmäßig ist das ein
@@ -16,8 +17,17 @@ on:
         description: 'Kostenpflichtige API-Aufrufe erlauben (Claude erzeugt neue Übungen). Ohne Haken: kostenloser Probelauf.'
         type: boolean
         default: false
+      umfang:
+        description: 'alle = alle Altersstufen und Kategorien (63 Kombinationen, verteilt auf mehrere Läufe); bedarf = nur Bereiche mit Rückmeldungen oder kleinem Pool'
+        type: choice
+        options: [alle, bedarf]
+        default: alle
+      internet_recherche:
+        description: 'Vor dem Erstellen im Internet nach passenden Übungen suchen (Quellen stehen im Pull Request)'
+        type: boolean
+        default: true
       max_new:
-        description: 'Höchstens so viele neue Übungen'
+        description: 'Höchstens so viele neue Übungen in diesem Lauf'
         default: '4'
 
 permissions:
@@ -67,6 +77,8 @@ jobs:
           ALLOW_API_COSTS: ${{ inputs.kosten_erlauben && '1' || '' }}
           GITHUB_TOKEN: ${{ github.token }}
           MAX_NEW: ${{ inputs.max_new || '4' }}
+          UMFANG: ${{ inputs.umfang || 'alle' }}
+          RECHERCHE: ${{ inputs.internet_recherche && '1' || '0' }}
           AGENT_SUMMARY_FILE: ${{ runner.temp }}/pr-text.md
         run: node tools/agent/run.mjs | tee -a "$GITHUB_STEP_SUMMARY"
 
