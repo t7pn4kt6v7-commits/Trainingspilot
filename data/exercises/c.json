@@ -41,6 +41,32 @@
             }
           ]
         }
+      },
+      {
+        "id": "ball-schneller-als-laeufer",
+        "title": "Ball schneller als Läufer",
+        "goal": "Ziel: Schnelles Dribbling unter Zeitdruck mit Abschluss",
+        "desc": "Zwei Startpunkte nebeneinander, ca. 20 m vor einem Pylonentor, dahinter ein Minitor. Spieler*in A dribbelt mit Ball, B sprintet ohne Ball. Auf das Startsignal der Trainer*in versuchen beide, zuerst durch das Pylonentor zu kommen. Schafft A es zuerst, darf A aufs Minitor schießen; holt B auf, wird es ein 1 gegen 1. Nach jedem Duell Rollen tauschen; B startet leicht versetzt, damit es knapp wird.",
+        "coachTip": "Bei hohem Tempo den Ball mit der Außenseite des Spanns weiter vorlegen – aber nur so weit, dass er erreichbar bleibt.",
+        "materials": "{ceil(k/2)} Bälle · {ceil(k/8)} Minitore · {4 * ceil(k/8)} Hütchen",
+        "dims": "{ceil(k/8)} {ceil(k/8) === 1 ? 'Bahn' : 'Bahnen'} à ca. 25 × 10 m",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k, 8)",
+            {
+              "cones": 2,
+              "withBall": true,
+              "showDribblePath": true,
+              "showRunPath": true,
+              "caption": "Dribbler gegen Sprinter durchs Pylonentor"
+            }
+          ]
+        },
+        "sources": [
+          "https://tool.jugendundsport.ch/asset/67a9bf20c06dba3e0b0aedd7/download?lang=de"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "passspiel": [
@@ -83,6 +109,31 @@
             }
           ]
         }
+      },
+      {
+        "id": "ueber-den-dritten-in-die-tiefe",
+        "title": "Über den Dritten in die Tiefe",
+        "goal": "Ziel: Kombination über eine dritte Spieler*in, um einen Laufweg in die Tiefe zu bedienen",
+        "desc": "Drei Spieler*innen bilden ein Dreieck (A hinten, B vorne zentral, C seitlich). A spielt auf B, B lässt auf C abtropfen, C spielt sofort einen Steilpass in den Lauf von A, der nach seinem Pass in die Tiefe gestartet ist und den Ball in einer Zielzone kontrolliert. Danach Positionen weiterrotieren. Steigerung: Ein Gegenspieler stellt sich zwischen B und die Zielzone und darf nach dem ersten Pass angreifen.",
+        "coachTip": "Das Signal für den Tiefenlauf ist der Pass auf B – genau in diesem Moment losgehen, nicht früher und nicht später.",
+        "materials": "{ceil(k/3)} Bälle · {6 * ceil(k/6)} Hütchen (Positionen und Zielzone)",
+        "dims": "{fieldLabel(ceil(k/6))} à ca. 30 × 20 m",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k, 6)",
+            {
+              "cones": 3,
+              "showPassPath": "double",
+              "showRunPath": true,
+              "caption": "Klatschen über den Dritten · Steilpass in die Tiefe"
+            }
+          ]
+        },
+        "sources": [
+          "https://www.bdfl.de/images/ITK/2014/PDFs/Wueck.pdf"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "torschuss": [
@@ -121,6 +172,30 @@
             }
           ]
         }
+      },
+      {
+        "id": "schuss-und-nachschuss",
+        "title": "Schuss und Nachschuss",
+        "goal": "Ziel: Präziser Abschluss nach dem Dribbling und konsequentes Nachsetzen",
+        "desc": "Zwei Tore mit Torhüter*innen stehen sich in ca. 35 m Abstand gegenüber. Von der Mitte dribbelt eine Spieler*in auf ein Tor zu und schließt ab ca. 16 m ab, direkt danach setzt sie nach. Ein direkter Treffer zählt zwei Punkte, ein Treffer im Nachschuss einen. Danach startet sofort die nächste Spieler*in in die andere Richtung. Zwei Teams spielen gegeneinander.",
+        "coachTip": "Flach und ins lange Eck schießen – das erzeugt die meisten Abpraller, die beim Nachsetzen zum Tor führen.",
+        "materials": "{k} Bälle · 2 Tore mit Netz · 4 Hütchen · 2 Torwarttrikots · {ceil(k/6)} Leibchensätze",
+        "dims": "ca. 40 × 25 m (zwei Tore gegenüber)",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            1,
+            1,
+            {
+              "showBuildupArrows": true
+            }
+          ]
+        },
+        "sources": [
+          "https://www.soccerdrills.de/fileadmin/media/uebungen/Torschuss/pdf-torschuss-fussballtraining/torschuss-ausdauer-trainingsuebung-als-pdf.pdf",
+          "https://dfb.de/fileadmin/_dfbdam/222963-2020-05-Torschuss-DC-te.pdf"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "bewegung": [
@@ -164,6 +239,30 @@
             }
           ]
         }
+      },
+      {
+        "id": "vier-tore-spiel-mit-verlagerung",
+        "title": "Vier-Tore-Spiel mit Verlagerung",
+        "goal": "Ziel: Breite herstellen und das Spiel auf die freie Seite verlagern",
+        "desc": "Auf einem Feld stehen an jeder Grundlinie zwei Hütchentore (ca. 3 m breit) weit außen. Zwei Teams spielen gegeneinander; ein Punkt zählt, wenn eine Spieler*in durch ein gegnerisches Hütchentor dribbelt. Wird der Ball vorher von einer Seite auf die andere verlagert (Pass über die Feldmitte), zählt das Tor doppelt. Das verteidigende Team muss so ständig zwischen beiden Toren verschieben.",
+        "coachTip": "Wer gerade nicht am Ball ist, macht das Feld breit: Ein Spieler*in steht immer auf der ballfernen Seite.",
+        "materials": "1 Ball · {ceil(k/6)} Leibchensätze · 12 Hütchen",
+        "dims": "{fieldDims(28, 0.7, k)}",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            "=(teamSplit(k)).a",
+            "=(teamSplit(k)).b",
+            {
+              "goalsPerSide": 2,
+              "showBuildupArrows": true
+            }
+          ]
+        },
+        "sources": [
+          "https://tool.jugendundsport.ch/asset/67a9bf20c06dba3e0b0aedd7/download?lang=de"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "zweikampf": [
@@ -205,6 +304,29 @@
             }
           ]
         }
+      },
+      {
+        "id": "verteidigen-und-kontern",
+        "title": "Verteidigen und kontern",
+        "goal": "Ziel: Im 1 gegen 1 den Ball erobern und sofort umschalten",
+        "desc": "Vor einem Tor mit Torhüter*in startet eine Angreifer*in ab ca. 25 m mit Ball. Eine Verteidiger*in läuft ihr entgegen, stellt sich seitlich und lenkt sie auf die schwächere Seite. Gelingt der Angreiferin der Abschluss, zählt ein Treffer. Erobert die Verteidigerin den Ball, kontert sie sofort auf eines von zwei Minitoren an der Mittellinie. Nach jedem Duell Rollen tauschen. Ab etwa 10 Spieler*innen an zwei Toren parallel üben, damit die Wartezeiten kurz bleiben.",
+        "coachTip": "Auf den Ball, nicht auf die Füße der Angreiferin schauen – Körpertäuschungen verlieren dann ihre Wirkung.",
+        "materials": "{ceil(k/2)} Bälle · {min(2, ceil(k/10))} Tore mit Netz · 2 Minitore · 4 Hütchen · {min(2, ceil(k/10))} Torwarttrikots",
+        "dims": "ca. 30 × 25 m vor dem Tor",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            1,
+            1,
+            {
+              "showBuildupArrows": true
+            }
+          ]
+        },
+        "sources": [
+          "https://www.dfb.de/fileadmin/_dfbdam/257993-511-a-te.pdf"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "spielaufbau": [
@@ -247,6 +369,30 @@
             }
           ]
         }
+      },
+      {
+        "id": "durchs-erste-drittel",
+        "title": "Durchs erste Drittel",
+        "goal": "Ziel: Kontrolliert aus der Abwehr ins Mittelfeld spielen",
+        "desc": "Das Feld in zwei Zonen teilen: Aufbauzone vor dem eigenen Tor und Mittelzone. In der Aufbauzone spielen Torhüter*in und vier Spieler*innen gegen drei Gegenspieler*innen. In der Mittelzone wartet eine eigene Zielspieler*in. Gelingt der kontrollierte Pass auf die Zielspieler*in oder ein Dribbling über die Linie, gibt es einen Punkt. Erobern die Gegner den Ball, schließen sie sofort aufs Tor ab.",
+        "coachTip": "Vor dem Pass in die Mitte erst einmal die Seite wechseln – das zieht die Gegner auseinander und öffnet die Lücke.",
+        "materials": "{ceil(k/4)} Bälle · 1 Tor mit Netz · 10 Hütchen · {ceil(k/6)} Leibchensätze · 1 Torwarttrikot",
+        "dims": "ca. 40 × 30 m (zwei Zonen)",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            5,
+            3,
+            {
+              "showBuildupArrows": true
+            }
+          ]
+        },
+        "sources": [
+          "https://www.youcoach.com/node/4915125",
+          "https://fifatrainingcentre.com/en/practice/talent-coach-programme/build-and-progress/progressing-through-the-thirds.php"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "koordination": [
@@ -292,6 +438,32 @@
             }
           ]
         }
+      },
+      {
+        "id": "speed-technik-zirkel",
+        "title": "Speed-Technik-Zirkel",
+        "goal": "Ziel: Schnelligkeit und Ballkontrolle unter Tempo verbinden",
+        "desc": "Pro Bahn: Koordinationsleiter, danach ein kurzer Slalom mit Ball, danach 15 m Sprint ohne Ball in eine Zielzone, in die die nächste Spieler*in einen Steilpass spielt. Wer den Pass in der Zone kontrolliert annimmt, passt zurück zum Start und stellt sich an. Volle Intensität, aber lange Pausen (ca. 1:3), damit jeder Lauf schnell bleibt.",
+        "coachTip": "Schnelligkeit wird nur bei Frische trainiert: lieber weniger Wiederholungen, dafür jede mit voller Konzentration.",
+        "materials": "{stationCount(k)} Koordinationsleitern · {4 * stationCount(k)} Hütchen · {2 * stationCount(k)} Bälle",
+        "dims": "{stationLabel(stationCount(k))} à ca. 35 m Länge",
+        "diagram": {
+          "fn": "diagramParcours",
+          "args": [
+            [
+              "leiter",
+              "slalom"
+            ],
+            {
+              "withBall": true,
+              "caption": "Leiter · Slalom mit Ball · Sprint in die Zielzone"
+            }
+          ]
+        },
+        "sources": [
+          "https://fifatrainingcentre.com/en/practice/speed-technical-coordination/speed-technical-coordination-circuit-1.php"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "torwart": [
@@ -330,6 +502,29 @@
             }
           ]
         }
+      },
+      {
+        "id": "allein-vor-dem-torwart",
+        "title": "Allein vor dem Torwart",
+        "goal": "Ziel: Für Torhüter*innen: 1 gegen 1 im Strafraum mit Block und Beinabwehr lösen",
+        "desc": "Eine Angreifer*in bekommt ca. 25 m vor dem Tor einen Pass und läuft allein auf die Torhüter*in zu; eine Verteidiger*in startet zwei Meter dahinter und setzt nach. Die Torhüter*in verkürzt den Winkel, bleibt so lange wie möglich stehen und wehrt mit Block oder Beinabwehr ab. Nach 6 Durchgängen wechselt die Torhüter*in. Für die Feldspieler*innen zählt nur ein Tor innerhalb von 5 Sekunden. Ab etwa 10 Spieler*innen an zwei Toren parallel üben, damit die Wartezeiten kurz bleiben.",
+        "coachTip": "Für die Torhüter*in: tief und breit stehen, Hände seitlich neben den Knien – nicht zu früh abtauchen.",
+        "materials": "{ceil(k/2)} Bälle · {min(2, ceil(k/10))} Tore mit Netz · 4 Hütchen · {2 * min(2, ceil(k/10))} Torwarttrikots",
+        "dims": "Strafraum plus ca. 10 m davor",
+        "diagram": {
+          "fn": "diagramStations",
+          "args": [
+            1,
+            {
+              "caption": "Angreifer*in allein aufs Tor · Verteidiger*in setzt nach"
+            }
+          ]
+        },
+        "sources": [
+          "https://www.jfv-ohmtal-homberg.lima-city.de/assets/downloads/6171d63c/doc-20191106-wa0001.pdf",
+          "https://dfb.de/fileadmin/_dfbdam/3409-307-dc-ha2-01.pdf"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "kopfball": [
@@ -368,6 +563,31 @@
             }
           ]
         }
+      },
+      {
+        "id": "kopfball-mit-anlauf",
+        "title": "Kopfball mit Anlauf",
+        "goal": "Ziel: Kopfball nach kurzem Anlauf und einbeinigem Absprung",
+        "desc": "Paare stehen sich in ca. 6 m Abstand gegenüber. Eine Spieler*in wirft den Ball in einem weichen Bogen, die andere nimmt drei Schritte Anlauf, springt einbeinig ab und köpft den Ball zurück in die Hände der Werferin. Nach 8 Kopfbällen Rollen tauschen. Im Kopfballtraining Lightbälle verwenden; höchstens 10 Kopfbälle pro Spieler*in und Einheit.",
+        "coachTip": "Absprung mit dem Kniehub des Schwungbeins, im Flug Bogenspannung aufbauen und den Ball am höchsten Punkt treffen.",
+        "materials": "{ceil(k/2)} Bälle (Lightbälle oder leicht entlüftet)",
+        "dims": "{ceil(k/2)} Paare, Abstand ca. 6 m",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k, 12)",
+            {
+              "showPassPath": true,
+              "showRunPath": true,
+              "caption": "Zuwurf · Anlauf · Kopfball zurück"
+            }
+          ]
+        },
+        "sources": [
+          "https://assets01.sdd1.ch/assets/lbwp-cdn/mobilesport/files/1677789039/mobilesport-fussball--kopfballtraining-technik--kopfball-nach-anlauf-und-einbeinigem-absprung-pendel.pdf",
+          "https://www.dfb.de/content/kopfballspiel"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "umschalten": [
@@ -410,6 +630,29 @@
             }
           ]
         }
+      },
+      {
+        "id": "gegenpressing-zone",
+        "title": "Gegenpressing-Zone",
+        "goal": "Ziel: Nach Ballverlust sofort gemeinsam auf den Ball gehen",
+        "desc": "Zwei Teams spielen 5 gegen 5 auf zwei Tore. Um die Mittellinie liegt eine ca. 10 m breite Zone. Verliert ein Team den Ball in der gegnerischen Hälfte oder in der Zone, hat es 6 Sekunden Zeit, ihn zurückzuerobern – gelingt das, gibt es einen Extrapunkt. Die Trainer*in zählt die Sekunden laut mit. Normale Tore zählen einen Punkt.",
+        "coachTip": "Die erste Spieler*in am Ball attackiert sofort, die nächsten schließen die naheliegenden Passwege – gemeinsam, nicht nacheinander.",
+        "materials": "4 Bälle · 2 Tore mit Netz · {ceil(k/6)} Leibchensätze · 8 Hütchen · 2 Torwarttrikots",
+        "dims": "{fieldDims(35, 0.8, k)}",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            "=(teamSplit(k)).a",
+            "=(teamSplit(k)).b",
+            {
+              "showBuildupArrows": true
+            }
+          ]
+        },
+        "sources": [
+          "https://www.bdfl.de/images/ITK/2016/Dokumentation/daum_gerisch_end.pdf"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "aufwaermen": [
@@ -453,6 +696,29 @@
             }
           ]
         }
+      },
+      {
+        "id": "rondo-treppe",
+        "title": "Rondo-Treppe",
+        "goal": "Ziel: Aktivierung mit Ball, saubere Ballannahme und schnelle Entscheidungen",
+        "desc": "Gruppen zu 5 Spieler*innen spielen in einem Quadrat (ca. 10 × 10 m) Rondo 4 gegen 1. Stufe 1: zwei Kontakte. Stufe 2: ein Kontakt. Stufe 3: 4 gegen 2 mit zwei Kontakten. Stufe 4: ein zweiter Ball kommt dazu. Wer den Ball verliert oder ins Aus spielt, geht in die Mitte. Jede Stufe dauert ca. 2 Minuten.",
+        "coachTip": "Offene Körperstellung vor der Annahme: Wer seitlich zum Passgeber steht, sieht beide Anspielstationen.",
+        "materials": "{2 * ceil(k/5)} Bälle · {4 * ceil(k/5)} Hütchen · {ceil(k/5)} Leibchen",
+        "dims": "{ceil(k/5)} Quadrate à ca. 10 × 10 m",
+        "diagram": {
+          "fn": "diagramCircle",
+          "args": [
+            "=min(k, 6)",
+            {
+              "showPasses": true,
+              "caption": "Rondo 4 gegen 1 · Stufen steigern"
+            }
+          ]
+        },
+        "sources": [
+          "https://icoachfootball.net/soccer-drills-and-games/rondo-games-trainings-for-soccer"
+        ],
+        "added": "2026-11-03"
       }
     ]
   }

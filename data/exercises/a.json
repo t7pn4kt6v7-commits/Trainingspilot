@@ -39,6 +39,30 @@
             }
           ]
         }
+      },
+      {
+        "id": "erster-kontakt-weg-vom-druck",
+        "title": "Erster Kontakt weg vom Druck",
+        "goal": "Ziel: Mit dem ersten Kontakt in die freie Richtung mitnehmen",
+        "desc": "Eine Spieler*in bekommt in der Mitte eines Feldes einen Pass, eine Gegenspieler*in startet gleichzeitig von links oder rechts. An allen vier Seiten steht ein Hütchentor. Die Spieler*in nimmt den Ball mit dem ersten Kontakt in die Richtung mit, die vom Gegner wegführt, und dribbelt durch ein Tor auf dieser Seite. Die Trainer*in variiert, von welcher Seite der Druck kommt.",
+        "coachTip": "Vor dem Ball schon den Kopf drehen: Wer weiß, woher der Druck kommt, entscheidet beim ersten Kontakt richtig.",
+        "materials": "{ceil(k/3)} Bälle · {8 * ceil(k/9)} Hütchen",
+        "dims": "{fieldLabel(ceil(k/9))} à ca. 15 × 15 m",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k, 6)",
+            {
+              "cones": 4,
+              "showPassPath": true,
+              "caption": "Pass · Mitnahme weg vom Gegner · durchs freie Tor"
+            }
+          ]
+        },
+        "sources": [
+          "https://fifatrainingcentre.com/en/practice/speed-technical-coordination/speed-technical-coordination-circuit-1.php"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "passspiel": [
@@ -80,6 +104,29 @@
             }
           ]
         }
+      },
+      {
+        "id": "durch-die-mitte-kombinieren",
+        "title": "Durch die Mitte kombinieren",
+        "goal": "Ziel: Vertikale Pässe durch das Zentrum und Spiel über die dritte Spieler*in",
+        "desc": "Das Feld in drei Längszonen teilen. Zwei Teams spielen 5 gegen 5 auf zwei Tore mit Torhüter*innen, dazu eine neutrale Spieler*in, die nur in der mittleren Zone spielt. Ein Tor zählt doppelt, wenn der Ball vorher durch die mittlere Zone auf eine Spieler*in in der gegnerischen Hälfte gespielt wurde. Höchstens drei Kontakte.",
+        "coachTip": "Ein Pass ins Zentrum ist oft nur Vorbereitung: der Ball kommt zurück und geht dann über die dritte Spieler*in in die Tiefe.",
+        "materials": "4 Bälle · 2 Tore mit Netz · {ceil(k/6)} Leibchensätze (+ 1 Neutrale) · 12 Hütchen · 2 Torwarttrikots",
+        "dims": "{fieldDims(40, 0.8, k)}",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            "=(teamSplit(k)).a",
+            "=(teamSplit(k)).b",
+            {
+              "showBuildupArrows": true
+            }
+          ]
+        },
+        "sources": [
+          "https://fifatrainingcentre.com/en/practice/talent-coach-programme/build-and-progress/8v8-team-game-building-up-through-middle-areas.php"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "torschuss": [
@@ -118,6 +165,29 @@
             }
           ]
         }
+      },
+      {
+        "id": "ballgewinn-und-abschluss",
+        "title": "Ballgewinn und Abschluss",
+        "goal": "Ziel: Nach einem Ballgewinn im letzten Drittel sofort abschließen",
+        "desc": "Die Trainer*in spielt aus der Feldmitte Bälle in Richtung eines Teams aus drei Verteidiger*innen, die einen Aufbau simulieren. Drei Angreifer*innen pressen sofort. Gewinnen sie den Ball, haben sie 5 Sekunden für einen Abschluss aufs Tor mit Torhüter*in – ein Tor in dieser Zeit zählt doppelt. Kommen die Verteidiger*innen über die Mittellinie, bekommen sie den Punkt.",
+        "coachTip": "Nach dem Ballgewinn nicht erst ordnen: der direkte Weg zum Tor ist jetzt meist frei.",
+        "materials": "{k} Bälle · 1 Tor mit Netz · 6 Hütchen · {ceil(k/6)} Leibchensätze · 1 Torwarttrikot",
+        "dims": "ca. halbes Spielfeld",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            3,
+            3,
+            {
+              "showBuildupArrows": true
+            }
+          ]
+        },
+        "sources": [
+          "https://dfb.de/fileadmin/_dfbdam/218367-484-c-te.pdf"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "bewegung": [
@@ -160,6 +230,29 @@
             }
           ]
         }
+      },
+      {
+        "id": "fluegelueberzahl",
+        "title": "Flügelüberzahl",
+        "goal": "Ziel: Durch Hinterlaufen und Nachrücken Überzahl auf den Flügeln schaffen",
+        "desc": "Das Feld hat links und rechts je eine Flügelzone, in der zunächst nur eine Angreifer*in gegen eine Verteidiger*in spielt. Das ballbesitzende Team darf mit einer zusätzlichen Spieler*in in die Flügelzone nachrücken (2 gegen 1). Tore nach einer Flanke oder einem Rückpass aus der Flügelzone zählen doppelt. Gespielt wird 6 gegen 6 auf zwei Tore.",
+        "coachTip": "Das Hinterlaufen braucht Timing: losgehen, wenn die Flügelspieler*in nach innen andribbelt und die Verteidigerin mitzieht.",
+        "materials": "3 Bälle · 2 Tore mit Netz · {ceil(k/6)} Leibchensätze · 16 Hütchen (Flügelzonen) · 2 Torwarttrikots",
+        "dims": "{fieldDims(45, 0.8, k)}",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            "=(teamSplit(k)).a",
+            "=(teamSplit(k)).b",
+            {
+              "showBuildupArrows": true
+            }
+          ]
+        },
+        "sources": [
+          "https://fifatrainingcentre.com/en/practice/talent-coach-programme/build-and-progress/progressing-through-the-thirds.php"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "zweikampf": [
@@ -199,6 +292,29 @@
             }
           ]
         }
+      },
+      {
+        "id": "doppeln-und-sichern",
+        "title": "Doppeln und Sichern",
+        "goal": "Ziel: Im 2 gegen 2 abgestimmt verteidigen – angreifen, sichern, doppeln",
+        "desc": "Zwei Verteidiger*innen gegen zwei Angreifer*innen vor einem Tor mit Torhüter*in. Die Angreifer*innen starten mit Ball von der Mittellinie. Eine Verteidigerin attackiert den Ball, die andere sichert schräg dahinter und doppelt, sobald die Angreiferin ins Dribbling geht. Nach Ballgewinn kontern die Verteidiger*innen auf zwei Minitore an der Mittellinie. Ab etwa 10 Spieler*innen an zwei Toren parallel üben, damit die Wartezeiten kurz bleiben.",
+        "coachTip": "Die sichernde Spieler*in coacht laut („Ich hab dich!“, „Rechts lenken!“) – Kommunikation macht aus zwei Einzelnen ein Paar.",
+        "materials": "{ceil(k/2)} Bälle · {min(2, ceil(k/10))} Tore mit Netz · 2 Minitore · 4 Hütchen · {min(2, ceil(k/10))} Torwarttrikots",
+        "dims": "ca. 35 × 30 m vor dem Tor",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            2,
+            2,
+            {
+              "showBuildupArrows": true
+            }
+          ]
+        },
+        "sources": [
+          "https://dfb.de/fileadmin/_dfbdam/59412-360-ue20-te.pdf"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "spielaufbau": [
@@ -241,6 +357,29 @@
             }
           ]
         }
+      },
+      {
+        "id": "verlagern-ueber-den-torwart",
+        "title": "Verlagern über den Torwart",
+        "goal": "Ziel: Die Torhüter*in als Anspielstation nutzen, um die Spielseite zu wechseln",
+        "desc": "Torhüter*in und vier Spieler*innen bauen gegen drei Pressende auf. Auf beiden Seiten liegt an der Mittellinie eine Zielzone. Eine Seite ist „zu“, sobald dort zwei Pressende stehen; dann muss der Ball über die Torhüter*in auf die andere Seite gespielt werden. Ein Punkt zählt für den kontrollierten Ball in einer Zielzone, ein doppelter nach einer Verlagerung über die Torhüter*in.",
+        "coachTip": "Die Torhüter*in bietet sich immer seitlich versetzt an – nie direkt hinter der ballführenden Spieler*in.",
+        "materials": "{ceil(k/3)} Bälle · 1 Tor mit Netz · 12 Hütchen · {ceil(k/6)} Leibchensätze · 1 Torwarttrikot",
+        "dims": "ca. 45 × 40 m",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            5,
+            3,
+            {
+              "showBuildupArrows": true
+            }
+          ]
+        },
+        "sources": [
+          "https://www.youcoach.com/node/4915125"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "koordination": [
@@ -286,6 +425,29 @@
             }
           ]
         }
+      },
+      {
+        "id": "startsignal-duell",
+        "title": "Startsignal-Duell",
+        "goal": "Ziel: Antritt aus wechselnden Startpositionen mit Abschluss",
+        "desc": "Zwei Spieler*innen liegen nebeneinander in Bauch- oder Rückenlage, ca. 20 m vor einem Tor mit Torhüter*in. Die Trainer*in spielt einen Ball in den Raum zwischen sie und dem Tor. Beide springen auf und sprinten zum Ball; wer ihn zuerst erreicht, greift an, die andere verteidigt. Startpositionen wechseln (sitzend, rückwärts, nach Drehung). Ab etwa 10 Spieler*innen an zwei Toren parallel üben, damit die Wartezeiten kurz bleiben.",
+        "coachTip": "Der erste Schritt entscheidet: tief bleiben und mit kurzen, schnellen Schritten beschleunigen.",
+        "materials": "{ceil(k/2)} Bälle · {min(2, ceil(k/10))} Tore mit Netz · 4 Hütchen · {min(2, ceil(k/10))} Torwarttrikots",
+        "dims": "ca. 30 × 25 m vor dem Tor",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            1,
+            1,
+            {
+              "showBuildupArrows": true
+            }
+          ]
+        },
+        "sources": [
+          "https://fifatrainingcentre.com/en/practice/speed-technical-coordination/speed-technical-coordination-circuit-1.php"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "torwart": [
@@ -324,6 +486,29 @@
             }
           ]
         }
+      },
+      {
+        "id": "torwart-als-ausputzer",
+        "title": "Torwart als Ausputzer",
+        "goal": "Ziel: Für Torhüter*innen: Bälle hinter die Abwehr ablaufen und klären",
+        "desc": "Eine Abwehrlinie aus zwei Verteidiger*innen steht ca. 30 m vor dem Tor. Aus dem Mittelfeld werden lange Bälle hinter die Linie gespielt, eine Angreifer*in startet in die Tiefe. Die Torhüter*in entscheidet: herauslaufen und mit dem Fuß klären oder abspielen, oder im Tor bleiben und das 1 gegen 1 annehmen. Danach Spielfortsetzung über die Torhüter*in.",
+        "coachTip": "Die Position der Torhüter*in rückt mit der Abwehrlinie mit – wer zu tief im Tor steht, kommt nie rechtzeitig an den Ball.",
+        "materials": "{k} Bälle · 1 Tor mit Netz · 6 Hütchen · 2 Torwarttrikots",
+        "dims": "ca. 50 × 40 m vor dem Tor",
+        "diagram": {
+          "fn": "diagramStations",
+          "args": [
+            1,
+            {
+              "showShotArrow": false,
+              "caption": "Langer Ball hinter die Abwehr · Torhüter*in läuft heraus"
+            }
+          ]
+        },
+        "sources": [
+          "https://www.fifatrainingcentre.com/en/practice/elite-sessions/out-of-possession/defending-as-a-unit.php"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "kopfball": [
@@ -362,6 +547,32 @@
             }
           ]
         }
+      },
+      {
+        "id": "lange-baelle-wegkoepfen",
+        "title": "Lange Bälle wegköpfen",
+        "goal": "Ziel: Lange Bälle mit dem Kopf hoch, weit und zur Seite klären und den zweiten Ball sichern",
+        "desc": "Aus ca. 35 m werden lange Bälle in die Abwehrzone geschlagen. Zwei Verteidiger*innen köpfen sie hoch und weit zur Seite weg, eine Angreifer*in setzt sie unter Druck. Zwei weitere Spieler*innen kämpfen um den zweiten Ball und spielen ihn zurück. Nach 8 Bällen Positionen wechseln; höchstens 15 Kopfbälle pro Spieler*in und Einheit.",
+        "coachTip": "Beim Abwehrkopfball den Ball unten treffen und mit dem ganzen Oberkörper nach vorne-oben arbeiten.",
+        "materials": "{k} Bälle · 8 Hütchen",
+        "dims": "ca. 40 × 30 m",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k, 8)",
+            {
+              "cones": 4,
+              "showPassPath": true,
+              "showRunPath": true,
+              "caption": "Langer Ball · Kopfball weg · zweiter Ball"
+            }
+          ]
+        },
+        "sources": [
+          "https://www.trainertalk.de/attachment/223-kopfballabwehr-bei-langen-b%C3%A4llen-pdf",
+          "https://www.dfb.de/content/kopfballspiel"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "umschalten": [
@@ -402,6 +613,29 @@
             }
           ]
         }
+      },
+      {
+        "id": "fuenf-sekunden-jagd",
+        "title": "Fünf-Sekunden-Jagd",
+        "goal": "Ziel: Gegenpressing als Team – direkt nach Ballverlust zurückerobern",
+        "desc": "Zwei Teams spielen 4 gegen 4 in einem Feld, dazu vier neutrale Spieler*innen an den Seiten, die mit dem ballbesitzenden Team spielen. Acht Pässe in Folge ergeben einen Punkt. Verliert ein Team den Ball, hat es fünf Sekunden, ihn zurückzugewinnen – gelingt das, gibt es zwei Punkte. Nach 3 Minuten wechseln die Neutralen ins Feld.",
+        "coachTip": "Nach Ballverlust nicht stehen bleiben und ärgern: die nächste Spieler*in zum Ball presst, alle anderen schieben eng zusammen.",
+        "materials": "2 Bälle · {ceil(k/6)} Leibchensätze (+ 4 Neutrale) · {pylonCountForBoundary(fieldWidthMeters(22, 0.6, k))} gelbe Pilonen zur Feldmarkierung",
+        "dims": "{fieldDims(22, 0.6, k)}",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            4,
+            4,
+            {
+              "showBuildupArrows": true
+            }
+          ]
+        },
+        "sources": [
+          "https://www.fifatrainingcentre.com/en/practice/talent-coach-programme/press-and-regain/4v4-plus-4-small-sided-game-pressing-and-defensive-shape.php"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "aufwaermen": [
@@ -442,6 +676,29 @@
             }
           ]
         }
+      },
+      {
+        "id": "passdreieck-mit-anschlusssprint",
+        "title": "Passdreieck mit Anschlusssprint",
+        "goal": "Ziel: Wettkampfnahe Aktivierung mit Passspiel und kurzen Sprints",
+        "desc": "Drei Hütchen bilden ein Dreieck mit ca. 12 m Seitenlänge, an jedem steht eine kleine Gruppe. Der Ball läuft mit zwei Kontakten im Kreis, jede Spieler*in sprintet nach ihrem Pass zum nächsten Hütchen. Intensität stufenweise steigern: Runde 1 locker, Runde 2 mit einem Kontakt, Runde 3 mit Richtungswechsel auf Zuruf. Zwischen den Runden dynamische Dehnübungen.",
+        "coachTip": "Erst Qualität, dann Tempo: Der Ball muss auf den vorderen Fuß kommen, sonst stockt der ganze Kreis.",
+        "materials": "{max(2, ceil(k/9))} Bälle · {3 * ceil(k/9)} Hütchen",
+        "dims": "{ceil(k/9)} {ceil(k/9) === 1 ? 'Dreieck' : 'Dreiecke'} à ca. 12 m Seitenlänge",
+        "diagram": {
+          "fn": "diagramCircle",
+          "args": [
+            3,
+            {
+              "showPasses": true,
+              "caption": "Passen und zum nächsten Hütchen sprinten"
+            }
+          ]
+        },
+        "sources": [
+          "https://www.renderfoot.com/de/blog/soccer-warm-up-drills"
+        ],
+        "added": "2026-11-03"
       }
     ]
   }
