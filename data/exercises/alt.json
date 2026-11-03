@@ -43,6 +43,32 @@
             }
           ]
         }
+      },
+      {
+        "id": "dribbel-torschuss-duell",
+        "title": "Dribbel-Torschuss-Duell",
+        "goal": "Ziel: Schnelle Ballführung mit beiden Füßen und Abschluss nach einer Finte",
+        "desc": "Zwei gleiche Hütchen-Slaloms führen nebeneinander auf ein Tor mit Torhüter*in zu. Zwei Kinder starten gleichzeitig mit Ball, dribbeln durch ihren Slalom und schließen aus ca. 12 m ab – wer zuerst schießt, darf zuerst aufs Tor. Ein Treffer zählt einen Punkt, nach einer Finte vor dem Schuss doppelt. Danach Ball holen, an der anderen Seite anstellen. Ab etwa 10 Kindern an zwei Toren parallel üben, damit die Wartezeiten kurz bleiben.",
+        "coachTip": "Im Slalom kurze Kontakte mit Innen- und Außenseite fordern; vor dem Schuss den Kopf heben und die Torhüter*in anschauen.",
+        "materials": "{k} Bälle · {min(2, ceil(k/10))} Tore mit Netz · 12 Hütchen · {min(2, ceil(k/10))} Torwarttrikots",
+        "dims": "ca. 25 × 15 m vor dem Tor",
+        "diagram": {
+          "fn": "diagramParcours",
+          "args": [
+            [
+              "slalom",
+              "slalom"
+            ],
+            {
+              "withBall": true,
+              "caption": "Zwei Slaloms nebeneinander · Abschluss aufs Tor"
+            }
+          ]
+        },
+        "sources": [
+          "https://dfb.de/fileadmin/_dfbdam/3408-307-dc-ha1-01.pdf"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "passspiel": [
@@ -83,6 +109,31 @@
             }
           ]
         }
+      },
+      {
+        "id": "zick-zack-rundlauf",
+        "title": "Zick-Zack-Rundlauf",
+        "goal": "Ziel: Flaches, genaues Passspiel mit Nachlaufen und Zielpass",
+        "desc": "Fünf Hütchen im Zick-Zack (Abstand ca. 8 m) aufstellen, am Ende ein Minitor. An jedem Hütchen steht ein Kind, am Start zwei. Der Ball wandert flach von Hütchen zu Hütchen; jedes Kind läuft seinem Pass hinterher und übernimmt die nächste Position. Das letzte Kind spielt den Ball mit einem gezielten Pass ins Minitor. Nach 2 Minuten Richtung wechseln, damit beide Füße drankommen.",
+        "coachTip": "Den Ball in den Lauf des Mitspielers auf den „richtigen“ Fuß spielen – also auf den Fuß, der vom Passgeber weiter weg ist.",
+        "materials": "{max(2, ceil(k/6))} Bälle · {5 * ceil(k/7)} Hütchen · {ceil(k/7)} Minitore",
+        "dims": "{ceil(k/7)} {ceil(k/7) === 1 ? 'Rundlauf' : 'Rundläufe'} à ca. 30 × 10 m",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k, 8)",
+            {
+              "cones": 5,
+              "showPassPath": "double",
+              "showRunPath": true,
+              "caption": "Passen, nachlaufen, Zielpass ins Minitor"
+            }
+          ]
+        },
+        "sources": [
+          "https://dfb.de/fileadmin/_dfbdam/3202-297-dc-ha2-01.pdf"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "torschuss": [
@@ -139,6 +190,31 @@
             }
           ]
         }
+      },
+      {
+        "id": "torschuss-raute",
+        "title": "Torschuss-Raute",
+        "goal": "Ziel: Abschluss nach einer eingespielten Kombination aus der Tiefe",
+        "desc": "Vor einem Tor mit Torhüter*in vier Positionen als Raute markieren: hinten (ca. 30 m vor dem Tor), links, rechts und vorne (ca. 20 m). Hinten spielt auf vorne, vorne lässt auf links oder rechts klatschen, die Seitenposition spielt einen Steilpass, auf den das hintere Kind durchstartet und abschließt. Alle rücken eine Position weiter. Ab dem dritten Durchgang verteidigt ein Kind passiv vor dem Tor. Ab etwa 10 Kindern an zwei Toren parallel üben, damit die Wartezeiten kurz bleiben.",
+        "coachTip": "Der Startzeitpunkt des Läufers entscheidet: erst losgehen, wenn der Klatschball gespielt wird – nicht vorher.",
+        "materials": "{ceil(k/2)} Bälle · {min(2, ceil(k/10))} Tore mit Netz · 4 Hütchen · {min(2, ceil(k/10))} Torwarttrikots",
+        "dims": "ca. 35 × 25 m vor dem Tor",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k, 6)",
+            {
+              "cones": 4,
+              "showPassPath": "double",
+              "showRunPath": true,
+              "caption": "Raute: Klatschen, Steilpass, Abschluss"
+            }
+          ]
+        },
+        "sources": [
+          "https://www.fv-rheinland.de/?p=23422"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "bewegung": [
@@ -182,6 +258,29 @@
             }
           ]
         }
+      },
+      {
+        "id": "neun-felder-spiel",
+        "title": "Neun-Felder-Spiel",
+        "goal": "Ziel: Freilaufen in freie Räume und Anspielen des freien Mitspielers",
+        "desc": "Ein Feld in 3 × 3 kleine Felder unterteilen. Zwei Teams spielen 3 gegen 3, dazu kommen 1–2 neutrale Kinder, die immer mit dem ballbesitzenden Team spielen. Ein Punkt zählt, wenn ein Kind angespielt wird, das in diesem Moment allein in einem der neun Felder steht. Nach jedem Punkt bleibt der Ball beim Team. Steigerung: Nach jedem Pass muss der Passgeber das Feld wechseln.",
+        "coachTip": "Fragen statt sagen: „Welches Feld war gerade leer?“ – so lernen die Kinder, Räume selbst zu erkennen.",
+        "materials": "{parallelFields(k, 8)} Bälle · {ceil(k/6)} Leibchensätze · {16 * parallelFields(k, 8)} Hütchen (Felder)",
+        "dims": "{fieldLabel(parallelFields(k, 8))} à ca. 24 × 24 m (9 Felder à 8 × 8 m)",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            3,
+            3,
+            {
+              "showBuildupArrows": true
+            }
+          ]
+        },
+        "sources": [
+          "https://tool.jugendundsport.ch/asset/67a9bf20c06dba3e0b0aedd7/download?lang=de"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "zweikampf": [
@@ -242,6 +341,27 @@
             }
           ]
         }
+      },
+      {
+        "id": "abdraengen-zur-seitenlinie",
+        "title": "Abdrängen zur Seitenlinie",
+        "goal": "Ziel: Im 1 gegen 1 seitlich stehen und den Angreifer vom Tor wegdrängen",
+        "desc": "Ein schmales Feld (ca. 20 × 12 m) mit einem Minitor in der Mitte der Grundlinie und einer Seitenlinie als „Aus“. Der Angreifer startet mit Ball und will aufs Minitor schießen. Der Verteidiger stellt sich seitlich, läuft rückwärts mit und drängt ihn Richtung Seitenlinie ab. Punkt für den Verteidiger, wenn der Angreifer über die Seitenlinie muss oder der Ball erobert wird; nach Ballgewinn darf er auf die Startlinie kontern.",
+        "coachTip": "Nicht sofort hineingrätschen: auf den Fußballen bleiben, Abstand von etwa einer Armlänge halten und zugreifen, wenn der Ball zu weit vom Fuß springt.",
+        "materials": "{ceil(k/2)} Bälle · {ceil(k/4)} Minitore · {6 * ceil(k/4)} Hütchen",
+        "dims": "{fieldLabel(ceil(k/4))} à ca. 20 × 12 m",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            1,
+            1,
+            {}
+          ]
+        },
+        "sources": [
+          "https://www.dfb.de/fileadmin/_dfbdam/257993-511-a-te.pdf"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "spielaufbau": [
@@ -284,6 +404,30 @@
             }
           ]
         }
+      },
+      {
+        "id": "herausspielen-3-plus-1-gegen-2",
+        "title": "Herausspielen im 3+1 gegen 2",
+        "goal": "Ziel: Ruhiger Spielaufbau mit Torhüter*in gegen zwei anlaufende Gegenspieler",
+        "desc": "Vor einem Tor mit Torhüter*in eine Aufbauzone (ca. 25 × 20 m) markieren, an ihrem Ende eine Hütchenlinie. Drei Kinder und die Torhüter*in bauen von hinten auf, zwei Kinder laufen an. Das Aufbauteam erhält einen Punkt, wenn ein Kind den Ball kontrolliert über die Linie dribbelt. Erobern die Angreifer den Ball, dürfen sie sofort aufs Tor abschließen. Nach drei Versuchen Rollen tauschen.",
+        "coachTip": "Breite geben: Die beiden äußeren Kinder stellen sich weit an die Seiten – so entstehen Lücken für den Pass.",
+        "materials": "{ceil(k/5)} Bälle · 1 Tor mit Netz · 8 Hütchen · {ceil(k/6)} Leibchensätze · 1 Torwarttrikot",
+        "dims": "ca. 25 × 20 m vor dem Tor",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k, 6)",
+            {
+              "cones": 4,
+              "showPassPath": true,
+              "caption": "Torhüter*in + 3 gegen 2 bis zur Linie"
+            }
+          ]
+        },
+        "sources": [
+          "https://www.bdfl.de/images/ITK/2014/PDFs/Wueck.pdf"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "koordination": [
@@ -319,6 +463,30 @@
         "diagram": {
           "custom": "alt-koordination-reaktionslauf-mit-partner"
         }
+      },
+      {
+        "id": "hasenjagd",
+        "title": "Hasenjagd",
+        "goal": "Ziel: Reaktionsschnelligkeit, Antritt und Richtungswechsel im Wettkampf",
+        "desc": "Zwei Gruppen stehen sich an zwei Hütchenreihen im Abstand von ca. 10 m gegenüber. Auf das Signal sprinten die „Hasen“ zu einem Hütchen in der Mitte, berühren es und laufen zurück. Die „Jäger“ starten eine Sekunde später und versuchen, sie vor der Startlinie abzuklatschen. Nach jedem Durchgang Rollen tauschen. Steigerung: Die Hasen dribbeln mit Ball.",
+        "coachTip": "Startpositionen variieren (Bauchlage, Sitz, rückwärts) – das schult Reaktion und Koordination zugleich.",
+        "materials": "{ceil(k/2)} Bälle · {ceil(k/2) + 4} Hütchen",
+        "dims": "ca. 20 × 15 m",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k, 12)",
+            {
+              "cones": 4,
+              "showRunPath": true,
+              "caption": "Hasen sprinten zum Hütchen · Jäger hinterher"
+            }
+          ]
+        },
+        "sources": [
+          "https://www.dr-gumpert.de/html/schnelligkeitstraining.html"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "torwart": [
@@ -357,6 +525,29 @@
             }
           ]
         }
+      },
+      {
+        "id": "hohe-baelle-pfluecken",
+        "title": "Hohe Bälle pflücken",
+        "goal": "Ziel: Hohe Bälle am höchsten Punkt sicher fangen und laut ansagen",
+        "desc": "Die Torhüter*in steht im Tor, zwei Kinder werfen von der Grundlinie aus (links und rechts, ca. 8 m vom Tor) hohe Bälle in den Torraum. Die Torhüter*in startet, springt einbeinig mit Kniehub ab, fängt den Ball über dem Kopf und ruft „Torwart!“. Danach Abwurf zu einem Kind an der Mittellinie. Steigerung: Ein Kind stellt sich passiv in den Torraum und erschwert den Weg.",
+        "coachTip": "Hände hinter den Ball bringen und Daumen fast zusammen („Fangkorb“), Knie zum Schutz nach vorne.",
+        "materials": "{2 * ceil(k/4)} Bälle · {ceil(k/4)} Tore mit Netz · {ceil(k/4)} Torwarttrikots",
+        "dims": "{ceil(k/4)} Tore, Wurfposition ca. 8 m seitlich",
+        "diagram": {
+          "fn": "diagramStations",
+          "args": [
+            "=min(4, ceil(k/4))",
+            {
+              "showShotArrow": false,
+              "caption": "Hohe Würfe von der Grundlinie · Fangen am höchsten Punkt"
+            }
+          ]
+        },
+        "sources": [
+          "https://www.mobilesport.ch/assets/lbwp-cdn/mobilesport/files/2018/04/Torhuetertraining_D.pdf"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "kopfball": [
@@ -395,6 +586,31 @@
             }
           ]
         }
+      },
+      {
+        "id": "kopfball-ins-huetchentor",
+        "title": "Kopfball ins Hütchentor",
+        "goal": "Ziel: Saubere Kopfballtechnik aus dem Stand mit der Stirn",
+        "desc": "Immer zwei Kinder arbeiten zusammen: Eines wirft den Ball von unten weich in Stirnhöhe, das andere köpft ihn aus dem Stand durch ein Hütchentor (ca. 2 m breit) zurück. Der Werfer steht dabei hinter dem Tor in ca. 3 m Abstand. Höchstens 8 Kopfbälle pro Kind und Einheit, dann Rollen tauschen. Nur mit leichten Bällen (Lightbälle oder leicht entlüftet).",
+        "coachTip": "Augen offen, Mund geschlossen, Oberkörper leicht zurück und den Ball mit der Stirn nach vorn „stoßen“.",
+        "materials": "{ceil(k/2)} Bälle (leicht entlüftet) · {2 * ceil(k/2)} Hütchen",
+        "dims": "{ceil(k/2)} Paare, Abstand ca. 3 m",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k, 12)",
+            {
+              "cones": 4,
+              "showPassPath": true,
+              "caption": "Zuwurf · Kopfball durchs Hütchentor"
+            }
+          ]
+        },
+        "sources": [
+          "https://assets01.sdd1.ch/assets/lbwp-cdn/mobilesport/files/1677797573/mobilesport-fussball--kopfballtraining-technik--aus-dem-stand-pendel.pdf",
+          "https://www.dfb.de/content/kopfballspiel"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "umschalten": [
@@ -437,6 +653,29 @@
             }
           ]
         }
+      },
+      {
+        "id": "konter-auf-vier-dribbeltore",
+        "title": "Konter auf vier Dribbeltore",
+        "goal": "Ziel: Nach dem Ballgewinn sofort den Weg nach vorn suchen",
+        "desc": "Ein Team in Überzahl hält in einem Feld den Ball (z. B. 5 gegen 3). An den Ecken stehen vier Dribbeltore aus Stangen oder Hütchen. Erobert das Unterzahlteam den Ball, kontert es sofort und erhält einen Punkt, wenn ein Kind durch eines der Dribbeltore dribbelt. Das Überzahlteam versucht nach Ballverlust, den Ball sofort zurückzuerobern. Nach 3 Minuten Rollen tauschen.",
+        "coachTip": "Nach Ballgewinn den ersten Kontakt nach vorn mitnehmen – wer erst stoppt und schaut, hat die Konterchance schon verpasst.",
+        "materials": "2 Bälle · {ceil(k/6)} Leibchensätze · 8 Hütchen oder Slalomstangen (Dribbeltore) · {pylonCountForBoundary(fieldWidthMeters(20, 0.6, k))} gelbe Pilonen zur Feldmarkierung",
+        "dims": "{fieldDims(20, 0.6, k)}",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            5,
+            3,
+            {
+              "showBuildupArrows": true
+            }
+          ]
+        },
+        "sources": [
+          "https://www.bdfl.de/images/ITK/2014/PDFs/Kruecken.pdf"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "aufwaermen": [
@@ -476,6 +715,30 @@
             }
           ]
         }
+      },
+      {
+        "id": "ballzirkulation-in-drei-farben",
+        "title": "Ballzirkulation in drei Farben",
+        "goal": "Ziel: Aufwärmen mit vielen Pässen, Orientierung und Anbieten im Raum",
+        "desc": "Drei Teams mit unterschiedlichen Leibchenfarben bewegen sich gemeinsam in einem Feld. Jedes Team hat einen Ball und passt ihn nur innerhalb der eigenen Farbe, während alle in Bewegung bleiben. Nach jedem Pass sucht sich das Kind einen neuen freien Platz. Steigerung: höchstens zwei Kontakte; auf Zuruf „Wechsel!“ wird der Ball zur nächsten Farbe gespielt.",
+        "coachTip": "Vor der Ballannahme über die Schulter schauen lassen – wer weiß, wo der nächste Mitspieler steht, spielt schneller weiter.",
+        "materials": "3 Bälle · {ceil(k/6)} Leibchensätze (3 Farben) · {pylonCountForBoundary(fieldWidthMeters(16, 0.5, k))} gelbe Pilonen zur Feldmarkierung",
+        "dims": "{fieldDims(16, 0.5, k)}",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k, 16)",
+            {
+              "showBoundary": true,
+              "showPassPath": "double",
+              "caption": "Drei Teams passen im selben Feld"
+            }
+          ]
+        },
+        "sources": [
+          "https://tool.jugendundsport.ch/asset/67a9bf20c06dba3e0b0aedd7/download?lang=de"
+        ],
+        "added": "2026-11-03"
       }
     ]
   }

@@ -38,6 +38,30 @@
             }
           ]
         }
+      },
+      {
+        "id": "aufdrehen-mit-gegner-im-ruecken",
+        "title": "Aufdrehen mit Gegner im Rücken",
+        "goal": "Ziel: Ball mit Gegnerdruck im Rücken annehmen, abschirmen und aufdrehen",
+        "desc": "Eine Angreifer*in steht mit dem Rücken zu zwei Hütchentoren, eine Verteidiger*in direkt dahinter. Eine Passgeber*in spielt aus ca. 15 m flach zu. Die Angreiferin schirmt den Ball mit dem Körper ab, dreht sich auf und dribbelt durch eines der beiden Tore. Erobert die Verteidigerin den Ball, spielt sie ihn zur Passgeberin zurück. Nach drei Duellen Rollen tauschen.",
+        "coachTip": "Vor der Annahme Kontakt zur Verteidigerin suchen – so spürt man, auf welcher Seite Platz zum Aufdrehen ist.",
+        "materials": "{ceil(k/3)} Bälle · {6 * ceil(k/6)} Hütchen",
+        "dims": "{fieldLabel(ceil(k/6))} à ca. 15 × 12 m",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k, 6)",
+            {
+              "cones": 4,
+              "showPassPath": true,
+              "caption": "Zuspiel · abschirmen · aufdrehen · durchs Tor"
+            }
+          ]
+        },
+        "sources": [
+          "https://bertelsmann-stiftung.de/fileadmin/files/Projekte/TeamUp/Wertebildendes_Fussballtraining_-_1_gegen_1_mit_Gegner_im_Ruecken.pdf"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "passspiel": [
@@ -81,6 +105,31 @@
             }
           ]
         }
+      },
+      {
+        "id": "flankenkreuz",
+        "title": "Flankenkreuz",
+        "goal": "Ziel: Kombination über die Außen mit Flanke und Abschluss",
+        "desc": "Auf beiden Seiten eines Tores mit Torhüter*in läuft gleichzeitig dieselbe Kombination: Pass aus dem Mittelfeld nach außen, Klatschball, Steilpass auf den Flügel, Flanke in den Strafraum. Zwei Stürmer*innen starten gegenläufig (kurzer und langer Pfosten) und schließen ab. Die Seiten flanken abwechselnd, damit sich die Läufe kreuzen. Nach jedem Durchgang Positionen weiterrotieren.",
+        "coachTip": "Die Flanke flach und scharf zwischen Torhüter*in und Abwehrlinie spielen – dorthin, wo die Stürmer*innen hinlaufen, nicht wo sie stehen.",
+        "materials": "{k} Bälle · 1 Tor mit Netz · 8 Hütchen · 1 Torwarttrikot",
+        "dims": "ca. halbes Spielfeld",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k, 10)",
+            {
+              "cones": 4,
+              "showPassPath": "double",
+              "showRunPath": true,
+              "caption": "Kombination auf beiden Seiten · Flanke · Abschluss"
+            }
+          ]
+        },
+        "sources": [
+          "https://www.soccerdrills.de/fileadmin/media/uebungen/Passen/pdf-passen-fussballtraining/flankenkreuz-trainingsform-als-pdf.pdf"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "torschuss": [
@@ -119,6 +168,29 @@
             }
           ]
         }
+      },
+      {
+        "id": "abschluss-im-2-gegen-1-plus-1",
+        "title": "Abschluss im 2 gegen 1 plus 1",
+        "goal": "Ziel: Überzahl schnell und zielstrebig zum Torabschluss nutzen",
+        "desc": "Zwei Angreifer*innen starten an der Mittellinie gegen eine Verteidiger*in vor dem Tor mit Torhüter*in. Auf das Startsignal folgt eine zweite Verteidiger*in von hinten. Die Angreifer*innen haben also nur wenige Sekunden, die Überzahl zu nutzen. Ein Tor ohne Ballkontakt der nachsetzenden Verteidigerin zählt doppelt. Nach jedem Angriff wechseln die Rollen. Ab etwa 10 Spieler*innen an zwei Toren parallel üben, damit die Wartezeiten kurz bleiben.",
+        "coachTip": "Die ballführende Spieler*in dribbelt so lange auf die Verteidigerin zu, bis diese sich festlegt – erst dann abspielen.",
+        "materials": "{ceil(k/2)} Bälle · {min(2, ceil(k/10))} Tore mit Netz · 4 Hütchen · {ceil(k/6)} Leibchensätze · {min(2, ceil(k/10))} Torwarttrikots",
+        "dims": "ca. 40 × 30 m vor dem Tor",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            2,
+            2,
+            {
+              "showBuildupArrows": true
+            }
+          ]
+        },
+        "sources": [
+          "https://training-service.fussball.de/fileadmin/_dfbdam/23903-106_ba_ha1.pdf"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "bewegung": [
@@ -161,6 +233,29 @@
             }
           ]
         }
+      },
+      {
+        "id": "von-wand-zu-wand",
+        "title": "Von Wand zu Wand",
+        "goal": "Ziel: Anbieten zwischen den Linien und Spiel in die Tiefe",
+        "desc": "Zwei Teams spielen 5 gegen 5 in einem Feld, an beiden Stirnseiten steht je eine neutrale „Wandspieler*in“. Ein Punkt zählt, wenn der Ball von einer Wand über mindestens zwei Stationen zur anderen Wand gelangt. Die Wandspieler*innen dürfen nur zwei Kontakte machen und spielen immer mit dem ballbesitzenden Team. Nach 4 Minuten wechseln die Wandspieler*innen.",
+        "coachTip": "In den Lücken zwischen zwei Gegenspieler*innen anbieten – dort ist der Weg für den Pass frei.",
+        "materials": "2 Bälle · {ceil(k/6)} Leibchensätze (+ 2 Neutrale) · 8 Hütchen",
+        "dims": "{fieldDims(30, 0.7, k)}",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            "=(teamSplit(k)).a",
+            "=(teamSplit(k)).b",
+            {
+              "showBuildupArrows": true
+            }
+          ]
+        },
+        "sources": [
+          "https://www.fifatrainingcentre.com/en/practice/talent-coach-programme/press-and-regain/4v4-plus-4-possession-game-pressing-to-dominate-possession.php"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "zweikampf": [
@@ -201,6 +296,29 @@
             }
           ]
         }
+      },
+      {
+        "id": "duell-nach-trainersignal",
+        "title": "Duell nach Trainersignal",
+        "goal": "Ziel: Aus einer Spielsituation heraus sofort ins 1 gegen 1 gehen",
+        "desc": "Zwei Gruppen stehen im Mittelfeld und passen sich paarweise den Ball zu. Auf das Signal der Trainer*in wird es ein Duell: Wer den Ball hat, greift das Tor mit Torhüter*in an; die Partnerin verteidigt. Die Trainer*in variiert das Signal (Pfiff, Farbe, Zahl), damit niemand sich vorbereiten kann. Nach dem Abschluss oder Ballgewinn stellen sich beide wieder an. Ab etwa 10 Spieler*innen an zwei Toren parallel üben, damit die Wartezeiten kurz bleiben.",
+        "coachTip": "Wer verteidigt, gewinnt die ersten zwei Sekunden: schnell den Abstand verkürzen, dann abbremsen und seitlich stellen.",
+        "materials": "{ceil(k/2)} Bälle · {min(2, ceil(k/10))} Tore mit Netz · 6 Hütchen · {min(2, ceil(k/10))} Torwarttrikots",
+        "dims": "ca. 35 × 30 m vor dem Tor",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            1,
+            1,
+            {
+              "showBuildupArrows": true
+            }
+          ]
+        },
+        "sources": [
+          "https://training-service.fussball.de/fileadmin/_dfbdam/23903-106_ba_ha1.pdf"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "spielaufbau": [
@@ -243,6 +361,29 @@
             }
           ]
         }
+      },
+      {
+        "id": "hochpressing-ueberspielen",
+        "title": "Hochpressing überspielen",
+        "goal": "Ziel: Mit Torhüter*in und Neutralen gegen ein hohes Pressing herausspielen",
+        "desc": "Torhüter*in und vier Spieler*innen bauen gegen drei Pressende auf, unterstützt von zwei Neutralen im Mittelfeld. Ziel ist ein Dribbling durch ein Hütchentor an der Mittellinie (Durchbruch). Die Pressenden bekommen einen Punkt für jeden Ballgewinn und dürfen danach aufs Tor abschließen. Nach 5 Durchgängen tauschen die Gruppen.",
+        "coachTip": "Wenn der Weg nach vorne zu ist, ist der Rückpass zur Torhüter*in kein Rückschritt, sondern der Start eines neuen Versuchs.",
+        "materials": "{ceil(k/3)} Bälle · 1 Tor mit Netz · 10 Hütchen · {ceil(k/6)} Leibchensätze (+ 2 Neutrale) · 1 Torwarttrikot",
+        "dims": "ca. 40 × 35 m",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            5,
+            3,
+            {
+              "showBuildupArrows": true
+            }
+          ]
+        },
+        "sources": [
+          "https://www.sportsessionplanner.com/s/Ey1Ii/Build-Up-Against-High-Press.html"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "koordination": [
@@ -286,6 +427,31 @@
             }
           ]
         }
+      },
+      {
+        "id": "farbsignal-agility",
+        "title": "Farbsignal-Agility",
+        "goal": "Ziel: Reaktive Richtungswechsel mit Ball auf ein visuelles Signal",
+        "desc": "Eine Spieler*in dribbelt auf einen Punkt ca. 8 m vor der Trainer*in zu. Dort zeigt die Trainer*in ein farbiges Hütchen oder Leibchen; jede Farbe steht für ein Hütchentor links, rechts oder schräg hinten. Die Spieler*in wechselt sofort die Richtung, dribbelt durch das richtige Tor und passt zur nächsten. Steigerung: Zwei Spieler*innen starten gleichzeitig gegeneinander.",
+        "coachTip": "Blick nach vorn, nicht auf den Ball – das Signal kommt kurz vor dem Wendepunkt und will gesehen werden.",
+        "materials": "{ceil(k/2)} Bälle · 9 Hütchen in 3 Farben · 3 Leibchen (Signalfarben)",
+        "dims": "ca. 20 × 15 m",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k, 8)",
+            {
+              "cones": 6,
+              "withBall": true,
+              "showDribblePath": true,
+              "caption": "Signal zeigen · Richtungswechsel durchs richtige Tor"
+            }
+          ]
+        },
+        "sources": [
+          "https://www.iat.uni-leipzig.de/datenbanken/iks/dfb/Record/4044080"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "torwart": [
@@ -324,6 +490,29 @@
             }
           ]
         }
+      },
+      {
+        "id": "flanken-abfangen-unter-druck",
+        "title": "Flanken abfangen unter Druck",
+        "goal": "Ziel: Für Torhüter*innen: Flanken aus dem Halbfeld sicher abfangen oder fausten",
+        "desc": "Von beiden Seiten werden Flanken aus dem Halbfeld in den Strafraum geschlagen. Zwei Angreifer*innen versuchen zu köpfen, eine Verteidiger*in hilft der Torhüter*in. Die Torhüter*in entscheidet: Fangen, wenn sie den Ball sicher am höchsten Punkt erreicht, sonst fausten – möglichst weit und zur Seite. Danach sofort Abwurf auf eine Spieler*in an der Seitenlinie.",
+        "coachTip": "Früh entscheiden und laut ansagen („Torwart!“ oder „Weg!“) – das schützt vor Zusammenstößen.",
+        "materials": "{k} Bälle · 1 Tor mit Netz · 6 Hütchen · 2 Torwarttrikots",
+        "dims": "Strafraum und beide Halbfelder",
+        "diagram": {
+          "fn": "diagramStations",
+          "args": [
+            1,
+            {
+              "showShotArrow": false,
+              "caption": "Flanken aus dem Halbfeld · Torhüter*in fängt oder faustet"
+            }
+          ]
+        },
+        "sources": [
+          "https://www.bdfl.de/images/ITK/2013/ITK_2013_Arts.pdf"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "kopfball": [
@@ -363,6 +552,30 @@
             }
           ]
         }
+      },
+      {
+        "id": "kopfball-verlaengerung",
+        "title": "Kopfball-Verlängerung",
+        "goal": "Ziel: Den Ball mit dem Kopf gezielt in den Lauf einer Mitspieler*in verlängern",
+        "desc": "Dreiergruppen in einer Linie mit je ca. 8 m Abstand. A wirft oder chippt den Ball zu B, B verlängert ihn mit einem Hinterkopf- oder Seitkopfball zu C, C nimmt an und spielt flach zurück zu A. Nach 6 Kopfbällen Positionen wechseln. Steigerung: C läuft in den Raum und bekommt den Ball in den Lauf. Lightbälle verwenden; höchstens 12 Kopfbälle pro Spieler*in.",
+        "coachTip": "Beim Verlängern den Ball nur leicht mit der Stirn „anstreifen“ – die Richtung kommt aus der Kopfdrehung, nicht aus der Kraft.",
+        "materials": "{ceil(k/3)} Bälle (Lightbälle) · {ceil(k/3) * 2} Hütchen",
+        "dims": "{ceil(k/3)} Dreiergruppen, Abstand je ca. 8 m",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k, 9)",
+            {
+              "showPassPath": "double",
+              "caption": "Zuwurf · Kopfball-Verlängerung · Ballannahme"
+            }
+          ]
+        },
+        "sources": [
+          "https://assets01.sdd1.ch/assets/lbwp-cdn/mobilesport/files/1677935173/mobilesport-fussball--kopfballtraining-formation--analytisch-ueben-kopfball-verlaengerung-1.pdf",
+          "https://www.dfb.de/content/kopfballspiel"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "umschalten": [
@@ -405,6 +618,29 @@
             }
           ]
         }
+      },
+      {
+        "id": "sechs-gegen-drei-mit-konter",
+        "title": "Sechs gegen drei mit Konter",
+        "goal": "Ziel: Umschalten in beide Richtungen – Konter nach Ballgewinn, Gegenpressing nach Ballverlust",
+        "desc": "In einem Feld halten sechs Spieler*innen gegen drei den Ball. Erobern die drei den Ball, kontern sie sofort auf zwei Minitore außerhalb des Feldes. Die sechs schalten um und versuchen, den Konter zu stoppen oder den Ball zurückzugewinnen. Zehn Pässe in Folge ergeben einen Punkt für die sechs, ein Kontertor einen für die drei. Nach 3 Minuten Rollen tauschen.",
+        "coachTip": "Nach Ballgewinn den ersten Pass nach vorn suchen, solange der Gegner noch ungeordnet ist.",
+        "materials": "2 Bälle · 2 Minitore · {ceil(k/6)} Leibchensätze · {pylonCountForBoundary(fieldWidthMeters(22, 0.6, k))} gelbe Pilonen zur Feldmarkierung",
+        "dims": "{fieldDims(22, 0.6, k)}",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            6,
+            3,
+            {
+              "showBuildupArrows": true
+            }
+          ]
+        },
+        "sources": [
+          "https://www.bdfl.de/images/Verbandsgruppen/VG-Bayern/2015/Veranstaltungen/Dateien/SpielprinzipienClubPrinzen.pdf"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "aufwaermen": [
@@ -445,6 +681,30 @@
             }
           ]
         }
+      },
+      {
+        "id": "rondo-mit-seitenwechsel",
+        "title": "Rondo mit Seitenwechsel",
+        "goal": "Ziel: Aktivierung mit Ball, Spielverlagerung und Pressing-Auslöser",
+        "desc": "Zwei Quadrate (je ca. 10 × 10 m) liegen nebeneinander. Im ersten spielen 4 gegen 2, im zweiten warten vier Spieler*innen. Nach acht Pässen wird der Ball ins andere Quadrat verlagert; die beiden Verteidiger*innen sprinten hinterher und pressen dort. Erobern sie den Ball, wechseln sie mit den Spieler*innen, die den Fehler gemacht haben. Höchstens zwei Kontakte.",
+        "coachTip": "Den langen Ball flach und scharf spielen – ein hoher Ball gibt den Pressenden die Zeit, rüberzukommen.",
+        "materials": "{2 * ceil(k/10)} Bälle · {6 * ceil(k/10)} Hütchen · {2 * ceil(k/10)} Leibchen",
+        "dims": "{ceil(k/10)} {ceil(k/10) === 1 ? 'Doppelquadrat' : 'Doppelquadrate'} à ca. 20 × 10 m",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k, 10)",
+            {
+              "cones": 6,
+              "showPassPath": "double",
+              "caption": "Rondo 4 gegen 2 · Verlagerung ins Nachbarquadrat"
+            }
+          ]
+        },
+        "sources": [
+          "https://icoachfootball.net/soccer-drills-and-games/rondo-games-trainings-for-soccer"
+        ],
+        "added": "2026-11-03"
       }
     ]
   }
