@@ -48,6 +48,17 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
+      # Neue Übungen gehen immer zuerst in die Testumgebung (Branch test), siehe UMGEBUNGEN.md.
+      # Gibt es noch keinen Branch test, wird wie bisher der Standard-Branch verwendet.
+      - name: Zielbranch bestimmen (test vor main)
+        run: |
+          if git ls-remote --exit-code --heads origin test >/dev/null; then
+            git fetch -q origin test && git checkout -q test
+            echo "BASIS=test" >> "$GITHUB_ENV"
+          else
+            echo "BASIS=${{ github.event.repository.default_branch }}" >> "$GITHUB_ENV"
+          fi
+
       - name: Läuft schon ein offener Agent-PR?
         id: offen
         run: |
@@ -97,7 +108,7 @@ jobs:
           git add data/exercises index.html
           git commit -m "Übungs-Agent: neue Übungen ($(date -u +%Y-%m-%d))"
           git push -u origin "$branch"
-          gh pr create --base "${{ github.event.repository.default_branch }}" --head "$branch" \
+          gh pr create --base "$BASIS" --head "$branch" \
             --title "Übungs-Agent: neue Übungen zur Freigabe ($(date -u +%d.%m.%Y))" \
             --body-file "$RUNNER_TEMP/pr-text.md"
           cat "$RUNNER_TEMP/pr-text.md" >> "$GITHUB_STEP_SUMMARY"
