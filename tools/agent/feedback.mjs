@@ -29,6 +29,20 @@ export function readAltersklassen(html) {
   return map;
 }
 
+// Welche Kategorien die App je Altersstufe überhaupt anbietet: eine Kategorie zählt für eine
+// Altersstufe, wenn mindestens eine ihrer Altersklassen sie nicht sperrt (data-gesperrt).
+export function readRelevantCategories(html) {
+  const byTier = {};
+  const re = /<option value="[^"]+"[^>]*data-tier="([a-z]+)"[^>]*data-gesperrt="([^"]*)"/g;
+  let m;
+  while ((m = re.exec(html))) {
+    const blocked = new Set(m[2].split(',').filter(Boolean));
+    byTier[m[1]] = byTier[m[1]] || new Set();
+    for (const c of Object.keys(CATEGORY_LABELS)) if (!blocked.has(c)) byTier[m[1]].add(c);
+  }
+  return byTier;
+}
+
 function labelToCategory(label) {
   if (!label) return null;
   const l = label.trim();
@@ -94,14 +108,17 @@ export function parseIssue(issue, altersklassen = {}) {
 export function effectivePoolSize(data, tier, cat) {
   const own = (data.tiers[tier] && data.tiers[tier][cat]) || [];
   if (tier !== 'mittel') return own.length;
+  // wie getVariants/getExercisePool in index.html
   const titles = new Set(own.map((e) => e.title));
   for (const e of (data.tiers.jung && data.tiers.jung[cat]) || []) titles.add(e.title);
   return titles.size;
 }
 
-// Bewertet jede vorhandene Kombination aus Altersstufe + Kategorie und liefert die
-// dringendsten zuerst. Neue Übungen werden nur dort ergänzt, wo die App diese Kategorie für
-// die Altersstufe bereits führt.
+// Bewertet die Kombinationen aus Altersstufe + Kategorie und liefert die dringendsten zuerst.
+// scope "bedarf": nur Kombinationen, die es in den Daten gibt und die Bedarf haben.
+// scope "alle": jede Kombination, die die App anbietet (relevant aus readRelevantCategories),
+// auch wenn es dafür noch keine eigenen Übungen gibt; bei Gleichstand zuerst die mit den
+// wenigsten bisher vom Agenten ergänzten Übungen, damit mehrere Läufe alles abdecken.
 // Kleine, stabile Hash-Funktion für eine wöchentlich wechselnde Reihenfolge bei Gleichstand.
 function hash(str) {
   let h = 2166136261;
@@ -111,21 +128,28 @@ function hash(str) {
 
 // seed (z. B. Kalenderwoche) mischt Gleichstände; pro Lauf kommen zuerst verschiedene
 // Altersstufen dran, damit nicht alle neuen Übungen in einer Altersstufe landen.
-export function planTargets(data, feedback, maxNew, seed = '') {
+export function planTargets(data, feedback, maxNew, seed = '', { scope = 'bedarf', relevant = null } = {}) {
   const targets = [];
-  for (const [tier, cats] of Object.entries(data.tiers)) {
-    for (const cat of Object.keys(cats)) {
+  const pairs = [];
+  if (scope === 'alle' && relevant) {
+    for (const [tier, cats] of Object.entries(relevant)) for (const cat of cats) pairs.push([tier, cat]);
+  } else {
+    for (const [tier, cats] of Object.entries(data.tiers)) for (const cat of Object.keys(cats)) pairs.push([tier, cat]);
+  }
+  for (const [tier, cat] of pairs) {
+    {
       const fb = feedback.filter((f) => f.tier === tier && f.kategorie === cat);
       const pool = effectivePoolSize(data, tier, cat);
       const zuOft = fb.filter((f) => f.art === 'zu-oft').length;
       const neu = fb.filter((f) => f.art === 'neu').length;
       const down = fb.filter((f) => f.bewertung === 'down').length;
       const other = fb.filter((f) => f.art === 'feedback').length;
-      const score = 3 * Math.max(0, 4 - pool) + 4 * zuOft + 5 * neu + 2 * down + other;
-      if (score > 0) targets.push({ tier, cat, pool, score, feedback: fb });
+      const score = 3 * Math.max(0, 4 - pool) + 4 * zuOft + 5 * neu + 2 * down + other + (scope === 'alle' ? 1 : 0);
+      const agentAdded = (((data.tiers[tier] || {})[cat]) || []).filter((e) => e.origin === 'agent').length;
+      if (score > 0) targets.push({ tier, cat, pool, score, agentAdded, feedback: fb });
     }
   }
-  targets.sort((x, y) => y.score - x.score || x.pool - y.pool || hash(seed + x.tier + x.cat) - hash(seed + y.tier + y.cat));
+  targets.sort((x, y) => y.score - x.score || x.agentAdded - y.agentAdded || x.pool - y.pool || hash(seed + x.tier + x.cat) - hash(seed + y.tier + y.cat));
   const chosen = [];
   const tiers = new Set();
   for (const t of targets) {

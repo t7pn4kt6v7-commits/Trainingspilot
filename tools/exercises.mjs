@@ -27,7 +27,9 @@ export const CATEGORIES = ['aufwaermen', 'ballgewoehnung', 'passspiel', 'torschu
 const TEXT_FIELDS = ['title', 'goal', 'desc', 'coachTip', 'materials', 'dims'];
 // added (JJJJ-MM-TT) + origin ("agent"): von tools/agent vorgeschlagene Übungen. Die App zeigt
 // Übungen mit "added" in den ersten 60 Tagen als 🆕 und schlägt sie etwas häufiger vor.
-const ALLOWED_FIELDS = new Set(['id', ...TEXT_FIELDS, 'diagram', 'custom', 'added', 'origin']);
+// sources: Internetseiten, die der Agent als Anregung genutzt hat (nur zur Nachvollziehbarkeit
+// bei der Freigabe; die App zeigt sie nicht an).
+const ALLOWED_FIELDS = new Set(['id', ...TEXT_FIELDS, 'diagram', 'custom', 'added', 'origin', 'sources']);
 
 const DATA_START = '<!-- EXERCISE_DATA_START (generiert von tools/exercises.mjs build - nicht von Hand bearbeiten) -->';
 const DATA_END = '<!-- EXERCISE_DATA_END -->';
@@ -91,6 +93,9 @@ export function validate(data, html = fs.readFileSync(HTML, 'utf8')) {
         if ('custom' in ex && ex.custom !== true) err(where, '"custom" nur als true angeben (oder weglassen)');
         if ('added' in ex && !/^\d{4}-\d{2}-\d{2}$/.test(ex.added)) err(where, '"added" im Format JJJJ-MM-TT angeben');
         if ('origin' in ex && ex.origin !== 'agent') err(where, '"origin" ist nur als "agent" vorgesehen');
+        if ('sources' in ex && (!Array.isArray(ex.sources) || ex.sources.length > 5 || !ex.sources.every((u) => typeof u === 'string' && /^https:\/\/[^\s"<>]+$/.test(u)))) {
+          err(where, '"sources" muss eine Liste von höchstens 5 https-Adressen sein');
+        }
       });
     }
   }

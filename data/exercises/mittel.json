@@ -37,6 +37,30 @@
             }
           ]
         }
+      },
+      {
+        "id": "pass-pass-tor",
+        "title": "Pass, Pass, Tor!",
+        "goal": "Ziel: Schneller Abschluss nach einer kurzen Passfolge",
+        "desc": "Zwei Felder nebeneinander markieren, in jedem steht am Ende ein Minitor. Pro Feld spielen zwei Dreierteams um die Wette: Auf das Startsignal müssen sich die drei Kinder im eigenen Feld dreimal zupassen. Wer den letzten Pass bekommt, dribbelt ins Nachbarfeld und schießt dort auf das Minitor. Das Team, das zuerst trifft, bekommt einen Punkt. Danach starten die nächsten Teams.",
+        "coachTip": "Darauf achten, dass jedes Kind einmal den Abschluss macht – die Reihenfolge der Pässe dafür von Runde zu Runde wechseln.",
+        "materials": "{2 * max(1, floor(k/6))} Minitore · {2 * max(1, floor(k/6))} Bälle · {ceil(k/6)} Leibchensätze · 8 Hütchen",
+        "dims": "2 Felder à ca. 10 × 10 m nebeneinander",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k, 12)",
+            {
+              "showPassPath": "double",
+              "showRunPath": true,
+              "caption": "Drei Pässe, dann Dribbling und Abschluss"
+            }
+          ]
+        },
+        "sources": [
+          "https://training-service.fussball.de/fileadmin/_dfbdam/98863-385-b-te.pdf"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "bewegung": [
@@ -79,6 +103,30 @@
             }
           ]
         }
+      },
+      {
+        "id": "pass-in-die-endzone",
+        "title": "Pass in die Endzone",
+        "goal": "Ziel: Freilaufen in den freien Raum und Anbieten für den Pass",
+        "desc": "Ein Feld mit einer Endzone (ca. 3 m tief) an beiden Enden markieren. Zwei kleine Teams (höchstens 4 gegen 4, bei vielen Kindern auf mehreren Feldern) spielen mit dem Fuß gegeneinander. Ein Punkt zählt nicht durch ein Tor, sondern wenn ein Kind einen Pass in der gegnerischen Endzone stoppt. Dribbeln in die Endzone zählt nicht – es muss sich also immer jemand rechtzeitig freilaufen. Ist ein Team deutlich unterlegen, bekommt es ein Kind mehr (z. B. 4 gegen 3).",
+        "coachTip": "Wer gerade nicht am Ball ist, ist trotzdem im Spiel: Lob gezielt für gutes Freilaufen geben, nicht nur für Punkte.",
+        "materials": "{2 * parallelFields(k, 8)} Bälle · {ceil(k/6)} Leibchensätze · {12 * parallelFields(k, 8)} Hütchen (Feld und Endzonen)",
+        "dims": "{fieldLabel(parallelFields(k, 8))} à ca. 20 × 15 m",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            "=min(4, ceil(k / (2 * parallelFields(k, 8))))",
+            "=min(4, ceil(k / (2 * parallelFields(k, 8))))",
+            {
+              "showBuildupArrows": true
+            }
+          ]
+        },
+        "sources": [
+          "https://fussballtraining.com/artikel/f-junioren-kindgerecht-das-passen-kennenlernen",
+          "https://kreis11.fvn.de/media/fvn_-_neue_wettspielformen_im_kinderfussball.pdf"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "spielaufbau": [
@@ -121,6 +169,31 @@
             }
           ]
         }
+      },
+      {
+        "id": "funino-mit-aufbauzone",
+        "title": "Funino mit Aufbauzone",
+        "goal": "Ziel: Ruhig von hinten herausspielen und das Feld breit machen",
+        "desc": "3 gegen 3 auf vier Minitore (je zwei pro Grundlinie, ohne Torhüter). Vor jeder Torreihe liegt eine Schusszone von ca. 6 m; Tore zählen nur aus dieser Zone. Nach jedem Tor oder Aus wird der Ball von der eigenen Grundlinie eingedribbelt oder eingepasst. Bonuspunkt, wenn vor dem Tor alle drei Kinder des Teams den Ball berührt haben. Mehrere Felder parallel spielen, nach ein paar Minuten Gegner wechseln.",
+        "coachTip": "Nach dem Eindribbeln fragen: „Welches der beiden Tore ist gerade frei?“ – die Kinder lernen so, das Spiel auf die andere Seite zu verlagern.",
+        "materials": "{4 * parallelFields(k, 6)} Minitore · {2 * parallelFields(k, 6)} Bälle · {ceil(k/6)} Leibchensätze · {8 * parallelFields(k, 6)} Hütchen (Schusszonen)",
+        "dims": "{fieldLabel(parallelFields(k, 6))} à ca. 25 × 20 m",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            3,
+            3,
+            {
+              "goalsPerSide": 2,
+              "showBuildupArrows": true
+            }
+          ]
+        },
+        "sources": [
+          "https://www.fv-rheinland.de/wp-content/uploads/2021/08/Spielregeln_F-Junioren-neue-Kinderspielform.pdf",
+          "https://assets.dfb.de/uploads/000/229/568/original_200930_DFB_Spielformen-Flyer_dfb.pdf"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "zweikampf": [
@@ -182,6 +255,29 @@
             }
           ]
         }
+      },
+      {
+        "id": "drei-linien-duell",
+        "title": "Drei-Linien-Duell",
+        "goal": "Ziel: Im 1 gegen 1 entschlossen Richtung Tor dribbeln",
+        "desc": "Ein schmales Feld (ca. 15 × 8 m) mit zwei Hütchenlinien und einem Minitor am Ende aufbauen; pro Feld wechseln sich zwei Paare ab. Ein Kind startet mit Ball, das andere verteidigt. Für den Angreifer gilt: über die erste Linie dribbeln = 1 Punkt, über die zweite Linie = 2 Punkte, Tor ins Minitor = 3 Punkte. Erobert der Verteidiger den Ball, darf er auf die Startlinie kontern (1 Punkt). Nach jedem Duell Rollen tauschen.",
+        "coachTip": "Finten vorgeben, z. B. „Heute zählt ein Punkt extra, wer mit einer Körpertäuschung vorbeikommt“.",
+        "materials": "{ceil(k/2)} Bälle · {ceil(k/4)} Minitore · {6 * ceil(k/4)} Hütchen",
+        "dims": "{fieldLabel(ceil(k/4))} à ca. 15 × 8 m",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            1,
+            1,
+            {
+              "showBuildupArrows": false
+            }
+          ]
+        },
+        "sources": [
+          "https://www.sbfv.de/fileadmin/user_upload/Nav_Fussball/Kinder/Trainingsformen/E-Jugend/E-Jugend_Phase_3_Spielform_1_Dribbelfussball.pdf"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "umschalten": [
@@ -224,6 +320,31 @@
             }
           ]
         }
+      },
+      {
+        "id": "ballhalten-mit-konter-toren",
+        "title": "Ballhalten mit Konter-Toren",
+        "goal": "Ziel: Nach dem Ballgewinn sofort den schnellsten Weg zum Tor suchen",
+        "desc": "In einem Feld ohne Tore spielen zwei Teams Ballhalten (bei vielen Kindern auf mehreren Feldern, höchstens 5 gegen 5): Fünf Pässe in Folge im eigenen Team ergeben einen Punkt. An allen vier Seiten steht außerhalb des Feldes ein Minitor. Erobert ein Team den Ball, darf es sofort auf ein beliebiges Minitor kontern – ein Tor innerhalb von 5 Sekunden nach dem Ballgewinn zählt doppelt. Danach geht es mit Ballhalten weiter.",
+        "coachTip": "Laut „Konter!“ rufen lassen, wenn ein Kind den Ball erobert – das macht den Umschaltmoment für alle hörbar.",
+        "materials": "{4 * parallelFields(k, 10)} Minitore · {2 * parallelFields(k, 10)} Bälle · {ceil(k/6)} Leibchensätze · {8 * parallelFields(k, 10)} Hütchen (Feldmarkierung)",
+        "dims": "{fieldLabel(parallelFields(k, 10))} à ca. 20 × 20 m",
+        "diagram": {
+          "fn": "diagramGame",
+          "args": [
+            "=min(5, ceil(k / (2 * parallelFields(k, 10))))",
+            "=min(5, ceil(k / (2 * parallelFields(k, 10))))",
+            {
+              "goalsPerSide": 2,
+              "showBuildupArrows": true
+            }
+          ]
+        },
+        "sources": [
+          "https://bertelsmann-stiftung.de/fileadmin/files/Projekte/TeamUp/Wertebildendes_Fussballtraining_-_Umschalten_nach_Ballgewinn.pdf",
+          "https://dfb.de/fileadmin/_dfbdam/218367-484-c-te.pdf"
+        ],
+        "added": "2026-11-03"
       }
     ],
     "aufwaermen": [
@@ -282,6 +403,165 @@
         "diagram": {
           "custom": "mittel-aufwaermen-loewe-und-tiger"
         }
+      },
+      {
+        "id": "dribbelfangen",
+        "title": "Dribbelfangen",
+        "goal": "Ziel: Aufwärmen mit Ball am Fuß, Kopf hoch und schnelle Richtungswechsel",
+        "desc": "Alle Kinder dribbeln mit eigenem Ball in einem markierten Feld. Zwei bis drei Fänger (Leibchen) dribbeln ebenfalls und versuchen, andere Kinder mit der Hand abzuschlagen, ohne ihren eigenen Ball zu verlieren. Wer abgeschlagen wird, übernimmt das Leibchen und wird neuer Fänger. Kurze Durchgänge von ca. 45 Sekunden, dann Pause. Variante: Eine Runde dürfen alle nur mit links, eine nur mit rechts dribbeln.",
+        "coachTip": "Fängt ein Kind nur, weil es den eigenen Ball liegen lässt, zählt der Treffer nicht – der Ball muss am Fuß bleiben.",
+        "materials": "{k} Bälle · {max(2, min(3, ceil(k/6)))} Leibchen · {pylonCountForBoundary(fieldWidthMeters(14, 0.45, k))} gelbe Pilonen zur Feldmarkierung",
+        "dims": "{fieldDims(14, 0.45, k)}",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k, 16)",
+            {
+              "showBoundary": true,
+              "extraBoundaryPylons": "=pylonCountForBoundary(fieldWidthMeters(14, 0.45, k)) >= 6",
+              "withBall": true,
+              "caption": "Alle dribbeln · Fänger dribbeln mit"
+            }
+          ]
+        },
+        "sources": [
+          "https://dfb.de/fileadmin/_dfbdam/61759-362-c-au2-01.pdf"
+        ],
+        "added": "2026-11-03"
+      }
+    ],
+    "ballgewoehnung": [
+      {
+        "id": "huetchen-kegeln",
+        "title": "Hütchen-Kegeln",
+        "goal": "Ziel: Dribbeln mit Blick nach vorn und gezieltes Abspiel aus dem Dribbling",
+        "desc": "Im Feld stehen viele hohe Hütchen als Kegel. Die „Kegler“ dribbeln mit eigenem Ball und versuchen, Kegel mit einem gezielten Pass aus mindestens 3 m Entfernung umzuschießen. Zwei bis drei „Aufsteller“ ohne Ball stellen umgefallene Kegel so schnell wie möglich wieder auf. Wie viele Kegel liegen nach 90 Sekunden? Dann Rollen tauschen.",
+        "coachTip": "Den Kopf beim Dribbeln immer wieder heben lassen – nur wer sieht, wo ein Kegel steht, kann ihn treffen.",
+        "materials": "{k} Bälle · {max(8, ceil(k/2))} hohe Hütchen · {pylonCountForBoundary(fieldWidthMeters(16, 0.5, k))} gelbe Pilonen zur Feldmarkierung",
+        "dims": "{fieldDims(16, 0.5, k)}",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k, 16)",
+            {
+              "showBoundary": true,
+              "withBall": true,
+              "cones": 6,
+              "showDribblePath": true,
+              "caption": "Dribbeln und Hütchen per Pass umschießen"
+            }
+          ]
+        },
+        "sources": [
+          "https://fussballtraining.com/artikel/f-junioren-kindgerecht-das-passen-kennenlernen"
+        ],
+        "added": "2026-11-03"
+      }
+    ],
+    "passspiel": [
+      {
+        "id": "huetchentor-wettpassen",
+        "title": "Hütchentor-Wettpassen",
+        "goal": "Ziel: Genaue Pässe mit der Innenseite und sicheres Ballstoppen",
+        "desc": "Immer zwei Kinder stehen sich an einem Hütchentor (ca. 1 m breit) im Abstand von 5–6 m gegenüber. Sie passen sich den Ball durch das Tor zu, ohne ein Hütchen zu berühren; vor jedem Pass wird der Ball mit einem Kontakt angenommen. Jeder saubere Pass zählt einen Punkt. Welches Paar sammelt in 60 Sekunden die meisten Punkte? Danach den Abstand vergrößern oder nur mit dem schwächeren Fuß spielen.",
+        "coachTip": "Standbein neben den Ball, Fußspitze hoch, Innenseite zum Ziel – kurze Hinweise reichen, dann spielen lassen.",
+        "materials": "{ceil(k/2)} Bälle · {2 * ceil(k/2)} Hütchen",
+        "dims": "{ceil(k/2)} Hütchentore à ca. 1 m, Abstand 5–6 m",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k, 12)",
+            {
+              "cones": 4,
+              "showPassPath": true,
+              "caption": "Paare passen durch das Hütchentor"
+            }
+          ]
+        },
+        "sources": [
+          "https://dfb.de/fileadmin/_dfbdam/45430-349-f-te.pdf"
+        ],
+        "added": "2026-11-03"
+      }
+    ],
+    "koordination": [
+      {
+        "id": "leiter-staffel",
+        "title": "Leiter-Staffel",
+        "goal": "Ziel: Schnelle Füße, Rhythmus und Ballführung im Wettbewerb",
+        "desc": "Pro Team eine Koordinationsleiter, dahinter ein kurzer Hütchen-Slalom und ein Minitor. Das erste Kind läuft auf das Signal durch die Leiter (z. B. jedes Feld ein Kontakt), nimmt am Ende einen bereitliegenden Ball auf, dribbelt durch den Slalom und schießt ins Minitor. Danach läuft es zurück und klatscht das nächste Kind ab. Welches Team ist zuerst fertig? Die Lauftechnik in der Leiter jede Runde wechseln: zwei Kontakte, seitlich, Hopserlauf. Gibt es nicht genug Leitern, bei den übrigen Teams Reifen oder flache Hütchen in einer Reihe auslegen.",
+        "coachTip": "Kleine Teams (3–4 Kinder) bilden, damit Wartezeiten kurz bleiben. Sauberkeit vor Tempo: Wer auf die Leiter tritt, macht das Feld noch einmal.",
+        "materials": "{stationCount(k)} Koordinationsleitern · {stationCount(k)} Minitore · {3 * stationCount(k)} Hütchen · {2 * stationCount(k)} Bälle",
+        "dims": "{stationLabel(stationCount(k))} à ca. 15 m Länge",
+        "diagram": {
+          "fn": "diagramParcours",
+          "args": [
+            [
+              "leiter",
+              "slalom"
+            ],
+            {
+              "withBall": true,
+              "caption": "Leiter · Slalom mit Ball · Torschuss · zurück"
+            }
+          ]
+        },
+        "sources": [
+          "https://www.edugroup.at/fileadmin/DAM/Gegenstandsportale/ARGE_BSP/Dateien/Material/LA_in_der_Halle/koordinationsleiter.pdf"
+        ],
+        "added": "2026-11-03"
+      }
+    ],
+    "torwart": [
+      {
+        "id": "doppelpack-keeper",
+        "title": "Doppelpack-Keeper",
+        "goal": "Ziel: Schnell wieder bereit sein und zwei Bälle nacheinander sichern",
+        "desc": "Ein Kind steht als Torwart in einem Tor aus zwei Hütchen (ca. 3 m breit). Zwei Werfer stehen ca. 5 m davor, leicht versetzt links und rechts. Der erste Werfer wirft oder rollt den Ball aufs Tor; sobald der Torwart ihn gefangen und zurückgegeben hat, kommt sofort der zweite Ball von der anderen Seite. Nach 6 Bällen wechselt die Torwartrolle. Steigerung: Die Werfer schießen mit dem Fuß flach aufs Tor.",
+        "coachTip": "Nach jedem Fang kurz in die „Bereitschaftsstellung“ zurück: Füße schulterbreit, Knie leicht gebeugt, Hände vor dem Körper.",
+        "materials": "{2 * ceil(k/3)} Bälle · {2 * ceil(k/3)} Hütchen",
+        "dims": "{ceil(k/3)} Tore à ca. 3 m, Wurfabstand ca. 5 m",
+        "diagram": {
+          "fn": "diagramStations",
+          "args": [
+            "=min(4, ceil(k/3))",
+            {
+              "showShotArrow": true,
+              "caption": "Torwart · zwei Werfer im Wechsel"
+            }
+          ]
+        },
+        "sources": [
+          "https://www.trainertalk.de/attachment/420-torwarttrainingf%C3%BCralle-einsteiger-pdf"
+        ],
+        "added": "2026-11-03"
+      }
+    ],
+    "kopfball": [
+      {
+        "id": "kopfball-kegeln",
+        "title": "Kopfball-Kegeln",
+        "goal": "Ziel: Behutsamer Einstieg ins Kopfballspiel mit der Stirn (nur E-Jugend)",
+        "desc": "Nur für U10/U11. Immer zwei Kinder arbeiten zusammen, zwischen ihnen steht ein hohes Hütchen als Kegel. Ein Kind wirft sich einen leicht entlüfteten Ball selbst knapp über den Kopf und versucht, ihn mit der Stirn so zu spielen, dass der Kegel in ca. 2 m Entfernung umfällt; der Partner fängt den Ball und stellt den Kegel wieder auf. Höchstens 6 Kopfbälle pro Kind und Einheit, dann Partner wechseln oder Übung beenden.",
+        "coachTip": "Augen offen, Mund zu, Ball mit der Stirn „stoßen“ statt nur hinhalten. Die geringe Wiederholungszahl ist Absicht – Qualität vor Menge.",
+        "materials": "{ceil(k/2)} Bälle (leicht entlüftet) · {ceil(k/2)} hohe Hütchen",
+        "dims": "{ceil(k/2)} Paare, Abstand zum Kegel ca. 2 m",
+        "diagram": {
+          "fn": "diagramScatter",
+          "args": [
+            "=min(k, 12)",
+            {
+              "cones": 4,
+              "showPassPath": true,
+              "caption": "Selbst zuwerfen · mit der Stirn den Kegel treffen"
+            }
+          ]
+        },
+        "sources": [
+          "https://assets01.sdd1.ch/assets/lbwp-cdn/mobilesport/files/1677770858/mobilesport-fussball--kopfballtraining-preformation--analytisch-ueben-kegeltreffen.pdf",
+          "https://www.dfb.de/content/kopfballspiel"
+        ],
+        "added": "2026-11-03"
       }
     ]
   }
