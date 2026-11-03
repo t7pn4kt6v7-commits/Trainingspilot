@@ -1,10 +1,13 @@
 name: Übungsbibliothek und Agent prüfen
 
 on:
+  # Läuft auch für *.html und alle Workflows, weil "Veröffentlichen (Produktiv + Test)" erst
+  # nach dieser Prüfung startet (siehe pages.yml).
   push:
-    paths: ['data/exercises/**', 'index.html', 'tools/**', '.github/workflows/exercises.yml']
+    paths: ['data/exercises/**', '*.html', 'tools/**', '.github/workflows/**']
   pull_request:
-    paths: ['data/exercises/**', 'index.html', 'tools/**', '.github/workflows/exercises.yml']
+    paths: ['data/exercises/**', '*.html', 'tools/**', '.github/workflows/**']
+  workflow_dispatch:
 
 permissions:
   contents: read

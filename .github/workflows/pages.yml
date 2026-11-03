@@ -1,0 +1,94 @@
+name: Veröffentlichen (Produktiv + Test)
+
+# Veröffentlicht beide Umgebungen auf GitHub Pages:
+#   Produktiv  (Branch main)  -> https://t7pn4kt6v7-commits.github.io/Trainingspilot/
+#   Test       (Branch test)  -> https://t7pn4kt6v7-commits.github.io/Trainingspilot/test/
+#
+# Läuft automatisch, nachdem "Übungsbibliothek und Agent prüfen" für einen Push auf main oder
+# test erfolgreich war - eine fehlerhafte Version wird also nie veröffentlicht. Fällt die
+# Prüfung für test durch, bleibt die zuletzt veröffentlichte Testversion stehen.
+# Voraussetzung (einmalig): Settings → Pages → Source = "GitHub Actions". Siehe UMGEBUNGEN.md.
+
+on:
+  workflow_run:
+    workflows: ['Übungsbibliothek und Agent prüfen']
+    types: [completed]
+    branches: [main, test]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && (github.event.workflow_run.event == 'push' || github.event.workflow_run.event == 'workflow_dispatch'))
+    runs-on: ubuntu-latest
+    steps:
+      - name: Produktiv (main) holen
+        uses: actions/checkout@v7
+        with:
+          ref: main
+          path: prod
+
+      - name: Gibt es den Branch test?
+        id: test
+        run: |
+          if git ls-remote --exit-code --heads "https://github.com/${GITHUB_REPOSITORY}.git" test >/dev/null; then
+            echo "vorhanden=1" >> "$GITHUB_OUTPUT"
+          else
+            echo "vorhanden=0" >> "$GITHUB_OUTPUT"
+            echo "Branch test existiert noch nicht - es wird nur Produktiv veröffentlicht." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Test (test) holen
+        if: steps.test.outputs.vorhanden == '1'
+        uses: actions/checkout@v7
+        with:
+          ref: test
+          path: testenv
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          package-manager-cache: false
+
+      - name: Website zusammenstellen
+        run: |
+          set -e
+          mkdir -p _site
+          (cd prod && node tools/exercises.mjs check)
+          cp prod/index.html prod/sperrbildschirm-test.html _site/
+          if [ -d testenv ]; then
+            if (cd testenv && node tools/exercises.mjs check); then
+              mkdir -p _site/test
+              cp testenv/index.html _site/test/
+              [ -f testenv/sperrbildschirm-test.html ] && cp testenv/sperrbildschirm-test.html _site/test/
+              echo "Test: $(grep -o "var APP_VERSION = '[0-9.]*'" testenv/index.html)" >> "$GITHUB_STEP_SUMMARY"
+            else
+              echo "Prüfung der Testversion fehlgeschlagen - Test wird nicht aktualisiert." >> "$GITHUB_STEP_SUMMARY"
+              exit 1
+            fi
+          fi
+          touch _site/.nojekyll
+          echo "Produktiv: $(grep -o "var APP_VERSION = '[0-9.]*'" prod/index.html)" >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

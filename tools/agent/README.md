@@ -43,6 +43,8 @@ Trainerteam prüft & merged ──▶  App zeigt 🆕 Übung
 
 Die Bereiche mit den meisten Punkten bekommen je eine neue Übung, höchstens `MAX_NEW` (Standard: 4).
 
+**Wohin die Vorschläge gehen:** Gibt es den Branch `test`, öffnet der Agent seinen Pull Request gegen `test`. Die Übungen landen also zuerst in der Testumgebung, siehe `UMGEBUNGEN.md`.
+
 **Was der Agent nicht tut:** Er ändert oder löscht keine bestehenden Übungen. Übungen mit wiederholter Kritik listet er nur im PR-Text auf. Solange ein Agent-PR offen ist, startet er keinen neuen Lauf.
 
 **Neue Übungen in der App:** Sie tragen 60 Tage lang das Abzeichen „🆕 Neu im Trainingspilot“ und werden in dieser Zeit doppelt so oft vorgeschlagen.
