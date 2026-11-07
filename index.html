@@ -10,7 +10,9 @@
   Funktionalitaet der App ist davon nicht betroffen - reine Kommentar-Bereinigung.
 
   Changelog (letzte Versionen):
-  v5.176 - App-Einrichtung leichter auffindbar: Hinweis direkt unter "Infos & App einrichten" statt
+  v5.176 - "Ueber Trainingspilot & Funktionen" aktualisiert (Timer, Zeiten/Auslassen, Feedback, App);
+         Zahl der Uebungen wird beim Laden aus der Bibliothek gezaehlt (fillAboutCounts).
+         App-Einrichtung leichter auffindbar: Hinweis direkt unter "Infos & App einrichten" statt
          unter "Plan erstellen"; "Infos & App einrichten" zeigt ganz oben die neue Anleitung (drei
          Schritte mit Symbolen, Knopf "Zeig mir, wo ich tippen muss", Android "Jetzt installieren"),
          darunter "Ueber Trainingspilot". Alter Text "Einmaliges Einrichten" nur noch am Computer.
@@ -2900,11 +2902,16 @@
       <div id="about-panel" class="intro-toggle-panel" style="display:none;">
         <p class="intro-toggle-lead">Trainingspilot erstellt automatisch DFB-orientierte Trainingspläne für U6 bis U19 – ganz ohne Anmeldung. Einfach öffnen, Eckdaten eingeben, fertig. Die Pläne sind eine flexible Grundlage – wer will, passt Übungen und Zeiten frei an sein Team an.</p>
         <ul class="intro-feature-list">
+          <!-- Pflege: Bei jeder neuen Funktion hier eine Zeile ergänzen bzw. anpassen (siehe CLAUDE.md).
+               Die Zahl der Übungen wird beim Laden aus der Übungsbibliothek gezählt (fillAboutCounts). -->
           <li>🔓 Keine Anmeldung, kein Konto</li>
-          <li>⚽ Für U6 bis U19, orientiert an DFB & NFV</li>
-          <li>🔀 Über 120 Übungsvarianten, automatisch abgewechselt</li>
-          <li>✏️ Zeiten & Übungen live anpassbar</li>
+          <li>⚽ Für U6 bis U19, orientiert an DFB &amp; NFV</li>
+          <li>🔀 <span id="about-ex-count">Über 190</span> Übungen in 10 Schwerpunkten – ein Wiederholungsschutz sorgt für Abwechslung<span id="about-ex-new"></span></li>
+          <li>⏱️ Einfacher Trainings-Timer: „Training starten“, dann nur noch „Weiter“ – mit Signal bei Zeitablauf und 🌙 Handy-einstecken-Modus</li>
+          <li>✏️ Zeiten an einer Stelle anpassen, Übungen wechseln oder per Wischen auslassen</li>
           <li>🎒 Materialübersicht auf einen Blick</li>
+          <li>💬 Feedback zu jeder Übung – fließt in neue Übungen ein</li>
+          <li>📲 Als App auf dem Home-Bildschirm nutzbar</li>
           <li>💾 Pläne speichern &amp; teilen <svg class="whatsapp-icon whatsapp-icon-inline" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="16" cy="16" r="16" fill="#25D366"/><path d="M22.7 9.3a9 9 0 0 0-14.2 10.8L7 24l4-1.5a9 9 0 0 0 13.5-11.2zm-6.7 13a7.4 7.4 0 0 1-3.8-1l-.3-.2-2.8 1 1-2.7-.2-.3a7.4 7.4 0 1 1 13.7-4 7.4 7.4 0 0 1-7.6 7.2zm4.1-5.5c-.2-.1-1.3-.7-1.5-.7-.2-.1-.4-.1-.5.1s-.6.7-.7.9-.3.2-.5.1a6 6 0 0 1-1.8-1.1 6.7 6.7 0 0 1-1.2-1.5c-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.2.2-.4a.4.4 0 0 0 0-.4c-.1-.1-.5-1.2-.7-1.7-.2-.4-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3 2.7 2.7 0 0 0-.8 2 4.7 4.7 0 0 0 1 2.5 10.6 10.6 0 0 0 4.1 3.6c.6.2 1 .4 1.4.5a3.3 3.3 0 0 0 1.5.1 2.5 2.5 0 0 0 1.6-1.1c.2-.3.2-.6.1-.8s-.2-.2-.4-.3z" fill="#fff"/></svg></li>
         </ul>
         <button type="button" class="intro-toggle-close" data-close-target="about" aria-label="Schließen">▴</button>
@@ -3626,6 +3633,24 @@ var scriptStartTime = Date.now();
   // data = { tiers: { <tier>: { <kategorie>: [übung, ...] } } }. Eine fehlerhafte Übung wird
   // übersprungen (Konsole), statt die ganze App lahmzulegen - die Prüfung im Repository
   // (tools/exercises.mjs check) verhindert so etwas schon vor der Veröffentlichung.
+  // Zählt die Übungen der eingebetteten Bibliothek für „Über Trainingspilot“, damit die Zahl
+  // nach jeder Erweiterung (auch durch den Übungs-Agenten) automatisch stimmt.
+  function fillAboutCounts(){
+    var el = document.getElementById('about-ex-count');
+    if(!el || typeof EXERCISES === 'undefined'){ return; }
+    var n = 0, neu = 0;
+    Object.keys(EXERCISES).forEach(function(t){
+      Object.keys(EXERCISES[t]).forEach(function(c){
+        (EXERCISES[t][c] || []).forEach(function(v){
+          if(v){ n++; if(isRecentlyAdded(v)){ neu++; } }
+        });
+      });
+    });
+    if(n){ el.textContent = String(n); }
+    var ne = document.getElementById('about-ex-new');
+    if(ne){ ne.textContent = neu ? ' (davon ' + neu + ' neu 🆕)' : ''; }
+  }
+
   function hydrateExerciseLibrary(data){
     var lib = {};
     Object.keys(data.tiers || {}).forEach(function(tier){
@@ -9111,6 +9136,7 @@ var scriptStartTime = Date.now();
     renderSavedPlansList();
     bindIntroToggle('first-steps-toggle', 'first-steps-panel');
     bindIntroToggle('about-toggle', 'about-panel');
+    fillAboutCounts();
   }catch(savedPlansInitErr){
     if(errorBox){
       errorBox.innerHTML = '<div class="error-msg"><b>Fehler beim Laden der gespeicherten Pläne:</b> ' + String(savedPlansInitErr && savedPlansInitErr.message ? savedPlansInitErr.message : savedPlansInitErr) + '</div>';
