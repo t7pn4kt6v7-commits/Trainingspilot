@@ -10,8 +10,8 @@
   Funktionalitaet der App ist davon nicht betroffen - reine Kommentar-Bereinigung.
 
   Changelog (letzte Versionen):
-  v5.179 - Gespeicherte Plaene (UI_V3): eigener Kasten "Trainingsplan fuer ..." aufgeloest - "Zur
-         Hauptseite" im Plankopf, "Teilen" und "Kinder-/Trainerzahl anpassen" unter "Mehr".
+  v5.179 - Gespeicherte Plaene (UI_V3): eigener Kasten "Trainingsplan fuer ..." aufgeloest - "Plan
+         schliessen" oben rechts im Plankopf (waehrend des Trainings "Zur Uebersicht"), "Teilen" und "Kinder-/Trainerzahl anpassen" unter "Mehr".
          Leiste "Gespeicherte Trainingsplaene" gruen, damit sie sich vom Schwarz abhebt.
   v5.178 - Korrektur UI_V3: helle Grundschrift fuer den schwarzen Hintergrund machte Texte auf
          weissen Flaechen unlesbar (Materialliste, DFB-Grundsaetze). Grundschrift wieder dunkel,
@@ -2913,12 +2913,16 @@
   .ui-v3 .saved-plans-summary-count{background:var(--sun) !important;color:var(--ink) !important;}
   /* Gespeicherter Plan: Rücksprung im Plankopf, Teilen/Anpassen unter „Mehr“ */
   .ui-v3 .v2-head .v3-back{width:auto !important;max-width:max-content;min-height:0 !important;}
-  .ui-v3 .v3-back{position:relative;display:inline-flex;align-items:center;margin:0 0 12px;padding:6px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.1);color:#fff;font-family:'Work Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;}
+  .ui-v3 .v3-back{position:relative;display:flex;align-items:center;margin:0 0 10px auto;padding:6px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.1);color:#fff;font-family:'Work Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;}
+  .ui-v3 #result.v2-running .restored-plan-banner-actions{display:block !important;}
+  .ui-v3 #result.v2-running .restored-plan-banner::before,.ui-v3 #result.v2-running .restored-plan-banner::after{display:none !important;}
+  .ui-v3 #result.v2-running .restored-plan-banner{background:none !important;border:0 !important;box-shadow:none !important;padding:0 !important;margin:0 0 10px !important;}
+  .ui-v3 #result.v2-running .restored-plan-back-btn{width:max-content !important;flex:0 0 auto !important;display:inline-flex !important;align-items:center;padding:7px 14px !important;min-height:0 !important;border-radius:999px !important;background:rgba(255,255,255,.08) !important;border:1px solid rgba(255,255,255,.28) !important;color:#fff !important;font-family:'Work Sans',sans-serif !important;font-size:14px !important;font-weight:700 !important;box-shadow:none !important;}
   .ui-v3 .v3-more-note{margin:0 0 4px;font-size:13px;color:var(--muted);}
   .ui-v3 #v2-more-panel .plan-edit-panel{margin:0;}
   .ui-v3 #v2-more-panel #share-plan-btn{display:flex;align-items:center;gap:10px;}
   .ui-v3 #v2-more-panel #share-plan-btn .whatsapp-icon{width:22px;height:22px;flex:0 0 auto;}
-  .ui-v3 .v3-save-toast{position:absolute;top:14px;right:14px;}
+  .ui-v3 .v3-save-toast{position:absolute;top:16px;left:18px;}
   .ui-v3 .v2-head{position:relative;}
   .ui-v3 .intro-toggle-btn{border-radius:var(--r-m) !important;display:flex !important;align-items:center;}
   .ui-v3 .intro-feature-list{list-style:none !important;padding:0 !important;display:grid;gap:10px;}
@@ -8489,6 +8493,8 @@ var scriptStartTime = Date.now();
     attachRatingHandlers(plan);
     bindPlanEditSection(plan);
     if(UI_V3 && !plan.sessionStartedAt){ v3MergeSavedBanner(); }
+    // Während des Trainings läuft die Uhr weiter – „Plan schließen“ klänge nach „Training beenden“
+    if(UI_V3 && plan.sessionStartedAt){ var v3b = document.getElementById('back-to-main-btn'); if(v3b){ v3b.textContent = '‹ Zur Übersicht'; } }
 
     var backBtn = document.getElementById('back-to-main-btn');
     if(backBtn){
@@ -9381,7 +9387,8 @@ var scriptStartTime = Date.now();
     var more = document.getElementById('v2-more-panel');
     if(!banner || !head || !more){ return; }
     var back = document.getElementById('back-to-main-btn');
-    if(back){ back.className = 'v3-back'; back.innerHTML = '‹ Zur Hauptseite'; head.insertBefore(back, head.firstChild); }
+    // „Plan schließen“ statt „Zur Hauptseite“: beschreibt, was passiert (Plan bleibt gespeichert)
+    if(back){ back.className = 'v3-back'; back.innerHTML = '✕ Plan schließen'; back.setAttribute('aria-label', 'Plan schließen'); head.insertBefore(back, head.firstChild); }
     var note = document.createElement('p');
     note.className = 'v3-more-note'; note.textContent = 'Gespeicherter Plan – Änderungen werden automatisch übernommen.';
     var first = more.firstChild;
