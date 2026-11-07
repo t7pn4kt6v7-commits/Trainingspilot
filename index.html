@@ -10,7 +10,9 @@
   Funktionalitaet der App ist davon nicht betroffen - reine Kommentar-Bereinigung.
 
   Changelog (letzte Versionen):
-  v5.175 - Eingabemaske neu gegliedert (UI_V2): drei nummerierte Abschnitte Mannschaft /
+  v5.175 - Knopf "Infos & App einrichten" unter dem Titel; i-Erklaerungen zu Kinder, Trainer*innen
+         und Trainingsdauer (klappen im Abschnitt auf).
+         Eingabemaske neu gegliedert (UI_V2): drei nummerierte Abschnitte Mannschaft /
          Trainingsdauer / Schwerpunkte, Kinder|Trainer*innen immer nebeneinander, Dauer ganze Breite
          mit "Min.", Zaehler im Abschnittskopf, "i" unter dem Wappen. Keine Umbrueche ab 320 px.
   v5.174 - Android: echter Knopf "Installieren" (Manifest, Symbole, Service Worker ohne Cache in
@@ -2637,9 +2639,12 @@
     .ui-v2 .v2-wheel-arrow[hidden]{display:block;opacity:0;pointer-events:none;}
   }
   /* ===== v5.171 UI_V2: ruhigere Startseite (Foto unverändert) ===== */
-  .ui-v2 .v2-info-btn{position:relative;flex:0 0 auto;width:30px;height:30px;margin-top:2px;font-family:Georgia,serif;font-style:italic;font-size:17px;font-weight:700;color:var(--chalk);background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.55);border-radius:50%;padding:0;cursor:pointer;line-height:1;}
+  .ui-v2 .v2-info-row{position:relative;margin:-6px 0 18px;}
+  .ui-v2 .v2-info-btn{position:relative;display:inline-flex;align-items:center;gap:8px;margin:0;font-family:'Work Sans',sans-serif;font-size:14px;font-weight:700;color:var(--sun);background:rgba(242,177,52,.12);border:1.5px solid var(--sun);border-radius:999px;padding:6px 14px 6px 6px;cursor:pointer;line-height:1.2;white-space:nowrap;}
+  .ui-v2 .v2-info-i{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--sun);color:var(--ink);font-family:Georgia,serif;font-style:italic;font-size:14px;font-weight:700;}
   .ui-v2 .v2-info-btn::after{content:"";position:absolute;inset:-8px;}
   .ui-v2 .v2-info-btn[aria-expanded="true"]{background:var(--sun);color:var(--ink);border-color:var(--sun);}
+  .ui-v2 .v2-info-btn[aria-expanded="true"] .v2-info-i{background:var(--ink);color:var(--sun);}
   .ui-v2 .form-panel:not(.v2-info-open) .intro-toggles{display:none;}
   .ui-v2 .form-panel .intro-toggles:first-of-type{margin-top:0;}
   .ui-v2 .intro-form-divider{margin:18px 0 18px;}
@@ -2667,14 +2672,21 @@
      lange Themen passen ganz in die Walze */
   @media (max-width:345px){
     .ui-v2 .form-panel h1{font-size:24px;}
-    .ui-v2 .hero-title-row{flex-wrap:nowrap;align-items:center;gap:6px;}
+    .ui-v2 .hero-title-row{flex-wrap:nowrap;gap:6px;}
     .ui-v2 .chips .chip span{font-size:13.5px;padding:0 10px;}
     .ui-v2 .v2-wheel .chips .chip{margin:0 6px;}
     .ui-v2 .v2-sec{padding:12px 10px 14px;}
     .ui-v2 .v2-sec-row{gap:8px;}
+    .ui-v2 .v2-label-row{gap:4px;}
+    .ui-v2 .v2-label-row label{font-size:13px;letter-spacing:0;}
+    .ui-v2 .v2-label-row .info-btn{width:18px;height:18px;font-size:11px;}
   }
-  .ui-v2 .v2-logo-col{display:flex;flex-direction:column;align-items:center;gap:8px;flex-shrink:0;}
-  .ui-v2 .v2-logo-col .v2-info-btn{width:32px;height:32px;margin:0;}
+  /* Erklärungen zu Kinder, Trainer*innen und Trainingsdauer: ⓘ neben der Beschriftung, Text
+     klappt im Abschnitt auf (volle Breite, schiebt den Rest nach unten statt ihn zu überdecken) */
+  .ui-v2 .v2-label-row{display:flex;align-items:center;gap:6px;min-width:0;}
+  .ui-v2 .v2-label-row label{min-width:0;}
+  .ui-v2 .v2-label-row .info-btn,.ui-v2 .v2-sec-head .info-btn{flex:0 0 auto;margin-left:0;}
+  .ui-v2 .v2-sec .v2-field-bubble{position:static;margin:0;font-size:13.5px;}
   .ui-v2 .v2-stepper{display:flex;align-items:stretch;background:#F4F6F2;border-radius:10px;overflow:hidden;min-height:46px;}
   .ui-v2 .v2-stepper button{flex:0 0 32px;border:0;background:#E3E9DF;color:var(--pitch);font-size:20px;font-weight:700;cursor:pointer;padding:0;}
   .ui-v2 .v2-stepper button:active{background:#cfdcc8;}
@@ -8867,22 +8879,18 @@ var scriptStartTime = Date.now();
     var panel = document.querySelector('.form-panel');
     if(!panel){ return; }
     // ⓘ Info neben dem Titel
-    var logo = panel.querySelector('.club-logo');
-    var row = logo;
-    if(logo && !logo.parentNode.classList.contains('v2-logo-col')){
-      var col = document.createElement('div');
-      col.className = 'v2-logo-col';
-      logo.parentNode.insertBefore(col, logo);
-      col.appendChild(logo);
-      row = col;
-    } else if(logo){ row = logo.parentNode; }
+    var hb = panel.querySelector('.hero-title-block');
+    var row = null;
+    if(hb && !document.getElementById('v2-info-row')){
+      row = document.createElement('div'); row.id = 'v2-info-row'; row.className = 'v2-info-row';
+      hb.parentNode.insertBefore(row, hb.nextSibling);
+    }
     if(row && !document.getElementById('v2-info-btn')){
       var ib = document.createElement('button');
       ib.type = 'button'; ib.id = 'v2-info-btn'; ib.className = 'v2-info-btn';
       ib.setAttribute('aria-expanded', 'false');
-      ib.textContent = 'i';
-      ib.setAttribute('aria-label', 'Über Trainingspilot und Einrichten');
-      ib.title = 'Über Trainingspilot und Einrichten';
+      ib.innerHTML = '<span class="v2-info-i" aria-hidden="true">i</span>Infos &amp; App einrichten';
+      ib.title = 'Über Trainingspilot und einmaliges Einrichten';
       row.appendChild(ib);
       ib.addEventListener('click', function(){
         var open = !panel.classList.contains('v2-info-open');
@@ -8957,6 +8965,31 @@ var scriptStartTime = Date.now();
       }
       if(fS){ s3.appendChild(fS); }
       grid.appendChild(s1); grid.appendChild(s2); grid.appendChild(s3);
+      // ⓘ-Erklärungen (Texte entsprechen der Rechenlogik in buildPlan/computeMaxSchwerpunkte)
+      var TIPS = {
+        kinder: 'Nach der Kinderzahl richten sich in jeder Übung Feldgröße, Gruppengröße und Material, zum Beispiel die Zahl der Bälle und Hütchen.',
+        trainer: 'Jede Trainerin und jeder Trainer kann eine Station betreuen. Danach richtet sich, wie viele Gruppen gleichzeitig üben und wie viele Themen in die Einheit passen. Mehr als 15 Kinder pro Trainer*in oder allein mit mehr als 8 Kindern: dann nur ein Thema, damit alle Gruppen im Blick bleiben.',
+        dauer: 'Wird beim Wechsel der Altersklasse vorgeschlagen. Jede Einheit besteht aus Begrüßung, Aufwärmen, deinen Schwerpunkten, Abschlussspiel und Abschlusskreis. Begrüßung und Abschluss dauern je 5 bis 10 Minuten, Aufwärmen und Abschlussspiel richten sich nach der Altersklasse. Die restliche Zeit gehört den Schwerpunkten – mehr Minuten heißt also mehr Zeit oder mehr Themen.'
+      };
+      function addTip(key, labelHost, bubbleHost){
+        var btn = document.createElement('button');
+        btn.type = 'button'; btn.className = 'info-btn'; btn.id = 'v2-tip-btn-' + key;
+        btn.setAttribute('aria-label', 'Erklärung anzeigen'); btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('aria-controls', 'v2-tip-' + key); btn.textContent = 'i';
+        var bub = document.createElement('p');
+        bub.className = 'info-bubble v2-field-bubble'; bub.id = 'v2-tip-' + key; bub.setAttribute('role', 'note'); bub.hidden = true;
+        bub.textContent = TIPS[key];
+        labelHost.appendChild(btn); bubbleHost.appendChild(bub);
+        bindInfoBtn(btn);
+      }
+      [['kinder', fK], ['trainer', fT]].forEach(function(d){
+        var f = d[1]; if(!f){ return; }
+        var lab = f.querySelector('label');
+        var lr = document.createElement('div'); lr.className = 'v2-label-row';
+        f.insertBefore(lr, lab); lr.appendChild(lab);
+        addTip(d[0], lr, s1);
+      });
+      addTip('dauer', s2.querySelector('.v2-sec-head'), s2);
     }
     // Altersklasse setzt die Dauer per Skript – Knöpfe danach neu prüfen
     altersklasseSelect.addEventListener('change', function(){
