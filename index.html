@@ -2660,6 +2660,19 @@
   .ui-v2 .v2-sec-dauer .v2-unit{flex:1 1 0;display:flex;align-items:center;padding-left:6px;font-weight:700;color:var(--pitch);font-size:17px;background:#F4F6F2;}
   .ui-v2 .v2-sec-dauer .field .v2-stepper input[type="number"]{flex:1 1 0;text-align:right;padding-right:0;}
   .ui-v2 .v2-sec-themen > .field > label{display:none;}
+  /* Gewählte Themen immer in eigener Zeile unter „Gewählt:“ – so bricht nie ein Thema mitten durch */
+  .ui-v2 .chip-selection b{display:block;margin-top:2px;}
+  .ui-v2 .chip-selection .v2-nowrap{white-space:nowrap;}
+  /* Schmale Handys (iPhone SE 1. Gen., 320 px): Titel und Version bleiben in einer Zeile,
+     lange Themen passen ganz in die Walze */
+  @media (max-width:345px){
+    .ui-v2 .form-panel h1{font-size:24px;}
+    .ui-v2 .hero-title-row{flex-wrap:nowrap;align-items:center;gap:6px;}
+    .ui-v2 .chips .chip span{font-size:13.5px;padding:0 10px;}
+    .ui-v2 .v2-wheel .chips .chip{margin:0 6px;}
+    .ui-v2 .v2-sec{padding:12px 10px 14px;}
+    .ui-v2 .v2-sec-row{gap:8px;}
+  }
   .ui-v2 .v2-logo-col{display:flex;flex-direction:column;align-items:center;gap:8px;flex-shrink:0;}
   .ui-v2 .v2-logo-col .v2-info-btn{width:32px;height:32px;margin:0;}
   .ui-v2 .v2-stepper{display:flex;align-items:stretch;background:#F4F6F2;border-radius:10px;overflow:hidden;min-height:46px;}
@@ -6029,7 +6042,7 @@ var scriptStartTime = Date.now();
     }
     if(summary){
       summary.innerHTML = names.length
-        ? 'Gewählt: <b>' + names.map(escapeHtml).join(', ') + '</b>'
+        ? 'Gewählt: <b>' + names.map(function(n){ return UI_V2 ? '<span class="v2-nowrap">' + escapeHtml(n) + '</span>' : escapeHtml(n); }).join(', ') + '</b>'
         : (UI_V2 ? 'Noch nichts gewählt' : 'Noch nichts gewählt – Liste nach oben oder unten wischen.');
     }
     if(list){
