@@ -2593,6 +2593,48 @@
   .ui-v2 .phase.v2-open .phase-body h4,.ui-v2 .phase.v2-open .phase-body .custom-exercise-badge.new-exercise-badge{display:none;}
   .ui-v2 .v2-list-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:10px 2px 18px;font-size:14px;color:#6B776D;}
   .ui-v2 .v2-link{background:none;border:0;padding:10px 0;font-family:'Work Sans',sans-serif;font-size:15px;font-weight:700;color:var(--pitch);cursor:pointer;}
+  /* UI_V2: Trainingsbildschirm */
+  .ui-v2 .phase{scroll-margin-top:16px;}
+  .ui-v2 .tmv2{background:var(--pitch);color:var(--chalk);border-radius:16px;padding:18px 18px 20px;margin:0 0 14px;display:flex;flex-direction:column;font-family:'Work Sans',sans-serif;scroll-margin-top:calc(8px + env(safe-area-inset-top, 0px));}
+  .ui-v2 .tmv2-top{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:14px;font-weight:600;}
+  .ui-v2 .tmv2-paused .tmv2-count{color:var(--sun);}
+  .ui-v2 .tmv2-menu-btn{width:44px;height:44px;flex:0 0 44px;border-radius:50%;border:1.5px solid rgba(255,255,255,.35);background:transparent;color:var(--chalk);font-size:22px;line-height:1;cursor:pointer;}
+  .ui-v2 .tmv2-menu{display:grid;gap:8px;margin:10px 0 0;}
+  .ui-v2 .tmv2-menu[hidden]{display:none;}
+  .ui-v2 .tmv2-menu button{min-height:46px;border-radius:10px;border:1.5px solid rgba(255,255,255,.3);background:rgba(255,255,255,.08);color:var(--chalk);font-family:'Work Sans',sans-serif;font-size:15px;font-weight:600;text-align:left;padding:0 14px;cursor:pointer;}
+  .ui-v2 .tmv2-menu .tmv2-danger{color:#FFB4A8;}
+  .ui-v2 .tmv2-prog{display:flex;gap:4px;margin:12px 0 0;}
+  .ui-v2 .tmv2-prog i{flex:1;height:6px;border-radius:3px;background:rgba(255,255,255,.22);}
+  .ui-v2 .tmv2-prog i.done{background:rgba(255,255,255,.55);} .ui-v2 .tmv2-prog i.now{background:var(--sun);}
+  .ui-v2 .tmv2-title{all:unset;display:block;font-family:'Anton',sans-serif;font-size:32px;line-height:1.08;text-transform:uppercase;margin:22px 0 4px;cursor:default;}
+  .ui-v2 .tmv2-sub{margin:0;font-size:15px;opacity:.85;}
+  .ui-v2 .tmv2-clock{font-family:'Anton',sans-serif;font-size:104px;line-height:1;color:var(--sun);margin:20px 0 0;font-variant-numeric:tabular-nums;}
+  .ui-v2 .tmv2-clock.tm-countdown-warn{color:#FFD27A;} .ui-v2 .tmv2-clock.tm-countdown-done{color:#FF8A73;}
+  .ui-v2 .tmv2-until{margin:6px 0 0;font-size:15px;opacity:.8;}
+  .ui-v2 .tmv2-details{align-self:flex-start;background:none;border:0;padding:12px 0;color:var(--chalk);font-family:'Work Sans',sans-serif;font-size:15px;font-weight:600;text-decoration:underline;cursor:pointer;}
+  .ui-v2 .tmv2-next{all:unset;box-sizing:border-box;display:grid;gap:2px;margin-top:8px;background:rgba(255,255,255,.08);border-radius:14px;padding:14px 16px;cursor:pointer;}
+  .ui-v2 .tmv2-next small{font-size:12px;letter-spacing:.1em;text-transform:uppercase;opacity:.75;font-weight:700;}
+  .ui-v2 .tmv2-next b{font-size:17px;} .ui-v2 .tmv2-next span{font-size:13.5px;opacity:.8;}
+  .ui-v2 .tmv2-weiter{margin-top:14px;min-height:64px;border-radius:16px;border:0;background:var(--sun);color:var(--ink);font-family:'Anton',sans-serif;font-size:24px;text-transform:uppercase;letter-spacing:.03em;cursor:pointer;}
+  .ui-v2 .tmv2-pocket{margin-top:10px;min-height:48px;border-radius:12px;border:1.5px solid rgba(255,255,255,.35);background:transparent;color:var(--chalk);font-family:'Work Sans',sans-serif;font-size:15.5px;font-weight:600;cursor:pointer;}
+  .ui-v2 .tmv2-pocket:disabled{opacity:.4;}
+  .ui-v2 .tmv2-hint{margin:10px 0 0;font-size:13px;opacity:.75;text-align:center;}
+  .ui-v2 .tmv2-hint.tmv2-hint-warn{opacity:1;color:#FFD27A;}
+  .ui-v2 .v2-list .phase[class*="phase-session-"]:not(.v2-open){display:none;}
+  .ui-v2 .tmv2-signal{position:fixed;inset:0;z-index:150;background:var(--sun);color:var(--ink);padding:calc(28px + env(safe-area-inset-top, 0px)) 22px calc(24px + env(safe-area-inset-bottom, 0px));box-shadow:none;display:flex;}
+  .ui-v2 .tmv2-signal[hidden]{display:none;}
+  .ui-v2 .tmv2-sig-inner{display:flex;flex-direction:column;width:100%;max-width:520px;margin:0 auto;text-align:center;}
+  .ui-v2 .tmv2-sig-bell{font-size:56px;margin-top:24px;}
+  .ui-v2 .tmv2-sig-title{font-family:'Anton',sans-serif;font-size:40px;text-transform:uppercase;margin:12px 0 4px;}
+  .ui-v2 .tmv2-sig-sub{font-size:16px;line-height:1.45;}
+  .ui-v2 .tmv2-sig-next{margin-top:28px;background:rgba(32,41,31,.08);border-radius:16px;padding:18px;display:grid;gap:4px;}
+  .ui-v2 .tmv2-sig-next small{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;opacity:.7;}
+  .ui-v2 .tmv2-sig-next b{font-family:'Anton',sans-serif;font-weight:400;font-size:26px;text-transform:uppercase;line-height:1.1;}
+  .ui-v2 .tmv2-sig-next span{font-size:14.5px;}
+  .ui-v2 .tmv2-sig-actions{margin-top:auto;display:grid;gap:10px;padding-top:24px;}
+  .ui-v2 .tmv2-sig-go{min-height:64px;border-radius:16px;border:0;background:var(--pitch);color:#fff;font-family:'Anton',sans-serif;font-size:24px;text-transform:uppercase;cursor:pointer;}
+  .ui-v2 .tmv2-sig-more{min-height:52px;border-radius:14px;border:2px solid rgba(32,41,31,.35);background:transparent;color:var(--ink);font-family:'Work Sans',sans-serif;font-weight:700;font-size:16px;cursor:pointer;}
+
   /* UI_V2: Fenster „Zeiten anpassen“ */
   .v2-sheet-overlay{position:fixed;inset:0;z-index:10000;background:rgba(20,30,22,.45);display:flex;align-items:flex-end;justify-content:center;}
   .v2-sheet{width:100%;max-width:560px;max-height:88vh;overflow-y:auto;background:#fff;border-radius:20px 20px 0 0;padding:12px 18px calc(22px + env(safe-area-inset-bottom, 0px));box-sizing:border-box;display:grid;gap:4px;font-family:'Work Sans',sans-serif;color:var(--ink);}
@@ -6719,8 +6761,59 @@ var scriptStartTime = Date.now();
   // (bindPhaseTimer, startFromTimestamp, onAlarm) laeuft dadurch unveraendert im Hintergrund
   // weiter und bleibt die EINZIGE Quelle fuer "Zeit ist um" (kein zweiter, separat
   // gezaehlter Timer im Trainingsmodus - nur eine andere Darstellung derselben Zahl).
+  // UI_V2: Trainingsbildschirm mit nur dem Nötigen – Übung N von M, Name, große Restzeit,
+  // „Als Nächstes“, ein großer Knopf „Weiter“ und „🌙 Handy einstecken“. Pause, Zurück und
+  // Beenden liegen im Menü „⋯“. Verwendet dieselben Element-IDs wie die bisherige Leiste
+  // (tm-countdown, tm-pause-btn, tm-pocket-btn, tm-end-btn, tm-signal-*), damit Restzeit,
+  // Signal, Pause und Taschenmodus über den unveränderten Code laufen.
+  function renderTrainingModeV2(plan){
+    var phases = getSessionPhases(plan);
+    var activeIdx = phases.findIndex(function(p){ return p.num === plan.activePhaseNum; });
+    if(activeIdx < 0){ activeIdx = 0; }
+    var active = phases[activeIdx];
+    var prev = activeIdx > 0 ? phases[activeIdx - 1] : null;
+    var next = activeIdx + 1 < phases.length ? phases[activeIdx + 1] : null;
+    var paused = !!plan.sessionPausedAt;
+    var html = '<div class="tmv2' + (paused ? ' tmv2-paused' : '') + '" id="session-bar">';
+    html += '<div class="tmv2-top"><span class="tmv2-count">' + (paused ? '⏸ Pausiert · ' : '') + 'Übung ' + (activeIdx + 1) + ' von ' + phases.length + ' · <span id="tm-total-remaining">&nbsp;</span></span>';
+    html += '<button type="button" class="tmv2-menu-btn" id="tmv2-menu-btn" aria-label="Weitere Aktionen" aria-expanded="false" aria-controls="tmv2-menu">⋯</button></div>';
+    html += '<div class="tmv2-menu" id="tmv2-menu" hidden>';
+    html += '<button type="button" id="tm-pause-btn">' + (paused ? '▶ Fortsetzen' : '⏸ Pause') + '</button>';
+    if(prev){ html += '<button type="button" id="tmv2-back-btn" data-num="' + prev.num + '">‹ Zurück zu „' + escapeHtml(prev.title) + '“</button>'; }
+    html += '<button type="button" id="tm-end-btn" class="tmv2-danger">■ Training beenden</button>';
+    html += '</div>';
+    html += '<div class="tmv2-prog" aria-hidden="true">' + phases.map(function(p, i){ return '<i class="' + (i < activeIdx ? 'done' : (i === activeIdx ? 'now' : '')) + '"></i>'; }).join('') + '</div>';
+    html += '<button type="button" class="tmv2-title" id="tm-bar-main">' + escapeHtml(active.title) + '</button>';
+    if(active.dims){ html += '<p class="tmv2-sub">' + escapeHtml(active.dims) + '</p>'; }
+    html += '<div class="tmv2-clock" id="tm-countdown">&nbsp;</div>';
+    html += '<p class="tmv2-until" id="tm-countdown-sub">&nbsp;</p>';
+    html += '<button type="button" class="tmv2-details" id="tmv2-details-btn" aria-expanded="false">Ablauf &amp; Skizze anzeigen</button>';
+    if(next){
+      html += '<button type="button" class="tmv2-next" id="tmv2-nextbox" aria-expanded="false"><small>Als Nächstes</small><b>' + escapeHtml(next.title) + '</b>';
+      html += '<span>' + next.duration + ' Min.' + (next.dims ? ' · ' + escapeHtml(next.dims) : '') + (next.materials ? ' · ' + escapeHtml(next.materials) : '') + '</span></button>';
+    }
+    html += '<button type="button" class="tmv2-weiter" id="tmv2-weiter-btn">' + (next ? 'Weiter ›' : 'Training beenden') + '</button>';
+    html += '<button type="button" class="tmv2-pocket" id="tm-pocket-btn"' + (paused ? ' disabled' : '') + '>🌙 Handy einstecken</button>';
+    html += '<p class="tmv2-hint" id="tmv2-hint">Nicht mit der Seitentaste sperren – sonst kommt kein Signal.</p>';
+    html += '<span id="tm-wakelock-indicator" hidden></span>';
+    html += '</div>';
+
+    // „Zeit ist um“: bildschirmfüllend, gelb, mit der nächsten Übung (Text setzt showSessionAlarmPopup)
+    html += '<div class="tm-signal-banner tmv2-signal" id="tm-signal-banner" hidden><div class="tmv2-sig-inner">';
+    html += '<div class="tmv2-sig-bell" aria-hidden="true">🔔</div>';
+    html += '<div class="tmv2-sig-title" id="tm-signal-text">Zeit ist um</div>';
+    html += '<div class="tmv2-sig-sub" id="tm-signal-sub" hidden></div>';
+    html += '<div class="tmv2-sig-next" id="tmv2-sig-next"></div>';
+    html += '<div class="tmv2-sig-actions">';
+    html += '<button type="button" class="tmv2-sig-go" id="tm-signal-next-btn">Weiter ›</button>';
+    html += '<button type="button" class="tmv2-sig-more" id="tm-signal-extend-btn">+5 Minuten</button>';
+    html += '</div></div></div>';
+    return html;
+  }
+
   function renderTrainingModeHtml(plan){
     if(!plan.sessionStartedAt){ return ''; }
+    if(UI_V2){ return renderTrainingModeV2(plan); }
     var phases = getSessionPhases(plan);
     if(!phases.length){ return ''; }
     var activeIdx = phases.findIndex(function(p){ return p.num === plan.activePhaseNum; });
@@ -6927,6 +7020,7 @@ var scriptStartTime = Date.now();
   // ---------- v5.159: Hinweis beim Trainingsstart ----------
   var START_HINT_KEY = 'trainingspilot:startHintOff';
   async function showStartHint(){
+    if(UI_V2){ return; } // UI_V2: Hinweis steht als eine Zeile im Trainingsbildschirm
     var off = false;
     try{ off = localStorage.getItem(START_HINT_KEY) === '1'; }catch(e){}
     if(off){ return; }
@@ -6989,6 +7083,11 @@ var scriptStartTime = Date.now();
   // v5.157: nach jedem Phasenwechsel die laufende Karte direkt unter die fixierte Leiste holen
   // (die "Als Naechstes"-Karte folgt direkt darunter).
   function scrollToActivePhaseCard(plan){
+    if(UI_V2){
+      var panel = document.getElementById('session-bar');
+      if(panel && panel.scrollIntoView){ setTimeout(function(){ panel.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 60); }
+      return;
+    }
     var card = document.getElementById('phase-card-' + plan.activePhaseNum);
     if(card && card.scrollIntoView){ setTimeout(function(){ card.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 60); }
   }
@@ -7031,13 +7130,25 @@ var scriptStartTime = Date.now();
       wakeLockSentinel.addEventListener('release', function(){
         var ind = document.getElementById('tm-wakelock-indicator');
         if(ind){ ind.textContent = '⚠️ Sperre möglich'; ind.classList.add('tm-wakelock-lost'); }
+        setWakeHintV2(false);
       });
+      setWakeHintV2(true);
       var indOk = document.getElementById('tm-wakelock-indicator');
       if(indOk){ indOk.textContent = '💡 Bildschirm an'; indOk.classList.remove('tm-wakelock-lost'); }
     }catch(e){
       var indErr = document.getElementById('tm-wakelock-indicator');
       if(indErr){ indErr.textContent = '⚠️ Sperre möglich'; indErr.classList.add('tm-wakelock-lost'); }
+      setWakeHintV2(false);
     }
+  }
+  // UI_V2: statt „Sperre möglich“ ein verständlicher Satz in der Hinweiszeile
+  function setWakeHintV2(ok){
+    var hint = document.getElementById('tmv2-hint');
+    if(!hint){ return; }
+    hint.textContent = ok
+      ? 'Nicht mit der Seitentaste sperren – sonst kommt kein Signal.'
+      : '⚠️ Der Bildschirm kann ausgehen (z. B. Stromsparmodus) – Handy sichtbar hinlegen.';
+    hint.classList.toggle('tmv2-hint-warn', !ok);
   }
   function releaseWakeLock(){
     try{ if(wakeLockSentinel && !wakeLockSentinel.released){ wakeLockSentinel.release(); } }catch(e){}
@@ -7124,6 +7235,37 @@ var scriptStartTime = Date.now();
     var signalNextBtn = document.getElementById('tm-signal-next-btn');
     if(extendBtn){ extendBtn.addEventListener('click', function(){ signalExtend(plan); }); }
     if(signalNextBtn){ signalNextBtn.addEventListener('click', function(){ signalNext(plan); }); }
+
+    // UI_V2: Menü „⋯“, Weiter, Zurück, Details der laufenden bzw. nächsten Übung
+    if(UI_V2){
+      var menuBtn = document.getElementById('tmv2-menu-btn');
+      var menu = document.getElementById('tmv2-menu');
+      if(menuBtn && menu){
+        menuBtn.addEventListener('click', function(){
+          menu.hidden = !menu.hidden;
+          menuBtn.setAttribute('aria-expanded', menu.hidden ? 'false' : 'true');
+        });
+      }
+      var weiterBtn = document.getElementById('tmv2-weiter-btn');
+      if(weiterBtn){ weiterBtn.addEventListener('click', function(){ ensureAudioUnlocked(sessionAudioCtxAccessor); signalNext(plan); }); }
+      var backBtn = document.getElementById('tmv2-back-btn');
+      if(backBtn){ backBtn.addEventListener('click', function(){ stopAlarmRepeat(); jumpToSessionPhase(plan, parseInt(backBtn.getAttribute('data-num'), 10)); }); }
+      function bindCardToggle(btnId, cardNum){
+        var b = document.getElementById(btnId);
+        var card = cardNum != null ? document.getElementById('phase-card-' + cardNum) : null;
+        if(!b || !card){ return; }
+        b.addEventListener('click', function(){
+          var open = !card.classList.contains('v2-open');
+          card.classList.toggle('v2-open', open);
+          b.setAttribute('aria-expanded', open ? 'true' : 'false');
+          if(open && card.scrollIntoView){ card.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        });
+      }
+      var sessPhases = getSessionPhases(plan);
+      var aIdx = sessPhases.findIndex(function(p){ return p.num === plan.activePhaseNum; });
+      bindCardToggle('tmv2-details-btn', plan.activePhaseNum);
+      bindCardToggle('tmv2-nextbox', aIdx >= 0 && aIdx + 1 < sessPhases.length ? sessPhases[aIdx + 1].num : null);
+    }
 
     updateTrainingModeDisplay(plan);
     trainingModeIntervalId = setInterval(function(){ updateTrainingModeDisplay(plan); }, 1000);
@@ -7336,6 +7478,27 @@ var scriptStartTime = Date.now();
     var overdueMin = Math.floor((Date.now() - phaseEndMs) / 60000);
     var missed = Date.now() - phaseEndMs > 20000;
     var subEl = document.getElementById('tm-signal-sub');
+    if(UI_V2){
+      textEl.textContent = missed ? 'Wechsel verpasst' : 'Zeit ist um';
+      if(subEl){
+        subEl.textContent = missed
+          ? '„' + phase.title + '“ ist seit ' + Math.max(1, overdueMin) + ' Min. vorbei. Beim Sperren mit der Seitentaste hält das iPhone die App an – nächstes Mal „Handy einstecken“ nutzen.'
+          : '„' + phase.title + '“ ist beendet.';
+        subEl.hidden = false;
+      }
+      var nextBox = document.getElementById('tmv2-sig-next');
+      if(nextBox){
+        nextBox.innerHTML = nextPhase
+          ? '<small>Als Nächstes</small><b>' + escapeHtml(nextPhase.title) + '</b><span>' + nextPhase.duration + ' Min.' + (nextPhase.dims ? ' · ' + escapeHtml(nextPhase.dims) : '') + (nextPhase.materials ? ' · ' + escapeHtml(nextPhase.materials) : '') + '</span>'
+          : '<b>Das war die letzte Übung.</b>';
+      }
+      nextBtn.textContent = isLast ? 'Training beenden' : 'Weiter ›';
+      if(extendBtn){ extendBtn.style.display = isLast ? 'none' : ''; extendBtn.textContent = missed ? 'Noch 5 Minuten' : '+5 Minuten'; }
+      banner.hidden = false;
+      if(pocketModeActive){ showPocketSignal(plan, phase, nextPhase, isLast); }
+      startAlarmRepeat();
+      return;
+    }
     if(missed){
       textEl.textContent = '🔔 Wechsel verpasst · „' + phase.title + '“ ist seit ' + Math.max(1, overdueMin) + ' Min. vorbei';
       if(subEl){ subEl.textContent = 'Beim Sperren mit der Seitentaste hält das iPhone die App an. Nächstes Mal den Taschenmodus nutzen.'; subEl.hidden = false; }
