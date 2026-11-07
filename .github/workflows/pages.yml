@@ -62,10 +62,17 @@ jobs:
           mkdir -p _site
           (cd prod && node tools/exercises.mjs check)
           cp prod/index.html prod/sperrbildschirm-test.html _site/
+          # Dateien für „Als App installieren“ (Android), sofern im jeweiligen Branch vorhanden
+          if [ -d prod/pwa ]; then cp prod/pwa/manifest.webmanifest prod/pwa/sw.js prod/pwa/*.png _site/; fi
           if [ -d testenv ]; then
             if (cd testenv && node tools/exercises.mjs check); then
               mkdir -p _site/test
               cp testenv/index.html _site/test/
+              if [ -d testenv/pwa ]; then
+                cp testenv/pwa/manifest.webmanifest testenv/pwa/sw.js testenv/pwa/*.png _site/test/
+                # Eigener Name, damit Test- und Produktiv-App auf dem Handy unterscheidbar sind
+                sed -i 's/"name": "Trainingspilot"/"name": "Trainingspilot TEST"/; s/"short_name": "Trainingspilot"/"short_name": "TP TEST"/' _site/test/manifest.webmanifest
+              fi
               [ -f testenv/sperrbildschirm-test.html ] && cp testenv/sperrbildschirm-test.html _site/test/
               echo "Test: $(grep -o "var APP_VERSION = '[0-9.]*'" testenv/index.html)" >> "$GITHUB_STEP_SUMMARY"
             else

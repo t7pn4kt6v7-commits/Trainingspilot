@@ -4,9 +4,9 @@ on:
   # Läuft auch für *.html und alle Workflows, weil "Veröffentlichen (Produktiv + Test)" erst
   # nach dieser Prüfung startet (siehe pages.yml).
   push:
-    paths: ['data/exercises/**', '*.html', 'tools/**', '.github/workflows/**']
+    paths: ['data/exercises/**', '*.html', 'tools/**', 'pwa/**', '.github/workflows/**']
   pull_request:
-    paths: ['data/exercises/**', '*.html', 'tools/**', '.github/workflows/**']
+    paths: ['data/exercises/**', '*.html', 'tools/**', 'pwa/**', '.github/workflows/**']
   workflow_dispatch:
 
 permissions:
