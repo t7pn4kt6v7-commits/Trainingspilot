@@ -2561,6 +2561,38 @@
     .chips.more-above{-webkit-mask-image:linear-gradient(to top,#000 calc(100% - 26px),transparent);mask-image:linear-gradient(to top,#000 calc(100% - 26px),transparent);}
     .chips.more-above.more-below{-webkit-mask-image:linear-gradient(to bottom,transparent,#000 26px,#000 calc(100% - 26px),transparent);mask-image:linear-gradient(to bottom,transparent,#000 26px,#000 calc(100% - 26px),transparent);}
   }
+  /* ===== v5.168 UI_V2: vereinfachte Planansicht (Klasse .ui-v2 an <html>) ===== */
+  .ui-v2 .v2-head{padding:26px 22px 22px;display:grid;gap:10px;margin-bottom:14px;}
+  .ui-v2 .v2-head .kicker{margin:0;}
+  .ui-v2 .v2-head h2{margin:0;}
+  .ui-v2 .v2-head .sub{margin:0;}
+  .ui-v2 .v2-head .session-start-hint{display:none;}
+  .ui-v2 .v2-head .session-start-btn,.ui-v2 .v2-start{margin:4px 0 0;min-height:58px;font-size:18px;}
+  .ui-v2 .v2-head-row{display:flex;gap:10px;}
+  .ui-v2 .v2-ghost{flex:1;min-height:44px;border-radius:10px;border:1.5px solid rgba(255,255,255,.4);background:transparent;color:var(--chalk);font-family:'Work Sans',sans-serif;font-size:15px;font-weight:600;cursor:pointer;}
+  .ui-v2 .v2-ghost[aria-expanded="true"]{background:rgba(255,255,255,.14);}
+  .ui-v2 .v2-more-panel,.ui-v2 .v2-materials{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:0 0 14px;display:grid;gap:8px;}
+  .ui-v2 .v2-materials[hidden],.ui-v2 .v2-more-panel[hidden]{display:none;}
+  .ui-v2 .v2-more-item{display:flex;align-items:center;gap:8px;min-height:44px;width:100%;text-align:left;background:#F4F6F2;border:1px solid var(--line);border-radius:10px;padding:0 14px;font-family:'Work Sans',sans-serif;font-size:15px;font-weight:600;color:var(--pitch);cursor:pointer;}
+  .ui-v2 .v2-panel-title{margin:0;font-weight:700;color:var(--pitch);}
+  .ui-v2 .v2-principles{margin:4px 0 0;}
+  .ui-v2 .v2-list{display:grid;gap:8px;}
+  .ui-v2 .v2-list .phase{display:block;padding:0;margin:0;border-radius:12px;gap:0;}
+  .ui-v2 .v2-list .phase > :not(.v2-sum){display:none;}
+  .ui-v2 .v2-list .phase.v2-open > .phase-body{display:block;padding:4px 16px 16px;}
+  .ui-v2 .v2-list .phase .phase-hide-btn,.ui-v2 .v2-list .phase .phase-time{display:none !important;}
+  .ui-v2 .v2-sum{display:grid;grid-template-columns:30px minmax(0,1fr) auto;align-items:center;gap:10px;width:100%;text-align:left;background:transparent;border:0;padding:12px 14px;cursor:pointer;font-family:'Work Sans',sans-serif;color:var(--ink);}
+  .ui-v2 .v2-sum-num{font-family:'Anton',sans-serif;font-size:22px;color:var(--pitch);line-height:1;}
+  .ui-v2 .v2-sum-main{display:grid;gap:2px;min-width:0;}
+  .ui-v2 .v2-sum-title{font-weight:700;font-size:15.5px;line-height:1.25;}
+  .ui-v2 .v2-sum-sub{font-size:12.5px;color:#6B776D;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .ui-v2 .v2-sum-dur{font-weight:700;font-size:14px;color:var(--cone);background:#FCE9DF;border-radius:999px;padding:4px 10px;white-space:nowrap;}
+  .ui-v2 .phase.is-hidden .v2-sum{opacity:.55;}
+  .ui-v2 .phase.is-hidden .v2-sum-dur{color:#6B776D;background:#EEF0EC;}
+  .ui-v2 .phase.v2-open .v2-sum-sub{display:none;}
+  .ui-v2 .phase.v2-open .phase-body h4,.ui-v2 .phase.v2-open .phase-body .custom-exercise-badge.new-exercise-badge{display:none;}
+  .ui-v2 .v2-list-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:10px 2px 18px;font-size:14px;color:#6B776D;}
+  .ui-v2 .v2-link{background:none;border:0;padding:10px 0;font-family:'Work Sans',sans-serif;font-size:15px;font-weight:700;color:var(--pitch);cursor:pointer;}
   @media print{
     .form-panel, .warn-msg, .error-box, #page-loading-overlay{display:none !important;}
     body, .wrap{background:#fff;padding:0;margin:0;}
@@ -2797,6 +2829,15 @@ setTimeout(function(){
 var scriptStartTime = Date.now();
 
 (async function(){
+
+  // ===================== v5.168: Vereinfachte Oberfläche (UI_V2) =====================
+  // Schalter für die vereinfachte Plan- und Trainingsansicht (Ziel: weniger Informationen auf
+  // einmal, ein einziger Timer). Die bisherige Oberfläche bleibt vollständig im Code und wird
+  // nur ausgeblendet - mit UI_V2 = false ist alles wieder wie in v5.167. Alle Änderungen dafür
+  // sind mit "UI_V2" bzw. der CSS-Klasse .ui-v2 gekennzeichnet, damit einzelne Teile gezielt
+  // zurückgenommen werden können.
+  var UI_V2 = true;
+  if(UI_V2){ document.documentElement.classList.add('ui-v2'); }
 
 
   // Nur der <head>-Bereich (Titel, Meta-Tags, CSS) separat erfasst - wird für den neuen,
@@ -4967,9 +5008,21 @@ var scriptStartTime = Date.now();
   // Rendert den Inhalt EINER Phasenkarte (Zeit-Spalte + Übungsdetails). Wird sowohl beim
   // ersten Aufbau des Plans als auch beim Austausch einer einzelnen Übung ("Alternative
   // vorschlagen") wiederverwendet, damit beide Stellen exakt gleich aussehen.
+  // UI_V2: kompakte Kopfzeile jeder Übung (Nummer, Titel, eine Zeile Aufbau, Dauer). Ein Tipp
+  // klappt die vollständige Karte auf (siehe bindPlanV2). Ausgelassene Übungen zeigen „aus“.
+  function renderV2SummaryHTML(p, isHidden){
+    var sub = isHidden ? 'Ausgelassen – Zeit auf die anderen Übungen verteilt' : [p.dims, p.materials].filter(Boolean).join(' · ');
+    return '<button type="button" class="v2-sum" aria-expanded="false">' +
+      '<span class="v2-sum-num">' + p.num + '</span>' +
+      '<span class="v2-sum-main"><span class="v2-sum-title">' + escapeHtml(p.title) + (p.isNewExercise ? ' 🆕' : '') + '</span>' +
+      '<span class="v2-sum-sub">' + escapeHtml(sub) + '</span></span>' +
+      '<span class="v2-sum-dur">' + (isHidden ? 'aus' : p.duration + ' Min.') + '</span>' +
+      '</button>';
+  }
+
   function renderPhaseHTML(p, tier, gesperrt){
     gesperrt = gesperrt || [];
-    var html = '';
+    var html = UI_V2 ? renderV2SummaryHTML(p, false) : '';
     if(p.hideable){
       html += '<button type="button" class="phase-hide-btn" aria-label="Phase ausblenden" title="Phase ausblenden">−</button>';
     }
@@ -5113,7 +5166,7 @@ var scriptStartTime = Date.now();
   // Kompakte Ersatz-Darstellung für eine ausgeblendete Phase - zeigt nur noch den Titel
   // und einen Button zum Wiedereinblenden, statt der vollen Übungskarte.
   function renderCollapsedPhaseHTML(p){
-    return '<div class="phase-collapsed">' +
+    return (UI_V2 ? renderV2SummaryHTML(p, true) : '') + '<div class="phase-collapsed">' +
       '<div class="phase-collapsed-header">' +
       '<span class="phase-collapsed-badge">Ausgeblendet</span>' +
       '<span class="phase-collapsed-title">' + escapeHtml(p.title) + '</span>' +
@@ -5197,6 +5250,7 @@ var scriptStartTime = Date.now();
     // entfaellt dann (er sitzt im selben Bereich oben). Gespeicherte/importierte Plaene
     // bleiben unveraendert.
     var quick = !!(opts && opts.quickActions) && !plan.savedPlanId;
+    if(UI_V2){ return renderPlanV2(plan, meta, quick); }
     html += '<div class="plan-header">';
     html += '<p class="kicker">' + escapeHtml(meta.altersklasse) + ' · Jahrgang ' + escapeHtml(meta.jahrgaenge) + '</p>';
     html += '<h2>' + escapeHtml(plan.title) + '</h2><p class="sub">' + escapeHtml(plan.sub) + '</p>';
@@ -5310,6 +5364,154 @@ var scriptStartTime = Date.now();
 
     html += '<div class="plan-footer">Automatisch erstellt für ' + escapeHtml(meta.verein) + ' · orientiert an den methodischen Grundsätzen des DFB.</div>';
     return html;
+  }
+
+  // UI_V2: Planansicht mit ruhigem Kopf (Titel = Schwerpunkte, eine Zeile Eckdaten), einem
+  // großen „Training starten“ und zwei Nebenknöpfen (🎒 Material, ⋯ Mehr). Teilen, Datum und
+  // die DFB-Grundsätze liegen unter „Mehr“. Die Übungen erscheinen als Kurzliste; die
+  // bisherigen Bausteine (Karten, Timer-Mechanik, Speicher-Formular, Materialliste) werden
+  // unverändert wiederverwendet, damit alle Funktionen erhalten bleiben.
+  function renderPlanV2(plan, meta, quick){
+    var html = '';
+    var phases = Array.isArray(plan.phases) ? plan.phases : [];
+    var visibleCount = phases.filter(function(p){ return !p.hidden; }).length;
+    var focus = (plan.usedCategories || []).map(function(k){ return EXERCISE_LABELS[k] || k; });
+    var running = !!plan.sessionStartedAt;
+
+    html += '<div class="plan-header v2-head">';
+    html += '<p class="kicker">' + escapeHtml(meta.altersklasse) + ' · ' + escapeHtml(String(meta.kinder)) + ' Kinder · ' + plan.trainerCount + ' Trainer*in' + (plan.trainerCount === 1 ? '' : 'nen') + '</p>';
+    html += '<h2>' + escapeHtml(focus.length ? focus.join(' & ') : plan.title) + '</h2>';
+    html += '<p class="sub"><span id="visible-phase-count">' + visibleCount + '</span> Übungen · ' + meta.dauer + ' Minuten' + (plan.savedPlanId && plan.trainingsdatum ? ' · ' + escapeHtml(formatDateDE(plan.trainingsdatum)) : '') + '</p>';
+    if(!running){
+      if(quick){
+        html += '<button type="button" class="quick-start-btn v2-start" id="quick-start-btn"><span aria-hidden="true">▶</span> Training starten</button>';
+      } else {
+        html += buildSessionBarHtml(plan);
+      }
+      html += '<div class="v2-head-row">';
+      html += '<button type="button" class="v2-ghost" id="v2-material-btn" aria-expanded="false">🎒 Material</button>';
+      html += '<button type="button" class="v2-ghost" id="v2-more-btn" aria-expanded="false">⋯ Mehr</button>';
+      html += '</div>';
+    }
+    html += '</div>';
+
+    if(!running){
+      html += '<div class="v2-more-panel" id="v2-more-panel" hidden>';
+      if(quick){
+        html += '<button type="button" class="v2-more-item" id="share-plan-btn">📤 Plan teilen</button>';
+        html += '<button type="button" class="v2-more-item" id="save-plan-btn" aria-label="Datum wählen und Plan speichern">📅 Datum: <span id="quick-date-label">Heute</span></button>';
+        html += '<div id="share-plan-hint-wrap"></div>';
+        html += '<div class="save-plan-form" id="save-plan-form">';
+        html += '<label for="save-plan-date-input" class="save-plan-date-label">📅 Datum der geplanten Trainingseinheit wählen:</label>';
+        html += '<div class="save-plan-form-row">';
+        html += '<input type="date" id="save-plan-date-input">';
+        html += '<button type="button" class="save-plan-confirm-btn" id="save-plan-confirm-btn">Speichern</button>';
+        html += '</div>';
+        html += '<span class="save-plan-status" id="save-plan-status"></span>';
+        html += '</div>';
+      }
+      html += '<button type="button" class="v2-more-item" id="v2-principles-btn" aria-expanded="false">📘 DFB-Grundsätze für diese Altersstufe</button>';
+      var principles = getPrinciples(plan.tier);
+      html += '<ul class="principles-list v2-principles" id="v2-principles" hidden>';
+      principles.items.forEach(function(item){ html += '<li>' + item + '</li>'; });
+      html += '</ul>';
+      html += '</div>';
+
+      html += '<div class="materials-panel v2-materials" id="materials-panel" hidden>';
+      html += '<p class="v2-panel-title">🎒 Material für die ganze Einheit</p>';
+      html += '<div class="materials-grid" id="materials-grid">' + renderMaterialsGridHTML(plan) + '</div>';
+      html += '</div>';
+
+      if(plan.notes && plan.notes.length){
+        html += '<div class="coach-note-box">';
+        plan.notes.forEach(function(n){ html += '<p>👥 ' + escapeHtml(n) + '</p>'; });
+        html += '</div>';
+      }
+    } else {
+      html += renderTrainingModeHtml(plan);
+    }
+
+    var sessionPhaseList = running ? getSessionPhases(plan) : [];
+    var activeSessionIdx = sessionPhaseList.findIndex(function(sp){ return sp.num === plan.activePhaseNum; });
+    html += '<div class="v2-list">';
+    phases.forEach(function(p){
+      var isHidden = !!p.hidden;
+      var innerHtml = isHidden ? renderCollapsedPhaseHTML(p) : renderPhaseHTML(p, plan.tier, plan.gesperrt);
+      var stateClass = '';
+      if(running && !isHidden){
+        var idxInSession = sessionPhaseList.findIndex(function(sp){ return sp.num === p.num; });
+        stateClass = ' phase-session-' + (idxInSession < activeSessionIdx ? 'done' : (idxInSession === activeSessionIdx ? 'active' : (idxInSession === activeSessionIdx + 1 ? 'next' : 'later')));
+      }
+      html += '<div class="phase' + (isHidden ? ' is-hidden' : '') + stateClass + '" id="phase-card-' + p.num + '">' + innerHtml + '</div>';
+    });
+    html += '</div>';
+    if(!running){
+      html += '<div class="v2-list-foot"><span>Tippen für Details</span><button type="button" class="v2-link" id="v2-times-btn">⏱ Zeiten anpassen</button></div>';
+    }
+
+    if(!quick && !running){
+      var isTracked = !!plan.savedPlanId;
+      html += '<div class="action-buttons-row">';
+      html += '<div class="save-plan-row">';
+      html += '<button type="button" id="save-plan-btn" style="' + (isTracked ? 'display:none;' : '') + '">💾 Trainingsplan speichern</button>';
+      html += '<span id="save-plan-saved-indicator" style="' + (isTracked ? '' : 'display:none;') + '">✓ Gespeichert für <b id="save-plan-saved-date">' + (isTracked ? formatDateDE(plan.trainingsdatum) : '') + '</b></span>';
+      html += '<div class="save-plan-form" id="save-plan-form">';
+      html += '<label for="save-plan-date-input" class="save-plan-date-label">📅 Datum der geplanten Trainingseinheit wählen:</label>';
+      html += '<div class="save-plan-form-row">';
+      html += '<input type="date" id="save-plan-date-input">';
+      html += '<button type="button" class="save-plan-confirm-btn" id="save-plan-confirm-btn">Speichern</button>';
+      html += '</div>';
+      html += '<span class="save-plan-status" id="save-plan-status"></span>';
+      html += '</div>';
+      html += '</div>';
+      html += '</div>';
+    }
+    html += '<div class="plan-footer">Automatisch erstellt für ' + escapeHtml(meta.verein) + ' · orientiert an den methodischen Grundsätzen des DFB.</div>';
+    return html;
+  }
+
+  // UI_V2: Bedienung der Planansicht. Aufklappen per Ereignis-Delegation, damit es auch nach dem
+  // Neu-Zeichnen einzelner Karten (Übung wechseln, auslassen) greift.
+  var v2DelegationBound = false;
+  function bindPlanV2(plan){
+    if(!UI_V2){ return; }
+    if(!v2DelegationBound){
+      v2DelegationBound = true;
+      document.addEventListener('click', function(ev){
+        var sum = ev.target.closest && ev.target.closest('.v2-sum');
+        if(!sum){ return; }
+        var card = sum.closest('.phase');
+        if(!card || card.classList.contains('is-hidden')){ return; }
+        var open = !card.classList.contains('v2-open');
+        card.classList.toggle('v2-open', open);
+        sum.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    }
+    function toggle(btnId, panelId, onOpen){
+      var btn = document.getElementById(btnId);
+      var panel = document.getElementById(panelId);
+      if(!btn || !panel){ return; }
+      btn.addEventListener('click', function(){
+        panel.hidden = !panel.hidden;
+        btn.setAttribute('aria-expanded', panel.hidden ? 'false' : 'true');
+        if(!panel.hidden && onOpen){ onOpen(); }
+      });
+    }
+    toggle('v2-material-btn', 'materials-panel', function(){ var o = document.getElementById('v2-more-panel'); if(o){ o.hidden = true; } });
+    toggle('v2-more-btn', 'v2-more-panel', function(){ var m = document.getElementById('materials-panel'); if(m){ m.hidden = true; } });
+    toggle('v2-principles-btn', 'v2-principles');
+    // Das Datumsformular liegt im Bereich „Mehr“. Öffnet die App es selbst (z. B. Rückfrage
+    // „Wirklich ersetzen?“ nach „Training starten“), muss der Bereich sichtbar werden.
+    var form = document.getElementById('save-plan-form');
+    var morePanel = document.getElementById('v2-more-panel');
+    if(form && morePanel && window.MutationObserver){
+      new MutationObserver(function(){
+        if(form.classList.contains('is-open') && morePanel.hidden){
+          morePanel.hidden = false;
+          if(form.scrollIntoView){ form.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+        }
+      }).observe(form, { attributes: true, attributeFilter: ['class'] });
+    }
   }
 
   // ===================== Eingabemaske: letzte Auswahl merken =====================
@@ -5650,6 +5852,8 @@ var scriptStartTime = Date.now();
         var clockEl = card.querySelector('.phase-clock');
         if(durEl){ durEl.textContent = phase.duration + ' Min.'; }
         if(clockEl){ clockEl.textContent = phase.clock; }
+        var v2Dur = card.querySelector('.v2-sum-dur');
+        if(v2Dur){ v2Dur.textContent = phase.duration + ' Min.'; }
       }
     });
     var totalEl = document.getElementById('duration-total');
@@ -7328,6 +7532,7 @@ var scriptStartTime = Date.now();
     bindSavePlanButton(plan);
     bindQuickStartButton(plan);
     bindSharePlanButton(plan);
+    bindPlanV2(plan);
   }
 
   // Baut die Liste der gespeicherten Trainingspläne neu auf. Verkabelt NICHTS selbst mehr -
