@@ -2593,6 +2593,25 @@
   .ui-v2 .phase.v2-open .phase-body h4,.ui-v2 .phase.v2-open .phase-body .custom-exercise-badge.new-exercise-badge{display:none;}
   .ui-v2 .v2-list-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:10px 2px 18px;font-size:14px;color:#6B776D;}
   .ui-v2 .v2-link{background:none;border:0;padding:10px 0;font-family:'Work Sans',sans-serif;font-size:15px;font-weight:700;color:var(--pitch);cursor:pointer;}
+  /* UI_V2: Fenster „Zeiten anpassen“ */
+  .v2-sheet-overlay{position:fixed;inset:0;z-index:10000;background:rgba(20,30,22,.45);display:flex;align-items:flex-end;justify-content:center;}
+  .v2-sheet{width:100%;max-width:560px;max-height:88vh;overflow-y:auto;background:#fff;border-radius:20px 20px 0 0;padding:12px 18px calc(22px + env(safe-area-inset-bottom, 0px));box-sizing:border-box;display:grid;gap:4px;font-family:'Work Sans',sans-serif;color:var(--ink);}
+  .v2-sheet-grab{width:40px;height:5px;border-radius:3px;background:#D5D9D2;margin:0 auto 8px;}
+  .v2-sheet h3{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:22px;margin:0 0 6px;color:var(--pitch);}
+  .v2-trow{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:6px 10px;padding:9px 0;border-bottom:1px solid #EEF0EC;}
+  .v2-trow-title{font-weight:600;font-size:15px;line-height:1.25;}
+  .v2-trow.is-off .v2-trow-title{color:#A7AFA8;text-decoration:line-through;}
+  .v2-step{display:flex;align-items:center;gap:8px;}
+  .v2-step b{min-width:56px;text-align:center;font-size:15px;}
+  .v2-step-btn{width:44px;height:44px;border-radius:50%;border:1.5px solid #C9CFC6;background:#fff;font-size:22px;line-height:1;color:var(--pitch);cursor:pointer;}
+  .v2-step-btn:disabled{opacity:.35;cursor:default;}
+  .v2-trow-left{display:grid;justify-items:start;gap:0;min-width:0;}
+  .v2-trow-toggle{background:none;border:0;padding:6px 0 2px;min-height:32px;font-family:'Work Sans',sans-serif;font-size:13.5px;font-weight:600;color:#6B776D;text-decoration:underline;cursor:pointer;}
+  .v2-trow.is-off .v2-trow-toggle{color:var(--pitch);}
+  .v2-trow-off{font-size:13.5px;color:#A7AFA8;}
+  .v2-times-total{display:flex;justify-content:space-between;margin-top:10px;font-weight:700;font-size:15.5px;}
+  .v2-ok{color:#2F7A45;} .v2-warn{color:var(--cone);}
+  .v2-sheet-done{margin-top:12px;min-height:52px;border-radius:12px;border:0;background:var(--pitch);color:#fff;font-family:'Work Sans',sans-serif;font-weight:700;font-size:16px;cursor:pointer;}
   @media print{
     .form-panel, .warn-msg, .error-box, #page-loading-overlay{display:none !important;}
     body, .wrap{background:#fff;padding:0;margin:0;}
@@ -5500,6 +5519,8 @@ var scriptStartTime = Date.now();
     toggle('v2-material-btn', 'materials-panel', function(){ var o = document.getElementById('v2-more-panel'); if(o){ o.hidden = true; } });
     toggle('v2-more-btn', 'v2-more-panel', function(){ var m = document.getElementById('materials-panel'); if(m){ m.hidden = true; } });
     toggle('v2-principles-btn', 'v2-principles');
+    var timesBtn = document.getElementById('v2-times-btn');
+    if(timesBtn){ timesBtn.addEventListener('click', function(){ openTimesSheetV2(plan); }); }
     // Das Datumsformular liegt im Bereich „Mehr“. Öffnet die App es selbst (z. B. Rückfrage
     // „Wirklich ersetzen?“ nach „Training starten“), muss der Bereich sichtbar werden.
     var form = document.getElementById('save-plan-form');
@@ -5512,6 +5533,82 @@ var scriptStartTime = Date.now();
         }
       }).observe(form, { attributes: true, attributeFilter: ['class'] });
     }
+  }
+
+  // UI_V2: „Zeiten anpassen“ – alle Übungen untereinander mit −/+ (5-Minuten-Schritte) und
+  // „Auslassen“. Ersetzt die −/+-Knöpfe auf jeder Karte, die Gesamtdauer-Box und das
+  // Ausblenden. Dauer: dieselben Folgeschritte wie die bisherigen Kartenknöpfe (Uhrzeiten,
+  // laufenden Timer zurücksetzen, speichern). Auslassen/Einblenden löst die bisherigen
+  // Knöpfe der (ausgeblendeten) Karte aus, damit die Zeit genauso neu verteilt wird.
+  function openTimesSheetV2(plan){
+    var old = document.getElementById('v2-times-sheet');
+    if(old){ old.remove(); }
+    var ov = document.createElement('div');
+    ov.id = 'v2-times-sheet';
+    ov.className = 'v2-sheet-overlay';
+    ov.innerHTML = '<div class="v2-sheet" role="dialog" aria-modal="true" aria-labelledby="v2-times-title">' +
+      '<div class="v2-sheet-grab" aria-hidden="true"></div>' +
+      '<h3 id="v2-times-title">Zeiten anpassen</h3>' +
+      '<div class="v2-times-rows" id="v2-times-rows"></div>' +
+      '<div class="v2-times-total" id="v2-times-total"></div>' +
+      '<button type="button" class="v2-sheet-done" id="v2-times-done">Fertig</button>' +
+      '</div>';
+    document.body.appendChild(ov);
+    document.documentElement.classList.add('pk-no-scroll');
+
+    function close(){ ov.remove(); document.documentElement.classList.remove('pk-no-scroll'); document.removeEventListener('keydown', onKey); }
+    function onKey(ev){ if(ev.key === 'Escape'){ close(); } }
+    document.addEventListener('keydown', onKey);
+    ov.addEventListener('click', function(ev){ if(ev.target === ov){ close(); } });
+    ov.querySelector('#v2-times-done').addEventListener('click', close);
+
+    function render(){
+      var rows = ov.querySelector('#v2-times-rows');
+      var visible = plan.phases.filter(function(p){ return !p.hidden; });
+      rows.innerHTML = plan.phases.map(function(p){
+        var canHide = p.hideable && !(visible.length <= 1 && !p.hidden);
+        var toggleBtn = p.hidden
+          ? '<button type="button" class="v2-trow-toggle" data-act="show">Wieder aufnehmen</button>'
+          : (canHide ? '<button type="button" class="v2-trow-toggle" data-act="hide">Auslassen</button>' : '');
+        return '<div class="v2-trow' + (p.hidden ? ' is-off' : '') + '" data-num="' + p.num + '">' +
+          '<span class="v2-trow-left"><span class="v2-trow-title">' + escapeHtml(p.title) + '</span>' + toggleBtn + '</span>' +
+          (p.hidden
+            ? '<span class="v2-trow-off">ausgelassen</span>'
+            : '<span class="v2-step"><button type="button" class="v2-step-btn" data-act="minus" aria-label="5 Minuten kürzer"' + (p.duration <= 5 ? ' disabled' : '') + '>−</button>' +
+              '<b>' + p.duration + ' Min.</b>' +
+              '<button type="button" class="v2-step-btn" data-act="plus" aria-label="5 Minuten länger">+</button></span>') +
+          '</div>';
+      }).join('');
+      var total = visible.reduce(function(sum, p){ return sum + p.duration; }, 0);
+      var target = plan.dauer || total;
+      var t = ov.querySelector('#v2-times-total');
+      t.innerHTML = '<span>Gesamt</span><span class="' + (total === target ? 'v2-ok' : 'v2-warn') + '">' + total + ' von ' + target + ' Min.' + (total === target ? ' ✓' : '') + '</span>';
+    }
+    ov.querySelector('#v2-times-rows').addEventListener('click', function(ev){
+      var btn = ev.target.closest('button[data-act]');
+      if(!btn){ return; }
+      var row = btn.closest('.v2-trow');
+      var num = parseInt(row.getAttribute('data-num'), 10);
+      var phase = plan.phases.filter(function(p){ return p.num === num; })[0];
+      var card = document.getElementById('phase-card-' + num);
+      if(!phase){ return; }
+      var act = btn.getAttribute('data-act');
+      if(act === 'minus' || act === 'plus'){
+        phase.duration = Math.max(5, phase.duration + (act === 'plus' ? 5 : -5));
+        recomputeDurationTotals(plan);
+        var c = timerCtl(plan, num);
+        if(c && c.isActive && c.isActive()){ c.reset(); }
+        persistIfTracked(plan);
+      } else if(act === 'hide'){
+        var hb = card && card.querySelector('.phase-hide-btn');
+        if(hb){ hb.click(); }
+      } else if(act === 'show'){
+        var sb = card && card.querySelector('.phase-show-btn');
+        if(sb){ sb.click(); }
+      }
+      render();
+    });
+    render();
   }
 
   // ===================== Eingabemaske: letzte Auswahl merken =====================
