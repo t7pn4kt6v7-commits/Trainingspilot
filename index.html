@@ -10,7 +10,9 @@
   Funktionalitaet der App ist davon nicht betroffen - reine Kommentar-Bereinigung.
 
   Changelog (letzte Versionen):
-  v5.174 - Gefuehrte Anleitung "Als App einrichten" (3 Schritte mit Safari-Symbolen, Pfeil zur
+  v5.174 - Android: echter Knopf "Installieren" (Manifest, Symbole, Service Worker ohne Cache in
+         pwa/, veroeffentlicht per pages.yml), sonst Anleitung ueber das Menue.
+         Gefuehrte Anleitung "Als App einrichten" (3 Schritte mit Safari-Symbolen, Pfeil zur
          Teilen-Stelle je nach iPhone/iPad und Safari-Version); einmalige Bestaetigung beim ersten
          Start als Home-Bildschirm-App. Hinweis-Toast bricht lange Texte sauber um.
   v5.173 - Hinweis "Als App auf den Home-Bildschirm legen" nur auf iPhone/iPad im Browser
@@ -1964,6 +1966,7 @@
 <meta name="apple-mobile-web-app-title" content="Trainingspilot">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#2E5339">
+<link rel="manifest" href="manifest.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
@@ -2591,10 +2594,12 @@
   .ui-v2 .v2-install-hint{position:relative;display:flex;align-items:flex-start;gap:8px;margin-top:14px;padding:10px 8px 10px 12px;border-radius:10px;background:rgba(242,177,52,.14);border:1px solid rgba(242,177,52,.45);font-family:'Work Sans',sans-serif;font-size:13.5px;line-height:1.4;color:#F4EFE2;}
   .ui-v2 .v2-install-hint p{margin:0;flex:1 1 auto;}
   .ui-v2 .v2-install-hint a{color:var(--sun);font-weight:700;text-decoration:none;white-space:nowrap;}
+  .ui-v2 .v2-install-hint a.v2-install-btn{display:inline-block;margin-top:6px;background:var(--sun);color:var(--ink);border-radius:8px;padding:6px 12px;}
   .ui-v2 .v2-install-hint button{flex:0 0 auto;width:28px;height:28px;margin:-3px 0 0;border:0;background:none;color:#F4EFE2;font-size:16px;line-height:1;cursor:pointer;opacity:.8;}
   .ui-v2 .form-panel.v2-form-collapsed .v2-install-hint{display:none;}
   /* ===== v5.174 UI_V2: geführte Anleitung „Zum Home-Bildschirm“ ===== */
   .v2-ig{position:fixed;inset:0;z-index:170;background:rgba(15,25,18,.62);display:flex;justify-content:center;align-items:flex-start;padding:calc(18px + env(safe-area-inset-top, 0px)) 14px 0;font-family:'Work Sans',sans-serif;}
+  .v2-ig.v2-ig-top{padding-top:calc(70px + env(safe-area-inset-top, 0px));}
   .v2-ig-card{width:100%;max-width:420px;background:#fff;color:#1F2A22;border-radius:18px;padding:18px 18px 16px;box-shadow:0 12px 40px rgba(0,0,0,.35);}
   .v2-ig-head{display:flex;align-items:center;gap:12px;margin:0 0 12px;}
   .v2-ig-head img{width:44px;height:44px;border-radius:10px;box-shadow:0 1px 4px rgba(0,0,0,.25);}
@@ -4322,7 +4327,7 @@ var scriptStartTime = Date.now();
   // technischen Changelog weiter unten, das für Entwicklungszwecke gedacht ist. Wird beim
   // Update-Check per einfachem Marker-Block ausgelesen und im Update-Popup angezeigt.
   // USER_CHANGELOG_START
-  // - iPhone: Schritt-für-Schritt-Hilfe, um Trainingspilot als App abzulegen
+  // - Trainingspilot als App: Schritt-für-Schritt-Hilfe (iPhone) bzw. Installieren-Knopf (Android)
   // - Themen als Walze: man sieht sofort, dass es mehr Themen gibt
   // - Ruhigere Startseite: Kinder, Trainer*innen und Minuten per −/+
   // - Übung auslassen per Wischen nach links (mit „Rückgängig“)
@@ -8685,13 +8690,39 @@ var scriptStartTime = Date.now();
   // Speicher der Home-Bildschirm-App, privater Modus, neues Gerät) – wohl aber, ob die Seite im
   // Browser oder als installierte App läuft. Daher erscheint der Hinweis nur auf iPhone/iPad im
   // Browser, nie als Home-Bildschirm-App, auf Android oder am Computer; ✕ blendet ihn dauerhaft aus.
-  function isIosBrowserV2(){
-    var ua = navigator.userAgent || '';
-    var ios = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-    if(!ios){ return false; }
-    var standalone = navigator.standalone === true ||
+  function isStandaloneV2(){
+    return navigator.standalone === true ||
       (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches);
-    return !standalone;
+  }
+  function platformV2(){
+    var ua = navigator.userAgent || '';
+    if(/iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)){ return 'ios'; }
+    if(/Android/i.test(ua)){ return 'android'; }
+    return '';
+  }
+  function isIosBrowserV2(){ return platformV2() === 'ios' && !isStandaloneV2(); }
+  // Android (v5.174): Chrome meldet per „beforeinstallprompt“, dass die App installierbar ist; das
+  // Ereignis wird aufgehoben und der Knopf „Installieren“ löst es aus. Ohne dieses Ereignis (anderer
+  // Browser, schon installiert) zeigt die App stattdessen die Anleitung über das ⋮-Menü.
+  var v2InstallPrompt = null;
+  if(UI_V2){
+    window.addEventListener('beforeinstallprompt', function(ev){
+      ev.preventDefault();
+      v2InstallPrompt = ev;
+      var b = document.getElementById('v2-install-hint-open');
+      if(b){ b.textContent = 'Installieren'; b.classList.add('v2-install-btn'); }
+    });
+    window.addEventListener('appinstalled', function(){
+      v2InstallPrompt = null;
+      storageSet('ui-v2:install-hint-dismissed', '1');
+      var h = document.getElementById('v2-install-hint');
+      if(h && h.parentNode){ h.parentNode.removeChild(h); }
+      v2Toast('✓ Trainingspilot ist installiert – du findest die App jetzt auf dem Startbildschirm.');
+    });
+    // Service Worker ohne Zwischenspeicher – nur für Android, damit Chrome den Installieren-Knopf anbietet.
+    if(platformV2() === 'android' && 'serviceWorker' in navigator && location.protocol === 'https:'){
+      navigator.serviceWorker.register('sw.js').catch(function(){});
+    }
   }
   // UI_V2 (v5.174): Geführte Anleitung. Apple erlaubt keinen Installieren-Knopf; die App kann nur
   // zeigen, wo man in Safari tippen muss. Schritte und Pfeil richten sich nach Gerät (iPhone: Leiste
@@ -8700,11 +8731,12 @@ var scriptStartTime = Date.now();
   var V2_ADD_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><path d="M12 8v8M8 12h8"/></svg>';
   function openInstallGuideV2(){
     if(document.getElementById('v2-ig')){ return; }
+    var android = platformV2() === 'android';
     var ua = navigator.userAgent || '';
     var ipad = /iPad/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
     var m = ua.match(/Version\/(\d+)/);
     var safariNew = m && parseInt(m[1], 10) >= 26;
-    var step1 = ipad
+    var step1 = android ? 'Rechts in der Adressleiste auf <b>⋮</b> (Menü) tippen' : ipad
       ? 'Oben rechts auf <b>Teilen</b> tippen'
       : (safariNew ? 'Unten rechts auf <b>•••</b> und dann auf <b>Teilen</b> tippen' : 'Unten in der Leiste auf <b>Teilen</b> tippen');
     var icon = document.querySelector('link[rel="apple-touch-icon"]');
@@ -8712,19 +8744,26 @@ var scriptStartTime = Date.now();
     ov.id = 'v2-ig'; ov.className = 'v2-ig'; ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-modal', 'true'); ov.setAttribute('aria-label', 'Trainingspilot als App einrichten');
     ov.innerHTML = '<div class="v2-ig-card">' +
       '<div class="v2-ig-head">' + (icon ? '<img alt="" src="' + icon.getAttribute('href') + '">' : '') +
-        '<div><h3>Trainingspilot als App einrichten</h3><p>Dauert 10 Sekunden – deine Pläne bleiben dann dauerhaft gespeichert.</p></div></div>' +
-      '<ol>' +
+        '<div><h3>Trainingspilot als App einrichten</h3><p>' + (android ? 'Dauert 10 Sekunden – danach startet Trainingspilot wie eine App, ohne Browserleiste.' : 'Dauert 10 Sekunden – deine Pläne bleiben dann dauerhaft gespeichert.') + '</p></div></div>' +
+      '<ol>' + (android ?
+        '<li><span class="v2-ig-n">1</span><span>' + step1 + '</span><span class="v2-ig-ico" style="font-size:22px">⋮</span></li>' +
+        '<li><span class="v2-ig-n">2</span><span><b>„App installieren“</b> oder <b>„Zum Startbildschirm hinzufügen“</b> wählen</span><span class="v2-ig-ico">' + V2_ADD_SVG + '</span></li>' +
+        '<li><span class="v2-ig-n">3</span><span>Mit <b>„Installieren“</b> bzw. <b>„Hinzufügen“</b> bestätigen</span><span class="v2-ig-ico">Installieren</span></li>'
+      :
         '<li><span class="v2-ig-n">1</span><span>' + step1 + '</span><span class="v2-ig-ico">' + (safariNew && !ipad ? '•••' : V2_SHARE_SVG) + '</span></li>' +
         '<li><span class="v2-ig-n">2</span><span>Etwas nach unten wischen und <b>„Zum Home-Bildschirm“</b> wählen</span><span class="v2-ig-ico">' + V2_ADD_SVG + '</span></li>' +
-        '<li><span class="v2-ig-n">3</span><span>Oben rechts auf <b>„Hinzufügen“</b> tippen</span><span class="v2-ig-ico">Hinzufügen</span></li>' +
+        '<li><span class="v2-ig-n">3</span><span>Oben rechts auf <b>„Hinzufügen“</b> tippen</span><span class="v2-ig-ico">Hinzufügen</span></li>') +
       '</ol>' +
-      '<p class="v2-ig-foot">Danach Trainingspilot immer über das neue Symbol auf dem Home-Bildschirm öffnen.</p>' +
+      '<p class="v2-ig-foot">Danach Trainingspilot immer über das neue Symbol auf dem ' + (android ? 'Startbildschirm' : 'Home-Bildschirm') + ' öffnen.</p>' +
       '<button type="button" class="v2-ig-ok">Verstanden</button></div>';
     var arrow = document.createElement('div');
-    arrow.className = 'v2-ig-arrow ' + (ipad ? 'up' : 'down');
+    var up = ipad || android;
+    arrow.className = 'v2-ig-arrow ' + (up ? 'up' : 'down');
     arrow.setAttribute('aria-hidden', 'true');
-    arrow.textContent = ipad ? '⬆' : '⬇';
-    if(!ipad){ arrow.style.left = safariNew ? 'auto' : 'calc(50% - 28px)'; if(safariNew){ arrow.style.right = '14px'; } }
+    arrow.textContent = up ? '⬆' : '⬇';
+    if(android){ arrow.style.right = '4px'; }
+    if(up){ ov.classList.add('v2-ig-top'); }
+    if(!up){ arrow.style.left = safariNew ? 'auto' : 'calc(50% - 28px)'; if(safariNew){ arrow.style.right = '14px'; } }
     function close(){
       if(ov.parentNode){ ov.parentNode.removeChild(ov); }
       if(arrow.parentNode){ arrow.parentNode.removeChild(arrow); }
@@ -8739,20 +8778,19 @@ var scriptStartTime = Date.now();
   }
   // Einmalige Bestätigung beim ersten Start als Home-Bildschirm-App.
   function setupInstalledConfirmV2(){
-    var ua = navigator.userAgent || '';
-    var ios = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-    var standalone = navigator.standalone === true || (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches);
-    if(!ios || !standalone){ return; }
+    var plat = platformV2();
+    if(!plat || !isStandaloneV2()){ return; }
     var KEY = 'ui-v2:installed-confirmed';
     Promise.resolve(storageGet(KEY)).then(function(done){
       if(done){ return; }
       storageSet(KEY, '1');
-      setTimeout(function(){ v2Toast('✓ Trainingspilot ist jetzt als App eingerichtet – deine Pläne bleiben dauerhaft gespeichert.'); }, 600);
+      setTimeout(function(){ v2Toast(plat === 'ios' ? '✓ Trainingspilot ist jetzt als App eingerichtet – deine Pläne bleiben dauerhaft gespeichert.' : '✓ Trainingspilot ist jetzt als App eingerichtet.'); }, 600);
     }).catch(function(){});
   }
 
   function setupInstallHintV2(){
-    if(!isIosBrowserV2()){ return; }
+    var plat = platformV2();
+    if(!plat || isStandaloneV2()){ return; }
     var KEY = 'ui-v2:install-hint-dismissed';
     Promise.resolve(storageGet(KEY)).then(function(dismissed){
       if(dismissed || document.getElementById('v2-install-hint')){ return; }
@@ -8761,11 +8799,26 @@ var scriptStartTime = Date.now();
       if(!row){ return; }
       var box = document.createElement('div');
       box.id = 'v2-install-hint'; box.className = 'v2-install-hint'; box.setAttribute('role', 'note');
-      box.innerHTML = '<p>📌 Tipp: Als App auf den Home-Bildschirm legen, sonst löscht Safari gespeicherte Pläne nach 7 Tagen. <a href="#" id="v2-install-hint-open">Anleitung ›</a></p>' +
+      box.innerHTML = (plat === 'ios'
+        ? '<p>📌 Tipp: Als App auf den Home-Bildschirm legen, sonst löscht Safari gespeicherte Pläne nach 7 Tagen. <a href="#" id="v2-install-hint-open">Anleitung ›</a></p>'
+        : '<p>📲 Tipp: Trainingspilot als App installieren – startet direkt vom Startbildschirm, ohne Browserleiste. ' +
+          (v2InstallPrompt ? '<a href="#" id="v2-install-hint-open" class="v2-install-btn">Installieren</a>' : '<a href="#" id="v2-install-hint-open">Anleitung ›</a>') + '</p>') +
         '<button type="button" id="v2-install-hint-close" aria-label="Hinweis dauerhaft ausblenden">✕</button>';
       row.parentNode.insertBefore(box, row.nextSibling);
       document.getElementById('v2-install-hint-open').addEventListener('click', function(ev){
         ev.preventDefault();
+        if(v2InstallPrompt){
+          var pr = v2InstallPrompt;
+          v2InstallPrompt = null;
+          pr.prompt();
+          Promise.resolve(pr.userChoice).then(function(c){
+            if(c && c.outcome === 'dismissed'){
+              var b = document.getElementById('v2-install-hint-open');
+              if(b){ b.textContent = 'Anleitung ›'; b.classList.remove('v2-install-btn'); }
+            }
+          }).catch(function(){});
+          return;
+        }
         openInstallGuideV2();
       });
       document.getElementById('v2-install-hint-close').addEventListener('click', function(){
