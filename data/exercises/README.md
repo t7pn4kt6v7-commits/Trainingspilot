@@ -52,6 +52,8 @@ Wird `index.html` von Hand oder anderswo bearbeitet, darf der Block zwischen `EX
 | `dims` | Textvorlage für Feldgröße oder Stationen. |
 | `diagram` | Skizze, siehe unten. |
 | `custom` | Optional `true`: Übung wurde von einer Trainer*in vorgeschlagen (Badge 👥). |
+| `aufbau`, `ablauf`, `regeln` | Gegliederter Text (seit v5.182, Listen kurzer Sätze). `ablauf` sind die nummerierten Schritte, die Nummern müssen zu den Schritten im Bild passen. Mit `ablauf` entfällt `desc`. Nur `<b>…</b>` als Auszeichnung (z. B. für Rollen **A**, **V**). Keine Feldgrößen hineinschreiben, die stehen schon in `dims`. |
+| `leichter`, `schwerer` | Je ein Satz, wie die Übung leichter bzw. schwerer wird. |
 
 ### Formeln
 
@@ -73,4 +75,17 @@ Beliebiger JavaScript-Code ist bewusst nicht möglich.
 
 ### Skizzen
 
-`"fn"` ist einer der Standard-Bausteine `diagramScatter`, `diagramCircle`, `diagramStations`, `diagramGame` oder `diagramParcours`. Die Optionen stehen bei der jeweiligen Funktion in `index.html`. Frei gezeichnete Skizzen (`{ "custom": "<id>" }`) liegen als Code in `CUSTOM_DIAGRAMS` in `index.html`. Sie sind Einzelfälle, neue Übungen nutzen die Standard-Bausteine.
+**Seit v5.182 (empfohlen): eigenes Bild in 3D-Perspektive** mit `{ "scene": { … } }`. Koordinaten in Metern, `x` = Länge (Spielrichtung links → rechts), `y` = Tiefe (vorne → hinten):
+
+```json
+{ "scene": { "w": 15, "l": 8, "caption": "A = Angreifer*in · V = Verteidiger*in",
+  "lines": [{ "x1": 5, "y1": 8, "x2": 5, "y2": 0, "dash": true, "label": "1 Punkt" }],
+  "zones": [{ "x": 0, "y": 0, "w": 3, "h": 8, "label": "ZONE" }],
+  "items": [{ "t": "p", "x": 1, "y": 4, "team": "b", "label": "A" }, { "t": "ball", "x": 1.6, "y": 3.8 },
+            { "t": "cone", "x": 5, "y": 0 }, { "t": "goal", "x": 15, "y": 4, "dir": "w" }],
+  "moves": [{ "t": "dribble", "from": [1.8, 3.8], "to": [8, 2], "step": 1 }] } }
+```
+
+Figuren `p` (`team`: `b` blau, `r` rot, `y` Torhüter*in, `t` Trainer*in, `w` neutral; optional `label`, `say` = Sprechblase, `step`, `arms`, `tail`), `cone` (`tall`, `fallen`, `color`), `ball` (`z` = Höhe), `goal` (`dir` = Richtung der Öffnung `n`/`s`/`e`/`w`, optional `w`/`h`/`d` in Metern für Kleinfeldtore), `ladder` (`len`). Wege `moves`: `pass` (gerade), `dribble` (Wellenlinie), `run` (gestrichelt, ohne Ball); optional `step` (gelbe Nummer), `at` (Position der Nummer 0–1), `bend`, `arc` (Flugbahn). Weitere Optionen: `noField`, `objScale`, `margin`. Wichtig beim Zeichnen: Figuren vorne verdecken Dinge dahinter – Trainer*innen an den hinteren Rand stellen.
+
+Ältere Übungen nutzen noch die Standard-Bausteine: `"fn"` ist einer der Standard-Bausteine `diagramScatter`, `diagramCircle`, `diagramStations`, `diagramGame` oder `diagramParcours`. Die Optionen stehen bei der jeweiligen Funktion in `index.html`. Frei gezeichnete Skizzen (`{ "custom": "<id>" }`) liegen als Code in `CUSTOM_DIAGRAMS` in `index.html`. Sie sind Einzelfälle, neue Übungen nutzen die Standard-Bausteine.

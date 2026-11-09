@@ -29,7 +29,14 @@ const TEXT_FIELDS = ['title', 'goal', 'desc', 'coachTip', 'materials', 'dims'];
 // Übungen mit "added" in den ersten 60 Tagen als 🆕 und schlägt sie etwas häufiger vor.
 // sources: Internetseiten, die der Agent als Anregung genutzt hat (nur zur Nachvollziehbarkeit
 // bei der Freigabe; die App zeigt sie nicht an).
-const ALLOWED_FIELDS = new Set(['id', ...TEXT_FIELDS, 'diagram', 'custom', 'added', 'origin', 'sources']);
+// v5.182: gegliederter Text. aufbau/ablauf/regeln = Listen kurzer Sätze, leichter/schwerer = je ein Satz.
+// Mit "ablauf" ist "desc" (Fließtext) nicht mehr nötig. Erlaubtes HTML in diesen Feldern: nur <b>…</b>.
+const DETAIL_LISTS = ['aufbau', 'ablauf', 'regeln'];
+const DETAIL_TEXTS = ['leichter', 'schwerer'];
+const ALLOWED_FIELDS = new Set(['id', ...TEXT_FIELDS, 'diagram', 'custom', 'added', 'origin', 'sources', ...DETAIL_LISTS, ...DETAIL_TEXTS]);
+const SCENE_ITEM_TYPES = new Set(['p', 'cone', 'ball', 'goal', 'ladder']);
+const SCENE_MOVE_TYPES = new Set(['pass', 'dribble', 'run']);
+function onlyBoldTags(t) { return !/<(?!\/?b>)/.test(t); }
 
 const DATA_START = '<!-- EXERCISE_DATA_START (generiert von tools/exercises.mjs build - nicht von Hand bearbeiten) -->';
 const DATA_END = '<!-- EXERCISE_DATA_END -->';
@@ -79,8 +86,35 @@ export function validate(data, html = fs.readFileSync(HTML, 'utf8')) {
       list.forEach((ex, i) => {
         const where = `${tier}/${cat}/${ex && ex.title ? ex.title : '#' + i}`;
         for (const f of Object.keys(ex)) if (!ALLOWED_FIELDS.has(f)) err(where, `unbekanntes Feld "${f}"`);
+        const structured = Array.isArray(ex.ablauf);
         for (const f of ['id', ...TEXT_FIELDS]) {
+          if (f === 'desc' && structured && !('desc' in ex)) continue;
           if (typeof ex[f] !== 'string' || !ex[f].trim()) err(where, `Pflichtfeld "${f}" fehlt oder ist leer`);
+        }
+        for (const f of DETAIL_LISTS) {
+          if (!(f in ex)) continue;
+          if (!Array.isArray(ex[f]) || !ex[f].every((t) => typeof t === 'string' && t.trim() && onlyBoldTags(t))) err(where, `"${f}" muss eine Liste von Texten sein (nur <b> erlaubt)`);
+        }
+        if (structured && !ex.ablauf.length) err(where, '"ablauf" ist leer');
+        for (const f of DETAIL_TEXTS) {
+          if (f in ex && (typeof ex[f] !== 'string' || !onlyBoldTags(ex[f]))) err(where, `"${f}" muss ein Text sein (nur <b> erlaubt)`);
+        }
+        const sc = ex.diagram && ex.diagram.scene;
+        if (sc) {
+          if (typeof sc.w !== 'number' || typeof sc.l !== 'number') err(where, 'Szene braucht w und l in Metern');
+          for (const it of sc.items || []) if (!SCENE_ITEM_TYPES.has(it.t) || typeof it.x !== 'number' || typeof it.y !== 'number') err(where, `Szene: ungültiges Objekt ${JSON.stringify(it)}`);
+          const steps = [];
+          for (const m of sc.moves || []) {
+            if (!SCENE_MOVE_TYPES.has(m.t) || !Array.isArray(m.from) || !Array.isArray(m.to)) err(where, `Szene: ungültiger Weg ${JSON.stringify(m)}`);
+            if (m.step) steps.push(m.step);
+          }
+          for (const it of sc.items || []) if (it.step) steps.push(it.step);
+          // Jede Nummer im Bild muss es auch im Text geben (und umgekehrt), sonst passen Bild und Ablauf nicht zusammen.
+          if (structured) {
+            const want = ex.ablauf.map((_, i) => i + 1).join(',');
+            const got = [...new Set(steps)].sort((a, b) => a - b).join(',');
+            if (want !== got) err(where, `Schritte im Bild (${got || 'keine'}) passen nicht zum Ablauf (${want})`);
+          }
         }
         if (typeof ex.id === 'string' && !/^[a-z0-9]+(-[a-z0-9]+)*$/.test(ex.id)) err(where, `id "${ex.id}" nur a-z, 0-9 und Bindestriche`);
         if (ids.has(ex.id)) err(where, `id "${ex.id}" in dieser Altersstufe doppelt`);
