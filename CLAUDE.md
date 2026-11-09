@@ -15,7 +15,8 @@
   und `node tools/exercises.mjs check`.
 - Übungsdarstellung (seit v5.182): eigenes 3D-Bild (`diagram.scene`) und gegliederter Text
   (`aufbau`, `ablauf`, `regeln`, `leichter`, `schwerer`), Aufbau siehe `data/exercises/README.md`.
-  Umgestellt: G-Jugend (`jung.json`), F-/E-Jugend (`mittel.json`), D-Jugend (`alt.json`), C-Jugend (`c.json`), B-Jugend (`b.json`). Die übrigen Altersstufen folgen paketweise.
+  Alle Übungen sind umgestellt; neue Übungen bitte direkt in diesem Format anlegen.
+  Begrüßung/Abschluss (`sceneSitzkreis`) und Abschlussspiel (`sceneGameFormat`) nutzen ebenfalls den 3D-Zeichner.
   Nach dem Umstellen alle Bilder ansehen (Überdeckungen, abgeschnittene Beschriftungen).
 - Die vereinfachte Oberfläche hängt am Schalter `UI_V2` in `index.html`; mit `UI_V2 = false`
   muss die alte Oberfläche unverändert funktionieren.
