@@ -6,92 +6,686 @@
         "id": "dribbel-zoo",
         "title": "Dribbel-Zoo",
         "goal": "Ziel: Ballkontrolle, jedes Kind mit eigenem Ball in Bewegung",
-        "desc": "Hütchen locker im Feld verteilen. Jedes Kind bekommt einen Ball und dribbelt frei zwischen den Hütchen hindurch. Der Trainer ruft Tiernamen, worauf alle sofort die passende Ballführung zeigen: „Hase\" = ganz enge, kleine Schritte, „Elefant\" = kräftiger Schuss nach vorne mit Hinterherlaufen. Namen häufig wechseln, damit die Kinder ständig reagieren.",
         "coachTip": "Kurze, bildhafte Kommandos wirken besser als technische Erklärungen.",
         "materials": "{k} Bälle · {min(6, ceil(k/3))} Hütchen",
         "dims": "{fieldDims(10, 0.5, k)}",
         "diagram": {
-          "fn": "diagramScatter",
-          "args": [
-            "=min(k,16)",
-            {
-              "withBall": true,
-              "cones": "=min(6, ceil(k/3))",
-              "caption": "Freies Dribbeln zwischen Hütchen",
-              "showDribblePath": true
-            }
-          ]
-        }
+          "scene": {
+            "w": 14,
+            "l": 10,
+            "items": [
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 14,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 10,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 14,
+                "y": 10,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 4,
+                "y": 3
+              },
+              {
+                "t": "cone",
+                "x": 9,
+                "y": 2
+              },
+              {
+                "t": "cone",
+                "x": 11.5,
+                "y": 6.5
+              },
+              {
+                "t": "cone",
+                "x": 5,
+                "y": 7.5
+              },
+              {
+                "t": "cone",
+                "x": 8,
+                "y": 5
+              },
+              {
+                "t": "p",
+                "x": 7,
+                "y": 10.4,
+                "team": "t",
+                "label": "T",
+                "say": "Hase!",
+                "step": 2
+              },
+              {
+                "t": "p",
+                "x": 2.5,
+                "y": 5,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "ball",
+                "x": 3.1,
+                "y": 4.75
+              },
+              {
+                "t": "p",
+                "x": 10,
+                "y": 3.5,
+                "team": "b"
+              },
+              {
+                "t": "ball",
+                "x": 10.6,
+                "y": 3.25
+              },
+              {
+                "t": "p",
+                "x": 6.5,
+                "y": 2,
+                "team": "b"
+              },
+              {
+                "t": "ball",
+                "x": 7.1,
+                "y": 1.75
+              },
+              {
+                "t": "p",
+                "x": 11,
+                "y": 8.5,
+                "team": "b"
+              },
+              {
+                "t": "ball",
+                "x": 11.6,
+                "y": 8.25
+              },
+              {
+                "t": "p",
+                "x": 3,
+                "y": 8.5,
+                "team": "b"
+              },
+              {
+                "t": "ball",
+                "x": 3.6,
+                "y": 8.25
+              }
+            ],
+            "moves": [
+              {
+                "t": "dribble",
+                "from": [
+                  3.2,
+                  4.7
+                ],
+                "to": [
+                  6.4,
+                  4.4
+                ],
+                "step": 1,
+                "at": 0.4
+              },
+              {
+                "t": "dribble",
+                "from": [
+                  10.7,
+                  3.2
+                ],
+                "to": [
+                  12.5,
+                  4.6
+                ],
+                "step": 3,
+                "at": 0.5
+              }
+            ],
+            "caption": "Jedes Kind dribbelt mit eigenem Ball zwischen den Hütchen"
+          }
+        },
+        "aufbau": [
+          "Hütchen locker im Feld verteilen.",
+          "Jedes Kind hat einen eigenen Ball."
+        ],
+        "ablauf": [
+          "Alle dribbeln frei zwischen den Hütchen hindurch.",
+          "Trainer*in ruft einen Tiernamen.",
+          "Alle zeigen sofort die passende Ballführung: „Hase“ = ganz kleine, schnelle Schritte, „Elefant“ = Ball kräftig nach vorne schießen und hinterherlaufen."
+        ],
+        "regeln": [
+          "Tiernamen oft wechseln, damit die Kinder ständig reagieren."
+        ],
+        "leichter": "Nur zwei Tiere verwenden.",
+        "schwerer": "Weitere Tiere ausdenken, z. B. „Frosch“ = Ball mit der Sohle stoppen und hüpfen."
       },
       {
         "id": "ampel-dribbling",
         "title": "Ampel-Dribbling",
         "goal": "Ziel: Ballkontrolle mit Tempowechsel und Reaktionsschulung",
-        "desc": "Hütchen locker im Feld verteilen. Jedes Kind dribbelt frei mit eigenem Ball zwischen den Hütchen. Der Trainer ruft Ampelfarben: „Rot\" = Ball sofort unter der Fußsohle stoppen und stehen bleiben, „Gelb\" = langsam weiterdribbeln, „Grün\" = volles Tempo. Farben in beliebiger Reihenfolge und im Wechsel rufen.",
         "coachTip": "Ampelfarben auch mit Handzeichen zeigen, damit auch Kinder mit wenig Konzentration mitkommen.",
         "materials": "{k} Bälle · {pylonCountForBoundary((fieldWidthMeters(10, 0.5, k)))} gelbe Pilonen zur Feldmarkierung · 4 Hütchen",
         "dims": "{fieldDims(10, 0.5, k)}",
         "diagram": {
-          "fn": "diagramScatter",
-          "args": [
-            "=min(k,16)",
-            {
-              "showBoundary": true,
-              "extraBoundaryPylons": "=pylonCountForBoundary((fieldWidthMeters(10, 0.5, k))) >= 6",
-              "withBall": true,
-              "cones": 4,
-              "showDribblePath": true,
-              "caption": "Freies Dribbeln mit Ampel-Kommandos"
-            }
-          ]
-        }
+          "scene": {
+            "w": 14,
+            "l": 10,
+            "items": [
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 14,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 10,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 14,
+                "y": 10,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 4,
+                "y": 3,
+                "color": "#E8622C"
+              },
+              {
+                "t": "cone",
+                "x": 9,
+                "y": 2
+              },
+              {
+                "t": "cone",
+                "x": 11.5,
+                "y": 6.5
+              },
+              {
+                "t": "cone",
+                "x": 5,
+                "y": 7.5
+              },
+              {
+                "t": "p",
+                "x": 7,
+                "y": 10.4,
+                "team": "t",
+                "label": "T",
+                "say": "Rot!",
+                "step": 2
+              },
+              {
+                "t": "p",
+                "x": 2.5,
+                "y": 5,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "ball",
+                "x": 3.1,
+                "y": 4.75
+              },
+              {
+                "t": "p",
+                "x": 9.5,
+                "y": 4,
+                "team": "b"
+              },
+              {
+                "t": "ball",
+                "x": 10.1,
+                "y": 3.75
+              },
+              {
+                "t": "p",
+                "x": 6.5,
+                "y": 2.2,
+                "team": "b"
+              },
+              {
+                "t": "ball",
+                "x": 7.1,
+                "y": 1.9500000000000002
+              },
+              {
+                "t": "p",
+                "x": 11,
+                "y": 8.5,
+                "team": "b"
+              },
+              {
+                "t": "ball",
+                "x": 11.6,
+                "y": 8.25
+              },
+              {
+                "t": "p",
+                "x": 3.5,
+                "y": 8.5,
+                "team": "b"
+              },
+              {
+                "t": "ball",
+                "x": 4.1,
+                "y": 8.25
+              }
+            ],
+            "moves": [
+              {
+                "t": "dribble",
+                "from": [
+                  3.2,
+                  4.7
+                ],
+                "to": [
+                  6.6,
+                  4.6
+                ],
+                "step": 1,
+                "at": 0.4
+              }
+            ],
+            "caption": "Rot = stopp · Gelb = langsam · Grün = schnell"
+          }
+        },
+        "aufbau": [
+          "Hütchen locker im Feld verteilen.",
+          "Jedes Kind hat einen eigenen Ball."
+        ],
+        "ablauf": [
+          "Alle dribbeln frei zwischen den Hütchen.",
+          "Trainer*in ruft eine Ampelfarbe: „Rot“ = Ball sofort mit der Sohle stoppen, „Gelb“ = langsam dribbeln, „Grün“ = volles Tempo."
+        ],
+        "regeln": [
+          "Farben in beliebiger Reihenfolge rufen.",
+          "Farbe zusätzlich mit Handzeichen zeigen."
+        ],
+        "leichter": "Nur „Rot“ und „Grün“.",
+        "schwerer": "Bei „Rot“ den Ball stoppen und sich einmal um den Ball drehen."
       },
       {
         "id": "autorennen",
         "title": "Autorennen",
         "goal": "Ziel: Ballführung mit Tempowechseln spielerisch verpackt",
-        "desc": "Hütchen als Straßenbegrenzung im Feld aufstellen. Jedes Kind dribbelt seinen Ball als „Auto\" frei durchs Feld. Auf Zuruf wechseln die Fahrmodi: „Ampel rot\" = sofort anhalten, Ball unter der Sohle stoppen, „Vollgas\" = schnelles Dribbeln, „Hupe\" = kurz stehen bleiben und laut hupen. Modi häufig und in beliebiger Reihenfolge wechseln.",
         "coachTip": "Die Fantasie der Kinder für eigene Fahrgeräusche nutzen – das steigert die Motivation deutlich.",
         "materials": "{k} Bälle · 4 Hütchen als Straßenbegrenzung",
         "dims": "{fieldDims(10, 0.5, k)}",
         "diagram": {
-          "fn": "diagramScatter",
-          "args": [
-            "=min(k,16)",
-            {
-              "withBall": true,
-              "cones": 4,
-              "showDribblePath": true,
-              "caption": "Autorennen: freies Dribbeln mit Fahrmodi"
-            }
-          ]
-        }
+          "scene": {
+            "w": 14,
+            "l": 10,
+            "items": [
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 14,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 10,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 14,
+                "y": 10,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 4,
+                "y": 3
+              },
+              {
+                "t": "cone",
+                "x": 10,
+                "y": 3
+              },
+              {
+                "t": "cone",
+                "x": 4,
+                "y": 7
+              },
+              {
+                "t": "cone",
+                "x": 10,
+                "y": 7
+              },
+              {
+                "t": "p",
+                "x": 7,
+                "y": 10.4,
+                "team": "t",
+                "label": "T",
+                "say": "Vollgas!",
+                "step": 2
+              },
+              {
+                "t": "p",
+                "x": 2,
+                "y": 5,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "ball",
+                "x": 2.6,
+                "y": 4.75
+              },
+              {
+                "t": "p",
+                "x": 7,
+                "y": 1.5,
+                "team": "b"
+              },
+              {
+                "t": "ball",
+                "x": 7.6,
+                "y": 1.25
+              },
+              {
+                "t": "p",
+                "x": 12,
+                "y": 5.5,
+                "team": "b"
+              },
+              {
+                "t": "ball",
+                "x": 12.6,
+                "y": 5.25
+              },
+              {
+                "t": "p",
+                "x": 10,
+                "y": 8.5,
+                "team": "b"
+              },
+              {
+                "t": "ball",
+                "x": 10.6,
+                "y": 8.25
+              },
+              {
+                "t": "p",
+                "x": 6.5,
+                "y": 5,
+                "team": "b"
+              },
+              {
+                "t": "ball",
+                "x": 7.1,
+                "y": 4.75
+              }
+            ],
+            "moves": [
+              {
+                "t": "dribble",
+                "from": [
+                  2.6,
+                  4.7
+                ],
+                "to": [
+                  2.8,
+                  2
+                ],
+                "step": 1,
+                "bend": 0.6,
+                "at": 0.5
+              },
+              {
+                "t": "dribble",
+                "from": [
+                  7.6,
+                  1.3
+                ],
+                "to": [
+                  11,
+                  1.4
+                ],
+                "step": 3,
+                "at": 0.5
+              }
+            ],
+            "caption": "Jedes Kind ist ein Auto mit Ball"
+          }
+        },
+        "aufbau": [
+          "Hütchen als Straßenbegrenzung im Feld aufstellen.",
+          "Jedes Kind hat einen Ball und ist ein „Auto“."
+        ],
+        "ablauf": [
+          "Alle Autos fahren (dribbeln) frei durchs Feld.",
+          "Trainer*in ruft einen Fahrmodus.",
+          "Alle reagieren: „Vollgas“ = schnell dribbeln, „Ampel rot“ = Ball mit der Sohle stoppen, „Hupe“ = stehen bleiben und laut hupen."
+        ],
+        "regeln": [
+          "Modi oft und in beliebiger Reihenfolge wechseln."
+        ],
+        "leichter": "Nur „Vollgas“ und „Ampel rot“.",
+        "schwerer": "„Rückwärtsgang“: Ball mit der Sohle rückwärts ziehen."
       },
       {
         "id": "ab-in-die-garage",
         "title": "Ab in die Garage",
         "goal": "Ziel: Ballführung mit Tempowechsel und Anhalten des Balls",
-        "desc": "Im Feld stehen mehrere Minitore als „Garagen“. Jedes Kind ist mit seinem Ball als Auto unterwegs und fährt (dribbelt) frei herum. Ruft die Trainer*in „Garage!“, parkt jedes Auto so schnell wie möglich in einer Garage: Ball ins Minitor dribbeln und mit der Sohle stoppen. Danach rückwärts ausparken und weiterfahren. Abwandlungen: „Tankstelle!“ (Ball an einem Hütchen anhalten), „Waschanlage!“ (einmal um ein Hütchen herum).",
         "coachTip": "Langsames, kontrolliertes Einparken ist wichtiger als Tempo – loben, wenn der Ball wirklich ruhig in der Garage liegt.",
         "materials": "{k} Bälle · {max(2, min(4, ceil(k/4)))} Minitore · 4 Hütchen · {pylonCountForBoundary(fieldWidthMeters(12, 0.45, k))} gelbe Pilonen zur Feldmarkierung",
         "dims": "{fieldDims(12, 0.45, k)}",
         "diagram": {
-          "fn": "diagramScatter",
-          "args": [
-            "=min(k, 16)",
-            {
-              "showBoundary": true,
-              "withBall": true,
-              "cones": 4,
-              "showDribblePath": true,
-              "caption": "Dribbeln · auf Zuruf ins Minitor „einparken“"
-            }
-          ]
+          "scene": {
+            "w": 14,
+            "l": 10,
+            "items": [
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 14,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 10,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 14,
+                "y": 10,
+                "color": "#F2B134"
+              },
+              {
+                "t": "goal",
+                "x": 4,
+                "y": 10,
+                "dir": "s"
+              },
+              {
+                "t": "goal",
+                "x": 10,
+                "y": 10,
+                "dir": "s"
+              },
+              {
+                "t": "goal",
+                "x": 0,
+                "y": 5,
+                "dir": "e"
+              },
+              {
+                "t": "goal",
+                "x": 14,
+                "y": 5,
+                "dir": "w"
+              },
+              {
+                "t": "p",
+                "x": 1.2,
+                "y": 10.4,
+                "team": "t",
+                "label": "T",
+                "say": "Garage!",
+                "step": 2
+              },
+              {
+                "t": "p",
+                "x": 3,
+                "y": 3.5,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "ball",
+                "x": 3.6,
+                "y": 3.25
+              },
+              {
+                "t": "p",
+                "x": 8,
+                "y": 2.5,
+                "team": "b"
+              },
+              {
+                "t": "ball",
+                "x": 8.6,
+                "y": 2.25
+              },
+              {
+                "t": "p",
+                "x": 10.5,
+                "y": 6.5,
+                "team": "b"
+              },
+              {
+                "t": "ball",
+                "x": 11.1,
+                "y": 6.25
+              },
+              {
+                "t": "p",
+                "x": 5.5,
+                "y": 6.5,
+                "team": "b"
+              },
+              {
+                "t": "ball",
+                "x": 6.1,
+                "y": 6.25
+              },
+              {
+                "t": "p",
+                "x": 11,
+                "y": 2,
+                "team": "b"
+              },
+              {
+                "t": "ball",
+                "x": 11.6,
+                "y": 1.75
+              }
+            ],
+            "moves": [
+              {
+                "t": "dribble",
+                "from": [
+                  3.6,
+                  3.2
+                ],
+                "to": [
+                  6.5,
+                  3.8
+                ],
+                "step": 1,
+                "at": 0.6
+              },
+              {
+                "t": "dribble",
+                "from": [
+                  11.1,
+                  6.6
+                ],
+                "to": [
+                  13.6,
+                  5.2
+                ],
+                "step": 3,
+                "at": 0.4
+              },
+              {
+                "t": "dribble",
+                "from": [
+                  6.1,
+                  6.6
+                ],
+                "to": [
+                  4.2,
+                  9.6
+                ]
+              }
+            ],
+            "caption": "Minitore = Garagen"
+          }
         },
         "sources": [
           "https://training-service.fussball.de/fileadmin/_dfbdam/320-bam-sp3-01.pdf"
         ],
-        "added": "2026-11-03"
+        "added": "2026-11-03",
+        "aufbau": [
+          "Mehrere Minitore als „Garagen“ im Feld verteilen.",
+          "Jedes Kind hat einen Ball und ist ein Auto."
+        ],
+        "ablauf": [
+          "Alle fahren (dribbeln) frei herum.",
+          "Trainer*in ruft „Garage!“.",
+          "Jedes Auto parkt so schnell wie möglich in einer Garage: Ball ins Minitor dribbeln und mit der Sohle stoppen. Dann rückwärts ausparken und weiterfahren."
+        ],
+        "regeln": [
+          "Weitere Rufe: „Tankstelle!“ = Ball an einem Hütchen anhalten, „Waschanlage!“ = einmal um ein Hütchen herum."
+        ],
+        "leichter": "Mehr Garagen aufstellen.",
+        "schwerer": "In jede Garage passt nur ein Auto."
       }
     ],
     "passspiel": [
@@ -99,62 +693,388 @@
         "id": "zupass-kreis",
         "title": "Zupass-Kreis",
         "goal": "Ziel: Erste Passtechnik, Innenseite, genaues Zuspiel",
-        "desc": "Kinder in Gruppen von mindestens 5 einteilen (mit nur 4 Kindern lässt sich kein sinnvoller Kreis bilden - bei einer ungünstigen Gesamtzahl lieber eine Gruppe etwas größer als 5 bis 6 lassen, statt eine Gruppe auf 4 zu reduzieren), jede Gruppe bildet einen Kreis mit ca. 3–4 m Abstand zueinander, ein Ball pro Gruppe. Die Kinder passen sich den Ball reihum mit der Innenseite zu; wer den Ball bekommt, ruft vorher laut den Namen des nächsten Kindes.",
         "coachTip": "Immer mit Blick zum Ball passen lassen, nicht einfach draufschießen.",
         "materials": "{max(1, ceil(k/5))} Bälle · keine weiteren Hilfsmittel",
         "dims": "{fieldDims(6, 0.15, k)} pro Gruppe",
         "diagram": {
-          "fn": "diagramCircle",
-          "args": [
-            "=clamp(min(k,8),5,8)",
-            {
-              "caption": "Passkreis in Kleingruppen (hier: eine Gruppe)"
-            }
-          ]
-        }
+          "scene": {
+            "w": 7,
+            "l": 6,
+            "objScale": 1.3,
+            "noField": true,
+            "items": [
+              {
+                "t": "p",
+                "x": 3.5,
+                "y": 0.6,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "ball",
+                "x": 4,
+                "y": 0.5
+              },
+              {
+                "t": "p",
+                "x": 6.2,
+                "y": 2.4,
+                "team": "b",
+                "label": "B"
+              },
+              {
+                "t": "p",
+                "x": 5.4,
+                "y": 5.3,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 1.6,
+                "y": 5.3,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 0.8,
+                "y": 2.4,
+                "team": "b"
+              }
+            ],
+            "moves": [
+              {
+                "t": "pass",
+                "from": [
+                  4.1,
+                  0.9
+                ],
+                "to": [
+                  5.8,
+                  2.1
+                ],
+                "step": 1,
+                "at": 0.5
+              },
+              {
+                "t": "pass",
+                "from": [
+                  6,
+                  2.9
+                ],
+                "to": [
+                  5.5,
+                  4.9
+                ],
+                "step": 2,
+                "at": 0.5
+              },
+              {
+                "t": "pass",
+                "from": [
+                  5,
+                  5.3
+                ],
+                "to": [
+                  2,
+                  5.3
+                ]
+              }
+            ],
+            "caption": "Gruppe im Kreis · 3–4 m Abstand"
+          }
+        },
+        "aufbau": [
+          "Gruppen mit 5–6 Kindern, jede Gruppe bildet einen Kreis (ca. 3–4 m Abstand).",
+          "Ein Ball pro Gruppe."
+        ],
+        "ablauf": [
+          "<b>A</b> ruft laut den Namen von <b>B</b> und passt mit der Innenseite zu <b>B</b>.",
+          "<b>B</b> stoppt den Ball, ruft den nächsten Namen und passt weiter."
+        ],
+        "regeln": [
+          "Gruppen nicht kleiner als 5 Kinder machen – dann lieber eine Gruppe mit 6."
+        ],
+        "leichter": "Ball vor dem Pass stoppen und hinlegen.",
+        "schwerer": "Richtung wechseln, sobald Trainer*in klatscht."
       },
       {
         "id": "nummern-pass",
         "title": "Nummern-Pass",
         "goal": "Ziel: Passtechnik mit Reaktion und Namen lernen verbinden",
-        "desc": "Kinder in einer Reihe im Abstand von ca. 3 m aufstellen und von 1 beginnend durchnummerieren (Nummern laut ansagen und merken lassen). Ein Ball startet bei Nummer 1. Vor jedem Pass ruft das ballführende Kind laut die nächste Nummer, bevor es dorthin passt.",
         "coachTip": "Reihenfolge gelegentlich mischen, damit alle aufmerksam bleiben.",
         "materials": "{ceil(k/5)} Bälle · keine weiteren Hilfsmittel",
         "dims": "{fieldDims(8, 0.2, k)} pro Reihe",
         "diagram": {
-          "fn": "diagramScatter",
-          "args": [
-            "=min(k,10)",
-            {
-              "showPassPath": true,
-              "caption": "Passreihe nach Nummern (hier: eine Reihe)"
-            }
-          ]
-        }
+          "scene": {
+            "w": 14,
+            "l": 5,
+            "noField": true,
+            "items": [
+              {
+                "t": "p",
+                "x": 1,
+                "y": 2.5,
+                "team": "b",
+                "label": "1"
+              },
+              {
+                "t": "ball",
+                "x": 1.6,
+                "y": 2.3
+              },
+              {
+                "t": "p",
+                "x": 4,
+                "y": 2.5,
+                "team": "b",
+                "label": "2"
+              },
+              {
+                "t": "p",
+                "x": 7,
+                "y": 2.5,
+                "team": "b",
+                "label": "3"
+              },
+              {
+                "t": "p",
+                "x": 10,
+                "y": 2.5,
+                "team": "b",
+                "label": "4"
+              },
+              {
+                "t": "p",
+                "x": 13,
+                "y": 2.5,
+                "team": "b",
+                "label": "5"
+              }
+            ],
+            "moves": [
+              {
+                "t": "pass",
+                "from": [
+                  1.7,
+                  2.1
+                ],
+                "to": [
+                  3.6,
+                  2.1
+                ],
+                "step": 1,
+                "at": 0.5
+              },
+              {
+                "t": "pass",
+                "from": [
+                  4.4,
+                  2.1
+                ],
+                "to": [
+                  6.6,
+                  2.1
+                ],
+                "step": 2,
+                "at": 0.5
+              }
+            ],
+            "caption": "Reihe mit ca. 3 m Abstand · Nummern 1, 2, 3 …"
+          }
+        },
+        "aufbau": [
+          "Die Kinder stehen in einer Reihe mit ca. 3 m Abstand.",
+          "Sie werden von 1 an durchnummeriert und merken sich ihre Nummer.",
+          "Bei vielen Kindern: mehrere Reihen mit je 5 Kindern."
+        ],
+        "ablauf": [
+          "Kind <b>1</b> ruft laut „Zwei!“ und passt zu Kind <b>2</b>.",
+          "Kind <b>2</b> stoppt den Ball, ruft „Drei!“ und passt weiter."
+        ],
+        "regeln": [
+          "Am Ende der Reihe geht es rückwärts zurück."
+        ],
+        "leichter": "Ball vor jedem Pass stoppen und hinlegen.",
+        "schwerer": "Reihenfolge mischen: Trainer*in ruft die nächste Nummer."
       },
       {
         "id": "durch-das-tor-zum-freund",
         "title": "Durch das Tor zum Freund",
         "goal": "Ziel: Erste gezielte Pässe mit festem Partner",
-        "desc": "Im Feld viele kleine Hütchentore (ca. 1,5 m breit) verteilen. Immer zwei Kinder sind ein Team mit einem Ball. Gemeinsam ziehen sie durch das Feld: Ein Kind dribbelt zu einem freien Tor, der Partner stellt sich auf die andere Seite, dann wird der Ball durch das Tor gepasst und gestoppt. Danach suchen sich beide das nächste Tor. Welches Team schafft in 2 Minuten die meisten Tore? Leichter: Ball vor dem Pass auf die Torlinie legen und aus dem Stand spielen.",
         "coachTip": "Feste Partner machen es Bambini leichter. Mit der Innenseite passen und den Ball vor dem nächsten Pass zuerst stoppen lassen.",
         "materials": "{ceil(k/2)} Bälle · {2 * max(4, ceil(k/2))} Hütchen (Hütchentore)",
         "dims": "{fieldDims(14, 0.5, k)}",
         "diagram": {
-          "fn": "diagramScatter",
-          "args": [
-            "=min(k, 12)",
-            {
-              "cones": 6,
-              "showPassPath": true,
-              "caption": "Paare passen durch freie Hütchentore"
-            }
-          ]
+          "scene": {
+            "w": 14,
+            "l": 10,
+            "items": [
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 14,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 10,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 14,
+                "y": 10,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 4,
+                "y": 2.25
+              },
+              {
+                "t": "cone",
+                "x": 4,
+                "y": 3.75
+              },
+              {
+                "t": "cone",
+                "x": 9,
+                "y": 1.25
+              },
+              {
+                "t": "cone",
+                "x": 9,
+                "y": 2.75
+              },
+              {
+                "t": "cone",
+                "x": 11,
+                "y": 6.25
+              },
+              {
+                "t": "cone",
+                "x": 11,
+                "y": 7.75
+              },
+              {
+                "t": "cone",
+                "x": 5,
+                "y": 6.75
+              },
+              {
+                "t": "cone",
+                "x": 5,
+                "y": 8.25
+              },
+              {
+                "t": "p",
+                "x": 2.5,
+                "y": 3,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "ball",
+                "x": 3.1,
+                "y": 3
+              },
+              {
+                "t": "p",
+                "x": 5.5,
+                "y": 3,
+                "team": "b",
+                "label": "B"
+              },
+              {
+                "t": "p",
+                "x": 7.5,
+                "y": 2,
+                "team": "r"
+              },
+              {
+                "t": "ball",
+                "x": 8.1,
+                "y": 1.75
+              },
+              {
+                "t": "p",
+                "x": 10.5,
+                "y": 2,
+                "team": "r"
+              },
+              {
+                "t": "p",
+                "x": 10,
+                "y": 7,
+                "team": "y"
+              },
+              {
+                "t": "ball",
+                "x": 10.6,
+                "y": 6.75
+              },
+              {
+                "t": "p",
+                "x": 12.2,
+                "y": 7,
+                "team": "y"
+              }
+            ],
+            "moves": [
+              {
+                "t": "pass",
+                "from": [
+                  3.4,
+                  2.9
+                ],
+                "to": [
+                  5.1,
+                  2.9
+                ],
+                "step": 1,
+                "at": 0.25
+              },
+              {
+                "t": "dribble",
+                "from": [
+                  5.9,
+                  3.2
+                ],
+                "to": [
+                  9.5,
+                  6.5
+                ],
+                "step": 2,
+                "at": 0.5
+              }
+            ],
+            "caption": "Paare · Hütchentore ca. 1,5 m breit"
+          }
         },
         "sources": [
           "https://dfb.de/fileadmin/_dfbdam/59912-361-bam-te.pdf"
         ],
-        "added": "2026-11-03"
+        "added": "2026-11-03",
+        "aufbau": [
+          "Viele Hütchentore (ca. 1,5 m breit) im Feld verteilen.",
+          "Immer zwei Kinder sind ein Team mit einem Ball."
+        ],
+        "ablauf": [
+          "<b>A</b> passt durch ein freies Tor zu <b>B</b>, <b>B</b> stoppt den Ball.",
+          "<b>B</b> dribbelt zum nächsten freien Tor, <b>A</b> läuft auf die andere Seite."
+        ],
+        "regeln": [
+          "Welches Team schafft in 2 Minuten die meisten Tore?"
+        ],
+        "leichter": "Ball vor dem Pass auf die Torlinie legen und aus dem Stand spielen.",
+        "schwerer": "Nur mit dem schwächeren Fuß passen."
       }
     ],
     "torschuss": [
@@ -162,59 +1082,382 @@
         "id": "wer-kippt-den-huetchen-turm",
         "title": "Wer kippt den Hütchen-Turm?",
         "goal": "Ziel: Torschuss mit Erfolgserlebnis für alle",
-        "desc": "An jeder Station einen kleinen Hütchen-Turm bauen: ein kleines Hütchen kopfüber auf ein großes Hütchen stellen, ca. 6–8 m vor einem kleinen Tor. Die Kinder stellen sich in einer Reihe vor jeder Station an und dribbeln nacheinander los, um den Turm mit einem Schuss umzukicken. Nach jedem Versuch den Turm wieder aufbauen und das nächste Kind starten lassen.",
         "coachTip": "Laut mitjubeln bei jedem Treffer – das Erfolgserlebnis zählt mehr als die Technik.",
         "materials": "{(stationCount(k))} kleine Tore · {(stationCount(k))*4} große Hütchen · {(stationCount(k))*4} kleine Hütchen zum Aufstapeln · {(stationCount(k))}–{(stationCount(k))*2} Bälle",
         "dims": "{stationLabel(stationCount(k))} à ca. 8 × 6 m",
         "diagram": {
-          "fn": "diagramStations",
-          "args": [
-            "=stationCount(k)",
-            {
-              "caption": "=stationCount(k) + ' Torschuss-Stationen im Wechsel'"
-            }
-          ]
-        }
+          "scene": {
+            "w": 10,
+            "l": 6,
+            "objScale": 1.3,
+            "noField": true,
+            "items": [
+              {
+                "t": "goal",
+                "x": 10,
+                "y": 3,
+                "dir": "w"
+              },
+              {
+                "t": "cone",
+                "x": 7.5,
+                "y": 3,
+                "tall": true,
+                "tower": true
+              },
+              {
+                "t": "p",
+                "x": 0.6,
+                "y": 3,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "ball",
+                "x": 1.2,
+                "y": 2.8
+              },
+              {
+                "t": "p",
+                "x": -0.6,
+                "y": 3.1,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": -1.7,
+                "y": 3.2,
+                "team": "b"
+              }
+            ],
+            "margin": 2,
+            "moves": [
+              {
+                "t": "dribble",
+                "from": [
+                  1.5,
+                  2.8
+                ],
+                "to": [
+                  4,
+                  2.9
+                ],
+                "step": 1
+              },
+              {
+                "t": "pass",
+                "from": [
+                  4.3,
+                  2.9
+                ],
+                "to": [
+                  7.3,
+                  3
+                ],
+                "step": 2,
+                "at": 0.5
+              }
+            ],
+            "caption": "Hütchen-Turm ca. 6–8 m vor dem Tor"
+          }
+        },
+        "aufbau": [
+          "Pro Station ein Hütchen-Turm: kleines Hütchen kopfüber auf ein großes stellen.",
+          "Der Turm steht vor einem kleinen Tor, die Kinder stellen sich ca. 6–8 m davor an."
+        ],
+        "ablauf": [
+          "<b>A</b> dribbelt los.",
+          "<b>A</b> schießt und versucht, den Turm umzukippen."
+        ],
+        "regeln": [
+          "Turm wieder aufbauen, das nächste Kind startet."
+        ],
+        "leichter": "Näher an den Turm.",
+        "schwerer": "Erst schießen, wenn der Ball hinter einer Linie liegt."
       },
       {
         "id": "schatzsuche-im-tor",
         "title": "Schatzsuche im Tor",
         "goal": "Ziel: Torschuss mit spielerischem Sammel-Anreiz",
-        "desc": "Pro Tor mehrere bunte Hütchen als „Schätze\" locker im Torraum verteilen. Die Kinder stellen sich in einer Reihe vor dem Tor an und schießen nacheinander auf die verteilten Hütchen, um sie herauszubefördern. Wer ein Hütchen aus dem Tor schießt, darf es aufsammeln und behalten.",
         "coachTip": "Am Ende gemeinsam auszählen, wer wie viele „Schätze\" gesammelt hat – ohne Rangliste, nur zum Staunen.",
         "materials": "{(stationCount(k))} kleine Tore · {(stationCount(k))*6} bunte Hütchen · {(stationCount(k))}–{(stationCount(k))*2} Bälle",
         "dims": "{stationLabel(stationCount(k))} à ca. 8 × 6 m",
         "diagram": {
-          "fn": "diagramStations",
-          "args": [
-            "=stationCount(k)",
-            {
-              "caption": "='Schatzsuche im Tor an ' + stationLabel(stationCount(k))"
-            }
-          ]
-        }
+          "scene": {
+            "w": 10,
+            "l": 6,
+            "objScale": 1.3,
+            "noField": true,
+            "margin": 2,
+            "items": [
+              {
+                "t": "goal",
+                "x": 10,
+                "y": 3,
+                "dir": "w",
+                "w": 5,
+                "h": 1.8,
+                "d": 1.2
+              },
+              {
+                "t": "cone",
+                "x": 9.3,
+                "y": 1.8,
+                "color": "#2F7FC1"
+              },
+              {
+                "t": "cone",
+                "x": 9.5,
+                "y": 3.2,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 9.2,
+                "y": 4.2,
+                "color": "#7B5CC4"
+              },
+              {
+                "t": "p",
+                "x": 1.5,
+                "y": 3,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "ball",
+                "x": 4.5,
+                "y": 3
+              },
+              {
+                "t": "p",
+                "x": 0.3,
+                "y": 3.1,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": -0.8,
+                "y": 3.2,
+                "team": "b"
+              }
+            ],
+            "moves": [
+              {
+                "t": "pass",
+                "from": [
+                  4.8,
+                  3
+                ],
+                "to": [
+                  9,
+                  3.1
+                ],
+                "step": 1,
+                "at": 0.45
+              },
+              {
+                "t": "run",
+                "from": [
+                  2,
+                  2.4
+                ],
+                "to": [
+                  8.8,
+                  1.4
+                ],
+                "step": 2,
+                "at": 0.6,
+                "bend": 0.6
+              }
+            ],
+            "caption": "Bunte Hütchen = Schätze im Tor"
+          }
+        },
+        "aufbau": [
+          "Pro Tor mehrere bunte Hütchen als „Schätze“ ins Tor legen.",
+          "Die Kinder stellen sich in einer Reihe vor dem Tor an."
+        ],
+        "ablauf": [
+          "<b>A</b> schießt auf einen Schatz.",
+          "Fällt ein Schatz aus dem Tor, darf <b>A</b> ihn holen und behalten."
+        ],
+        "regeln": [
+          "Am Ende gemeinsam zählen, wer wie viele Schätze hat – ohne Rangliste."
+        ],
+        "leichter": "Näher ans Tor.",
+        "schwerer": "Nur mit dem schwächeren Fuß schießen."
       },
       {
         "id": "tor-gewitter",
         "title": "Tor-Gewitter",
         "goal": "Ziel: Viele Torschüsse in kurzer Zeit, mit rechts und links",
-        "desc": "Mehrere Minitore nebeneinander an einer Seite aufstellen, ca. 5–6 m davor eine Schusslinie markieren. Jedes Kind legt seinen Ball auf ein flaches Hütchen an der Linie. Auf das Kommando „Gewitter!“ schießen alle gleichzeitig, holen ihren Ball und dribbeln zurück an die Linie. Gemeinsam werden alle Tore gezählt: Schafft die Gruppe im nächsten Durchgang mehr? Jeden zweiten Durchgang mit dem anderen Fuß schießen. Bei mehr als 8 Kindern in zwei Gruppen abwechselnd schießen – die andere Gruppe sammelt und zählt mit.",
         "coachTip": "Abstand zum Tor so wählen, dass fast jedes Kind trifft – Erfolgserlebnisse sind in der G-Jugend wichtiger als Schusskraft.",
         "materials": "{k} Bälle · {max(2, min(4, ceil(k/3)))} Minitore · {k} flache Hütchen",
         "dims": "ca. {max(12, k)} × 8 m (Schusslinie 5–6 m vor den Toren)",
         "diagram": {
-          "fn": "diagramStations",
-          "args": [
-            "=max(2, min(4, ceil(k/3)))",
-            {
-              "caption": "Alle schießen gleichzeitig auf die Minitore"
-            }
-          ]
+          "scene": {
+            "w": 12,
+            "l": 8,
+            "items": [
+              {
+                "t": "goal",
+                "x": 12,
+                "y": 1.5,
+                "dir": "w"
+              },
+              {
+                "t": "goal",
+                "x": 12,
+                "y": 4,
+                "dir": "w"
+              },
+              {
+                "t": "goal",
+                "x": 12,
+                "y": 6.5,
+                "dir": "w"
+              },
+              {
+                "t": "cone",
+                "x": 6,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 6,
+                "y": 8,
+                "color": "#F2B134"
+              },
+              {
+                "t": "p",
+                "x": 5.4,
+                "y": 1.5,
+                "team": "b"
+              },
+              {
+                "t": "ball",
+                "x": 6,
+                "y": 1.5
+              },
+              {
+                "t": "p",
+                "x": 5.4,
+                "y": 4,
+                "team": "b"
+              },
+              {
+                "t": "ball",
+                "x": 6,
+                "y": 4
+              },
+              {
+                "t": "p",
+                "x": 5.4,
+                "y": 6.5,
+                "team": "b"
+              },
+              {
+                "t": "ball",
+                "x": 6,
+                "y": 6.5
+              },
+              {
+                "t": "p",
+                "x": 1,
+                "y": 8.4,
+                "team": "t",
+                "label": "T",
+                "say": "Gewitter!",
+                "step": 1
+              }
+            ],
+            "lines": [
+              {
+                "x1": 6,
+                "y1": 8,
+                "x2": 6,
+                "y2": 0,
+                "dash": true,
+                "color": "#FFE29A",
+                "label": "Schusslinie"
+              }
+            ],
+            "noField": true,
+            "moves": [
+              {
+                "t": "pass",
+                "from": [
+                  6.3,
+                  1.5
+                ],
+                "to": [
+                  11.8,
+                  1.5
+                ],
+                "step": 2,
+                "at": 0.5
+              },
+              {
+                "t": "pass",
+                "from": [
+                  6.3,
+                  4
+                ],
+                "to": [
+                  11.8,
+                  4
+                ]
+              },
+              {
+                "t": "pass",
+                "from": [
+                  6.3,
+                  6.5
+                ],
+                "to": [
+                  11.8,
+                  6.5
+                ]
+              },
+              {
+                "t": "dribble",
+                "from": [
+                  11,
+                  7.4
+                ],
+                "to": [
+                  6.6,
+                  7.5
+                ],
+                "step": 3,
+                "at": 0.4
+              }
+            ],
+            "caption": "Minitore nebeneinander · Schusslinie 5–6 m davor"
+          }
         },
         "sources": [
           "https://scfreiburg.com/fileadmin/01_Content/01_Bilder/08_Engagement/PDFs/Zurueck_auf_den_Platz_/Woche_2_G-F-_und_E-Jugend_Torabschluss.pdf"
         ],
-        "added": "2026-11-03"
+        "added": "2026-11-03",
+        "aufbau": [
+          "Mehrere Minitore nebeneinander, ca. 5–6 m davor eine Schusslinie.",
+          "Jedes Kind legt seinen Ball an der Linie auf ein flaches Hütchen."
+        ],
+        "ablauf": [
+          "Trainer*in ruft „Gewitter!“.",
+          "Alle schießen gleichzeitig aufs Tor.",
+          "Alle holen ihren Ball und dribbeln zurück an die Linie."
+        ],
+        "regeln": [
+          "Gemeinsam alle Tore zählen: Schafft die Gruppe im nächsten Durchgang mehr?",
+          "Jeden zweiten Durchgang mit dem anderen Fuß.",
+          "Bei mehr als 8 Kindern in zwei Gruppen abwechselnd."
+        ],
+        "leichter": "Schusslinie näher ans Tor.",
+        "schwerer": "Ball vor dem Schuss einmal mit der Sohle stoppen."
       }
     ],
     "bewegung": [
@@ -222,85 +1465,591 @@
         "id": "freies-feld-erobern",
         "title": "Freies Feld erobern",
         "goal": "Ziel: Anbieten und Freilaufen spielerisch entdecken",
-        "desc": "Ein Feld markieren, alle Kinder verteilen sich frei darin, ein Kind hat den Ball. Auf Zuruf „Frei!\" müssen sich alle ballfreien Kinder sofort einen offenen Platz suchen, an dem sie vom Ball erreicht werden könnten – der Ballbesitzer versucht, tatsächlich zu jemandem zu passen. Ballbesitz wechselt nach jedem Pass zum Empfänger.",
         "coachTip": "Kinder loben, die sich von Mitspielern lösen, statt dicht daneben stehen zu bleiben.",
         "materials": "1–2 Bälle · {pylonCountForBoundary((fieldWidthMeters(12, 0.5, k)))} gelbe Pilonen zur Feldmarkierung · 4 Hütchen",
         "dims": "{fieldDims(12, 0.5, k)}",
         "diagram": {
-          "fn": "diagramScatter",
-          "args": [
-            "=min(k,16)",
-            {
-              "showBoundary": true,
-              "extraBoundaryPylons": "=pylonCountForBoundary((fieldWidthMeters(12, 0.5, k))) >= 6",
-              "cones": 4,
-              "caption": "Freilaufen und Anbieten im Feld"
-            }
-          ]
-        }
+          "scene": {
+            "w": 12,
+            "l": 9,
+            "items": [
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 12,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 9,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 12,
+                "y": 9,
+                "color": "#F2B134"
+              },
+              {
+                "t": "p",
+                "x": 6,
+                "y": 9.4,
+                "team": "t",
+                "label": "T",
+                "say": "Frei!",
+                "step": 1
+              },
+              {
+                "t": "p",
+                "x": 3,
+                "y": 3,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "ball",
+                "x": 3.6,
+                "y": 2.75
+              },
+              {
+                "t": "p",
+                "x": 5,
+                "y": 4.2,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 5.6,
+                "y": 3,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 9,
+                "y": 6,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 4,
+                "y": 7,
+                "team": "b"
+              }
+            ],
+            "moves": [
+              {
+                "t": "run",
+                "from": [
+                  5.4,
+                  4.4
+                ],
+                "to": [
+                  8.5,
+                  2.2
+                ],
+                "step": 2,
+                "at": 0.5
+              },
+              {
+                "t": "pass",
+                "from": [
+                  3.7,
+                  2.8
+                ],
+                "to": [
+                  8.1,
+                  2.1
+                ],
+                "step": 3,
+                "at": 0.3
+              },
+              {
+                "t": "run",
+                "from": [
+                  5.9,
+                  3.4
+                ],
+                "to": [
+                  7.5,
+                  5
+                ]
+              }
+            ],
+            "caption": "Frei = weg vom Mitspieler, Platz für den Pass"
+          }
+        },
+        "aufbau": [
+          "Feld markieren, alle Kinder verteilen sich darin.",
+          "Ein Kind (<b>A</b>) hat den Ball."
+        ],
+        "ablauf": [
+          "Trainer*in ruft „Frei!“.",
+          "Alle ohne Ball laufen sofort an einen freien Platz, an dem sie den Ball bekommen könnten.",
+          "<b>A</b> passt zu einem freien Kind. Wer den Ball bekommt, ist jetzt <b>A</b>."
+        ],
+        "regeln": [],
+        "leichter": "Zwei Bälle im Spiel.",
+        "schwerer": "Ein Kind stört als Fänger*in."
       },
       {
         "id": "verstecken-vorm-faenger",
         "title": "Verstecken vorm Fänger",
         "goal": "Ziel: Sich clever positionieren, um anspielbar zu bleiben",
-        "desc": "Ein Kind als „Fänger\" ohne Ball bestimmen, ein weiteres Kind bekommt den Ball, der Rest verteilt sich frei im Feld. Der Fänger versucht, sich zwischen Ballbesitzer und die anderen Kinder zu stellen, um Pässe zu blockieren. Alle ballfreien Kinder bewegen sich ständig, um trotzdem anspielbar zu bleiben. Fängerrolle nach 1–2 Minuten wechseln.",
         "coachTip": "Fängerrolle oft wechseln, damit jedes Kind beide Rollen erlebt.",
         "materials": "1–2 Bälle · {pylonCountForBoundary((fieldWidthMeters(12, 0.5, k)))} gelbe Pilonen zur Feldmarkierung · 4 Hütchen",
         "dims": "{fieldDims(12, 0.5, k)}",
         "diagram": {
-          "fn": "diagramScatter",
-          "args": [
-            "=min(k,16)",
-            {
-              "showBoundary": true,
-              "extraBoundaryPylons": "=pylonCountForBoundary((fieldWidthMeters(12, 0.5, k))) >= 6",
-              "cones": 4,
-              "caption": "Anbieten und Ausweichen vor dem Fänger"
-            }
-          ]
-        }
+          "scene": {
+            "w": 12,
+            "l": 9,
+            "items": [
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 12,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 9,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 12,
+                "y": 9,
+                "color": "#F2B134"
+              },
+              {
+                "t": "p",
+                "x": 2.5,
+                "y": 4,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "ball",
+                "x": 3.1,
+                "y": 3.75
+              },
+              {
+                "t": "p",
+                "x": 6,
+                "y": 4.3,
+                "team": "r",
+                "label": "F"
+              },
+              {
+                "t": "p",
+                "x": 9,
+                "y": 4.5,
+                "team": "b",
+                "label": "B"
+              },
+              {
+                "t": "p",
+                "x": 6,
+                "y": 7.5,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 8,
+                "y": 1.5,
+                "team": "b"
+              }
+            ],
+            "moves": [
+              {
+                "t": "run",
+                "from": [
+                  9.1,
+                  4.2
+                ],
+                "to": [
+                  8.4,
+                  1.9
+                ],
+                "step": 1,
+                "at": 0.5
+              },
+              {
+                "t": "pass",
+                "from": [
+                  3.2,
+                  3.8
+                ],
+                "to": [
+                  7.9,
+                  1.8
+                ],
+                "step": 2,
+                "at": 0.45
+              }
+            ],
+            "caption": "F = Fänger*in blockiert den Passweg"
+          }
+        },
+        "aufbau": [
+          "Ein Kind ist Fänger*in (<b>F</b>) ohne Ball, ein Kind (<b>A</b>) hat den Ball.",
+          "Alle anderen verteilen sich im Feld."
+        ],
+        "ablauf": [
+          "<b>F</b> stellt sich zwischen <b>A</b> und ein anderes Kind. Dieses Kind läuft weg, bis es wieder frei ist.",
+          "<b>A</b> passt zum freien Kind."
+        ],
+        "regeln": [
+          "Fängt <b>F</b> den Pass ab, tauscht <b>F</b> mit <b>A</b>.",
+          "Fängerrolle nach 1–2 Minuten wechseln."
+        ],
+        "leichter": "Zwei Bälle im Spiel.",
+        "schwerer": "Zwei Fänger*innen."
       },
       {
         "id": "spinne-und-bruecke",
         "title": "Spinne und Brücke",
         "goal": "Ziel: Freilaufen und Ausweichen spielerisch mit Fangspiel verbinden",
-        "desc": "Ein Kind als Fänger ohne Ball bestimmen, alle anderen bekommen je einen Ball und verteilen sich im Feld. Der Fänger jagt die Kinder mit Ball; wer abgeschlagen wird, legt sich sofort als „Brücke\" (Liegestütz-Position, Beine gespreizt) hin oder stellt sich als „Spinne\" (Arme und Beine gespreizt) auf. Mitspieler befreien Gefangene, indem sie unter der Brücke hindurchkriechen oder die Spinne abklatschen. Fängerrolle regelmäßig wechseln.",
         "coachTip": "Fängerrolle regelmäßig wechseln – so bleibt die Motivation für alle hoch.",
         "materials": "1–2 Bälle · {pylonCountForBoundary((fieldWidthMeters(12, 0.5, k)))} gelbe Pilonen zur Feldmarkierung · 4 Hütchen",
         "dims": "{fieldDims(12, 0.5, k)}",
         "diagram": {
-          "fn": "diagramScatter",
-          "args": [
-            "=min(k,16)",
-            {
-              "showBoundary": true,
-              "extraBoundaryPylons": "=pylonCountForBoundary((fieldWidthMeters(12, 0.5, k))) >= 6",
-              "cones": 4,
-              "caption": "Fangspiel mit Befreiung durch Mitspieler"
-            }
-          ]
-        }
+          "scene": {
+            "w": 12,
+            "l": 9,
+            "items": [
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 12,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 9,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 12,
+                "y": 9,
+                "color": "#F2B134"
+              },
+              {
+                "t": "p",
+                "x": 5,
+                "y": 4.5,
+                "team": "r",
+                "label": "F"
+              },
+              {
+                "t": "p",
+                "x": 7.5,
+                "y": 4.5,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "ball",
+                "x": 8.1,
+                "y": 4.25
+              },
+              {
+                "t": "p",
+                "x": 3,
+                "y": 6.5,
+                "team": "w",
+                "label": "Spinne",
+                "arms": true
+              },
+              {
+                "t": "p",
+                "x": 1.5,
+                "y": 7,
+                "team": "b"
+              },
+              {
+                "t": "ball",
+                "x": 2.1,
+                "y": 6.75
+              },
+              {
+                "t": "p",
+                "x": 9.5,
+                "y": 2,
+                "team": "b"
+              },
+              {
+                "t": "ball",
+                "x": 10.1,
+                "y": 1.75
+              },
+              {
+                "t": "p",
+                "x": 4,
+                "y": 2,
+                "team": "b"
+              },
+              {
+                "t": "ball",
+                "x": 4.6,
+                "y": 1.75
+              }
+            ],
+            "moves": [
+              {
+                "t": "run",
+                "from": [
+                  5.4,
+                  4.6
+                ],
+                "to": [
+                  7,
+                  4.6
+                ],
+                "step": 1,
+                "at": 0.4
+              },
+              {
+                "t": "dribble",
+                "from": [
+                  2.1,
+                  6.8
+                ],
+                "to": [
+                  2.7,
+                  6.4
+                ],
+                "step": 2,
+                "at": 0.1
+              }
+            ],
+            "caption": "F = Fänger*in · Gefangene stehen als Spinne"
+          }
+        },
+        "aufbau": [
+          "Ein Kind ist Fänger*in (<b>F</b>) ohne Ball.",
+          "Alle anderen haben einen Ball."
+        ],
+        "ablauf": [
+          "<b>F</b> jagt die Kinder mit Ball. Wer abgeschlagen wird, stellt sich als „Spinne“ hin (Arme und Beine gespreizt) oder macht eine „Brücke“ (Liegestütz-Position).",
+          "Andere Kinder befreien Gefangene: Spinne abklatschen oder unter der Brücke durchkriechen."
+        ],
+        "regeln": [
+          "Fängerrolle regelmäßig wechseln."
+        ],
+        "leichter": "Ohne Ball spielen.",
+        "schwerer": "Zwei Fänger*innen."
       },
       {
         "id": "burgball",
         "title": "Burgball",
         "goal": "Ziel: Freilaufen und Anbieten – ohne Ball den freien Platz finden",
-        "desc": "Ein Feld mit einer „Burg“ (Zone von ca. 2 m Tiefe) an jedem Ende markieren. Zwei kleine Teams spielen mit einem Ball, der mit den Händen zugeworfen wird. Mit dem Ball in der Hand darf man nicht laufen, nur werfen. Ein Punkt zählt, wenn ein Kind den Ball in der gegnerischen Burg fängt. Fällt der Ball auf den Boden oder wird abgefangen, wechselt der Ballbesitz. Bei vielen Kindern auf mehreren Feldern parallel spielen.",
         "coachTip": "Immer wieder fragen: „Wo ist ein freier Platz, an dem dich dein Freund anwerfen kann?“ – genau das ist Freilaufen.",
         "materials": "{parallelFields(k, 6)} Bälle · {ceil(k/6)} Leibchensätze · {8 * parallelFields(k, 6)} Hütchen (Feld und Burgen)",
         "dims": "{fieldLabel(parallelFields(k, 6))} à ca. 15 × 10 m",
         "diagram": {
-          "fn": "diagramGame",
-          "args": [
-            3,
-            3,
-            {}
-          ]
+          "scene": {
+            "w": 15,
+            "l": 10,
+            "zones": [
+              {
+                "x": 0,
+                "y": 0,
+                "w": 2,
+                "h": 10,
+                "label": "BURG",
+                "fs": 10
+              },
+              {
+                "x": 13,
+                "y": 0,
+                "w": 2,
+                "h": 10,
+                "label": "BURG",
+                "fs": 10
+              }
+            ],
+            "items": [
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 15,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 10,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 15,
+                "y": 10,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 2,
+                "y": 0
+              },
+              {
+                "t": "cone",
+                "x": 2,
+                "y": 10
+              },
+              {
+                "t": "cone",
+                "x": 13,
+                "y": 0
+              },
+              {
+                "t": "cone",
+                "x": 13,
+                "y": 10
+              },
+              {
+                "t": "p",
+                "x": 4,
+                "y": 4,
+                "team": "b",
+                "label": "A",
+                "arms": true
+              },
+              {
+                "t": "ball",
+                "x": 4,
+                "y": 4,
+                "z": 1.6
+              },
+              {
+                "t": "p",
+                "x": 8,
+                "y": 7,
+                "team": "b",
+                "label": "B"
+              },
+              {
+                "t": "p",
+                "x": 11,
+                "y": 3.5,
+                "team": "b",
+                "label": "C"
+              },
+              {
+                "t": "p",
+                "x": 6,
+                "y": 5,
+                "team": "r"
+              },
+              {
+                "t": "p",
+                "x": 10,
+                "y": 6,
+                "team": "r"
+              },
+              {
+                "t": "p",
+                "x": 11.5,
+                "y": 1.5,
+                "team": "r"
+              }
+            ],
+            "moves": [
+              {
+                "t": "pass",
+                "from": [
+                  4.3,
+                  4.3
+                ],
+                "to": [
+                  7.6,
+                  6.6
+                ],
+                "step": 1,
+                "arc": 1.5,
+                "z0": 1.6,
+                "z1": 1.4,
+                "at": 0.5
+              },
+              {
+                "t": "run",
+                "from": [
+                  11.3,
+                  3.6
+                ],
+                "to": [
+                  13.8,
+                  4.6
+                ],
+                "step": 2,
+                "at": 0.5
+              },
+              {
+                "t": "pass",
+                "from": [
+                  8.3,
+                  6.8
+                ],
+                "to": [
+                  13.7,
+                  4.9
+                ],
+                "step": 3,
+                "arc": 1.5,
+                "z0": 1.4,
+                "z1": 1.4,
+                "at": 0.55
+              }
+            ],
+            "caption": "Ball wird mit den Händen geworfen · Blau spielt nach rechts"
+          }
         },
         "sources": [
           "https://fussballtraining.com/artikel/f-junioren-kindgerecht-das-passen-kennenlernen"
         ],
-        "added": "2026-11-03"
+        "added": "2026-11-03",
+        "aufbau": [
+          "An jedem Ende eine „Burg“, ca. 2 m tief.",
+          "Zwei kleine Teams, ein Ball. Bei vielen Kindern mehrere Felder."
+        ],
+        "ablauf": [
+          "<b>A</b> wirft den Ball zu <b>B</b>. Mit dem Ball in der Hand darf niemand laufen.",
+          "<b>C</b> läuft in die gegnerische Burg.",
+          "<b>B</b> wirft zu <b>C</b>. Fängt <b>C</b> den Ball in der Burg = 1 Punkt."
+        ],
+        "regeln": [
+          "Fällt der Ball auf den Boden oder wird abgefangen, bekommt das andere Team den Ball."
+        ],
+        "leichter": "Burg tiefer machen (3 m).",
+        "schwerer": "Mit dem Fuß statt mit der Hand spielen."
       }
     ],
     "zweikampf": [
@@ -308,98 +2057,569 @@
         "id": "ball-behaupten",
         "title": "Ball behaupten",
         "goal": "Ziel: Ball im 1-gegen-1 sicher behaupten und erobern",
-        "desc": "Kinder in Zweier-Paare einteilen, jedes Paar bekommt ein eigenes kleines Feld (ca. 4×4 m) mit einem Ball. Ein Kind pro Paar startet mit dem Ball, das andere versucht, ihn zu erobern, ohne zu foulen (kein Ziehen, Schubsen). Nach 30 Sekunden per Zuruf Rollenwechsel. Reichen die Felder nicht für alle Paare gleichzeitig, wechseln sich die Paare reihum an den vorhandenen Feldern ab.",
         "coachTip": "Fair-Play-Regeln vorher klar und einfach erklären, dann selbst vormachen.",
         "materials": "{(parallelFields(k,2))} Bälle · {(parallelFields(k,2))*4} gelbe Pilonen für Kleinfelder",
         "dims": "{fieldLabel(parallelFields(k,2))} à ca. 4 × 4 m",
         "diagram": {
-          "fn": "diagramGame",
-          "args": [
-            1,
-            1,
-            {
-              "caption": "1 gegen 1 in mehreren Kleinfeldern (hier: ein Feld)"
-            }
-          ]
-        }
+          "scene": {
+            "w": 6,
+            "l": 5,
+            "objScale": 1.2,
+            "items": [
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 6,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 5,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 6,
+                "y": 5,
+                "color": "#F2B134"
+              },
+              {
+                "t": "p",
+                "x": 2,
+                "y": 2,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "ball",
+                "x": 2.6,
+                "y": 1.75
+              },
+              {
+                "t": "p",
+                "x": 4.6,
+                "y": 4,
+                "team": "r",
+                "label": "V"
+              }
+            ],
+            "moves": [
+              {
+                "t": "dribble",
+                "from": [
+                  2.7,
+                  1.8
+                ],
+                "to": [
+                  4.6,
+                  1
+                ],
+                "step": 1,
+                "bend": 0.4,
+                "at": 0.7
+              },
+              {
+                "t": "run",
+                "from": [
+                  4.6,
+                  3.6
+                ],
+                "to": [
+                  3.4,
+                  2.4
+                ],
+                "step": 2,
+                "at": 0.35
+              }
+            ],
+            "caption": "Pro Paar ein kleines Feld · ein Ball"
+          }
+        },
+        "aufbau": [
+          "Pro Paar ein kleines Feld mit einem Ball."
+        ],
+        "ablauf": [
+          "<b>A</b> hat den Ball und versucht, ihn im Feld zu behalten.",
+          "<b>V</b> versucht, den Ball zu erobern – ohne Ziehen und Schubsen."
+        ],
+        "regeln": [
+          "Nach 30 Sekunden ruft Trainer*in „Wechsel!“: Rollen tauschen.",
+          "Reichen die Felder nicht, wechseln sich die Paare ab."
+        ],
+        "leichter": "V darf nur mit halbem Tempo verteidigen.",
+        "schwerer": "Wer den Ball 10 Sekunden behält, bekommt einen Punkt."
       },
       {
         "id": "rettungsinsel",
         "title": "Rettungsinsel",
         "goal": "Ziel: Zweikampfverhalten mit kurzer Verschnaufpause verbinden",
-        "desc": "Pro Paar ein kleines Feld (ca. 4×4 m) mit einem Ball markieren, in einer Ecke mit einem Hütchen die „Rettungsinsel\" kennzeichnen. Beide Kinder spielen 1 gegen 1; wer mit Ball die Rettungsinsel erreicht, ist dort kurz sicher (ca. 3 Sekunden) und muss dann weiterspielen. Reichen die Felder nicht für alle Paare gleichzeitig, wechseln sich die Paare reihum ab.",
         "coachTip": "Zeit auf der Insel bewusst kurz halten, damit der Zweikampf im Fokus bleibt.",
         "materials": "{(parallelFields(k,2))} Bälle · {(parallelFields(k,2))*4} gelbe Pilonen für Kleinfelder",
         "dims": "{fieldLabel(parallelFields(k,2))} à ca. 4 × 4 m",
         "diagram": {
-          "fn": "diagramGame",
-          "args": [
-            1,
-            1,
-            {
-              "caption": "1 gegen 1 mit Rettungsinsel (hier: ein Feld)"
-            }
-          ]
-        }
+          "scene": {
+            "w": 5,
+            "l": 4,
+            "objScale": 1.2,
+            "zones": [
+              {
+                "x": 4,
+                "y": 3,
+                "w": 1,
+                "h": 1,
+                "fill": "rgba(47,127,193,.45)"
+              }
+            ],
+            "items": [
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 5,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 4,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 5,
+                "y": 4,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 4.5,
+                "y": 3.5,
+                "color": "#2F7FC1",
+                "label": "Insel"
+              },
+              {
+                "t": "p",
+                "x": 1.5,
+                "y": 1.5,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "ball",
+                "x": 2.1,
+                "y": 1.25
+              },
+              {
+                "t": "p",
+                "x": 2.8,
+                "y": 2,
+                "team": "r",
+                "label": "V"
+              }
+            ],
+            "moves": [
+              {
+                "t": "dribble",
+                "from": [
+                  2.2,
+                  1.3
+                ],
+                "to": [
+                  4.3,
+                  3.2
+                ],
+                "step": 1,
+                "bend": -0.5,
+                "at": 0.45
+              },
+              {
+                "t": "run",
+                "from": [
+                  3,
+                  2.4
+                ],
+                "to": [
+                  3.8,
+                  3
+                ],
+                "step": 2,
+                "at": 0.4
+              }
+            ],
+            "caption": "Ecke mit Hütchen = Rettungsinsel"
+          }
+        },
+        "aufbau": [
+          "Pro Paar ein kleines Feld mit einem Ball.",
+          "Eine Ecke ist mit einem Hütchen als „Rettungsinsel“ markiert."
+        ],
+        "ablauf": [
+          "<b>A</b> dribbelt mit Ball zur Rettungsinsel. Dort ist sie/er ca. 3 Sekunden sicher.",
+          "<b>V</b> versucht vorher, den Ball zu erobern."
+        ],
+        "regeln": [
+          "Nach 3 Sekunden muss <b>A</b> die Insel wieder verlassen.",
+          "Wer den Ball erobert, wird Angreifer*in."
+        ],
+        "leichter": "Zwei Inseln in gegenüberliegenden Ecken.",
+        "schwerer": "Nur 1 Sekunde auf der Insel."
       },
       {
         "id": "hund-und-katze",
         "title": "Hund und Katze",
         "goal": "Ziel: Ball im Laufduell behaupten, spielerisch verpackt",
-        "desc": "Kinder in Paare einteilen, ein Ball pro Paar. Ein Kind („Katze\") startet mit dem Ball und dribbelt frei im Feld, das andere Kind („Hund\") verfolgt und versucht, den Ball zu erobern. Nach ca. 20 Sekunden oder sobald der Ball erobert wurde, Rollen tauschen.",
         "coachTip": "Kurze Zeitfenster (ca. 20 Sekunden) wählen, damit die Intensität hochbleibt.",
         "materials": "{ceil(k/2)} Bälle",
         "dims": "{fieldDims(8, 0.3, k)} pro Paar",
         "diagram": {
-          "fn": "diagramGame",
-          "args": [
-            1,
-            1,
-            {
-              "caption": "Verfolgungsduell zu zweit (hier: ein Paar)"
-            }
-          ]
-        }
+          "scene": {
+            "w": 9,
+            "l": 7,
+            "items": [
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 9,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 7,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 9,
+                "y": 7,
+                "color": "#F2B134"
+              },
+              {
+                "t": "p",
+                "x": 4.5,
+                "y": 3.5,
+                "team": "b",
+                "label": "K"
+              },
+              {
+                "t": "ball",
+                "x": 5.1,
+                "y": 3.25
+              },
+              {
+                "t": "p",
+                "x": 2.5,
+                "y": 2.5,
+                "team": "r",
+                "label": "H"
+              }
+            ],
+            "moves": [
+              {
+                "t": "dribble",
+                "from": [
+                  5.2,
+                  3.2
+                ],
+                "to": [
+                  7.6,
+                  5.3
+                ],
+                "step": 1,
+                "bend": 0.6,
+                "at": 0.5
+              },
+              {
+                "t": "run",
+                "from": [
+                  2.9,
+                  2.7
+                ],
+                "to": [
+                  4.6,
+                  4.4
+                ],
+                "step": 2,
+                "at": 0.5,
+                "bend": 0.3
+              }
+            ],
+            "caption": "K = Katze mit Ball · H = Hund"
+          }
+        },
+        "aufbau": [
+          "Paare, ein Ball pro Paar. Alle Paare spielen gleichzeitig im Feld."
+        ],
+        "ablauf": [
+          "Die Katze (<b>K</b>) dribbelt frei im Feld.",
+          "Der Hund (<b>H</b>) verfolgt die Katze und versucht, den Ball zu erobern."
+        ],
+        "regeln": [
+          "Nach ca. 20 Sekunden oder wenn der Hund den Ball hat: Rollen tauschen."
+        ],
+        "leichter": "Hund darf nur gehen, nicht rennen.",
+        "schwerer": "Hund ist auch mit Ball unterwegs."
       },
       {
         "id": "torjaeger-duell",
         "title": "Torjäger-Duell",
         "goal": "Ziel: Erste Torschuss-Erfahrung im spielerischen Zweikampf",
-        "desc": "Kinder in Paare einteilen, pro Paar ein kleines Feld (ca. 4×4 m) mit zwei Minitoren an gegenüberliegenden Seiten. Ein Kind startet mit Ball und versucht, im 1 gegen 1 das gegnerische Minitor zu treffen; das andere Kind verteidigt sein eigenes Tor. Nach jedem Versuch (Tor oder Ballgewinn) Rollen tauschen. Reichen die Felder nicht für alle Paare gleichzeitig, wechseln sich die Paare reihum ab.",
         "coachTip": "Laut mitjubeln bei jedem Torerfolg – der Spaß am Abschluss steht in diesem Alter im Vordergrund, nicht die Zweikampf-Statistik.",
         "materials": "{(parallelFields(k,2))*2} Minitore · {(parallelFields(k,2))} Bälle · {(parallelFields(k,2))*4} gelbe Pilonen für Kleinfelder",
         "dims": "{fieldLabel(parallelFields(k,2))} à ca. 4 × 4 m",
         "diagram": {
-          "fn": "diagramGame",
-          "args": [
-            1,
-            1,
-            {
-              "caption": "1 gegen 1 mit Rollenwechsel nach jedem Abschluss (hier: ein Feld)"
-            }
-          ]
-        }
+          "scene": {
+            "w": 5,
+            "l": 4,
+            "objScale": 1.2,
+            "items": [
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 5,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 4,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 5,
+                "y": 4,
+                "color": "#F2B134"
+              },
+              {
+                "t": "goal",
+                "x": 0,
+                "y": 2,
+                "dir": "e"
+              },
+              {
+                "t": "goal",
+                "x": 5,
+                "y": 2,
+                "dir": "w"
+              },
+              {
+                "t": "p",
+                "x": 1.2,
+                "y": 2,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "ball",
+                "x": 1.7999999999999998,
+                "y": 1.75
+              },
+              {
+                "t": "p",
+                "x": 3.4,
+                "y": 2.2,
+                "team": "r",
+                "label": "V"
+              }
+            ],
+            "moves": [
+              {
+                "t": "dribble",
+                "from": [
+                  1.9,
+                  1.7
+                ],
+                "to": [
+                  3.6,
+                  0.8
+                ],
+                "step": 1,
+                "bend": 0.4
+              },
+              {
+                "t": "pass",
+                "from": [
+                  3.8,
+                  0.9
+                ],
+                "to": [
+                  4.9,
+                  1.8
+                ],
+                "step": 2,
+                "at": 0.35
+              }
+            ],
+            "caption": "Kleines Feld mit zwei Minitoren"
+          }
+        },
+        "aufbau": [
+          "Pro Paar ein kleines Feld mit zwei Minitoren an gegenüberliegenden Seiten."
+        ],
+        "ablauf": [
+          "<b>A</b> startet mit Ball und dribbelt an <b>V</b> vorbei.",
+          "<b>A</b> schießt auf das Minitor von <b>V</b>."
+        ],
+        "regeln": [
+          "Nach jedem Tor oder Ballgewinn tauschen die Rollen.",
+          "Reichen die Felder nicht, wechseln sich die Paare ab."
+        ],
+        "leichter": "V verteidigt nur mit halbem Tempo.",
+        "schwerer": "Tore zählen nur mit dem schwächeren Fuß."
       },
       {
         "id": "linienritter",
         "title": "Linienritter",
         "goal": "Ziel: Mutig ins 1 gegen 1 gehen und an einer Gegenspielerin vorbeidribbeln",
-        "desc": "Pro Paar ein kleines Feld (ca. 6 × 5 m) mit zwei gegenüberliegenden Linien markieren; die Felder liegen direkt nebeneinander und teilen sich die Hütchen. Ein Kind ist Angreifer mit Ball, das andere „Ritter“ und bewacht seine Linie. Der Angreifer versucht, über die Linie des Ritters zu dribbeln (1 Punkt). Der Ritter darf sich anfangs nur auf seiner Linie bewegen, später auch ins Feld kommen. Nach jedem Versuch Rollen tauschen; nach 2 Minuten neue Paare.",
         "coachTip": "Für den Anfang den Ritter nur auf der Linie verteidigen lassen – so gelingt den Angreifern das Dribbling öfter und der Mut wächst.",
         "materials": "{ceil(k/2)} Bälle · {2 * ceil(k/2) + 2} Hütchen",
         "dims": "{fieldLabel(ceil(k/2))} à ca. 6 × 5 m",
         "diagram": {
-          "fn": "diagramGame",
-          "args": [
-            1,
-            1,
-            {}
-          ]
+          "scene": {
+            "w": 6,
+            "l": 5,
+            "objScale": 1.2,
+            "lines": [
+              {
+                "x1": 6,
+                "y1": 5,
+                "x2": 6,
+                "y2": 0,
+                "color": "#FFE29A",
+                "label": "Ritter-Linie",
+                "labelAlign": "end"
+              }
+            ],
+            "items": [
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 6,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 5,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 6,
+                "y": 5,
+                "color": "#F2B134"
+              },
+              {
+                "t": "p",
+                "x": 0.8,
+                "y": 2.5,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "ball",
+                "x": 1.4,
+                "y": 2.25
+              },
+              {
+                "t": "p",
+                "x": 5.8,
+                "y": 2.6,
+                "team": "r",
+                "label": "R"
+              }
+            ],
+            "moves": [
+              {
+                "t": "dribble",
+                "from": [
+                  1.5,
+                  2.3
+                ],
+                "to": [
+                  4.6,
+                  1.2
+                ],
+                "step": 1,
+                "at": 0.5
+              },
+              {
+                "t": "dribble",
+                "from": [
+                  4.8,
+                  1.2
+                ],
+                "to": [
+                  6.6,
+                  1
+                ],
+                "step": 2,
+                "at": 0.6
+              },
+              {
+                "t": "run",
+                "from": [
+                  5.9,
+                  2.4
+                ],
+                "to": [
+                  6,
+                  1.6
+                ]
+              }
+            ],
+            "caption": "R = Ritter*in bewacht die Linie"
+          }
         },
         "sources": [
           "https://www.sbfv.de/fileadmin/user_upload/Nav_Fussball/Kinder/Trainingsformen/F-Jugend/F-Jugend_Phase_2_Spielform_1_Dribbelfussball_0.pdf"
         ],
-        "added": "2026-11-03"
+        "added": "2026-11-03",
+        "aufbau": [
+          "Pro Paar ein kleines Feld. Mehrere Felder direkt nebeneinander.",
+          "Ein Kind ist Angreifer*in (<b>A</b>) mit Ball, das andere Ritter*in (<b>R</b>)."
+        ],
+        "ablauf": [
+          "<b>A</b> dribbelt auf die Linie von <b>R</b> zu.",
+          "<b>A</b> dribbelt über die Linie = 1 Punkt."
+        ],
+        "regeln": [
+          "<b>R</b> darf sich zuerst nur auf der Linie bewegen, später auch ins Feld kommen.",
+          "Nach jedem Versuch Rollen tauschen, nach 2 Minuten neue Paare."
+        ],
+        "leichter": "Linie breiter machen.",
+        "schwerer": "Ritter*in darf von Anfang an ins Feld."
       }
     ],
     "spielaufbau": [
@@ -407,39 +2627,228 @@
         "id": "von-huetchen-zu-huetchen",
         "title": "Von Hütchen zu Hütchen",
         "goal": "Ziel: Ersten Pass mit Zielspiel verbinden",
-        "desc": "Zwei Hütchentore (je 2 Hütchen im Abstand von ca. 1 m) im Feld verteilt aufstellen. Kinder in Zweiergruppen einteilen. Der Ball wird abwechselnd durch die Hütchentore zueinander gepasst; nach mehreren gelungenen Pässen schließt eines der Kinder mit einem kleinen Torschuss ab.",
         "coachTip": "Auf sauberen ersten Kontakt in Richtung des nächsten Passes achten.",
         "materials": "{ceil(k/2)} Bälle · 6 Hütchen",
         "dims": "{fieldDims(10, 0.4, k)}",
         "diagram": {
-          "fn": "diagramScatter",
-          "args": [
-            "=min(k,12)",
-            {
-              "cones": 6,
-              "showPassPath": true,
-              "caption": "Passen durch Hütchentore"
-            }
-          ]
-        }
+          "scene": {
+            "w": 12,
+            "l": 8,
+            "items": [
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 12,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 8,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 12,
+                "y": 8,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 4,
+                "y": 2.5
+              },
+              {
+                "t": "cone",
+                "x": 4,
+                "y": 3.5
+              },
+              {
+                "t": "cone",
+                "x": 8,
+                "y": 4.5
+              },
+              {
+                "t": "cone",
+                "x": 8,
+                "y": 5.5
+              },
+              {
+                "t": "goal",
+                "x": 12,
+                "y": 4,
+                "dir": "w"
+              },
+              {
+                "t": "p",
+                "x": 2,
+                "y": 3,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "ball",
+                "x": 2.6,
+                "y": 2.75
+              },
+              {
+                "t": "p",
+                "x": 6,
+                "y": 3.3,
+                "team": "b",
+                "label": "B"
+              }
+            ],
+            "moves": [
+              {
+                "t": "pass",
+                "from": [
+                  2.7,
+                  2.9
+                ],
+                "to": [
+                  5.6,
+                  3.1
+                ],
+                "step": 1,
+                "at": 0.5
+              },
+              {
+                "t": "pass",
+                "from": [
+                  6.2,
+                  3.6
+                ],
+                "to": [
+                  9.6,
+                  5.2
+                ],
+                "step": 2,
+                "at": 0.5
+              },
+              {
+                "t": "pass",
+                "from": [
+                  10,
+                  5
+                ],
+                "to": [
+                  11.8,
+                  4.2
+                ],
+                "step": 3,
+                "at": 0.4
+              },
+              {
+                "t": "run",
+                "from": [
+                  2.6,
+                  3.3
+                ],
+                "to": [
+                  9.4,
+                  5.6
+                ],
+                "bend": -1.2
+              }
+            ],
+            "caption": "Zwei Hütchentore (ca. 1 m) · am Ende ein Minitor"
+          }
+        },
+        "aufbau": [
+          "Zwei Hütchentore (je ca. 1 m breit) im Feld, am Ende ein Minitor.",
+          "Kinder in Zweiergruppen mit einem Ball."
+        ],
+        "ablauf": [
+          "<b>A</b> passt durch das erste Tor zu <b>B</b>.",
+          "<b>B</b> passt durch das zweite Tor zurück zu <b>A</b>, der/die nachgelaufen ist.",
+          "Nach den Pässen schießt ein Kind aufs Minitor."
+        ],
+        "regeln": [
+          "Danach stellt sich die nächste Gruppe an."
+        ],
+        "leichter": "Tore 2 m breit.",
+        "schwerer": "Jeder Pass ohne vorher zu stoppen."
       },
       {
         "id": "bruecken-bauen",
         "title": "Brücken bauen",
         "goal": "Ziel: Präzision im Pass spielerisch durch ein „Tor aus Beinen\" schulen",
-        "desc": "Kinder in Dreiergruppen einteilen. Zwei Kinder stellen sich mit gegrätschten Beinen ca. 3 m voneinander entfernt auf und bilden so eine „Brücke\". Das dritte Kind muss den Ball flach durch die Beine eines der beiden spielen. Rollen nach jedem Versuch tauschen.",
         "coachTip": "Abstand der Brücken an das Können der Gruppe anpassen – näher für mehr Erfolgserlebnisse.",
         "materials": "{ceil(k/3)} Bälle · keine weiteren Hilfsmittel",
         "dims": "{fieldDims(8, 0.3, k)}",
         "diagram": {
-          "fn": "diagramScatter",
-          "args": [
-            "=min(k,12)",
-            {
-              "caption": "Passen durch die „Beinbrücke\" der Mitspieler"
-            }
-          ]
-        }
+          "scene": {
+            "w": 7,
+            "l": 5,
+            "objScale": 1.3,
+            "noField": true,
+            "items": [
+              {
+                "t": "p",
+                "x": 2,
+                "y": 3.5,
+                "team": "w",
+                "label": "Brücke",
+                "arms": true
+              },
+              {
+                "t": "p",
+                "x": 5,
+                "y": 3.5,
+                "team": "w",
+                "label": "Brücke",
+                "arms": true
+              },
+              {
+                "t": "p",
+                "x": 3.5,
+                "y": 0.6,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "ball",
+                "x": 4.1,
+                "y": 0.35
+              }
+            ],
+            "moves": [
+              {
+                "t": "pass",
+                "from": [
+                  3.9,
+                  0.6
+                ],
+                "to": [
+                  2.1,
+                  3.3
+                ],
+                "step": 1,
+                "at": 0.45
+              }
+            ],
+            "caption": "Zwei Kinder mit gegrätschten Beinen = Brücken"
+          }
+        },
+        "aufbau": [
+          "Dreiergruppen mit einem Ball.",
+          "Zwei Kinder stellen sich mit gegrätschten Beinen ca. 3 m voneinander entfernt auf: das sind die „Brücken“."
+        ],
+        "ablauf": [
+          "<b>A</b> passt den Ball flach durch die Beine einer Brücke."
+        ],
+        "regeln": [
+          "Nach jedem Versuch Rollen tauschen."
+        ],
+        "leichter": "Näher an die Brücken.",
+        "schwerer": "Abwechselnd durch beide Brücken passen."
       }
     ],
     "koordination": [
@@ -447,89 +2856,558 @@
         "id": "hindernis-rallye",
         "title": "Hindernis-Rallye",
         "goal": "Ziel: Allgemeine Bewegungsschule – Laufen, Springen, Balancieren",
-        "desc": "Einen kleinen Parcours aufbauen: 3–4 Reifen hintereinander (zum Hüpfen), eine Bank (zum Balancieren), danach 4–5 Hütchen im Slalom-Abstand von ca. 1 m. Die Kinder durchlaufen den Parcours nacheinander ohne Ball: durch die Reifen hüpfen, über die Bank balancieren, durch den Hütchen-Slalom laufen. Am Ende wartet der Trainer zum Abklatschen.",
         "coachTip": "Zwei Parcours-Stationen parallel aufbauen, damit niemand lange in der Schlange steht.",
         "materials": "2–4 Reifen · 1 Bank · 3 Hütchen (Slalom)",
         "dims": "{fieldDims(12, 0.4, k)}",
         "diagram": {
-          "fn": "diagramParcours",
-          "args": [
-            [
-              "reifen",
-              "reifen",
-              "bank",
-              "slalom"
+          "scene": {
+            "w": 16,
+            "l": 5,
+            "noField": true,
+            "items": [
+              {
+                "t": "hoop",
+                "x": 1.5,
+                "y": 2.5
+              },
+              {
+                "t": "hoop",
+                "x": 2.6,
+                "y": 2.5
+              },
+              {
+                "t": "hoop",
+                "x": 3.7,
+                "y": 2.5
+              },
+              {
+                "t": "bench",
+                "x": 5.2,
+                "y": 2.5,
+                "len": 3.5
+              },
+              {
+                "t": "cone",
+                "x": 10,
+                "y": 2
+              },
+              {
+                "t": "cone",
+                "x": 11,
+                "y": 3
+              },
+              {
+                "t": "cone",
+                "x": 12,
+                "y": 2
+              },
+              {
+                "t": "cone",
+                "x": 13,
+                "y": 3
+              },
+              {
+                "t": "p",
+                "x": 15,
+                "y": 2.5,
+                "team": "t",
+                "label": "T"
+              },
+              {
+                "t": "p",
+                "x": -0.2,
+                "y": 2.5,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "p",
+                "x": -1.3,
+                "y": 2.6,
+                "team": "b"
+              }
             ],
-            {
-              "caption": "Reifen · Bank · Hütchen-Slalom nacheinander"
-            }
-          ]
-        }
+            "margin": 1.8,
+            "moves": [
+              {
+                "t": "run",
+                "from": [
+                  0.4,
+                  1.6
+                ],
+                "to": [
+                  4.3,
+                  1.6
+                ],
+                "step": 1,
+                "at": 0.5
+              },
+              {
+                "t": "run",
+                "from": [
+                  5.2,
+                  1.7
+                ],
+                "to": [
+                  8.7,
+                  1.7
+                ],
+                "step": 2,
+                "at": 0.5
+              },
+              {
+                "t": "run",
+                "from": [
+                  9.4,
+                  2.5
+                ],
+                "to": [
+                  14.2,
+                  2.5
+                ],
+                "step": 3,
+                "bend": 0.6,
+                "at": 0.5
+              }
+            ],
+            "caption": "Reifen · Bank · Slalom · Abklatschen"
+          }
+        },
+        "aufbau": [
+          "Ein Parcours: 3–4 Reifen hintereinander, eine Bank, 4–5 Hütchen im Slalom (ca. 1 m Abstand).",
+          "Am Ende steht die Trainer*in. Am besten zwei Parcours nebeneinander."
+        ],
+        "ablauf": [
+          "<b>A</b> hüpft durch die Reifen.",
+          "<b>A</b> balanciert über die Bank.",
+          "<b>A</b> läuft durch den Slalom und klatscht die Trainer*in ab."
+        ],
+        "regeln": [
+          "Ohne Ball. Das nächste Kind startet, sobald die Reifen frei sind."
+        ],
+        "leichter": "Über die Bank gehen statt balancieren.",
+        "schwerer": "Durch die Reifen auf einem Bein hüpfen."
       },
       {
         "id": "zahlen-parcours",
         "title": "Zahlen-Parcours",
         "goal": "Ziel: Reaktionsschnelligkeit und Orientierung im Raum",
-        "desc": "Hütchen mit aufgeklebten oder aufgemalten Zahlen (1 bis Anzahl der Kinder) im Feld verteilen, alle Kinder sammeln sich in der Mitte. Der Trainer ruft eine Zahl; alle Kinder laufen so schnell wie möglich zum passenden Hütchen und wieder zurück zur Mitte.",
         "coachTip": "Mit zwei Zahlen gleichzeitig steigern („Erst zur 3, dann zur 7\"), sobald die Gruppe sicher ist.",
         "materials": "6 nummerierte Hütchen",
         "dims": "{fieldDims(12, 0.4, k)}",
         "diagram": {
-          "fn": "diagramScatter",
-          "args": [
-            "=min(k,16)",
-            {
-              "cones": 6,
-              "caption": "Zahlen-Hütchen anlaufen und zurück"
-            }
-          ]
-        }
+          "scene": {
+            "w": 12,
+            "l": 9,
+            "items": [
+              {
+                "t": "cone",
+                "x": 1.5,
+                "y": 1.5,
+                "label": "1"
+              },
+              {
+                "t": "cone",
+                "x": 6,
+                "y": 0.8,
+                "label": "2"
+              },
+              {
+                "t": "cone",
+                "x": 10.5,
+                "y": 1.5,
+                "label": "3"
+              },
+              {
+                "t": "cone",
+                "x": 11,
+                "y": 7.5,
+                "label": "4"
+              },
+              {
+                "t": "cone",
+                "x": 6,
+                "y": 8.4,
+                "label": "5"
+              },
+              {
+                "t": "cone",
+                "x": 1,
+                "y": 7.5,
+                "label": "6"
+              },
+              {
+                "t": "p",
+                "x": 5.5,
+                "y": 4.5,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 6.5,
+                "y": 4.6,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 6,
+                "y": 5.3,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "p",
+                "x": 5.2,
+                "y": 5.6,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 7,
+                "y": 5.5,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": -1,
+                "y": 4.5,
+                "team": "t",
+                "label": "T",
+                "say": "Drei!",
+                "step": 1
+              }
+            ],
+            "noField": true,
+            "margin": 1.8,
+            "moves": [
+              {
+                "t": "run",
+                "from": [
+                  6.4,
+                  5.4
+                ],
+                "to": [
+                  10.2,
+                  2
+                ],
+                "step": 2,
+                "at": 0.5
+              },
+              {
+                "t": "run",
+                "from": [
+                  10,
+                  1.4
+                ],
+                "to": [
+                  6.8,
+                  4.4
+                ],
+                "step": 3,
+                "bend": -1.4,
+                "at": 0.3
+              }
+            ],
+            "caption": "Nummerierte Hütchen rund um die Mitte"
+          }
+        },
+        "aufbau": [
+          "Hütchen mit Zahlen (1 bis 6) im Feld verteilen.",
+          "Alle Kinder stehen in der Mitte."
+        ],
+        "ablauf": [
+          "Trainer*in ruft eine Zahl, z. B. „Drei!“.",
+          "Alle laufen so schnell wie möglich zum Hütchen 3.",
+          "Und wieder zurück in die Mitte."
+        ],
+        "regeln": [],
+        "leichter": "Trainer*in zeigt die Zahl zusätzlich mit den Fingern.",
+        "schwerer": "Zwei Zahlen nacheinander rufen: „Erst 3, dann 5!“"
       },
       {
         "id": "umschalt-fangen",
         "title": "Umschalt-Fangen",
         "goal": "Ziel: Schnelles Reagieren und Umschalten spielerisch schulen",
-        "desc": "Ein Feld markieren, 2–3 Kinder als Fänger bestimmen, der Rest läuft frei umher. Auf ein Startsignal fangen die Fänger die anderen Kinder. Auf ein zweites Signal (z. B. Pfiff) wechseln sofort die Rollen: Wer eben noch Fänger war, wird nun selbst gejagt, und umgekehrt. Signal in unregelmäßigen Abständen geben.",
         "coachTip": "Wirkungsvoller als Koordinationsleiter oder Hütchen-Sprünge, weil die Kinder auf echte Bewegungen reagieren statt ein festes Muster abzulaufen.",
         "materials": "{pylonCountForBoundary((fieldWidthMeters(10, 0.4, k)))} gelbe Pilonen zur Feldmarkierung",
         "dims": "{fieldDims(10, 0.4, k)}",
         "diagram": {
-          "fn": "diagramScatter",
-          "args": [
-            "=min(k,16)",
-            {
-              "showBoundary": true,
-              "extraBoundaryPylons": "=pylonCountForBoundary((fieldWidthMeters(10, 0.4, k))) >= 6",
-              "caption": "Fangen mit plötzlichem Rollenwechsel auf Signal"
-            }
-          ]
-        }
+          "scene": {
+            "w": 12,
+            "l": 9,
+            "items": [
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 12,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 9,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 12,
+                "y": 9,
+                "color": "#F2B134"
+              },
+              {
+                "t": "p",
+                "x": 4,
+                "y": 4,
+                "team": "r",
+                "label": "F"
+              },
+              {
+                "t": "p",
+                "x": 7.5,
+                "y": 5.5,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "p",
+                "x": 8,
+                "y": 2,
+                "team": "r",
+                "label": "F"
+              },
+              {
+                "t": "p",
+                "x": 10,
+                "y": 3.5,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 2,
+                "y": 7,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 9,
+                "y": 7.5,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 6,
+                "y": 9.4,
+                "team": "t",
+                "label": "T",
+                "say": "Pfiff!",
+                "step": 2
+              }
+            ],
+            "moves": [
+              {
+                "t": "run",
+                "from": [
+                  4.4,
+                  4.2
+                ],
+                "to": [
+                  6.1,
+                  4.9
+                ],
+                "step": 1,
+                "at": 0.4
+              },
+              {
+                "t": "run",
+                "from": [
+                  7.6,
+                  5.2
+                ],
+                "to": [
+                  8.2,
+                  2.7
+                ],
+                "step": 3,
+                "at": 0.5
+              }
+            ],
+            "caption": "F = Fänger*in · auf Pfiff tauschen die Rollen"
+          }
+        },
+        "aufbau": [
+          "Feld markieren, 2–3 Kinder sind Fänger*innen (<b>F</b>)."
+        ],
+        "ablauf": [
+          "<b>F</b> versucht, die anderen abzuschlagen.",
+          "Trainer*in pfeift.",
+          "Sofort tauschen die Rollen: Wer gejagt wurde, wird jetzt Fänger*in (hier <b>A</b>)."
+        ],
+        "regeln": [
+          "Pfiff in unregelmäßigen Abständen geben."
+        ],
+        "leichter": "Nur ein*e Fänger*in.",
+        "schwerer": "Alle mit Ball."
       },
       {
         "id": "kaenguru-parcours",
         "title": "Känguru-Parcours",
         "goal": "Ziel: Springen, Laufen und Balancieren mit dem Ball in der Hand",
-        "desc": "Einen kurzen Parcours aufbauen: zuerst eine Reihe Reifen, dann ein Hütchen-Slalom, dann wieder Reifen. Jedes Kind hält seinen Ball mit beiden Händen vor dem Bauch und hüpft wie ein Känguru beidbeinig durch die Reifen, läuft im Slalom um die Hütchen und hüpft zum Schluss auf einem Bein durch die letzten Reifen. Am Ende den Ball ablegen und mit dem Fuß zurück zum Start dribbeln. Nächster Durchgang: Ball hinter dem Rücken oder über dem Kopf halten.",
         "coachTip": "Mehrere Parcours nebeneinander aufbauen, damit nie mehr als 3–4 Kinder anstehen.",
         "materials": "{k} Bälle · {6 * stationCount(k)} Ringe/Reifen · {3 * stationCount(k)} Hütchen",
         "dims": "{stationLabel(stationCount(k))} à ca. 10 m Länge",
         "diagram": {
-          "fn": "diagramParcours",
-          "args": [
-            [
-              "reifen",
-              "slalom",
-              "reifen"
+          "scene": {
+            "w": 14,
+            "l": 5,
+            "noField": true,
+            "items": [
+              {
+                "t": "hoop",
+                "x": 1.5,
+                "y": 2.5
+              },
+              {
+                "t": "hoop",
+                "x": 2.6,
+                "y": 2.5
+              },
+              {
+                "t": "hoop",
+                "x": 3.7,
+                "y": 2.5
+              },
+              {
+                "t": "cone",
+                "x": 6,
+                "y": 2
+              },
+              {
+                "t": "cone",
+                "x": 7,
+                "y": 3
+              },
+              {
+                "t": "cone",
+                "x": 8,
+                "y": 2
+              },
+              {
+                "t": "hoop",
+                "x": 10,
+                "y": 2.5,
+                "color": "#2F7FC1"
+              },
+              {
+                "t": "hoop",
+                "x": 11.1,
+                "y": 2.5,
+                "color": "#2F7FC1"
+              },
+              {
+                "t": "p",
+                "x": -0.2,
+                "y": 2.5,
+                "team": "b",
+                "label": "A",
+                "arms": true
+              },
+              {
+                "t": "ball",
+                "x": -0.2,
+                "y": 2.5,
+                "z": 1.5
+              },
+              {
+                "t": "p",
+                "x": -1.3,
+                "y": 2.6,
+                "team": "b"
+              }
             ],
-            {
-              "caption": "Reifen hüpfen · Slalom · Reifen auf einem Bein"
-            }
-          ]
+            "margin": 1.8,
+            "moves": [
+              {
+                "t": "run",
+                "from": [
+                  0.4,
+                  1.6
+                ],
+                "to": [
+                  4.3,
+                  1.6
+                ],
+                "step": 1,
+                "at": 0.5
+              },
+              {
+                "t": "run",
+                "from": [
+                  4.8,
+                  2.5
+                ],
+                "to": [
+                  9,
+                  2.5
+                ],
+                "step": 2,
+                "bend": 0.6,
+                "at": 0.5
+              },
+              {
+                "t": "run",
+                "from": [
+                  9.5,
+                  1.6
+                ],
+                "to": [
+                  11.6,
+                  1.6
+                ],
+                "step": 3,
+                "at": 0.5
+              },
+              {
+                "t": "dribble",
+                "from": [
+                  12.5,
+                  4.4
+                ],
+                "to": [
+                  0.5,
+                  4.6
+                ],
+                "step": 4,
+                "at": 0.15
+              }
+            ],
+            "caption": "Ball mit beiden Händen vor dem Bauch halten"
+          }
         },
         "sources": [
           "https://www.trainertalk.de/attachment/520-f-junioren-te-04-pdf"
         ],
-        "added": "2026-11-03"
+        "added": "2026-11-03",
+        "aufbau": [
+          "Pro Gruppe ein Parcours: Reifen, Hütchen-Slalom, Reifen.",
+          "Jedes Kind hält seinen Ball mit beiden Händen vor dem Bauch."
+        ],
+        "ablauf": [
+          "<b>A</b> hüpft wie ein Känguru beidbeinig durch die Reifen.",
+          "<b>A</b> läuft im Slalom um die Hütchen.",
+          "<b>A</b> hüpft auf einem Bein durch die letzten Reifen.",
+          "<b>A</b> legt den Ball ab und dribbelt zurück zum Start."
+        ],
+        "regeln": [
+          "Nie mehr als 3–4 Kinder an einem Parcours anstehen lassen."
+        ],
+        "leichter": "Beidbeinig durch alle Reifen.",
+        "schwerer": "Ball hinter dem Rücken oder über dem Kopf halten."
       }
     ],
     "torwart": [
@@ -537,61 +3415,292 @@
         "id": "fang-mich-wenn-du-kannst",
         "title": "Fang mich, wenn du kannst",
         "goal": "Ziel: Erstes Ballgefühl mit den Händen, jeder mal Torwart",
-        "desc": "Kleingruppen von 3–4 Kindern bilden, jede Gruppe bekommt ein kleines Tor und einen Ball. Ein Kind stellt sich als Torwart ins Tor, die anderen werfen sich den Ball locker zu und schießen abwechselnd flach aufs Tor; der Torwart versucht, mit den Händen zu fangen oder abzuwehren. Nach jedem Versuch die Torwartrolle im Uhrzeigersinn weitergeben.",
         "coachTip": "Weiche, leichte Bälle verwenden und kurze Distanzen wählen, damit alle Erfolgserlebnisse haben.",
         "materials": "{(parallelFields(k,4))} Bälle (leicht entlüftet) · {(parallelFields(k,4))} kleine Tore",
         "dims": "{stationLabel(parallelFields(k,4))} à ca. 5 × 5 m",
         "diagram": {
-          "fn": "diagramStations",
-          "args": [
-            "=parallelFields(k,4)",
-            {
-              "caption": "Torwart-Fangspiel an mehreren Mini-Toren"
-            }
-          ]
-        }
+          "scene": {
+            "w": 7,
+            "l": 6,
+            "objScale": 1.3,
+            "noField": true,
+            "items": [
+              {
+                "t": "goal",
+                "x": 7,
+                "y": 3,
+                "dir": "w"
+              },
+              {
+                "t": "p",
+                "x": 6.3,
+                "y": 3,
+                "team": "y",
+                "label": "TW",
+                "arms": true
+              },
+              {
+                "t": "p",
+                "x": 1.5,
+                "y": 1.2,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "ball",
+                "x": 2.1,
+                "y": 1.2
+              },
+              {
+                "t": "p",
+                "x": 1.2,
+                "y": 4.8,
+                "team": "b",
+                "label": "B"
+              },
+              {
+                "t": "p",
+                "x": 3.2,
+                "y": 3,
+                "team": "b"
+              }
+            ],
+            "moves": [
+              {
+                "t": "pass",
+                "from": [
+                  2.1,
+                  1.4
+                ],
+                "to": [
+                  1.5,
+                  4.4
+                ],
+                "step": 1,
+                "arc": 1.2,
+                "z0": 1,
+                "z1": 1,
+                "at": 0.5
+              },
+              {
+                "t": "pass",
+                "from": [
+                  1.9,
+                  4.6
+                ],
+                "to": [
+                  6,
+                  3.3
+                ],
+                "step": 2,
+                "at": 0.5
+              }
+            ],
+            "caption": "Gruppe mit 3–4 Kindern · kleines Tor"
+          }
+        },
+        "aufbau": [
+          "Gruppen mit 3–4 Kindern, jede Gruppe hat ein kleines Tor und einen weichen Ball.",
+          "Ein Kind steht als Torwart (<b>TW</b>) im Tor."
+        ],
+        "ablauf": [
+          "<b>A</b> wirft den Ball locker zu <b>B</b>.",
+          "<b>B</b> schießt flach aufs Tor, <b>TW</b> fängt oder wehrt ab."
+        ],
+        "regeln": [
+          "Nach jedem Versuch die Torwartrolle weitergeben."
+        ],
+        "leichter": "Ball rollen statt schießen.",
+        "schwerer": "Halbhoch werfen statt schießen."
       },
       {
         "id": "zick-zack-faenger",
         "title": "Zick-Zack-Fänger",
         "goal": "Ziel: Seitliche Beweglichkeit als Torwart spielerisch erproben",
-        "desc": "Zwei Hütchen im Abstand von ca. 2 m vor einem kleinen Tor aufstellen. Ein Kind steht als Torwart im Tor und bewegt sich seitlich zwischen den beiden Hütchen hin und her. Die anderen Kinder rollen nacheinander flache Bälle aufs Tor, die der Torwart abwehren soll. Torwartrolle nach jeweils 4–5 Versuchen wechseln.",
         "coachTip": "Rollweite an das Können anpassen – lieber viele Erfolgserlebnisse als schwer zu erreichende Bälle.",
         "materials": "{(parallelFields(k,4))} Bälle (leicht entlüftet) · {(parallelFields(k,4))*2} Hütchen",
         "dims": "{stationLabel(parallelFields(k,4))} à ca. 5 × 3 m",
         "diagram": {
-          "fn": "diagramStations",
-          "args": [
-            "=parallelFields(k,4)",
-            {
-              "caption": "Seitliches Abwehren zwischen zwei Hütchen"
-            }
-          ]
-        }
+          "scene": {
+            "w": 6,
+            "l": 4,
+            "objScale": 1.3,
+            "noField": true,
+            "items": [
+              {
+                "t": "goal",
+                "x": 6,
+                "y": 2,
+                "dir": "w",
+                "w": 2.4
+              },
+              {
+                "t": "cone",
+                "x": 5,
+                "y": 0.9
+              },
+              {
+                "t": "cone",
+                "x": 5,
+                "y": 3.1
+              },
+              {
+                "t": "p",
+                "x": 5.3,
+                "y": 2,
+                "team": "y",
+                "label": "TW",
+                "arms": true
+              },
+              {
+                "t": "p",
+                "x": 0.5,
+                "y": 2,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "ball",
+                "x": 1.1,
+                "y": 2
+              },
+              {
+                "t": "p",
+                "x": -0.6,
+                "y": 2.1,
+                "team": "b"
+              }
+            ],
+            "margin": 1.6,
+            "moves": [
+              {
+                "t": "run",
+                "from": [
+                  5.6,
+                  1.6
+                ],
+                "to": [
+                  5.6,
+                  0.8
+                ],
+                "step": 1,
+                "at": 0.5
+              },
+              {
+                "t": "pass",
+                "from": [
+                  1.4,
+                  2
+                ],
+                "to": [
+                  5,
+                  2.9
+                ],
+                "step": 2,
+                "at": 0.45
+              }
+            ],
+            "caption": "Zwei Hütchen ca. 2 m auseinander vor dem Tor"
+          }
+        },
+        "aufbau": [
+          "Zwei Hütchen ca. 2 m auseinander vor einem kleinen Tor.",
+          "Ein Kind steht als Torwart (<b>TW</b>) im Tor, die anderen stellen sich mit Ball an."
+        ],
+        "ablauf": [
+          "<b>TW</b> bewegt sich seitlich zwischen den Hütchen hin und her.",
+          "<b>A</b> rollt den Ball flach aufs Tor, <b>TW</b> wehrt ab."
+        ],
+        "regeln": [
+          "Nach 4–5 Bällen wechselt die Torwartrolle."
+        ],
+        "leichter": "Näher heranrollen.",
+        "schwerer": "Ball etwas fester rollen."
       },
       {
         "id": "torwart-ruf",
         "title": "Torwart-Ruf",
         "goal": "Ziel: Bälle sicher fangen und laut „Torwart!“ rufen",
-        "desc": "Immer zwei Kinder arbeiten zusammen: Eines steht als Torwart in einem Hütchentor (ca. 2 m breit), das andere 3–4 m davor. Der Werfer rollt oder wirft den Ball locker aufs Tor. Der Torwart fängt den Ball mit beiden Händen und ruft dabei laut „Torwart!“. Nach 5 Würfen Rollen tauschen. Steigerung: Werfer wirft abwechselnd flach, halbhoch und etwas seitlich.",
         "coachTip": "Handschuhe sind in diesem Alter nicht nötig – entscheidend sind Hände, die den Ball „wie eine Schüssel“ umschließen.",
         "materials": "{ceil(k/2)} Bälle · {2 * ceil(k/2)} Hütchen",
         "dims": "{ceil(k/2)} Hütchentore à ca. 2 m, Wurfabstand 3–4 m",
         "diagram": {
-          "fn": "diagramScatter",
-          "args": [
-            "=min(k, 12)",
-            {
-              "cones": 4,
-              "showPassPath": true,
-              "caption": "Werfer und Torwart im Wechsel"
-            }
-          ]
+          "scene": {
+            "w": 6,
+            "l": 4,
+            "objScale": 1.3,
+            "noField": true,
+            "items": [
+              {
+                "t": "cone",
+                "x": 5.5,
+                "y": 1
+              },
+              {
+                "t": "cone",
+                "x": 5.5,
+                "y": 3
+              },
+              {
+                "t": "p",
+                "x": 5.2,
+                "y": 2,
+                "team": "y",
+                "label": "TW",
+                "arms": true,
+                "say": "Torwart!"
+              },
+              {
+                "t": "p",
+                "x": 1.5,
+                "y": 2,
+                "team": "b",
+                "label": "W"
+              },
+              {
+                "t": "ball",
+                "x": 1.9,
+                "y": 2,
+                "z": 1
+              }
+            ],
+            "margin": 1.2,
+            "moves": [
+              {
+                "t": "pass",
+                "from": [
+                  2,
+                  2.1
+                ],
+                "to": [
+                  4.9,
+                  2
+                ],
+                "step": 1,
+                "arc": 0.8,
+                "z0": 1,
+                "z1": 0.9,
+                "at": 0.45
+              }
+            ],
+            "caption": "Hütchentor ca. 2 m · Abstand 3–4 m"
+          }
         },
         "sources": [
           "https://www.trainertalk.de/attachment/420-torwarttrainingf%C3%BCralle-einsteiger-pdf"
         ],
-        "added": "2026-11-03"
+        "added": "2026-11-03",
+        "aufbau": [
+          "Immer zwei Kinder: eines steht als Torwart (<b>TW</b>) in einem Hütchentor (ca. 2 m breit), das andere (<b>W</b>) 3–4 m davor."
+        ],
+        "ablauf": [
+          "<b>W</b> rollt oder wirft den Ball locker aufs Tor. <b>TW</b> fängt ihn mit beiden Händen und ruft laut „Torwart!“."
+        ],
+        "regeln": [
+          "Nach 5 Würfen Rollen tauschen."
+        ],
+        "leichter": "Nur rollen.",
+        "schwerer": "Abwechselnd flach, halbhoch und etwas seitlich werfen."
       }
     ],
     "kopfball": [
@@ -599,37 +3708,204 @@
         "id": "ball-hoch-halten",
         "title": "Ball hoch halten",
         "goal": "Ziel: Gefühl für Flugbälle spielerisch entwickeln, ohne echten Kopfballkontakt",
-        "desc": "Kinder in Kleingruppen von 3–4 einteilen, jede Gruppe bekommt einen leicht entlüfteten Ball und bildet einen kleinen Kreis. Die Kinder versuchen gemeinsam, den Ball möglichst lange in der Luft zu halten – Kontakt mit Kopf, Schulter und Fuß ist erlaubt, mit den Händen nicht.",
         "coachTip": "Einen Ball bewusst etwas weicher pumpen – echtes Kopfballtraining mit hartem Ball ist in diesem Alter nicht sinnvoll.",
         "materials": "{ceil(k/4)} Bälle (leicht entlüftet)",
         "dims": "{fieldDims(6, 0.2, k)} pro Gruppe",
         "diagram": {
-          "fn": "diagramCircle",
-          "args": [
-            "=clamp(min(k,6),3,6)",
-            {
-              "caption": "Ball in der Luft halten in Kleingruppen"
-            }
-          ]
-        }
+          "scene": {
+            "w": 5,
+            "l": 5,
+            "objScale": 1.3,
+            "noField": true,
+            "items": [
+              {
+                "t": "p",
+                "x": 2.5,
+                "y": 0.6,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "p",
+                "x": 4.6,
+                "y": 2.5,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 2.5,
+                "y": 4.6,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 0.4,
+                "y": 2.5,
+                "team": "b"
+              },
+              {
+                "t": "ball",
+                "x": 2.5,
+                "y": 0.65,
+                "z": 1.95
+              }
+            ],
+            "moves": [
+              {
+                "t": "pass",
+                "from": [
+                  2.6,
+                  0.7
+                ],
+                "to": [
+                  4.3,
+                  2.4
+                ],
+                "step": 1,
+                "arc": 0.8,
+                "z0": 1.95,
+                "z1": 1.6,
+                "at": 0.5
+              },
+              {
+                "t": "pass",
+                "from": [
+                  4.2,
+                  2.8
+                ],
+                "to": [
+                  2.7,
+                  4.2
+                ],
+                "step": 2,
+                "arc": 0.8,
+                "z0": 1.6,
+                "z1": 1.6,
+                "at": 0.7
+              }
+            ],
+            "caption": "Kleiner Kreis · leicht entlüfteter Ball"
+          }
+        },
+        "aufbau": [
+          "Gruppen mit 3–4 Kindern, jede Gruppe bildet einen kleinen Kreis.",
+          "Ein leicht entlüfteter Ball pro Gruppe."
+        ],
+        "ablauf": [
+          "<b>A</b> spielt den Ball hoch – mit Kopf, Schulter oder Fuß.",
+          "Die anderen halten den Ball gemeinsam in der Luft, ohne Hände."
+        ],
+        "regeln": [
+          "Mitzählen: Wie viele Berührungen schafft die Gruppe?"
+        ],
+        "leichter": "Ball darf einmal aufspringen.",
+        "schwerer": "Nur mit dem Fuß."
       },
       {
         "id": "ball-tennis-ueber-die-stange",
         "title": "Ball-Tennis über die Stange",
         "goal": "Ziel: Spielerisches Zusammenspiel mit Flugbällen, ohne echten Kopfballkontakt",
-        "desc": "Zwei kleine Hütchen-Türme (je 3–4 Hütchen gestapelt) im Abstand von ca. 4 m aufstellen, eine Slalomstange tief darüberlegen als Ersatz-Netz. Zwei Kleingruppen stellen sich auf beiden Seiten auf. Mit einem leicht entlüfteten Ball wird abwechselnd über die Stange gespielt – Kontakt mit Kopf, Schulter oder Hand ist erlaubt.",
         "coachTip": "Einen Ball bewusst etwas weicher pumpen – auch hier ist echtes Kopfballtraining in diesem Alter nicht sinnvoll.",
         "materials": "{ceil(k/4)} Bälle (leicht entlüftet) · 1 Slalomstange · 4 Hütchen (als Ständer)",
         "dims": "{fieldDims(6, 0.2, k)} pro Gruppe",
         "diagram": {
-          "fn": "diagramCircle",
-          "args": [
-            "=clamp(min(k,6),3,6)",
-            {
-              "caption": "Ball-Tennis über die Stange in Kleingruppen"
-            }
-          ]
-        }
+          "scene": {
+            "w": 8,
+            "l": 5,
+            "objScale": 1.3,
+            "noField": true,
+            "items": [
+              {
+                "t": "pole",
+                "x": 4,
+                "y": 0.5,
+                "x2": 4,
+                "y2": 4.5,
+                "z": 0.55
+              },
+              {
+                "t": "p",
+                "x": 1.5,
+                "y": 1.5,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "p",
+                "x": 1.8,
+                "y": 3.6,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 6.5,
+                "y": 1.6,
+                "team": "r"
+              },
+              {
+                "t": "p",
+                "x": 6.2,
+                "y": 3.6,
+                "team": "r",
+                "label": "B"
+              },
+              {
+                "t": "ball",
+                "x": 1.5,
+                "y": 1.5,
+                "z": 2.1
+              }
+            ],
+            "moves": [
+              {
+                "t": "pass",
+                "from": [
+                  1.7,
+                  1.6
+                ],
+                "to": [
+                  6,
+                  3.3
+                ],
+                "step": 1,
+                "arc": 1.6,
+                "z0": 2,
+                "z1": 1.4,
+                "at": 0.65
+              },
+              {
+                "t": "pass",
+                "from": [
+                  6,
+                  3.1
+                ],
+                "to": [
+                  1.9,
+                  3.2
+                ],
+                "step": 2,
+                "arc": 1.0,
+                "z0": 1.4,
+                "z1": 1.4,
+                "at": 0.7
+              }
+            ],
+            "caption": "Stange auf Hütchen-Türmen als Netz"
+          }
+        },
+        "aufbau": [
+          "Zwei Hütchen-Türme (je 3–4 Hütchen) ca. 4 m auseinander, eine Slalomstange tief darauf als Netz.",
+          "Zwei kleine Gruppen auf beiden Seiten, ein leicht entlüfteter Ball."
+        ],
+        "ablauf": [
+          "<b>A</b> spielt den Ball über die Stange – mit Kopf, Schulter oder Hand.",
+          "<b>B</b> spielt ihn zurück."
+        ],
+        "regeln": [
+          "Der Ball darf einmal aufspringen."
+        ],
+        "leichter": "Fangen und zurückwerfen erlaubt.",
+        "schwerer": "Ball darf nicht aufspringen."
       }
     ],
     "aufwaermen": [
@@ -637,67 +3913,434 @@
         "id": "drachenschwanz",
         "title": "Drachenschwanz",
         "goal": "Ziel: Aufwärmen, Reaktionsschnelligkeit, Spaß von der ersten Minute",
-        "desc": "Jedes Kind steckt sich den Zipfel eines Leibchens locker in den Hosenbund. Auf ein Startsignal versuchen alle Kinder gleichzeitig, sich gegenseitig die Leibchen-Zipfel zu klauen, ohne dabei den eigenen zu verlieren. Wer seinen Zipfel verliert, macht sofort 3 Hampelmänner und ist danach wieder dabei.",
         "coachTip": "Regel selbst vormachen statt lange erklären. Feld klein halten, damit alle ständig in Aktion sind.",
         "materials": "{k} Leibchen (als Drachenschwanz-Zipfel) · 4 gelbe Pilonen zur Feldmarkierung",
         "dims": "{fieldDims(10, 0.3, k)}",
         "diagram": {
-          "fn": "diagramScatter",
-          "args": [
-            "=min(k,16)",
-            {
-              "showBoundary": true,
-              "cones": 4,
-              "caption": "Freies Laufen · Zipfel klauen"
-            }
-          ]
-        }
+          "scene": {
+            "w": 10,
+            "l": 7,
+            "items": [
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 10,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 7,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 10,
+                "y": 7,
+                "color": "#F2B134"
+              },
+              {
+                "t": "p",
+                "x": 3,
+                "y": 3,
+                "team": "b",
+                "label": "A",
+                "tail": true
+              },
+              {
+                "t": "p",
+                "x": 4.5,
+                "y": 3.8,
+                "team": "w",
+                "tail": true
+              },
+              {
+                "t": "p",
+                "x": 7.5,
+                "y": 2,
+                "team": "b",
+                "tail": true
+              },
+              {
+                "t": "p",
+                "x": 6.5,
+                "y": 5.5,
+                "team": "w",
+                "tail": true
+              },
+              {
+                "t": "p",
+                "x": 2,
+                "y": 6,
+                "team": "b",
+                "tail": true
+              },
+              {
+                "t": "p",
+                "x": 8.5,
+                "y": 4.5,
+                "team": "w",
+                "label": "B",
+                "arms": true
+              }
+            ],
+            "moves": [
+              {
+                "t": "run",
+                "from": [
+                  3.4,
+                  3.2
+                ],
+                "to": [
+                  4.2,
+                  3.7
+                ],
+                "step": 1,
+                "at": 0.1
+              },
+              {
+                "t": "run",
+                "from": [
+                  8.8,
+                  4.4
+                ],
+                "to": [
+                  10.5,
+                  4.4
+                ],
+                "step": 2,
+                "at": 0.6
+              }
+            ],
+            "caption": "Gelber Zipfel = Leibchen im Hosenbund"
+          }
+        },
+        "aufbau": [
+          "Jedes Kind steckt sich den Zipfel eines Leibchens hinten locker in den Hosenbund."
+        ],
+        "ablauf": [
+          "Auf das Startsignal versuchen alle, anderen den Zipfel zu klauen (hier <b>A</b>) – ohne den eigenen zu verlieren.",
+          "Wer den Zipfel verliert (<b>B</b>), macht 3 Hampelmänner und ist wieder dabei."
+        ],
+        "regeln": [
+          "Feld klein halten, damit alle ständig in Aktion sind."
+        ],
+        "leichter": "Trainer*in ist die einzige Jägerin / der einzige Jäger.",
+        "schwerer": "Alle dribbeln dabei mit Ball."
       },
       {
         "id": "feuer-wasser-blitz",
         "title": "Feuer, Wasser, Blitz",
         "goal": "Ziel: Aufwärmen, Reaktionsschnelligkeit, allgemeine Bewegungsschule",
-        "desc": "Alle Kinder laufen frei im Feld umher. Auf Zuruf reagieren sie mit einer festgelegten Bewegung: „Feuer\" = so schnell wie möglich wegrennen, „Wasser\" = auf ein Hütchen oder eine Bank klettern, „Blitz\" = sofort blitzschnell hinsetzen. Für jüngere Kinder reichen anfangs zwei Signale.",
         "coachTip": "Signale immer selbst vormachen und ruhig übertreiben – je lustiger der Trainer, desto mehr Spaß die Kinder.",
         "materials": "{pylonCountForBoundary((fieldWidthMeters(10, 0.3, k)))} gelbe Pilonen zur Feldmarkierung · 4 Hütchen",
         "dims": "{fieldDims(10, 0.3, k)}",
         "diagram": {
-          "fn": "diagramScatter",
-          "args": [
-            "=min(k,16)",
-            {
-              "showBoundary": true,
-              "extraBoundaryPylons": "=pylonCountForBoundary((fieldWidthMeters(10, 0.3, k))) >= 6",
-              "cones": 4,
-              "caption": "Freies Laufen · Reaktion auf Zuruf"
-            }
-          ]
-        }
+          "scene": {
+            "w": 10,
+            "l": 7,
+            "items": [
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 10,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 7,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 10,
+                "y": 7,
+                "color": "#F2B134"
+              },
+              {
+                "t": "bench",
+                "x": 6.5,
+                "y": 6.2,
+                "len": 2.5
+              },
+              {
+                "t": "cone",
+                "x": 2,
+                "y": 2
+              },
+              {
+                "t": "cone",
+                "x": 8,
+                "y": 1.5
+              },
+              {
+                "t": "p",
+                "x": 5,
+                "y": 7.4,
+                "team": "t",
+                "label": "T",
+                "say": "Wasser!",
+                "step": 2
+              },
+              {
+                "t": "p",
+                "x": 3,
+                "y": 3.5,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 5,
+                "y": 2.5,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "p",
+                "x": 7,
+                "y": 4,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 2.5,
+                "y": 5.5,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 8.5,
+                "y": 3,
+                "team": "b"
+              }
+            ],
+            "moves": [
+              {
+                "t": "run",
+                "from": [
+                  5.4,
+                  2.8
+                ],
+                "to": [
+                  7,
+                  2.3
+                ],
+                "step": 1,
+                "at": 0.5
+              },
+              {
+                "t": "run",
+                "from": [
+                  7.3,
+                  4.2
+                ],
+                "to": [
+                  7.6,
+                  5.8
+                ],
+                "step": 3,
+                "at": 0.4
+              },
+              {
+                "t": "run",
+                "from": [
+                  3.3,
+                  3.7
+                ],
+                "to": [
+                  2.3,
+                  2.3
+                ]
+              }
+            ],
+            "caption": "Feuer = wegrennen · Wasser = auf etwas klettern · Blitz = hinsetzen"
+          }
+        },
+        "aufbau": [
+          "Feld markieren, eine Bank oder große Hütchen bereitstellen."
+        ],
+        "ablauf": [
+          "Alle laufen frei im Feld.",
+          "Trainer*in ruft ein Signal.",
+          "Alle reagieren: „Feuer“ = schnell wegrennen, „Wasser“ = auf die Bank oder ein Hütchen steigen, „Blitz“ = blitzschnell hinsetzen."
+        ],
+        "regeln": [
+          "Signale selbst vormachen und ruhig übertreiben."
+        ],
+        "leichter": "Nur zwei Signale.",
+        "schwerer": "Neues Signal ausdenken, z. B. „Wind“ = im Kreis drehen."
       },
       {
         "id": "balldiebe",
         "title": "Balldiebe",
         "goal": "Ziel: Aufwärmen mit eigenem Ball, Ball abschirmen und wieder einfangen",
-        "desc": "Ein Feld markieren, jedes Kind dribbelt mit einem eigenen Ball frei darin. Zwei Kinder ohne Ball sind „Balldiebe“ und versuchen, den anderen den Ball mit dem Fuß aus dem Feld zu spitzeln. Wessen Ball draußen landet, holt ihn sofort zurück, macht einen kleinen Zaubertrick (z. B. dreimal mit der Sohle auf den Ball tippen) und dribbelt weiter. Nach ca. 45 Sekunden übernehmen zwei neue Kinder die Rolle der Balldiebe.",
         "coachTip": "Die Kinder dürfen ihren Ball mit dem Körper schützen – zeigen, dass „Körper zwischen Dieb und Ball“ die beste Versteck-Idee ist.",
         "materials": "{k} Bälle · {pylonCountForBoundary(fieldWidthMeters(12, 0.4, k))} gelbe Pilonen zur Feldmarkierung · 2 Leibchen",
         "dims": "{fieldDims(12, 0.4, k)}",
         "diagram": {
-          "fn": "diagramScatter",
-          "args": [
-            "=min(k, 16)",
-            {
-              "showBoundary": true,
-              "extraBoundaryPylons": "=pylonCountForBoundary(fieldWidthMeters(12, 0.4, k)) >= 6",
-              "withBall": true,
-              "caption": "Alle dribbeln · 2 Balldiebe ohne Ball"
-            }
-          ]
+          "scene": {
+            "w": 12,
+            "l": 9,
+            "items": [
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 12,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 9,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 12,
+                "y": 9,
+                "color": "#F2B134"
+              },
+              {
+                "t": "p",
+                "x": 5,
+                "y": 4.5,
+                "team": "r",
+                "label": "D"
+              },
+              {
+                "t": "p",
+                "x": 6.5,
+                "y": 4.2,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "ball",
+                "x": 7.1,
+                "y": 3.95
+              },
+              {
+                "t": "p",
+                "x": 3,
+                "y": 2.5,
+                "team": "b"
+              },
+              {
+                "t": "ball",
+                "x": 3.6,
+                "y": 2.25
+              },
+              {
+                "t": "p",
+                "x": 9.5,
+                "y": 6,
+                "team": "b"
+              },
+              {
+                "t": "ball",
+                "x": 10.1,
+                "y": 5.75
+              },
+              {
+                "t": "p",
+                "x": 2.5,
+                "y": 7,
+                "team": "b"
+              },
+              {
+                "t": "ball",
+                "x": 3.1,
+                "y": 6.75
+              },
+              {
+                "t": "p",
+                "x": 9.5,
+                "y": 2.5,
+                "team": "r",
+                "label": "D"
+              }
+            ],
+            "moves": [
+              {
+                "t": "run",
+                "from": [
+                  5.4,
+                  4.6
+                ],
+                "to": [
+                  6.6,
+                  4.1
+                ],
+                "step": 1,
+                "at": 0.2
+              },
+              {
+                "t": "pass",
+                "from": [
+                  7.1,
+                  4
+                ],
+                "to": [
+                  12.6,
+                  3.2
+                ],
+                "step": 2,
+                "at": 0.6
+              },
+              {
+                "t": "dribble",
+                "from": [
+                  12.4,
+                  2.4
+                ],
+                "to": [
+                  9.9,
+                  1.2
+                ],
+                "step": 3,
+                "at": 0.4
+              }
+            ],
+            "caption": "D = Balldieb*in ohne Ball"
+          }
         },
         "sources": [
           "https://www.sbfv.de/fileadmin/user_upload/Nav_Fussball/Kinder/Trainingsformen/E-Jugend/Beispiel-Trainingseinheit_von_Julian_Schuster_-_E-Jugend.pdf"
         ],
-        "added": "2026-11-03"
+        "added": "2026-11-03",
+        "aufbau": [
+          "Jedes Kind dribbelt mit eigenem Ball im Feld.",
+          "Zwei Kinder ohne Ball sind Balldiebe (<b>D</b>)."
+        ],
+        "ablauf": [
+          "<b>D</b> versucht, einem Kind den Ball mit dem Fuß wegzuspitzeln.",
+          "Der Ball von <b>A</b> rollt aus dem Feld.",
+          "<b>A</b> holt den Ball, tippt dreimal mit der Sohle drauf und dribbelt weiter."
+        ],
+        "regeln": [
+          "Nach ca. 45 Sekunden werden zwei andere Kinder Balldiebe."
+        ],
+        "leichter": "Nur ein Balldieb.",
+        "schwerer": "Wessen Ball draußen ist, wird Balldieb."
       }
     ]
   }

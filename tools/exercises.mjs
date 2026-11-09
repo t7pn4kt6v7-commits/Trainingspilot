@@ -34,7 +34,7 @@ const TEXT_FIELDS = ['title', 'goal', 'desc', 'coachTip', 'materials', 'dims'];
 const DETAIL_LISTS = ['aufbau', 'ablauf', 'regeln'];
 const DETAIL_TEXTS = ['leichter', 'schwerer'];
 const ALLOWED_FIELDS = new Set(['id', ...TEXT_FIELDS, 'diagram', 'custom', 'added', 'origin', 'sources', ...DETAIL_LISTS, ...DETAIL_TEXTS]);
-const SCENE_ITEM_TYPES = new Set(['p', 'cone', 'ball', 'goal', 'ladder']);
+const SCENE_ITEM_TYPES = new Set(['p', 'cone', 'ball', 'goal', 'ladder', 'hoop', 'bench', 'pole']);
 const SCENE_MOVE_TYPES = new Set(['pass', 'dribble', 'run']);
 function onlyBoldTags(t) { return !/<(?!\/?b>)/.test(t); }
 
