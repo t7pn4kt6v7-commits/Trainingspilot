@@ -7,6 +7,8 @@
    Zahlen fest in den Text schreiben.
 2. **Version erhöhen**: `APP_VERSION`, `<title>`, Versions-Badge und Kopfkommentar `Version:`.
 3. **Changelog** im Kopfkommentar und **`USER_CHANGELOG`** (erscheint im Update-Hinweis) ergänzen.
+   `USER_CHANGELOG` höchstens 4–6 kurze Punkte, die wichtigsten zuerst, Älteres löschen: Bereits geöffnete Apps
+   älterer Versionen lesen die *ganze* Liste aus der Live-Seite und zeigen sie im Update-Fenster (v5.197: unscrollbar, App unbenutzbar).
 
 ## Abläufe
 - Änderungen gehen per Pull Request gegen `test` (Testumgebung `/test/`), erst nach Freigabe
