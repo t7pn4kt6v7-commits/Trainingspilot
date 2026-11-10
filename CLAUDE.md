@@ -13,6 +13,11 @@
   per PR `test` → `main` (Produktivumgebung). Details: `UMGEBUNGEN.md`.
 - Übungen liegen in `data/exercises/*.json`; nach Änderungen `node tools/exercises.mjs build`
   und `node tools/exercises.mjs check`.
+- Übungsdarstellung (seit v5.182): eigenes 3D-Bild (`diagram.scene`) und gegliederter Text
+  (`aufbau`, `ablauf`, `regeln`, `leichter`, `schwerer`), Aufbau siehe `data/exercises/README.md`.
+  Alle Übungen sind umgestellt; neue Übungen bitte direkt in diesem Format anlegen.
+  Begrüßung/Abschluss (`sceneSitzkreis`) und Abschlussspiel (`sceneGameFormat`) nutzen ebenfalls den 3D-Zeichner.
+  Nach dem Umstellen alle Bilder ansehen (Überdeckungen, abgeschnittene Beschriftungen).
 - Die vereinfachte Oberfläche hängt am Schalter `UI_V2` in `index.html`; mit `UI_V2 = false`
   muss die alte Oberfläche unverändert funktionieren.
 - Auf kleinen Handys prüfen (iPhone SE 320 px, iPhone 13 mini 375 px): keine abgeschnittenen
