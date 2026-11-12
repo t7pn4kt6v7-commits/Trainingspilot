@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Trainingspilot v5.208 · TSV Wetschen</title>
+<title>Trainingspilot v5.209 · TSV Wetschen</title>
 <meta name="description" content="Trainingspilot: Trainingspläne für den Jugendfußball in Sekunden – mit 3D-Übungsbildern, Material-Liste und Signal bei jedem Übungswechsel. Ohne Anmeldung.">
 <!-- Link-Vorschau (z. B. WhatsApp): nur für Vorschaukarten in Messengern, in der App selbst nicht sichtbar.
      Bild: pwa/share-preview.png, wird von pages.yml neben die index.html gelegt. -->
@@ -23,7 +23,7 @@
      Link-Vorschau nur den Anfang der Seite. Mit dem Kommentar davor begannen sie erst bei 183 KB (v5.205). -->
 <!--
   Trainingspilot · TSV Wetschen
-  Version: 5.208 (Stand: siehe Chat-Verlauf)
+  Version: 5.209 (Stand: siehe Chat-Verlauf)
 
   Hinweis: Die ausfuehrliche Versionshistorie (v1.0 bis v5.59) wurde aus diesem Kommentar
   entfernt, da sie durch ein wiederholtes Duplizierungsproblem in frueheren Bearbeitungs-
@@ -32,6 +32,8 @@
   Funktionalitaet der App ist davon nicht betroffen - reine Kommentar-Bereinigung.
 
   Changelog (letzte Versionen):
+  v5.209 - Teilen wieder ohne Begleittext (Nutzerwunsch): mit Text zeigt WhatsApp unter der Vorschaukarte den
+         ganzen Link, ohne Text nur die Karte. Der Satz bleibt fuer "Link kopieren" (Zwischenablage).
   v5.208 - Teilen: Begleittext vor dem Link (shareIntroText): "Trainingsplan fuer Donnerstag, 12.11. · U8
          (F-Jugend) · 60 Min.:", bei Aenderungen mit "- 2 Aenderungen von mir". "Link kopieren" kopiert
          Text und Link zusammen.
@@ -3351,7 +3353,7 @@
         <span class="version-badge-status" id="version-badge-status"></span>
         <div class="hero-title-row">
           <h1>Trainingspilot</h1>
-          <button type="button" class="version-badge-inline" id="version-badge-check-btn" aria-label="Nach Updates suchen">v5.208</button>
+          <button type="button" class="version-badge-inline" id="version-badge-check-btn" aria-label="Nach Updates suchen">v5.209</button>
         </div>
         <p class="hero-tagline">für Jugendmannschaften</p>
       </div>
@@ -5274,7 +5276,7 @@ var scriptStartTime = Date.now();
   // Phasen) - die Darstellung und alle Funktionen (Timer, Ausblenden, Bewertung) kommen
   // weiterhin vom aktuellen Code, genau wie bei einem frisch erstellten Plan. So bleiben
   // gespeicherte Plaene automatisch von kuenftigen Bugfixes/Features profitieren.
-  var APP_VERSION = '5.208';
+  var APP_VERSION = '5.209';
 
   // Kurze, NUTZERORIENTIERTE Highlight-Liste dieser Version (2-4 Stichpunkte, nur wenn es
   // wirklich neue Funktionen oder spürbare Änderungen gibt) - bewusst getrennt vom langen
@@ -5282,7 +5284,7 @@ var scriptStartTime = Date.now();
   // Update-Check per einfachem Marker-Block ausgelesen und im Update-Popup angezeigt.
   // USER_CHANGELOG_START
   // - Plan zu zweit abstimmen: Plan ändern und zurückschicken – die andere Seite sieht „Bisher / Vorschlag“ und entscheidet je Übung
-  // - Geteilte Pläne: kürzerer Link, Vorschaukarte in WhatsApp und ein Satz dazu, um welches Training es geht
+  // - Geteilte Pläne erscheinen in WhatsApp als Karte mit Wappen statt als langer Link
   // - Änderungen am Plan stehen als Liste über den Übungen und lassen sich direkt teilen
   // - Handy beim Training sperren und einstecken: Das Signal kommt trotzdem, mit Anzeige auf dem Sperrbildschirm
   // - Im Training steht unter der Uhr, was als Nächstes aufgebaut wird: Bild, Aufbau und Material
@@ -10153,7 +10155,9 @@ var scriptStartTime = Date.now();
 
         // v5.201: Rückmeldungen im Begleittext nennen, damit die Empfänger*in weiß, worum es geht
         var shareData = { url: shareUrl, title: 'Trainingsplan' };
-        shareData.text = shareIntroText(plan); // v5.208: Begleittext, damit der Link nicht nackt dasteht
+        // v5.209: bewusst KEIN Text im Teilen-Fenster. Mit Text zeigt WhatsApp unter der Vorschaukarte zusätzlich
+        // den ganzen Link; nur mit Link erscheint allein die Karte. Der Satz wird nur bei „Link kopieren“ genutzt.
+        var shareIntro = shareIntroText(plan);
         if(navigator.share){
           try{
             var raceResult = await Promise.race([
@@ -10182,7 +10186,7 @@ var scriptStartTime = Date.now();
           if(copyBtn){
             copyBtn.addEventListener('click', async function(){
               try{
-                await navigator.clipboard.writeText(shareData.text + '\n' + shareUrl);
+                await navigator.clipboard.writeText(shareIntro + '\n' + shareUrl);
                 copyBtn.textContent = '✓ Kopiert'; markChangesSent(plan);
               }catch(clipErr){
                 hintWrap.innerHTML += '<p class="export-hint" style="word-break:break-all;">' + escapeHtml(shareUrl) + '</p>';
