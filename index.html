@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Trainingspilot v5.206 · TSV Wetschen</title>
+<title>Trainingspilot v5.207 · TSV Wetschen</title>
 <meta name="description" content="Trainingspilot: Trainingspläne für den Jugendfußball in Sekunden – mit 3D-Übungsbildern, Material-Liste und Signal bei jedem Übungswechsel. Ohne Anmeldung.">
 <!-- Link-Vorschau (z. B. WhatsApp): nur für Vorschaukarten in Messengern, in der App selbst nicht sichtbar.
      Bild: pwa/share-preview.png, wird von pages.yml neben die index.html gelegt. -->
@@ -23,7 +23,7 @@
      Link-Vorschau nur den Anfang der Seite. Mit dem Kommentar davor begannen sie erst bei 183 KB (v5.205). -->
 <!--
   Trainingspilot · TSV Wetschen
-  Version: 5.206 (Stand: siehe Chat-Verlauf)
+  Version: 5.207 (Stand: siehe Chat-Verlauf)
 
   Hinweis: Die ausfuehrliche Versionshistorie (v1.0 bis v5.59) wurde aus diesem Kommentar
   entfernt, da sie durch ein wiederholtes Duplizierungsproblem in frueheren Bearbeitungs-
@@ -32,6 +32,10 @@
   Funktionalitaet der App ist davon nicht betroffen - reine Kommentar-Bereinigung.
 
   Changelog (letzte Versionen):
+  v5.207 - Geteilte Plaene zeigen auf die kleine Einstiegsseite plan.html (wenige KB, eigene Vorschau-Angaben),
+         die sofort samt #p=... an die App weiterleitet. Grund: WhatsApp zeigte fuer die 1,3 MB grosse App
+         keine Vorschaukarte. Die App prueft beim Start per HEAD, ob plan.html veroeffentlicht ist
+         (shareLandingOk), sonst Link wie bisher. pages.yml kopiert plan.html nach / und /test/.
   v5.206 - Link-Vorschau: Seitenkopf mit den Vorschau-Angaben steht jetzt ganz am Anfang der Datei; der lange
          Kopfkommentar folgt danach (vorher begannen die Angaben erst nach 183 KB und wurden nicht gelesen).
   v5.205 - Kurzer Teilen-Link: Plan sparsam verpackt (#p=..., Liste statt benannter Felder, je Uebung eine
@@ -3344,7 +3348,7 @@
         <span class="version-badge-status" id="version-badge-status"></span>
         <div class="hero-title-row">
           <h1>Trainingspilot</h1>
-          <button type="button" class="version-badge-inline" id="version-badge-check-btn" aria-label="Nach Updates suchen">v5.206</button>
+          <button type="button" class="version-badge-inline" id="version-badge-check-btn" aria-label="Nach Updates suchen">v5.207</button>
         </div>
         <p class="hero-tagline">für Jugendmannschaften</p>
       </div>
@@ -4940,6 +4944,13 @@ var scriptStartTime = Date.now();
     return payloadFromCompact(JSON.parse(text));
   }
 
+  var shareLandingOk = false;
+  try{
+    if(location.protocol === 'https:' || location.protocol === 'http:'){
+      fetch('plan.html', { method: 'HEAD', cache: 'no-store' }).then(function(r){ shareLandingOk = !!(r && r.ok); }).catch(function(){});
+    }
+  }catch(landErr){ /* nicht kritisch */ }
+
   function buildSharePayload(plan){
     if(!plan.shareId){ plan.shareId = 's' + Math.random().toString(36).slice(2, 9); }
     var payload = {
@@ -5242,7 +5253,7 @@ var scriptStartTime = Date.now();
   // Phasen) - die Darstellung und alle Funktionen (Timer, Ausblenden, Bewertung) kommen
   // weiterhin vom aktuellen Code, genau wie bei einem frisch erstellten Plan. So bleiben
   // gespeicherte Plaene automatisch von kuenftigen Bugfixes/Features profitieren.
-  var APP_VERSION = '5.206';
+  var APP_VERSION = '5.207';
 
   // Kurze, NUTZERORIENTIERTE Highlight-Liste dieser Version (2-4 Stichpunkte, nur wenn es
   // wirklich neue Funktionen oder spürbare Änderungen gibt) - bewusst getrennt vom langen
@@ -10114,7 +10125,10 @@ var scriptStartTime = Date.now();
       if(hintWrap){ hintWrap.innerHTML = navigator.share ? '' : '<p class="export-hint">Link wird erstellt …</p>'; }
       try{
         var payload = buildSharePayload(plan);
-        var shareUrl = location.origin + location.pathname + (await encodeShareLink(payload)); // v5.205: kurzes Format
+        // v5.207: Link zeigt auf die kleine Einstiegsseite plan.html (Vorschaukarte in Messengern), sofern sie
+        // veröffentlicht ist; sonst wie bisher direkt auf die App.
+        var shareBasePath = location.pathname.replace(/[^\/]*$/, '');
+        var shareUrl = location.origin + shareBasePath + (shareLandingOk ? 'plan.html' : '') + (await encodeShareLink(payload));
 
         // v5.201: Rückmeldungen im Begleittext nennen, damit die Empfänger*in weiß, worum es geht
         var shareData = { url: shareUrl, title: 'Trainingsplan' };

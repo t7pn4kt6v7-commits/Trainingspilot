@@ -62,12 +62,15 @@ jobs:
           mkdir -p _site
           (cd prod && node tools/exercises.mjs check)
           cp prod/index.html prod/sperrbildschirm-test.html _site/
+          # Kleine Einstiegsseite für geteilte Pläne (Vorschaukarte in Messengern), sofern vorhanden
+          if [ -f prod/plan.html ]; then cp prod/plan.html _site/; fi
           # Dateien für „Als App installieren“ (Android), sofern im jeweiligen Branch vorhanden
           if [ -d prod/pwa ]; then cp prod/pwa/manifest.webmanifest prod/pwa/sw.js prod/pwa/*.png _site/; fi
           if [ -d testenv ]; then
             if (cd testenv && node tools/exercises.mjs check); then
               mkdir -p _site/test
               cp testenv/index.html _site/test/
+              if [ -f testenv/plan.html ]; then cp testenv/plan.html _site/test/; fi
               if [ -d testenv/pwa ]; then
                 cp testenv/pwa/manifest.webmanifest testenv/pwa/sw.js testenv/pwa/*.png _site/test/
                 # Eigener Name, damit Test- und Produktiv-App auf dem Handy unterscheidbar sind

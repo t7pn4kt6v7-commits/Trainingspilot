@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trainingsplan öffnen · Trainingspilot</title>
+<meta name="description" content="Geteilter Trainingsplan – antippen und im Trainingspilot öffnen. Ohne Anmeldung.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Trainingspilot · TSV Wetschen">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="Trainingsplan im Trainingspilot öffnen">
+<meta property="og:description" content="Geteilter Trainingsplan – antippen und ansehen. Ohne Anmeldung.">
+<meta property="og:image" content="https://t7pn4kt6v7-commits.github.io/Trainingspilot/share-preview.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Trainingspilot mit Wappen des TSV Wetschen">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#2E5339">
+<!--
+  Einstiegsseite für geteilte Trainingspläne (seit v5.207). Sie ist bewusst winzig: Messenger wie WhatsApp
+  lesen für die Vorschaukarte diese Seite statt der 1,3 MB großen App. Der Plan steckt weiterhin im Teil
+  hinter dem # und wird unverändert an die App (index.html im selben Ordner) weitergereicht.
+  pages.yml veröffentlicht diese Datei neben der index.html (Produktiv und Test).
+-->
+<script>
+  // Sofort zur App weiterleiten; den Teil hinter dem # (der Plan) mitnehmen.
+  try{ location.replace('./' + location.hash); }catch(e){}
+</script>
+<style>
+  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0B0F0C;color:#fff;font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;text-align:center;padding:24px;box-sizing:border-box;}
+  a{display:inline-block;margin-top:16px;padding:14px 22px;border-radius:14px;background:#E8622C;color:#fff;font-weight:700;text-decoration:none;}
+</style>
+</head>
+<body>
+<div>
+  <p>Trainingsplan wird geöffnet …</p>
+  <a id="go" href="./">Trainingspilot öffnen</a>
+</div>
+<script>
+  // Falls die Weiterleitung nicht greift: Der Knopf führt mit Plan zur App.
+  try{ document.getElementById('go').href = './' + location.hash; }catch(e){}
+</script>
+</body>
+</html>
