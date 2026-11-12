@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Trainingspilot v5.207 · TSV Wetschen</title>
+<title>Trainingspilot v5.208 · TSV Wetschen</title>
 <meta name="description" content="Trainingspilot: Trainingspläne für den Jugendfußball in Sekunden – mit 3D-Übungsbildern, Material-Liste und Signal bei jedem Übungswechsel. Ohne Anmeldung.">
 <!-- Link-Vorschau (z. B. WhatsApp): nur für Vorschaukarten in Messengern, in der App selbst nicht sichtbar.
      Bild: pwa/share-preview.png, wird von pages.yml neben die index.html gelegt. -->
@@ -23,7 +23,7 @@
      Link-Vorschau nur den Anfang der Seite. Mit dem Kommentar davor begannen sie erst bei 183 KB (v5.205). -->
 <!--
   Trainingspilot · TSV Wetschen
-  Version: 5.207 (Stand: siehe Chat-Verlauf)
+  Version: 5.208 (Stand: siehe Chat-Verlauf)
 
   Hinweis: Die ausfuehrliche Versionshistorie (v1.0 bis v5.59) wurde aus diesem Kommentar
   entfernt, da sie durch ein wiederholtes Duplizierungsproblem in frueheren Bearbeitungs-
@@ -32,6 +32,9 @@
   Funktionalitaet der App ist davon nicht betroffen - reine Kommentar-Bereinigung.
 
   Changelog (letzte Versionen):
+  v5.208 - Teilen: Begleittext vor dem Link (shareIntroText): "Trainingsplan fuer Donnerstag, 12.11. · U8
+         (F-Jugend) · 60 Min.:", bei Aenderungen mit "- 2 Aenderungen von mir". "Link kopieren" kopiert
+         Text und Link zusammen.
   v5.207 - Geteilte Plaene zeigen auf die kleine Einstiegsseite plan.html (wenige KB, eigene Vorschau-Angaben),
          die sofort samt #p=... an die App weiterleitet. Grund: WhatsApp zeigte fuer die 1,3 MB grosse App
          keine Vorschaukarte. Die App prueft beim Start per HEAD, ob plan.html veroeffentlicht ist
@@ -3348,7 +3351,7 @@
         <span class="version-badge-status" id="version-badge-status"></span>
         <div class="hero-title-row">
           <h1>Trainingspilot</h1>
-          <button type="button" class="version-badge-inline" id="version-badge-check-btn" aria-label="Nach Updates suchen">v5.207</button>
+          <button type="button" class="version-badge-inline" id="version-badge-check-btn" aria-label="Nach Updates suchen">v5.208</button>
         </div>
         <p class="hero-tagline">für Jugendmannschaften</p>
       </div>
@@ -4944,6 +4947,24 @@ var scriptStartTime = Date.now();
     return payloadFromCompact(JSON.parse(text));
   }
 
+  // v5.208: Satz vor dem geteilten Link, z. B. „Trainingsplan für Donnerstag, 12.11. · U8 (F-Jugend) · 60 Min.“
+  function shareIntroText(plan){
+    var parts = [];
+    var d = plan.trainingsdatum && /^\d{4}-\d{2}-\d{2}$/.test(plan.trainingsdatum) ? new Date(plan.trainingsdatum + 'T12:00:00') : null;
+    var head = 'Trainingsplan';
+    if(d && !isNaN(d.getTime())){
+      var days = ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];
+      head += ' für ' + days[d.getDay()] + ', ' + d.getDate() + '.' + (d.getMonth() + 1) + '.';
+    }
+    parts.push(head);
+    var ak = plan.meta && plan.meta.altersklasse; if(ak){ parts.push(String(ak)); }
+    var dauer = (plan.meta && plan.meta.dauer) || plan.dauer; if(dauer){ parts.push(dauer + ' Min.'); }
+    var txt = parts.join(' · ');
+    var nChg = planChanges(plan).length;
+    if(nChg){ txt += ' – ' + (nChg === 1 ? '1 Änderung' : nChg + ' Änderungen') + ' von mir'; }
+    return txt + ':';
+  }
+
   var shareLandingOk = false;
   try{
     if(location.protocol === 'https:' || location.protocol === 'http:'){
@@ -5253,7 +5274,7 @@ var scriptStartTime = Date.now();
   // Phasen) - die Darstellung und alle Funktionen (Timer, Ausblenden, Bewertung) kommen
   // weiterhin vom aktuellen Code, genau wie bei einem frisch erstellten Plan. So bleiben
   // gespeicherte Plaene automatisch von kuenftigen Bugfixes/Features profitieren.
-  var APP_VERSION = '5.207';
+  var APP_VERSION = '5.208';
 
   // Kurze, NUTZERORIENTIERTE Highlight-Liste dieser Version (2-4 Stichpunkte, nur wenn es
   // wirklich neue Funktionen oder spürbare Änderungen gibt) - bewusst getrennt vom langen
@@ -5261,7 +5282,7 @@ var scriptStartTime = Date.now();
   // Update-Check per einfachem Marker-Block ausgelesen und im Update-Popup angezeigt.
   // USER_CHANGELOG_START
   // - Plan zu zweit abstimmen: Plan ändern und zurückschicken – die andere Seite sieht „Bisher / Vorschlag“ und entscheidet je Übung
-  // - Geteilte Pläne: deutlich kürzerer Link, in WhatsApp mit Vorschaukarte
+  // - Geteilte Pläne: kürzerer Link, Vorschaukarte in WhatsApp und ein Satz dazu, um welches Training es geht
   // - Änderungen am Plan stehen als Liste über den Übungen und lassen sich direkt teilen
   // - Handy beim Training sperren und einstecken: Das Signal kommt trotzdem, mit Anzeige auf dem Sperrbildschirm
   // - Im Training steht unter der Uhr, was als Nächstes aufgebaut wird: Bild, Aufbau und Material
@@ -10128,12 +10149,11 @@ var scriptStartTime = Date.now();
         // v5.207: Link zeigt auf die kleine Einstiegsseite plan.html (Vorschaukarte in Messengern), sofern sie
         // veröffentlicht ist; sonst wie bisher direkt auf die App.
         var shareBasePath = location.pathname.replace(/[^\/]*$/, '');
-        var shareUrl = location.origin + shareBasePath + (shareLandingOk ? 'plan.html' : '') + (await encodeShareLink(payload));
+        var shareUrl = location.origin + (shareLandingOk ? shareBasePath + 'plan.html' : location.pathname) + (await encodeShareLink(payload));
 
         // v5.201: Rückmeldungen im Begleittext nennen, damit die Empfänger*in weiß, worum es geht
         var shareData = { url: shareUrl, title: 'Trainingsplan' };
-        var nChg = planChanges(plan).length;
-        if(nChg){ shareData.text = 'Trainingsplan – ' + (nChg === 1 ? '1 Änderung' : nChg + ' Änderungen') + ' von mir'; }
+        shareData.text = shareIntroText(plan); // v5.208: Begleittext, damit der Link nicht nackt dasteht
         if(navigator.share){
           try{
             var raceResult = await Promise.race([
@@ -10162,7 +10182,7 @@ var scriptStartTime = Date.now();
           if(copyBtn){
             copyBtn.addEventListener('click', async function(){
               try{
-                await navigator.clipboard.writeText(shareUrl);
+                await navigator.clipboard.writeText(shareData.text + '\n' + shareUrl);
                 copyBtn.textContent = '✓ Kopiert'; markChangesSent(plan);
               }catch(clipErr){
                 hintWrap.innerHTML += '<p class="export-hint" style="word-break:break-all;">' + escapeHtml(shareUrl) + '</p>';
