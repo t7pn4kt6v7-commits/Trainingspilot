@@ -3346,6 +3346,1109 @@
         ],
         "leichter": "Fänger*innen ohne Ball.",
         "schwerer": "Eine Runde nur mit links, eine nur mit rechts dribbeln."
+      },
+      {
+        "id": "kettenfangen",
+        "title": "Kettenfangen",
+        "goal": "Ziel: Aufwärmen mit Ausweichen, Absprache und gemeinsamem Tempo",
+        "coachTip": "Die Ketten daran erinnern, sich abzusprechen: „Wen jagen wir?“ Reißt eine Kette, zählt der Fang nicht – das verhindert wildes Ziehen.",
+        "materials": "4 gelbe Pilonen zur Feldmarkierung",
+        "dims": "{fieldDims(14, 0.45, k)}",
+        "diagram": {
+          "scene": {
+            "w": 16,
+            "l": 11,
+            "items": [
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 16,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 11,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 16,
+                "y": 11,
+                "color": "#F2B134"
+              },
+              {
+                "t": "p",
+                "x": 5,
+                "y": 4.2,
+                "team": "r"
+              },
+              {
+                "t": "p",
+                "x": 5.9,
+                "y": 4.6,
+                "team": "r"
+              },
+              {
+                "t": "p",
+                "x": 6.8,
+                "y": 5,
+                "team": "r"
+              },
+              {
+                "t": "p",
+                "x": 11.4,
+                "y": 8.4,
+                "team": "r",
+                "step": 3
+              },
+              {
+                "t": "p",
+                "x": 12.3,
+                "y": 8.6,
+                "team": "r"
+              },
+              {
+                "t": "p",
+                "x": 9.4,
+                "y": 3.2,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 13.4,
+                "y": 2.4,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 2.4,
+                "y": 8.6,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 8.4,
+                "y": 7.6,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 14,
+                "y": 5.8,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 3,
+                "y": 1.6,
+                "team": "b"
+              }
+            ],
+            "moves": [
+              {
+                "t": "run",
+                "from": [
+                  7.3,
+                  4.8
+                ],
+                "to": [
+                  8.8,
+                  3.6
+                ],
+                "step": 1,
+                "at": 0.5
+              },
+              {
+                "t": "run",
+                "from": [
+                  9.9,
+                  3
+                ],
+                "to": [
+                  11.6,
+                  2.2
+                ]
+              },
+              {
+                "t": "run",
+                "from": [
+                  8.2,
+                  7.2
+                ],
+                "to": [
+                  7,
+                  5.6
+                ],
+                "step": 2,
+                "at": 0.5
+              },
+              {
+                "t": "run",
+                "from": [
+                  13,
+                  8.4
+                ],
+                "to": [
+                  13.8,
+                  6.6
+                ]
+              }
+            ],
+            "caption": "Rot = Fänger-Ketten, Hand in Hand · Blau = noch frei"
+          }
+        },
+        "aufbau": [
+          "Feld mit vier Pilonen markieren.",
+          "Ein Kind beginnt als Fänger*in, alle anderen verteilen sich im Feld."
+        ],
+        "ablauf": [
+          "Die Fänger*in jagt die anderen und schlägt sie mit der Hand ab.",
+          "Wer abgeschlagen wird, fasst die Fänger*in an der Hand – es entsteht eine Kette, die gemeinsam weiterjagt.",
+          "Sind vier Kinder in einer Kette, teilt sie sich in zwei Zweierketten."
+        ],
+        "regeln": [
+          "Nur geschlossene Ketten dürfen fangen. Abschlagen dürfen nur die beiden Äußeren mit der freien Hand.",
+          "Wer als Letztes frei ist, gewinnt und beginnt die nächste Runde als Fänger*in."
+        ],
+        "leichter": "Kleineres Feld – dann haben es die Ketten leichter.",
+        "schwerer": "Die Ketten teilen sich nicht, sondern werden immer länger."
+      },
+      {
+        "id": "schnick-schnack-schnuck-rennen",
+        "title": "Schnick-Schnack-Schnuck-Rennen",
+        "goal": "Ziel: Aufwärmen mit Sprints, schnellem Reagieren und Teamwettkampf",
+        "coachTip": "Das wartende Team soll laut anfeuern und genau hinschauen: Sobald das eigene Kind verliert, startet sofort das nächste. Bei mehr als zwölf Kindern zwei Bahnen aufbauen.",
+        "materials": "7 Hütchen · 2 Reifen · {ceil(k/2)} Leibchen",
+        "dims": "Hütchenbahn ca. 15 m lang",
+        "diagram": {
+          "scene": {
+            "w": 18,
+            "l": 8,
+            "items": [
+              {
+                "t": "cone",
+                "x": 4,
+                "y": 5.4
+              },
+              {
+                "t": "cone",
+                "x": 5.6,
+                "y": 5.4
+              },
+              {
+                "t": "cone",
+                "x": 7.2,
+                "y": 5.4
+              },
+              {
+                "t": "cone",
+                "x": 8.8,
+                "y": 5.4
+              },
+              {
+                "t": "cone",
+                "x": 10.4,
+                "y": 5.4
+              },
+              {
+                "t": "cone",
+                "x": 12,
+                "y": 5.4
+              },
+              {
+                "t": "cone",
+                "x": 13.6,
+                "y": 5.4
+              },
+              {
+                "t": "hoop",
+                "x": 2.4,
+                "y": 4.2,
+                "r": 0.7
+              },
+              {
+                "t": "hoop",
+                "x": 15.6,
+                "y": 4.2,
+                "r": 0.7
+              },
+              {
+                "t": "p",
+                "x": 1,
+                "y": 5.2,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 0.4,
+                "y": 6.2,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 1.2,
+                "y": 7,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 17,
+                "y": 5.2,
+                "team": "r"
+              },
+              {
+                "t": "p",
+                "x": 17.6,
+                "y": 6.2,
+                "team": "r"
+              },
+              {
+                "t": "p",
+                "x": 16.8,
+                "y": 7,
+                "team": "r"
+              },
+              {
+                "t": "p",
+                "x": 8.2,
+                "y": 3.6,
+                "team": "b",
+                "say": "Schnick, Schnack, Schnuck!",
+                "step": 2
+              },
+              {
+                "t": "p",
+                "x": 9.6,
+                "y": 3.6,
+                "team": "r"
+              }
+            ],
+            "moves": [
+              {
+                "t": "run",
+                "from": [
+                  3.2,
+                  4
+                ],
+                "to": [
+                  7.6,
+                  3.8
+                ],
+                "step": 1,
+                "at": 0.45
+              },
+              {
+                "t": "run",
+                "from": [
+                  14.8,
+                  4
+                ],
+                "to": [
+                  10.2,
+                  3.8
+                ]
+              },
+              {
+                "t": "run",
+                "from": [
+                  8.8,
+                  2.9
+                ],
+                "to": [
+                  13.6,
+                  2.6
+                ],
+                "step": 3,
+                "at": 0.5
+              }
+            ],
+            "noField": true,
+            "margin": 0.9,
+            "caption": "Wer gewinnt, läuft weiter · wer verliert, schickt das nächste Kind los"
+          }
+        },
+        "aufbau": [
+          "Mit Hütchen eine Bahn von ca. 15 m legen. An jedes Ende kommt ein Reifen.",
+          "Zwei Teams stellen sich jeweils hinter ihrem Reifen an."
+        ],
+        "ablauf": [
+          "Auf „Los!“ läuft von jeder Seite ein Kind an der Hütchenbahn entlang.",
+          "Wo sich die beiden treffen, spielen sie einmal Schnick, Schnack, Schnuck (Schere, Stein, Papier).",
+          "Wer gewinnt, läuft weiter. Wer verliert, ruft „Los!“ – sofort startet das nächste Kind des eigenen Teams und läuft dem Sieger entgegen."
+        ],
+        "regeln": [
+          "Wer verliert, verlässt die Bahn und stellt sich hinten an.",
+          "Einen Punkt gibt es, wenn ein Kind mit einem Fuß im Reifen des anderen Teams steht. Danach beginnt eine neue Runde."
+        ],
+        "leichter": "Kürzere Bahn – dann fallen schneller Punkte.",
+        "schwerer": "Die Bahn als Slalom legen oder mit Ball am Fuß laufen."
+      },
+      {
+        "id": "nummern-sprint-zum-ball",
+        "title": "Nummern-Sprint zum Ball",
+        "goal": "Ziel: Aufwärmen mit Reaktion, Sprint zum Ball und erstem Zweikampf",
+        "coachTip": "Die Nummern durcheinander rufen und ab und zu zwei Nummern gleichzeitig – dann entsteht ein 2 gegen 2. Jede Aktion nach spätestens 20 Sekunden beenden.",
+        "materials": "2 Minitore · 3 Bälle · {ceil(k/2)} Leibchen · 4 gelbe Pilonen zur Feldmarkierung",
+        "dims": "{fieldDims(16, 0.4, k)}",
+        "diagram": {
+          "scene": {
+            "w": 18,
+            "l": 11,
+            "items": [
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 18,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 11,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 18,
+                "y": 11,
+                "color": "#F2B134"
+              },
+              {
+                "t": "goal",
+                "x": 0,
+                "y": 5.5,
+                "dir": "e",
+                "w": 2,
+                "h": 1,
+                "d": 0.8
+              },
+              {
+                "t": "goal",
+                "x": 18,
+                "y": 5.5,
+                "dir": "w",
+                "w": 2,
+                "h": 1,
+                "d": 0.8
+              },
+              {
+                "t": "ball",
+                "x": 9,
+                "y": 5.5
+              },
+              {
+                "t": "p",
+                "x": 5,
+                "y": -0.5,
+                "team": "b",
+                "label": "1"
+              },
+              {
+                "t": "p",
+                "x": 7.6,
+                "y": -0.5,
+                "team": "b",
+                "label": "2"
+              },
+              {
+                "t": "p",
+                "x": 10.2,
+                "y": -0.5,
+                "team": "b",
+                "label": "3"
+              },
+              {
+                "t": "p",
+                "x": 12.8,
+                "y": -0.5,
+                "team": "b",
+                "label": "4"
+              },
+              {
+                "t": "p",
+                "x": 5,
+                "y": 11.5,
+                "team": "r",
+                "label": "1"
+              },
+              {
+                "t": "p",
+                "x": 7.6,
+                "y": 11.5,
+                "team": "r",
+                "label": "2"
+              },
+              {
+                "t": "p",
+                "x": 10.2,
+                "y": 11.5,
+                "team": "r",
+                "label": "3"
+              },
+              {
+                "t": "p",
+                "x": 12.8,
+                "y": 11.5,
+                "team": "r",
+                "label": "4"
+              },
+              {
+                "t": "p",
+                "x": 15.6,
+                "y": 11.6,
+                "team": "t",
+                "label": "T",
+                "say": "Drei!",
+                "step": 1
+              }
+            ],
+            "moves": [
+              {
+                "t": "run",
+                "from": [
+                  10.1,
+                  0.2
+                ],
+                "to": [
+                  9.2,
+                  4.8
+                ],
+                "step": 2,
+                "at": 0.5
+              },
+              {
+                "t": "run",
+                "from": [
+                  10.1,
+                  10.8
+                ],
+                "to": [
+                  9.3,
+                  6.3
+                ]
+              },
+              {
+                "t": "dribble",
+                "from": [
+                  9.6,
+                  5.4
+                ],
+                "to": [
+                  14,
+                  5.2
+                ],
+                "step": 3,
+                "at": 0.5
+              },
+              {
+                "t": "pass",
+                "from": [
+                  14.2,
+                  5.2
+                ],
+                "to": [
+                  17.4,
+                  5.4
+                ]
+              }
+            ],
+            "margin": 1.1,
+            "caption": "Blau greift das rechte Tor an, Rot das linke"
+          }
+        },
+        "aufbau": [
+          "Feld mit zwei Minitoren. Zwei Teams stellen sich an den beiden Seitenlinien auf.",
+          "Jedes Kind bekommt eine Nummer – in beiden Teams gibt es dieselben Nummern. Ein Ball liegt in der Mitte."
+        ],
+        "ablauf": [
+          "Trainer*in ruft eine Nummer, z. B. „Drei!“.",
+          "Die beiden Kinder mit dieser Nummer sprinten zum Ball.",
+          "Wer zuerst am Ball ist, greift an und schießt aufs Tor des anderen Teams. Das andere Kind verteidigt."
+        ],
+        "regeln": [
+          "Jedes Tor zählt einen Punkt für das Team. Erobert die Verteidigung den Ball, darf sie selbst aufs andere Tor schießen.",
+          "Nach dem Abschluss oder nach 20 Sekunden zurück auf den Platz – nächste Nummer."
+        ],
+        "leichter": "Der Ball liegt näher am Tor, das angegriffen wird.",
+        "schwerer": "Zwei Nummern gleichzeitig rufen: 2 gegen 2."
+      },
+      {
+        "id": "linienfangen",
+        "title": "Linienfangen",
+        "goal": "Ziel: Aufwärmen mit Abstoppen, Richtungswechseln und Überblick",
+        "coachTip": "Am einfachsten auf einem Platz mit vorhandenen Linien spielen. Ohne Linien ein Kreuz aus Hütchen legen – die Kinder laufen dann von Hütchen zu Hütchen.",
+        "materials": "12 Hütchen · 1 Leibchen",
+        "dims": "ca. 14 × 10 m mit Linienkreuz",
+        "diagram": {
+          "scene": {
+            "w": 14,
+            "l": 10,
+            "lines": [
+              {
+                "x1": 7,
+                "y1": 10,
+                "x2": 7,
+                "y2": 0
+              },
+              {
+                "x1": 0,
+                "y1": 5,
+                "x2": 14,
+                "y2": 5
+              }
+            ],
+            "items": [
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 14,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 10,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 14,
+                "y": 10,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 7,
+                "y": 0
+              },
+              {
+                "t": "cone",
+                "x": 7,
+                "y": 10
+              },
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 5
+              },
+              {
+                "t": "cone",
+                "x": 14,
+                "y": 5
+              },
+              {
+                "t": "p",
+                "x": 7,
+                "y": 6.6,
+                "team": "r",
+                "label": "F"
+              },
+              {
+                "t": "p",
+                "x": 3,
+                "y": 5,
+                "team": "b",
+                "step": 1
+              },
+              {
+                "t": "p",
+                "x": 10.6,
+                "y": 5,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 7,
+                "y": 2,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 14,
+                "y": 2.4,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 0,
+                "y": 8,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 4.5,
+                "y": 0,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 11,
+                "y": 10,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 2.6,
+                "y": 10,
+                "team": "b",
+                "step": 3
+              }
+            ],
+            "moves": [
+              {
+                "t": "run",
+                "from": [
+                  7,
+                  6.2
+                ],
+                "to": [
+                  7,
+                  5.2
+                ]
+              },
+              {
+                "t": "run",
+                "from": [
+                  7.3,
+                  5
+                ],
+                "to": [
+                  10,
+                  5
+                ],
+                "step": 2,
+                "at": 0.5
+              },
+              {
+                "t": "run",
+                "from": [
+                  11.1,
+                  5
+                ],
+                "to": [
+                  13.5,
+                  5
+                ]
+              },
+              {
+                "t": "run",
+                "from": [
+                  7,
+                  1.6
+                ],
+                "to": [
+                  7,
+                  0.4
+                ]
+              }
+            ],
+            "caption": "F = Fänger*in · alle laufen nur auf den Linien"
+          }
+        },
+        "aufbau": [
+          "Ein Feld mit Linienkreuz nutzen oder mit Hütchen markieren.",
+          "Ein Kind ist Fänger*in (<b>F</b>) mit Leibchen in der Hand, alle anderen verteilen sich auf den Linien."
+        ],
+        "ablauf": [
+          "Alle stehen auf einer Linie.",
+          "Die Fänger*in jagt die anderen – alle dürfen nur auf den Linien laufen.",
+          "Wer abgeschlagen wird oder eine Linie verlässt, bekommt das Leibchen und fängt weiter."
+        ],
+        "regeln": [
+          "Aneinander vorbeilaufen ist erlaubt, festhalten nicht.",
+          "Wer nach drei Minuten nie Fänger*in war, hat gewonnen."
+        ],
+        "leichter": "Zwei Fänger*innen – dann wechselt die Rolle schneller.",
+        "schwerer": "Niemand darf an einem anderen Kind vorbei: Wer in der Sackgasse steckt, ist gefangen."
+      },
+      {
+        "id": "sanitaeter",
+        "title": "Sanitäter",
+        "goal": "Ziel: Aufwärmen mit Ausweichen, Zielen und Zusammenhalt im Team",
+        "coachTip": "Nur weiche Bälle nehmen und nur unterhalb der Hüfte zielen lassen. Die Teams sollen selbst überlegen, wie sie ihre Sanitäter*in schützen.",
+        "materials": "{max(4, ceil(k/2))} Softbälle · {ceil(k/2)} Leibchen · 5 Hütchen · 4 gelbe Pilonen zur Feldmarkierung",
+        "dims": "{fieldDims(14, 0.4, k)}",
+        "diagram": {
+          "scene": {
+            "w": 16,
+            "l": 10,
+            "lines": [
+              {
+                "x1": 8,
+                "y1": 10,
+                "x2": 8,
+                "y2": 0,
+                "dash": true
+              }
+            ],
+            "items": [
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 16,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 10,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 16,
+                "y": 10,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 8,
+                "y": 0.5
+              },
+              {
+                "t": "cone",
+                "x": 8,
+                "y": 2.5
+              },
+              {
+                "t": "cone",
+                "x": 8,
+                "y": 4.5
+              },
+              {
+                "t": "cone",
+                "x": 8,
+                "y": 6.5
+              },
+              {
+                "t": "cone",
+                "x": 8,
+                "y": 8.5
+              },
+              {
+                "t": "p",
+                "x": 2,
+                "y": 2.2,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 5.6,
+                "y": 3.6,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 3.4,
+                "y": 7.6,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 1.4,
+                "y": 5.2,
+                "team": "b",
+                "label": "S"
+              },
+              {
+                "t": "p",
+                "x": 5.4,
+                "y": 6.6,
+                "team": "b",
+                "arms": true,
+                "step": 2
+              },
+              {
+                "t": "p",
+                "x": 10.6,
+                "y": 2.6,
+                "team": "r"
+              },
+              {
+                "t": "p",
+                "x": 13.8,
+                "y": 4.4,
+                "team": "r",
+                "label": "S"
+              },
+              {
+                "t": "p",
+                "x": 11.4,
+                "y": 7.6,
+                "team": "r"
+              },
+              {
+                "t": "p",
+                "x": 14,
+                "y": 8.4,
+                "team": "r"
+              },
+              {
+                "t": "p",
+                "x": 12.2,
+                "y": 5.4,
+                "team": "r"
+              },
+              {
+                "t": "ball",
+                "x": 6.2,
+                "y": 3.4
+              },
+              {
+                "t": "ball",
+                "x": 10,
+                "y": 7.4
+              },
+              {
+                "t": "ball",
+                "x": 3,
+                "y": 1.2
+              }
+            ],
+            "moves": [
+              {
+                "t": "pass",
+                "from": [
+                  10.2,
+                  7.3
+                ],
+                "to": [
+                  6.2,
+                  6.8
+                ],
+                "step": 1,
+                "at": 0.4,
+                "arc": 0.6
+              },
+              {
+                "t": "pass",
+                "from": [
+                  6.4,
+                  3.4
+                ],
+                "to": [
+                  10,
+                  2.8
+                ],
+                "arc": 0.6
+              },
+              {
+                "t": "run",
+                "from": [
+                  1.9,
+                  5.3
+                ],
+                "to": [
+                  4.8,
+                  6.4
+                ],
+                "step": 3,
+                "at": 0.5
+              }
+            ],
+            "caption": "S = Sanitäter*in · Arme hoch = getroffen"
+          }
+        },
+        "aufbau": [
+          "Feld in zwei Hälften teilen, zwei Teams, jedes in seiner Hälfte.",
+          "Jedes Team bestimmt eine Sanitäter*in (<b>S</b>). Die Softbälle werden gleichmäßig verteilt."
+        ],
+        "ablauf": [
+          "Beide Teams werfen mit den Softbällen auf die Beine der anderen.",
+          "Wer getroffen wird, bleibt stehen und hebt die Arme.",
+          "Die Sanitäter*in läuft hin und tippt das Kind an – es ist geheilt und spielt weiter."
+        ],
+        "regeln": [
+          "Treffer zählen nur unterhalb der Hüfte. Niemand betritt die andere Hälfte.",
+          "Wird die Sanitäter*in getroffen, kann niemand mehr geheilt werden. Nach drei Minuten gewinnt das Team mit mehr freien Kindern."
+        ],
+        "leichter": "Zwei Sanitäter*innen je Team.",
+        "schwerer": "Die Bälle werden nicht geworfen, sondern flach mit dem Fuß geschossen."
+      },
+      {
+        "id": "tor-duell-auf-zuruf",
+        "title": "Tor-Duell auf Zuruf",
+        "goal": "Ziel: Aufwärmen mit Reaktion, schnellem Dribbling und Torabschluss",
+        "coachTip": "Nummern durcheinander rufen, damit alle wach bleiben. Geschossen werden darf erst hinter dem Hütchen – sonst wird aus dem Dribbling ein Weitschuss.",
+        "materials": "1 Tor · {k} Bälle · 2 Hütchen · {ceil(k/2)} Leibchen",
+        "dims": "ca. 18 × 12 m",
+        "diagram": {
+          "scene": {
+            "w": 18,
+            "l": 11,
+            "items": [
+              {
+                "t": "goal",
+                "x": 18,
+                "y": 5.5,
+                "dir": "w",
+                "w": 3,
+                "h": 1.6,
+                "d": 1
+              },
+              {
+                "t": "cone",
+                "x": 9,
+                "y": 3
+              },
+              {
+                "t": "cone",
+                "x": 9,
+                "y": 8
+              },
+              {
+                "t": "p",
+                "x": 1.4,
+                "y": 0.2,
+                "team": "b",
+                "label": "1"
+              },
+              {
+                "t": "p",
+                "x": 1.4,
+                "y": 3,
+                "team": "b",
+                "label": "2"
+              },
+              {
+                "t": "ball",
+                "x": 2.0,
+                "y": 2.9
+              },
+              {
+                "t": "p",
+                "x": 1.4,
+                "y": 8,
+                "team": "r",
+                "label": "2"
+              },
+              {
+                "t": "ball",
+                "x": 2.0,
+                "y": 7.9
+              },
+              {
+                "t": "p",
+                "x": 1.4,
+                "y": 10.8,
+                "team": "r",
+                "label": "1"
+              },
+              {
+                "t": "p",
+                "x": 6,
+                "y": 11.6,
+                "team": "t",
+                "label": "T",
+                "say": "Zwei!",
+                "step": 1
+              }
+            ],
+            "moves": [
+              {
+                "t": "dribble",
+                "from": [
+                  2.5,
+                  2.9
+                ],
+                "to": [
+                  8.4,
+                  2.7
+                ],
+                "step": 2,
+                "at": 0.5
+              },
+              {
+                "t": "dribble",
+                "from": [
+                  9.6,
+                  3.1
+                ],
+                "to": [
+                  12.6,
+                  4.4
+                ]
+              },
+              {
+                "t": "pass",
+                "from": [
+                  12.8,
+                  4.5
+                ],
+                "to": [
+                  17.4,
+                  5.3
+                ],
+                "step": 3,
+                "at": 0.5
+              },
+              {
+                "t": "dribble",
+                "from": [
+                  2.5,
+                  7.9
+                ],
+                "to": [
+                  8.4,
+                  8.3
+                ]
+              },
+              {
+                "t": "dribble",
+                "from": [
+                  9.6,
+                  7.9
+                ],
+                "to": [
+                  11.6,
+                  6.9
+                ]
+              }
+            ],
+            "margin": 1.1,
+            "caption": "Gleiche Nummer = Duell · erst hinter dem Hütchen schießen"
+          }
+        },
+        "aufbau": [
+          "Ein Tor, davor in ca. 9 m Abstand zwei Hütchen als Wendemarken.",
+          "Zwei Teams stellen sich an der Grundlinie gegenüber dem Tor auf. Jedes Kind hat einen Ball und eine Nummer – in beiden Teams gibt es dieselben Nummern."
+        ],
+        "ablauf": [
+          "Trainer*in ruft eine Nummer, z. B. „Zwei!“.",
+          "Die beiden Kinder mit dieser Nummer dribbeln los und umrunden ihr Hütchen.",
+          "Dann schießen sie aufs Tor. Wer zuerst trifft, holt den Punkt für sein Team."
+        ],
+        "regeln": [
+          "Geschossen wird erst hinter dem Hütchen.",
+          "Nach dem Schuss den eigenen Ball holen und zurück an den Platz."
+        ],
+        "leichter": "Hütchen näher an die Startlinie stellen.",
+        "schwerer": "Mit Torhüter*in spielen oder je zwei Hütchen im Slalom umdribbeln."
       }
     ],
     "ballgewoehnung": [
