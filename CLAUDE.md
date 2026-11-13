@@ -35,3 +35,18 @@
 - **Farben mit fester Rolle:** Orange nur für die Hauptaktion, Gelb für Auswahl/Hervorhebung,
   Grün für Flächen, Schwarz als Seitenhintergrund. Rundungen: 10 / 14 / 20 px und Pille.
 - **Schrift:** Blockschrift (Anton) nur für „Trainingspilot“, sonst Work Sans in normaler Schreibung.
+
+## Zurückgestellte Ideen (bewusst nicht umgesetzt, Stand v5.209)
+Der aktuelle Stand reicht dem Nutzer. Nur auf ausdrücklichen Wunsch wieder aufgreifen.
+- **Eigene Adresse statt `t7pn4kt6v7-commits.github.io`:** Die Adresse steht auch auf der WhatsApp-Vorschaukarte
+  und wirkt für Erstnutzer wenig vertrauenswürdig. Wege: kostenlose GitHub-Organisation mit eigenem Namen
+  (z. B. `trainingspilot.github.io`) oder gekaufte Domain (ca. 10–15 € im Jahr; der Verein hat keine eigene).
+  Folgen: Die App zieht um, alte Links und Home-Bildschirm-Symbole müssen neu eingerichtet werden (an der alten
+  Adresse Hinweis mit Weiterleitung vorsehen); `og:image`/`og:url` in `index.html` und `plan.html` anpassen.
+- **Echter Kurzlink (`…/p/abc123`):** Geht nur mit einem kleinen Speicher/Server (z. B. kostenloses Konto bei
+  Cloudflare). Abgelehnt, solange nichts Kosten oder Betriebsaufwand verursachen soll. Ohne Server bleibt der
+  Plan im Link (rund 200 Zeichen, `encodeShareLink`).
+- **Karte je Plan:** Datum/Dauer auf der Vorschaukarte gehen ohne Server nicht. Grob möglich wäre eine eigene
+  Einstiegsseite je Altersklasse.
+- **Kein Begleittext beim Teilen:** Mit Text zeigt WhatsApp unter der Karte den ganzen Link (v5.208 → v5.209
+  zurückgenommen). Nicht wieder einbauen.
