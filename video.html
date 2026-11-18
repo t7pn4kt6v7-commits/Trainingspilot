@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0B0F0C">
+<title>Erklärvideo · Trainingspilot</title>
+<style>
+  :root{--bg:#0B0F0C;--card:#16261c;--line:rgba(255,255,255,.14);--ink:#fff;--mute:#b9c9bd;--sun:#F2B134;--pitch:#2E5339;}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Work Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;-webkit-text-size-adjust:100%}
+  .wrap{max-width:520px;margin:0 auto;padding:max(14px,env(safe-area-inset-top)) 16px max(28px,env(safe-area-inset-bottom))}
+  .top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:2px 0 12px}
+  .top a{color:var(--sun);font-weight:700;text-decoration:none;font-size:15px}
+  h1{font-size:19px;margin:0;font-weight:800}
+  .player{background:#000;border-radius:16px;overflow:hidden;border:1px solid var(--line)}
+  video{display:block;width:100%;max-height:72vh;background:#000;margin:0 auto}
+  .now{margin:14px 2px 10px;font-size:14px;color:var(--mute);min-height:20px}
+  .now b{color:var(--ink)}
+  .nav{display:flex;gap:10px;margin:0 0 14px}
+  .nav button{flex:1;min-height:46px;border-radius:12px;border:1.5px solid var(--line);background:rgba(255,255,255,.06);color:var(--ink);font:700 15px/1 inherit;font-family:inherit;cursor:pointer}
+  .nav button:disabled{opacity:.35}
+  ol{list-style:none;margin:0;padding:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--card)}
+  li{border-top:1px solid var(--line)}
+  li:first-child{border-top:0}
+  .ch{display:flex;align-items:center;gap:12px;width:100%;min-height:56px;padding:10px 14px;background:none;border:0;color:var(--ink);font:700 16px/1.25 inherit;font-family:inherit;text-align:left;cursor:pointer}
+  .ch .n{flex:0 0 30px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;font-size:14px}
+  .ch .t{flex:1}
+  .ch .z{font-weight:600;font-size:13px;color:var(--mute);font-variant-numeric:tabular-nums}
+  li.on{background:rgba(242,177,52,.14)}
+  li.on .n{background:var(--sun);color:#1B2A1F}
+  .subs{display:flex;gap:8px;padding:0 14px 12px 56px}
+  .subs button{min-height:38px;padding:0 16px;border-radius:999px;border:1.5px solid var(--line);background:rgba(255,255,255,.06);color:var(--ink);font:700 14px/1 inherit;font-family:inherit;cursor:pointer}
+  .hint{margin:14px 2px 0;font-size:13px;line-height:1.45;color:var(--mute)}
+  .err{display:none;margin:12px 0;padding:12px 14px;border-radius:12px;background:#3b1d12;color:#ffd9c9;font-size:14px}
+  @media (prefers-color-scheme:light){:root{}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><h1>Erklärvideo</h1><a href="./" id="back">← Zur App</a></div>
+  <div class="player"><video id="v" controls playsinline preload="metadata" poster="video/poster.jpg"><source src="video/erklaervideo.mp4" type="video/mp4"></video></div>
+  <div class="err" id="err">Das Video konnte nicht geladen werden. Bitte prüfe deine Verbindung und lade die Seite neu.</div>
+  <div class="now" id="now"></div>
+  <div class="nav"><button type="button" id="prev">‹ Voriges Kapitel</button><button type="button" id="next">Nächstes Kapitel ›</button></div>
+  <ol id="list"></ol>
+  <p class="hint">Tipp: Tippe auf ein Kapitel, um direkt dorthin zu springen – zum Beispiel später nur auf „Plan teilen“.</p>
+</div>
+<script>
+(function(){
+  // Kapitel (Startzeiten in Sekunden) – wird vom Schnittskript erzeugt (video/kapitel.json) und hier als Rückfall eingetragen.
+  var FALLBACK = { kapitel: [], unter: {} };
+  var SLUGS = ['willkommen','einrichten','plan-erstellen','anpassen','teilen','training'];
+  var v = document.getElementById('v'), list = document.getElementById('list'), now = document.getElementById('now');
+  var prev = document.getElementById('prev'), next = document.getElementById('next');
+  var data = FALLBACK, items = [], cur = -1;
+  function fmt(s){ s = Math.max(0, Math.round(s)); return Math.floor(s/60) + ':' + ('0' + (s%60)).slice(-2); }
+  function seek(t, play){
+    var go = function(){ try{ v.currentTime = t; }catch(e){} if(play !== false){ var p = v.play(); if(p && p.catch){ p.catch(function(){}); } } };
+    if(v.readyState >= 1){ go(); } else { v.addEventListener('loadedmetadata', go, { once:true }); v.load(); }
+  }
+  function build(){
+    list.innerHTML = ''; items = [];
+    data.kapitel.forEach(function(k, i){
+      var li = document.createElement('li');
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'ch';
+      b.innerHTML = '<span class="n">' + k.nr + '</span><span class="t"></span><span class="z">' + fmt(k.start) + '</span>';
+      b.querySelector('.t').textContent = k.titel;
+      b.addEventListener('click', function(){ goTo(i); });
+      li.appendChild(b);
+      if(k.nr === 2 && data.unter && data.unter.iphone != null){
+        var d = document.createElement('div'); d.className = 'subs';
+        [['iPhone', data.unter.iphone], ['Android', data.unter.android]].forEach(function(x){
+          var s = document.createElement('button'); s.type = 'button'; s.textContent = x[0];
+          s.addEventListener('click', function(){ seek(x[1]); window.scrollTo({ top:0, behavior:'smooth' }); });
+          d.appendChild(s);
+        });
+        li.appendChild(d);
+      }
+      list.appendChild(li); items.push(li);
+    });
+    mark();
+  }
+  function goTo(i){ if(i < 0 || i >= data.kapitel.length){ return; } seek(data.kapitel[i].start); window.scrollTo({ top:0, behavior:'smooth' }); }
+  function index(t){ var r = 0; for(var i = 0; i < data.kapitel.length; i++){ if(t >= data.kapitel[i].start - 0.05){ r = i; } } return r; }
+  function mark(){
+    if(!data.kapitel.length){ return; }
+    var i = index(v.currentTime || 0);
+    if(i === cur){ return; }
+    cur = i;
+    items.forEach(function(li, j){ li.classList.toggle('on', j === i); });
+    now.innerHTML = 'Kapitel ' + data.kapitel[i].nr + ' von ' + data.kapitel.length + ': <b></b>';
+    now.querySelector('b').textContent = data.kapitel[i].titel;
+    prev.disabled = i === 0; next.disabled = i === data.kapitel.length - 1;
+  }
+  prev.addEventListener('click', function(){ var i = index(v.currentTime || 0); if((v.currentTime - data.kapitel[i].start) > 3){ goTo(i); } else { goTo(i - 1); } });
+  next.addEventListener('click', function(){ goTo(index(v.currentTime || 0) + 1); });
+  v.addEventListener('timeupdate', mark);
+  v.addEventListener('seeked', mark);
+  v.addEventListener('error', function(){ document.getElementById('err').style.display = 'block'; }, true);
+  // Direktlink: video.html#teilen oder #kapitel=5
+  function fromHash(){
+    var h = (location.hash || '').replace('#', '').toLowerCase(), i = -1;
+    if(/^kapitel=\d+$/.test(h)){ i = parseInt(h.split('=')[1], 10) - 1; } else { i = SLUGS.indexOf(h); }
+    if(h === 'iphone' && data.unter){ seek(data.unter.iphone, false); return; }
+    if(h === 'android' && data.unter){ seek(data.unter.android, false); return; }
+    if(i >= 0 && data.kapitel[i]){ seek(data.kapitel[i].start, false); }
+  }
+  function start(d){ data = d; build(); fromHash(); }
+  try{
+    fetch('video/kapitel.json', { cache:'no-cache' }).then(function(r){ return r.json(); }).then(start).catch(function(){ start(FALLBACK); });
+  }catch(e){ start(FALLBACK); }
+  window.addEventListener('hashchange', fromHash);
+  // „Zur App“: in der Testumgebung zurück zur Test-App (gleicher Ordner)
+})();
+</script>
+</body>
+</html>
