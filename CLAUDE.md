@@ -36,7 +36,7 @@
   Grün für Flächen, Schwarz als Seitenhintergrund. Rundungen: 10 / 14 / 20 px und Pille.
 - **Schrift:** Blockschrift (Anton) nur für „Trainingspilot“, sonst Work Sans in normaler Schreibung.
 
-## Zurückgestellte Ideen (bewusst nicht umgesetzt, Stand v5.209)
+## Zurückgestellte Ideen (bewusst nicht umgesetzt, Stand v5.212)
 Der aktuelle Stand reicht dem Nutzer. Nur auf ausdrücklichen Wunsch wieder aufgreifen.
 - **Eigene Adresse statt `t7pn4kt6v7-commits.github.io`:** Die Adresse steht auch auf der WhatsApp-Vorschaukarte
   und wirkt für Erstnutzer wenig vertrauenswürdig. Wege: kostenlose GitHub-Organisation mit eigenem Namen
@@ -50,3 +50,11 @@ Der aktuelle Stand reicht dem Nutzer. Nur auf ausdrücklichen Wunsch wieder aufg
   Einstiegsseite je Altersklasse.
 - **Kein Begleittext beim Teilen:** Mit Text zeigt WhatsApp unter der Karte den ganzen Link (v5.208 → v5.209
   zurückgenommen). Nicht wieder einbauen.
+- **Erklärvideo für neue Trainer*innen (zurückgestellt im Nov. 2026):** Mehrere Entwürfe gebaut, Qualität reichte dem
+  Nutzer nicht für die App. Vorgaben: neutral (ohne Vereinsbezug), höchstens 3 Minuten, kostenlos, erst iPhone, dann
+  Android; App-Einrichtung ausführlich (größte Hürde); DFB/NFV am Anfang nennen; Kapitel zum Überspringen.
+  Erkenntnisse: Kostenlose KI-Stimmen (Piper, Chatterbox) klingen monoton oder nuscheln einzelne Wörter,
+  Chatterbox hängt an kurze Sätze Kauderwelsch an. Zoom schneidet App-Ränder ab, Abdunkeln um das Tipp-Ziel
+  wirkt besser. Aussichtsreichster Weg beim Wiederaufgreifen: Text von einem Menschen einsprechen lassen und das
+  Bild an die Aufnahme anpassen. Kapitel-Seite (`video.html`, Sprungmarken, Direktlinks wie `#teilen`) war
+  fertig und getestet, wurde wieder entfernt (Stand im Git-Verlauf, Commit 01af50f).
