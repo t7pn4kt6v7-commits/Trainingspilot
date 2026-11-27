@@ -7,6 +7,9 @@
    Zahlen fest in den Text schreiben.
 2. **Version erhöhen**: `APP_VERSION`, `<title>`, Versions-Badge und Kopfkommentar `Version:`.
 3. **Changelog** im Kopfkommentar und **`USER_CHANGELOG`** (erscheint im Update-Hinweis) ergänzen.
+   Punkt 2 und 3 in einem Schritt: `node tools/release.mjs bump --log "…" --neu "…"`; den ganzen Ablauf bis
+   Test und Produktiv beschreibt der Skill `/freigabe` (`.claude/skills/freigabe/SKILL.md`).
+   `node tools/release.mjs check` läuft auch in GitHub Actions und blockiert unstimmige Versionen.
    `USER_CHANGELOG` höchstens 4–6 kurze Punkte, die wichtigsten zuerst, Älteres löschen: Bereits geöffnete Apps
    älterer Versionen lesen die *ganze* Liste aus der Live-Seite und zeigen sie im Update-Fenster (v5.197: unscrollbar, App unbenutzbar).
 
