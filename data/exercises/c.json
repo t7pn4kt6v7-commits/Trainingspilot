@@ -1741,6 +1741,170 @@
         ],
         "leichter": "Tore breiter (5 m).",
         "schwerer": "Höchstens drei Kontakte."
+      },
+      {
+        "id": "rotation-im-4-gegen-2",
+        "halle": true,
+        "title": "Rotation im 4 gegen 2",
+        "goal": "Ziel: Nach dem Pass sofort weiterlaufen und durch Positionswechsel anspielbar werden",
+        "coachTip": "Achte auf den Moment direkt nach dem Pass: Wer stehen bleibt und dem Ball nachschaut, ist raus – der erste Schritt muss sofort kommen.",
+        "materials": "{4*parallelFields(k, 6)} Hütchen · {2*parallelFields(k, 6)} Bälle · {2*parallelFields(k, 6)} Leibchen",
+        "dims": "{fieldLabel(parallelFields(k, 6))} à ca. 16 × 12 m",
+        "diagram": {
+          "scene": {
+            "w": 16,
+            "l": 12,
+            "items": [
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 16,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 12,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 16,
+                "y": 12,
+                "color": "#F2B134"
+              },
+              {
+                "t": "p",
+                "x": 3,
+                "y": 6,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "ball",
+                "x": 3.6,
+                "y": 5.8
+              },
+              {
+                "t": "p",
+                "x": 8,
+                "y": 3.4,
+                "team": "b",
+                "label": "B"
+              },
+              {
+                "t": "p",
+                "x": 8,
+                "y": 9.8,
+                "team": "b",
+                "label": "C"
+              },
+              {
+                "t": "p",
+                "x": 13.5,
+                "y": 6.4,
+                "team": "b",
+                "label": "D"
+              },
+              {
+                "t": "p",
+                "x": 10.4,
+                "y": 4.6,
+                "team": "r"
+              },
+              {
+                "t": "p",
+                "x": 11.2,
+                "y": 8.8,
+                "team": "r"
+              }
+            ],
+            "moves": [
+              {
+                "t": "pass",
+                "from": [
+                  3.8,
+                  5.6
+                ],
+                "to": [
+                  7.6,
+                  3.7
+                ],
+                "step": 1,
+                "at": 0.5
+              },
+              {
+                "t": "run",
+                "from": [
+                  3.4,
+                  5.4
+                ],
+                "to": [
+                  12.4,
+                  1.4
+                ],
+                "step": 2,
+                "at": 0.35,
+                "bend": -2.2
+              },
+              {
+                "t": "run",
+                "from": [
+                  7.7,
+                  9.5
+                ],
+                "to": [
+                  4,
+                  6.9
+                ],
+                "step": 3,
+                "at": 0.5
+              },
+              {
+                "t": "pass",
+                "from": [
+                  8.5,
+                  3.1
+                ],
+                "to": [
+                  12,
+                  1.6
+                ],
+                "step": 4,
+                "at": 0.5
+              }
+            ],
+            "caption": "Blau (4) hält den Ball gegen Rot (2) · nach jedem Pass Position wechseln"
+          }
+        },
+        "sources": [
+          "https://training-service.fussball.de/fileadmin/_dfbdam/87257-377-c-te.pdf",
+          "https://www.sportsessionplanner.com/s/fCd4i/3-1-Rotations.html"
+        ],
+        "added": "2026-11-27",
+        "aufbau": [
+          "Ein Feld mit Hütchen, mit Abstand zur Hallenwand.",
+          "Blau (<b>A</b>, <b>B</b>, <b>C</b>, <b>D</b>) steht in einer Raute, zwei Kinder von Rot stören in der Mitte."
+        ],
+        "ablauf": [
+          "<b>A</b> passt zu <b>B</b>.",
+          "<b>A</b> läuft sofort außen an <b>B</b> vorbei nach vorn.",
+          "<b>C</b> rückt auf den frei gewordenen Platz von <b>A</b> nach.",
+          "<b>B</b> spielt <b>A</b> in den Lauf = 1 Punkt."
+        ],
+        "regeln": [
+          "Nach jedem eigenen Pass wechselt man die Position: hinterlaufen, nachrücken oder kreuzen.",
+          "Pass zu einem Kind, das gerade die Position gewechselt hat = 1 Punkt. Höchstens zwei Kontakte, Ball flach.",
+          "Erobert Rot den Ball, tauscht das Kind mit dem Fehlpass mit einem roten Kind die Rolle."
+        ],
+        "leichter": "Die Hallenwand darf als fünfte Mitspielerin genutzt werden (Pass gegen die Wand).",
+        "schwerer": "Punkte gibt es nur für einen Direktpass in den Lauf."
       }
     ],
     "zweikampf": [
@@ -2148,6 +2312,187 @@
         ],
         "leichter": "A darf nur 5 Sekunden dribbeln.",
         "schwerer": "Ein*e zweite*r Angreifer*in kommt dazu (2 gegen 1)."
+      },
+      {
+        "id": "1-gegen-1-mit-bankpass",
+        "halle": true,
+        "title": "1 gegen 1 mit Bankpass",
+        "goal": "Ziel: Im 1 gegen 1 die umgelegte Langbank als Doppelpass-Partner nutzen und fair verteidigen",
+        "coachTip": "Achte auf das Timing: A spielt die Bank erst an, wenn V etwa zwei Meter entfernt ist – zu früh gespielt, dreht V einfach mit.",
+        "materials": "{parallelFields(k, 4) === 1 ? '1 Langbank' : (parallelFields(k, 4)) + ' Langbänke'} · {parallelFields(k, 4) === 1 ? '1 Minitor' : (parallelFields(k, 4)) + ' Minitore'} · {3*parallelFields(k, 4)} Bälle",
+        "dims": "{stationLabel(parallelFields(k, 4))} à ca. 14 × 8 m",
+        "diagram": {
+          "scene": {
+            "w": 14,
+            "l": 8,
+            "items": [
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 14,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 8,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 14,
+                "y": 8,
+                "color": "#F2B134"
+              },
+              {
+                "t": "bench",
+                "x": 4.5,
+                "y": 0.3,
+                "len": 4
+              },
+              {
+                "t": "goal",
+                "x": 14,
+                "y": 4,
+                "dir": "w"
+              },
+              {
+                "t": "p",
+                "x": 2,
+                "y": 4,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "p",
+                "x": 7.4,
+                "y": 4.3,
+                "team": "r",
+                "label": "V"
+              },
+              {
+                "t": "ball",
+                "x": 2.6,
+                "y": 3.8
+              },
+              {
+                "t": "p",
+                "x": 0.6,
+                "y": 7.3,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 2,
+                "y": 7.5,
+                "team": "b"
+              }
+            ],
+            "moves": [
+              {
+                "t": "pass",
+                "from": [
+                  11.5,
+                  4.6
+                ],
+                "to": [
+                  2.9,
+                  4.4
+                ],
+                "step": 1,
+                "at": 0.3
+              },
+              {
+                "t": "run",
+                "from": [
+                  11.6,
+                  4.9
+                ],
+                "to": [
+                  8,
+                  4.7
+                ]
+              },
+              {
+                "t": "pass",
+                "from": [
+                  3,
+                  3.6
+                ],
+                "to": [
+                  6.4,
+                  0.6
+                ],
+                "step": 2,
+                "at": 0.45
+              },
+              {
+                "t": "run",
+                "from": [
+                  2.8,
+                  4.6
+                ],
+                "to": [
+                  9.8,
+                  4.4
+                ],
+                "bend": 1.4
+              },
+              {
+                "t": "pass",
+                "from": [
+                  6.6,
+                  0.6
+                ],
+                "to": [
+                  9.9,
+                  3.5
+                ],
+                "step": 3,
+                "at": 0.5
+              },
+              {
+                "t": "pass",
+                "from": [
+                  10.3,
+                  3.8
+                ],
+                "to": [
+                  13.6,
+                  4
+                ]
+              }
+            ],
+            "caption": "Langbank umgelegt, Sitzfläche zum Feld = Bande"
+          }
+        },
+        "sources": [
+          "https://dfb.de/fileadmin/_dfbdam/48854-352-a-te.pdf",
+          "https://dfb.de/fileadmin/_dfbdam/11337-275-dc-ha1-01.pdf"
+        ],
+        "added": "2026-11-27",
+        "aufbau": [
+          "Eine Langbank auf die Seite legen, die Sitzfläche zeigt ins Feld (Bande). Ersatzweise das Feld direkt an der Hallenwand aufbauen.",
+          "Am Ende ein Minitor, gegenüber startet <b>A</b>. Die Wartenden stehen neben dem Start, nicht an der Bank."
+        ],
+        "ablauf": [
+          "<b>V</b> passt flach zu <b>A</b> und läuft ihr entgegen.",
+          "<b>A</b> spielt den Ball gegen die Bank und läuft auf der anderen Seite an <b>V</b> vorbei.",
+          "<b>A</b> nimmt den Abpraller mit und schießt aufs Minitor."
+        ],
+        "regeln": [
+          "<b>A</b> darf auch ohne Bank dribbeln, ein Tor nach Bankpass zählt aber doppelt.",
+          "<b>V</b> verteidigt fair und bleibt auf den Beinen: keine Grätschen.",
+          "Erobert <b>V</b> den Ball und dribbelt über die Startlinie = 1 Punkt für <b>V</b>. Danach Rollen tauschen."
+        ],
+        "leichter": "<b>V</b> startet zwei Meter weiter hinten.",
+        "schwerer": "<b>A</b> muss nach dem Abpraller direkt schießen."
       }
     ],
     "spielaufbau": [
@@ -2751,6 +3096,366 @@
         ],
         "leichter": "Nur zwei Gegenspieler*innen.",
         "schwerer": "Vier Gegenspieler*innen."
+      },
+      {
+        "id": "einkick-in-vier-sekunden",
+        "halle": true,
+        "title": "Einkick in vier Sekunden",
+        "goal": "Ziel: Den Ball nach dem Einkick (Futsal) unter Zeitdruck sicher ins Spiel bringen",
+        "coachTip": "Achte darauf, dass A und B erst kreuzen, wenn E den Ball hingelegt hat und hochschaut – Lauf und Blickkontakt müssen zusammenpassen.",
+        "materials": "{6*min(3, parallelFields(k, 5))} Hütchen · {3*min(3, parallelFields(k, 5))} Bälle · {2*min(3, parallelFields(k, 5))} Leibchen",
+        "dims": "{fieldLabel(min(3, parallelFields(k, 5)))} à ca. 20 × 14 m",
+        "diagram": {
+          "scene": {
+            "w": 20,
+            "l": 14,
+            "items": [
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 14,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 20,
+                "y": 2.5,
+                "color": "#2F7FC1"
+              },
+              {
+                "t": "cone",
+                "x": 20,
+                "y": 5,
+                "color": "#2F7FC1"
+              },
+              {
+                "t": "cone",
+                "x": 20,
+                "y": 9,
+                "color": "#2F7FC1"
+              },
+              {
+                "t": "cone",
+                "x": 20,
+                "y": 11.5,
+                "color": "#2F7FC1"
+              },
+              {
+                "t": "p",
+                "x": 4.5,
+                "y": 0.3,
+                "team": "b",
+                "label": "E"
+              },
+              {
+                "t": "ball",
+                "x": 5.1,
+                "y": 0.5
+              },
+              {
+                "t": "p",
+                "x": 6.5,
+                "y": 6.5,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "p",
+                "x": 10.5,
+                "y": 6.5,
+                "team": "b",
+                "label": "B"
+              },
+              {
+                "t": "p",
+                "x": 7.5,
+                "y": 9,
+                "team": "r"
+              },
+              {
+                "t": "p",
+                "x": 14.5,
+                "y": 9.5,
+                "team": "r",
+                "say": "1 – 2 – 3 – 4",
+                "step": 1
+              }
+            ],
+            "moves": [
+              {
+                "t": "run",
+                "from": [
+                  6.8,
+                  6.2
+                ],
+                "to": [
+                  10.4,
+                  3
+                ],
+                "step": 2,
+                "at": 0.25
+              },
+              {
+                "t": "run",
+                "from": [
+                  10.2,
+                  6.2
+                ],
+                "to": [
+                  6.6,
+                  3.2
+                ]
+              },
+              {
+                "t": "pass",
+                "from": [
+                  5.3,
+                  0.7
+                ],
+                "to": [
+                  10,
+                  2.7
+                ],
+                "step": 3,
+                "at": 0.5
+              },
+              {
+                "t": "dribble",
+                "from": [
+                  10.8,
+                  3
+                ],
+                "to": [
+                  19.6,
+                  3.8
+                ],
+                "step": 4,
+                "at": 0.55
+              }
+            ],
+            "caption": "E = Einkick · durch ein Hütchentor dribbeln = 1 Punkt"
+          }
+        },
+        "sources": [
+          "https://www.dfb.de/futsal/was-ist-futsal/",
+          "https://uefa.com/MultimediaFiles/Download/uefaorg/CoachingCoachedu/02/50/17/53/2501753_DOWNLOAD.pdf"
+        ],
+        "added": "2026-11-27",
+        "aufbau": [
+          "Einkick-Punkt an der Seitenlinie, an der Stirnseite gegenüber zwei Hütchentore.",
+          "Blau: Einkicker*in <b>E</b>, <b>A</b> und <b>B</b>. Rot: zwei Kinder decken <b>A</b> und <b>B</b> eng."
+        ],
+        "ablauf": [
+          "<b>E</b> legt den Ball ruhig auf die Linie, Rot zählt laut bis vier.",
+          "<b>A</b> und <b>B</b> kreuzen, um sich von Rot zu lösen.",
+          "<b>E</b> kickt flach zum freien Kind ein.",
+          "Blau spielt 3 gegen 2 bis zu einem Hütchentor, <b>E</b> spielt mit."
+        ],
+        "regeln": [
+          "Kommt der Einkick nicht innerhalb von vier Sekunden, bekommt Rot den Ball (Futsal-Regel).",
+          "Rot hält beim Einkick fünf Meter Abstand zum Ball.",
+          "Erobert Rot den Ball, bekommt Rot einen Punkt. Nach vier Einkicks wechseln die Rollen."
+        ],
+        "leichter": "Rot zählt bis sechs.",
+        "schwerer": "Ein drittes rotes Kind stört nach dem Einkick, dann heißt es 3 gegen 3."
+      },
+      {
+        "id": "torhueter-als-anspielstation",
+        "halle": true,
+        "title": "Torhüter*in als freie Anspielstation",
+        "goal": "Ziel: Gegen Manndeckung herausspielen – die Torhüter*in wird zur freien Anspielstation",
+        "coachTip": "Achte darauf, dass TW nach dem Abspiel seitlich versetzt anspielbar bleibt und früh „Zurück!“ ruft, sobald A unter Druck kommt.",
+        "materials": "{min(2, ceil(k/8)) === 1 ? '1 Tor mit Netz' : (min(2, ceil(k/8))) + ' Tore mit Netz'} · {4*min(2, ceil(k/8))} Bälle · {4*min(2, ceil(k/8))} Hütchen · {3*min(2, ceil(k/8))} Leibchen · {min(2, ceil(k/8)) === 1 ? '1 Torwarttrikot' : (min(2, ceil(k/8))) + ' Torwarttrikots'}",
+        "dims": "{fieldLabel(min(2, ceil(k/8)))} à ca. 20 × 14 m",
+        "diagram": {
+          "scene": {
+            "w": 20,
+            "l": 14,
+            "lines": [
+              {
+                "x1": 20,
+                "y1": 0,
+                "x2": 20,
+                "y2": 14,
+                "dash": true,
+                "color": "#FFE29A",
+                "label": "Ziellinie",
+                "labelAlign": "end"
+              }
+            ],
+            "items": [
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 14,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 20,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 20,
+                "y": 14,
+                "color": "#F2B134"
+              },
+              {
+                "t": "goal",
+                "x": 0,
+                "y": 7,
+                "dir": "e",
+                "w": 3,
+                "h": 2,
+                "d": 1
+              },
+              {
+                "t": "p",
+                "x": 0.9,
+                "y": 7,
+                "team": "y",
+                "label": "TW"
+              },
+              {
+                "t": "ball",
+                "x": 1.6,
+                "y": 6.7
+              },
+              {
+                "t": "p",
+                "x": 6.5,
+                "y": 2.2,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "p",
+                "x": 11,
+                "y": 6.5,
+                "team": "b",
+                "label": "B"
+              },
+              {
+                "t": "p",
+                "x": 6.5,
+                "y": 10.5,
+                "team": "b",
+                "label": "C"
+              },
+              {
+                "t": "p",
+                "x": 8.6,
+                "y": 2,
+                "team": "r"
+              },
+              {
+                "t": "p",
+                "x": 12.8,
+                "y": 7,
+                "team": "r"
+              },
+              {
+                "t": "p",
+                "x": 9,
+                "y": 13,
+                "team": "r"
+              }
+            ],
+            "moves": [
+              {
+                "t": "pass",
+                "from": [
+                  1.7,
+                  6.5
+                ],
+                "to": [
+                  6,
+                  2.6
+                ],
+                "step": 1,
+                "at": 0.5,
+                "bend": -1.2
+              },
+              {
+                "t": "pass",
+                "from": [
+                  5.9,
+                  2.9
+                ],
+                "to": [
+                  1.9,
+                  6.9
+                ],
+                "step": 2,
+                "at": 0.5,
+                "bend": -1.2
+              },
+              {
+                "t": "pass",
+                "from": [
+                  1.7,
+                  7.4
+                ],
+                "to": [
+                  6,
+                  10.2
+                ],
+                "step": 3,
+                "at": 0.5
+              },
+              {
+                "t": "dribble",
+                "from": [
+                  7,
+                  10.4
+                ],
+                "to": [
+                  19.4,
+                  9.6
+                ],
+                "step": 4,
+                "at": 0.78
+              }
+            ],
+            "caption": "Rot deckt Mann gegen Mann · TW ist die freie Anspielstation"
+          }
+        },
+        "sources": [
+          "https://www.fifatrainingcentre.com/en/practice/futsal/block-2/playing-out-from-the-back-under-pressure.php",
+          "https://assets.dfb.de/uploads/000/305/588/original_Leitfaden_Torwartspiel.pdf"
+        ],
+        "added": "2026-11-27",
+        "aufbau": [
+          "Ein Handballtor (ersatzweise Kleinfeldtor) an der Stirnseite, gegenüber eine Ziellinie (Hallenlinie oder Hütchen).",
+          "Blau: <b>TW</b>, <b>A</b>, <b>B</b>, <b>C</b>. Rot: drei Kinder, jedes deckt ein blaues Kind."
+        ],
+        "ablauf": [
+          "<b>TW</b> rollt zu <b>A</b>.",
+          "<b>A</b> wird angelaufen und spielt zurück zu <b>TW</b>.",
+          "<b>TW</b> spielt mit dem Fuß sofort auf die freie Seite zu <b>C</b>.",
+          "<b>C</b> dribbelt über die Ziellinie = 1 Punkt."
+        ],
+        "regeln": [
+          "Rot deckt Mann gegen Mann und greift <b>TW</b> nicht an.",
+          "<b>TW</b> hat am Ball höchstens vier Sekunden (Futsal-Regel), der Ball bleibt flach.",
+          "Erobert Rot den Ball, schießt Rot sofort aufs Tor. Nach vier Angriffen wechseln die Rollen."
+        ],
+        "leichter": "Nur zwei rote Kinder decken, ein blaues Kind ist frei.",
+        "schwerer": "Ein rotes Kind darf <b>TW</b> anlaufen, sobald <b>TW</b> den Ball am Fuß hat."
       }
     ],
     "koordination": [
@@ -3491,6 +4196,315 @@
         ],
         "leichter": "V startet 4 m hinter A.",
         "schwerer": "V startet auf gleicher Höhe."
+      },
+      {
+        "id": "futsal-block-im-eins-gegen-eins",
+        "halle": true,
+        "title": "Futsal-Block im Eins-gegen-Eins",
+        "goal": "Ziel: Aus kurzer Distanz den Winkel verkürzen und den Schuss mit dem Futsal-Block abwehren",
+        "coachTip": "Achte darauf, dass TW erst in den Block geht, wenn A zum Schuss ausholt – wer zu früh abkniet, wird einfach umspielt.",
+        "materials": "{parallelFields(k, 4) === 1 ? '1 Tor mit Netz' : (parallelFields(k, 4)) + ' Tore mit Netz'} · {parallelFields(k, 4)} Hütchen · {3*parallelFields(k, 4)} Bälle · {parallelFields(k, 4) === 1 ? '1 Torwarttrikot' : (parallelFields(k, 4)) + ' Torwarttrikots'}",
+        "dims": "{stationLabel(parallelFields(k, 4))} à ca. 12 × 8 m",
+        "diagram": {
+          "scene": {
+            "w": 12,
+            "l": 8,
+            "objScale": 1.4,
+            "items": [
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 12,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 8,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 12,
+                "y": 8,
+                "color": "#F2B134"
+              },
+              {
+                "t": "goal",
+                "x": 0,
+                "y": 4,
+                "dir": "e",
+                "w": 3,
+                "h": 2,
+                "d": 1
+              },
+              {
+                "t": "cone",
+                "x": 10.5,
+                "y": 4,
+                "color": "#2F7FC1"
+              },
+              {
+                "t": "p",
+                "x": 2.8,
+                "y": 4.4,
+                "team": "y",
+                "label": "TW",
+                "say": "Block!",
+                "step": 3
+              },
+              {
+                "t": "p",
+                "x": 9.8,
+                "y": 4.2,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "ball",
+                "x": 9.2,
+                "y": 4
+              }
+            ],
+            "moves": [
+              {
+                "t": "dribble",
+                "from": [
+                  8.8,
+                  4
+                ],
+                "to": [
+                  5,
+                  3.6
+                ],
+                "step": 1,
+                "at": 0.5
+              },
+              {
+                "t": "run",
+                "from": [
+                  0.4,
+                  3.2
+                ],
+                "to": [
+                  2.6,
+                  3.8
+                ],
+                "step": 2,
+                "at": 0.35
+              },
+              {
+                "t": "pass",
+                "from": [
+                  4.6,
+                  3.5
+                ],
+                "to": [
+                  2.6,
+                  3.4
+                ],
+                "step": 4,
+                "at": 0.2
+              }
+            ],
+            "caption": "Block: ein Knie am Boden, anderes Bein seitlich gestreckt"
+          }
+        },
+        "sources": [
+          "https://uefa.com/MultimediaFiles/Download/uefaorg/CoachingCoachedu/02/50/17/53/2501753_DOWNLOAD.pdf",
+          "https://assets.dfb.de/uploads/000/305/588/original_Leitfaden_Torwartspiel.pdf"
+        ],
+        "added": "2026-11-27",
+        "aufbau": [
+          "Ein Handballtor (ersatzweise Kleinfeldtor) mit Torhüter*in (<b>TW</b>), davor ein Starthütchen.",
+          "Drei Kinder wechseln sich als Angreifer*in (<b>A</b>) ab. <b>TW</b> trägt lange Hose oder Knieschoner."
+        ],
+        "ablauf": [
+          "<b>A</b> dribbelt frontal auf das Tor zu.",
+          "<b>TW</b> kommt zwei Schritte heraus und verkürzt den Winkel.",
+          "Holt <b>A</b> zum Schuss aus, geht <b>TW</b> in den Block: ein Knie runter, das andere Bein seitlich gestreckt.",
+          "<b>A</b> schießt flach, <b>TW</b> wehrt mit Bein und Körper ab."
+        ],
+        "regeln": [
+          "<b>A</b> muss innerhalb von 4 Sekunden nach dem Start schießen, nur flach.",
+          "Gehalten = 1 Punkt für <b>TW</b>, Tor = 1 Punkt für <b>A</b>.",
+          "Nach 6 Duellen wechselt <b>TW</b>."
+        ],
+        "leichter": "<b>A</b> darf nicht umdribbeln, nur schießen.",
+        "schwerer": "<b>A</b> startet seitlich versetzt und darf <b>TW</b> umspielen."
+      },
+      {
+        "id": "abwurf-in-vier-sekunden",
+        "halle": true,
+        "title": "Abwurf in vier Sekunden",
+        "goal": "Ziel: Nach dem Halten den Ball schnell und genau abwerfen – Spieleröffnung wie im Futsal",
+        "coachTip": "Achte darauf, dass TW schon beim Aufstehen den Kopf hebt und das freie Kind sucht – der Blick kommt vor dem Wurf.",
+        "materials": "{min(2, ceil(k/6)) === 1 ? '1 Tor mit Netz' : (min(2, ceil(k/6))) + ' Tore mit Netz'} · {4*min(2, ceil(k/6))} Hütchen · {5*min(2, ceil(k/6))} Bälle · {min(2, ceil(k/6)) === 1 ? '1 Torwarttrikot' : (min(2, ceil(k/6))) + ' Torwarttrikots'}",
+        "dims": "{stationLabel(min(2, ceil(k/6)))} à ca. 20 × 14 m",
+        "diagram": {
+          "scene": {
+            "w": 20,
+            "l": 14,
+            "items": [
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 14,
+                "color": "#F2B134"
+              },
+              {
+                "t": "goal",
+                "x": 0,
+                "y": 7,
+                "dir": "e",
+                "w": 3,
+                "h": 2,
+                "d": 1
+              },
+              {
+                "t": "p",
+                "x": 0.9,
+                "y": 7,
+                "team": "y",
+                "label": "TW",
+                "say": "Hab ihn!",
+                "step": 2
+              },
+              {
+                "t": "cone",
+                "x": 15,
+                "y": 0.8,
+                "color": "#2F7FC1"
+              },
+              {
+                "t": "cone",
+                "x": 15,
+                "y": 3.2,
+                "color": "#2F7FC1"
+              },
+              {
+                "t": "cone",
+                "x": 15,
+                "y": 10.8,
+                "color": "#2F7FC1"
+              },
+              {
+                "t": "cone",
+                "x": 15,
+                "y": 13.2,
+                "color": "#2F7FC1"
+              },
+              {
+                "t": "p",
+                "x": 11,
+                "y": 6.5,
+                "team": "b",
+                "label": "S"
+              },
+              {
+                "t": "p",
+                "x": 4,
+                "y": 0.9,
+                "team": "b",
+                "label": "L"
+              },
+              {
+                "t": "p",
+                "x": 5,
+                "y": 12.2,
+                "team": "b",
+                "label": "R"
+              }
+            ],
+            "moves": [
+              {
+                "t": "pass",
+                "from": [
+                  10.5,
+                  6.6
+                ],
+                "to": [
+                  1.7,
+                  6.9
+                ],
+                "step": 1,
+                "at": 0.3
+              },
+              {
+                "t": "run",
+                "from": [
+                  4.6,
+                  0.9
+                ],
+                "to": [
+                  15.4,
+                  1.9
+                ],
+                "step": 3,
+                "at": 0.5
+              },
+              {
+                "t": "run",
+                "from": [
+                  5.6,
+                  12.2
+                ],
+                "to": [
+                  15.4,
+                  12.2
+                ]
+              },
+              {
+                "t": "pass",
+                "from": [
+                  1.6,
+                  7.5
+                ],
+                "to": [
+                  14.6,
+                  11.8
+                ],
+                "step": 4,
+                "at": 0.5
+              }
+            ],
+            "caption": "Abwurf ins Hütchentor in höchstens 4 Sekunden = 1 Punkt"
+          }
+        },
+        "sources": [
+          "https://dfb.de/fileadmin/_dfbdam/85398-375-ue20-te.pdf",
+          "https://uefa.com/MultimediaFiles/Download/uefaorg/CoachingCoachedu/02/50/17/53/2501753_DOWNLOAD.pdf"
+        ],
+        "added": "2026-11-27",
+        "aufbau": [
+          "Ein Handballtor (ersatzweise Kleinfeldtor) mit Torhüter*in (<b>TW</b>), gegenüber an jeder Seite ein Hütchentor.",
+          "Schütze*in <b>S</b> in der Mitte, <b>L</b> und <b>R</b> an den Seiten. Die Wartenden stehen hinter <b>S</b>."
+        ],
+        "ablauf": [
+          "<b>S</b> schießt flach aufs Tor.",
+          "<b>TW</b> hält oder fängt den Ball.",
+          "<b>L</b> und <b>R</b> starten in Richtung ihrer Hütchentore.",
+          "<b>TW</b> wirft oder rollt flach zum freieren Kind, das den Ball durchs Hütchentor mitnimmt."
+        ],
+        "regeln": [
+          "Nur Abwurf oder Abrollen, kein Abschlag. Mehr als vier Sekunden = kein Punkt (Futsal-Regel).",
+          "<b>S</b> darf nach dem Schuss einen Wurfweg zustellen, aber <b>TW</b> nicht angreifen.",
+          "Nach 6 Schüssen wechselt <b>TW</b>, die anderen rücken eine Rolle weiter."
+        ],
+        "leichter": "<b>S</b> stört den Abwurf nicht.",
+        "schwerer": "Nur drei Sekunden für den Abwurf."
       }
     ],
     "kopfball": [
@@ -4400,6 +5414,401 @@
         ],
         "leichter": "8 Sekunden.",
         "schwerer": "4 Sekunden."
+      },
+      {
+        "id": "ballverlust-ab-zur-bank",
+        "halle": true,
+        "title": "Ballverlust – ab zur Bank",
+        "goal": "Ziel: Eine kurze Überzahl nach Ballgewinn sofort und mit Tempo ausnutzen",
+        "coachTip": "Achte auf den ersten Pass nach dem Ballgewinn: Er soll nach vorn in den Raum gehen, den das rote Kind auf dem Weg zur Bank frei gemacht hat.",
+        "materials": "2 Tore mit Netz · 1 Langbank · 6 Bälle · {ceil(k/2)} Leibchen · 2 Torwarttrikots",
+        "dims": "ca. 26 × 16 m",
+        "diagram": {
+          "scene": {
+            "w": 26,
+            "l": 16,
+            "items": [
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 26,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 16,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 26,
+                "y": 16,
+                "color": "#F2B134"
+              },
+              {
+                "t": "goal",
+                "x": 0,
+                "y": 8,
+                "dir": "e",
+                "w": 3,
+                "h": 2,
+                "d": 1
+              },
+              {
+                "t": "goal",
+                "x": 26,
+                "y": 8,
+                "dir": "w",
+                "w": 3,
+                "h": 2,
+                "d": 1
+              },
+              {
+                "t": "bench",
+                "x": 11,
+                "y": 0.4,
+                "len": 4
+              },
+              {
+                "t": "p",
+                "x": 0.9,
+                "y": 8,
+                "team": "y"
+              },
+              {
+                "t": "p",
+                "x": 25.1,
+                "y": 8,
+                "team": "y"
+              },
+              {
+                "t": "p",
+                "x": 14,
+                "y": 3.6,
+                "team": "r",
+                "label": "R"
+              },
+              {
+                "t": "p",
+                "x": 8,
+                "y": 11,
+                "team": "r"
+              },
+              {
+                "t": "p",
+                "x": 4.5,
+                "y": 5,
+                "team": "r"
+              },
+              {
+                "t": "p",
+                "x": 19.5,
+                "y": 13,
+                "team": "r"
+              },
+              {
+                "t": "p",
+                "x": 10,
+                "y": 6.5,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "ball",
+                "x": 10.6,
+                "y": 6.3
+              },
+              {
+                "t": "p",
+                "x": 7,
+                "y": 2.6,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 4.5,
+                "y": 12.5,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 16.5,
+                "y": 11,
+                "team": "b"
+              }
+            ],
+            "moves": [
+              {
+                "t": "pass",
+                "from": [
+                  13.5,
+                  3.9
+                ],
+                "to": [
+                  10.6,
+                  6
+                ],
+                "step": 1,
+                "at": 0.45
+              },
+              {
+                "t": "run",
+                "from": [
+                  14.2,
+                  3.2
+                ],
+                "to": [
+                  13.6,
+                  0.9
+                ],
+                "step": 2,
+                "at": 0.5
+              },
+              {
+                "t": "dribble",
+                "from": [
+                  10.9,
+                  6.6
+                ],
+                "to": [
+                  19.5,
+                  7.4
+                ],
+                "step": 3,
+                "at": 0.65
+              },
+              {
+                "t": "run",
+                "from": [
+                  17,
+                  10.8
+                ],
+                "to": [
+                  22,
+                  10.4
+                ]
+              }
+            ],
+            "caption": "R verliert den Ball und muss erst die Bank antippen"
+          }
+        },
+        "sources": [
+          "https://www.soccerdrills.de/fileadmin/media/uebungen/Hallentraining/hallentraining-PDF/futsaltraining-gruppentraining-umschalten.pdf",
+          "https://dfb.de/fileadmin/_dfbdam/86447-376-c-st1-01.pdf"
+        ],
+        "added": "2026-11-27",
+        "aufbau": [
+          "Zwei Handballtore (ersatzweise Kleinfeldtore) an den Stirnseiten, mit Abstand zur Wand.",
+          "In der Mitte einer Seitenlinie eine Langbank (ersatzweise ein Hütchen).",
+          "Zwei Teams zu viert mit Torhüter*in. Die übrigen Kinder warten als Wechselspieler*innen neben der Bank."
+        ],
+        "ablauf": [
+          "<b>R</b> verliert den Ball an <b>A</b>.",
+          "<b>R</b> sprintet zur Bank und tippt sie an, erst dann darf sie wieder mitspielen.",
+          "Blau kontert sofort 4 gegen 3 aufs Tor."
+        ],
+        "regeln": [
+          "Futsal-Regeln: Ball flach, Einkick statt Einwurf, keine Grätschen.",
+          "Gilt für beide Teams: Wer den Ball verliert, muss zur Bank.",
+          "Tor innerhalb von 8 Sekunden nach Ballgewinn = 2 Punkte. Nach 4 Minuten wechseln die Wartenden ein."
+        ],
+        "leichter": "Die Bank steht in einer Hallenecke, der Weg und damit die Überzahl dauern länger.",
+        "schwerer": "Ein Tor zählt nur innerhalb von 6 Sekunden nach Ballgewinn."
+      },
+      {
+        "id": "trainerball-zum-umschalten",
+        "halle": true,
+        "title": "Trainerball zum Umschalten",
+        "goal": "Ziel: Nach dem eigenen Abschluss sofort verteidigen – und als Gegner sofort kontern",
+        "coachTip": "Achte auf die Angreifer*innen nach dem Abschluss: Wer jubelt oder dem Ball nachschaut, verliert die entscheidenden ersten zwei Sekunden.",
+        "materials": "2 Tore mit Netz · 12 Bälle · {ceil(k/2)} Leibchen · 2 Torwarttrikots",
+        "dims": "ca. 22 × 14 m",
+        "diagram": {
+          "scene": {
+            "w": 22,
+            "l": 14,
+            "items": [
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 22,
+                "y": 0,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 14,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 22,
+                "y": 14,
+                "color": "#F2B134"
+              },
+              {
+                "t": "goal",
+                "x": 0,
+                "y": 7,
+                "dir": "e",
+                "w": 3,
+                "h": 2,
+                "d": 1
+              },
+              {
+                "t": "goal",
+                "x": 22,
+                "y": 7,
+                "dir": "w",
+                "w": 3,
+                "h": 2,
+                "d": 1
+              },
+              {
+                "t": "p",
+                "x": 0.9,
+                "y": 7,
+                "team": "y"
+              },
+              {
+                "t": "p",
+                "x": 21.1,
+                "y": 7,
+                "team": "y"
+              },
+              {
+                "t": "p",
+                "x": 16,
+                "y": 3.6,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "ball",
+                "x": 16.6,
+                "y": 3.4
+              },
+              {
+                "t": "p",
+                "x": 15,
+                "y": 9.5,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 18.5,
+                "y": 2,
+                "team": "r"
+              },
+              {
+                "t": "p",
+                "x": 8,
+                "y": 4,
+                "team": "r",
+                "label": "R"
+              },
+              {
+                "t": "p",
+                "x": 11,
+                "y": 13.6,
+                "team": "t",
+                "label": "T"
+              },
+              {
+                "t": "ball",
+                "x": 11.6,
+                "y": 13.4
+              }
+            ],
+            "moves": [
+              {
+                "t": "pass",
+                "from": [
+                  16.8,
+                  3.6
+                ],
+                "to": [
+                  21.3,
+                  6.4
+                ],
+                "step": 1,
+                "at": 0.5
+              },
+              {
+                "t": "pass",
+                "from": [
+                  10.8,
+                  13
+                ],
+                "to": [
+                  8.3,
+                  4.7
+                ],
+                "step": 2,
+                "at": 0.3
+              },
+              {
+                "t": "dribble",
+                "from": [
+                  7.5,
+                  4
+                ],
+                "to": [
+                  2.5,
+                  4.8
+                ],
+                "step": 3,
+                "at": 0.5
+              },
+              {
+                "t": "run",
+                "from": [
+                  14.6,
+                  9.4
+                ],
+                "to": [
+                  7.5,
+                  9
+                ]
+              }
+            ],
+            "caption": "T = Trainer*in mit Ballvorrat am Rand"
+          }
+        },
+        "sources": [
+          "https://dfb.de/fileadmin/_dfbdam/86447-376-c-st1-01.pdf",
+          "https://www.soccerdrills.de/fileadmin/media/uebungen/Hallentraining/hallentraining-PDF/futsaltraining-gruppentraining-umschalten.pdf"
+        ],
+        "added": "2026-11-27",
+        "aufbau": [
+          "Zwei Handballtore (ersatzweise Kleinfeldtore) mit Torhüter*innen an den Stirnseiten.",
+          "Trainer*in (<b>T</b>) mit Ballvorrat an der Seitenlinie in der Mitte. Je zwei Kinder von Blau und Rot im Feld, die übrigen warten an der Seite."
+        ],
+        "ablauf": [
+          "Blau greift 2 gegen 2 an, <b>A</b> schließt ab.",
+          "Sofort nach dem Abschluss spielt <b>T</b> einen neuen Ball flach zu <b>R</b>.",
+          "Rot kontert aufs andere Tor, Blau schaltet um und läuft zurück."
+        ],
+        "regeln": [
+          "Jedes Tor = 1 Punkt, ein Konter-Tor innerhalb von 6 Sekunden = 2 Punkte.",
+          "<b>T</b> spielt immer dem Team einen Ball zu, das gerade verteidigt hat.",
+          "Nach 90 Sekunden wechseln die Paare, der Ball bleibt flach."
+        ],
+        "leichter": "<b>T</b> wartet zwei Sekunden, bevor der neue Ball kommt.",
+        "schwerer": "3 gegen 3 mit derselben Regel."
       }
     ],
     "aufwaermen": [
