@@ -23,6 +23,8 @@
   Alle Übungen sind umgestellt; neue Übungen bitte direkt in diesem Format anlegen.
   Begrüßung/Abschluss (`sceneSitzkreis`) und Abschlussspiel (`sceneGameFormat`) nutzen ebenfalls den 3D-Zeichner.
   Nach dem Umstellen alle Bilder ansehen (Überdeckungen, abgeschnittene Beschriftungen).
+  Neue oder überarbeitete Übungen über den Agenten `uebungs-autor` (`.claude/agents/uebungs-autor.md`);
+  Prüfbilder: `NODE_PATH=$(npm root -g) node tools/uebungsbilder.mjs <id>,<id>`.
 - Die vereinfachte Oberfläche hängt am Schalter `UI_V2` in `index.html`; mit `UI_V2 = false`
   muss die alte Oberfläche unverändert funktionieren.
 - **Prozesshaus** (`haus.html`, …/Trainingspilot/haus.html): Überblick über Systeme, Abläufe und Konten mit Links.

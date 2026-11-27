@@ -19,8 +19,12 @@ Die App liest diese Dateien **nicht** direkt. Eine Kopie ist in `index.html` ein
 node tools/exercises.mjs build
 # 3. Prüfen (läuft auch automatisch bei jedem Push/Pull Request)
 node tools/exercises.mjs check
-# 4. JSON-Datei UND index.html committen
+# 4. Bilder ansehen (Überdeckungen, Beschriftungen, Nummern = Ablauf)
+NODE_PATH=$(npm root -g) node tools/uebungsbilder.mjs <id>,<id>
+# 5. JSON-Datei UND index.html committen
 ```
+
+In Claude Code übernimmt das der Agent `uebungs-autor` (`.claude/agents/uebungs-autor.md`).
 
 Wird `index.html` von Hand oder anderswo bearbeitet, darf der Block zwischen `EXERCISE_DATA_START` und `EXERCISE_DATA_END` nicht angefasst werden. Er wird bei jedem `build` überschrieben.
 
