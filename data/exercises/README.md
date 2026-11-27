@@ -19,8 +19,12 @@ Die App liest diese Dateien **nicht** direkt. Eine Kopie ist in `index.html` ein
 node tools/exercises.mjs build
 # 3. Prüfen (läuft auch automatisch bei jedem Push/Pull Request)
 node tools/exercises.mjs check
-# 4. JSON-Datei UND index.html committen
+# 4. Bilder ansehen (Überdeckungen, Beschriftungen, Nummern = Ablauf)
+NODE_PATH=$(npm root -g) node tools/uebungsbilder.mjs <id>,<id>
+# 5. JSON-Datei UND index.html committen
 ```
+
+In Claude Code übernimmt das der Agent `uebungs-autor` (`.claude/agents/uebungs-autor.md`).
 
 Wird `index.html` von Hand oder anderswo bearbeitet, darf der Block zwischen `EXERCISE_DATA_START` und `EXERCISE_DATA_END` nicht angefasst werden. Er wird bei jedem `build` überschrieben.
 
@@ -52,6 +56,7 @@ Wird `index.html` von Hand oder anderswo bearbeitet, darf der Block zwischen `EX
 | `dims` | Textvorlage für Feldgröße oder Stationen. |
 | `diagram` | Skizze, siehe unten. |
 | `custom` | Optional `true`: Übung wurde von einer Trainer*in vorgeschlagen (Badge 👥). |
+| `halle` | Optional `true`: Übung funktioniert in der Sporthalle (kompaktes Feld, keine Flanken, langen oder hohen Bälle, kein Großfeld). Bei „Halle“ nimmt die App nur solche Übungen. |
 | `aufbau`, `ablauf`, `regeln` | Gegliederter Text (seit v5.182, Listen kurzer Sätze). `ablauf` sind die nummerierten Schritte, die Nummern müssen zu den Schritten im Bild passen. Mit `ablauf` entfällt `desc`. Nur `<b>…</b>` als Auszeichnung (z. B. für Rollen **A**, **V**). Keine Feldgrößen hineinschreiben, die stehen schon in `dims`. |
 | `leichter`, `schwerer` | Je ein Satz, wie die Übung leichter bzw. schwerer wird. |
 

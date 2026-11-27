@@ -21,6 +21,8 @@ jobs:
         with:
           node-version: 22
       - run: node tools/exercises.mjs check
+      - name: Versionsangaben und Neuigkeiten-Liste
+        run: node tools/release.mjs check
       - run: npm ci --prefix tools/agent
       - name: Tests Übungs-Agent (ohne API-Aufrufe)
         run: node tools/agent/test.mjs
