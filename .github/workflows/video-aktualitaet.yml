@@ -1,0 +1,31 @@
+name: Video-Aktualität
+
+# Prüft bei Änderungen an der App, ob das Erklärvideo (tools/video/drehbuch.json) noch dazu passt:
+# Bedienelemente und Beschriftungen, die das Video zeigt, müssen in index.html noch vorkommen (sonst Fehler, rot);
+# neue Funktionen und eine ältere App-Version des Videos erscheinen als Hinweise in der Zusammenfassung.
+# Blockiert die Veröffentlichung nicht. Kostenlos (öffentliches Repository). Werkzeug: tools/video/pruefung.mjs
+
+on:
+  pull_request:
+    paths: ['index.html', 'tools/video/**', '.github/workflows/video-aktualitaet.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  video:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - name: Video-Aktualität prüfen
+        run: |
+          status=0
+          node tools/video/pruefung.mjs --report "$RUNNER_TEMP/video.md" > /dev/null || status=$?
+          cat "$RUNNER_TEMP/video.md" >> "$GITHUB_STEP_SUMMARY"
+          cat "$RUNNER_TEMP/video.md"
+          exit $status
