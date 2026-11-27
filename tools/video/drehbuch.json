@@ -139,7 +139,14 @@
    "figur": {
     "pose": "winken",
     "text": "Kein Firlefanz. Einfach gutes Training."
-   }
+   },
+   "folge": [
+    {
+     "satz": 2,
+     "pose": "zeigen",
+     "text": "Die Herren vom Verband sind zufrieden."
+    }
+   ]
   },
   {
    "id": "c2",
@@ -209,7 +216,14 @@
    "figur": {
     "pose": "zeigen",
     "text": "Zahlen rein, Plan raus. Mehr braucht's nicht."
-   }
+   },
+   "folge": [
+    {
+     "satz": 2,
+     "pose": "karte",
+     "text": "Zählen kann ich selbst. Die App rechnet trotzdem besser."
+    }
+   ]
   },
   {
    "id": "c5",
@@ -260,7 +274,14 @@
    "figur": {
     "pose": "zeigen",
     "text": "Jede Übung mit Bild. Selbst ich versteh das."
-   }
+   },
+   "folge": [
+    {
+     "satz": 2,
+     "pose": "winken",
+     "text": "Sieht alles nach Training aus. Gut."
+    }
+   ]
   },
   {
    "id": "c7",
@@ -314,7 +335,14 @@
    "figur": {
     "pose": "zeigen",
     "text": "Hütchen zählen ist auch Arbeit. Hier wird abgehakt."
-   }
+   },
+   "folge": [
+    {
+     "satz": 2,
+     "pose": "winken",
+     "text": "Speichern, fertig. Feierabend."
+    }
+   ]
   },
   {
    "id": "c9",
@@ -367,7 +395,14 @@
    "figur": {
     "pose": "zeigen",
     "text": "Weiter drücken. Mehr ist nicht zu tun."
-   }
+   },
+   "folge": [
+    {
+     "satz": 2,
+     "pose": "karte",
+     "text": "Und jetzt Pfeife in den Mund."
+    }
+   ]
   },
   {
    "id": "c11",
@@ -408,5 +443,5 @@
  "layout": {
   "phone_y": 240
  },
- "_figur": "figur: Coach-Figur mit Sprechblase (reiner Bildtext, wird nicht gesprochen). Ton: trocken, kurz, höchstens zwei Zeilen."
+ "_figur": "figur: Coach-Figur mit Sprechblase (Bildtext, wird nicht gesprochen); folge: weitere Zustände ab Satz n. Ton: trocken, kurz."
 }

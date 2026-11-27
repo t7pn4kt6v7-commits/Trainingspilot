@@ -17,6 +17,7 @@ a = sys.argv[1:]
 if '--out' in a: OUT = os.path.abspath(a[a.index('--out') + 1])
 DB = json.load(open(os.path.join(HERE, 'drehbuch.json'), encoding='utf-8'))
 os.chdir(OUT)
+ZT = json.load(open('zeiten.json', encoding='utf-8'))
 
 PHONE_Y = DB.get('layout', {}).get('phone_y', 240)
 LEAD, X, CARD = 0.8, 0.4, 2.6          # Vorlauf vor dem ersten Satz, Überblendung, Dauer der Kapitelkarte
@@ -42,9 +43,21 @@ for s in DB['szenen']:
     if not segs: sys.exit('Keine Aufnahme für Szene %s (seg_%s_*.mp4) – zuerst aufnahme.mjs ausführen.' % (sid, sid))
     for i, f in enumerate(segs):
         o = 'k_%s_%d.mp4' % (sid, i); ov = 'ov_%s.png' % sid
-        if width(f) == 800: run(['-i', f, '-i', ov, '-filter_complex', '[0]pad=1080:1920:140:%d:color=0x0B0F0C[b];[b][1]overlay' % PHONE_Y] + ENC + [o])
-        elif os.path.exists(ov): run(['-i', f, '-i', ov, '-filter_complex', '[0][1]overlay'] + ENC + [o])
-        else: run(['-i', f] + ENC + [o])
+        # Figur: je Zustand eine Ebene (fig_<szene>_<n>.png), sichtbar ab ihrem Satz, springt von unten ein und wippt leicht
+        figs = [] if i else sorted(f_ for f_ in os.listdir('.') if f_.startswith('fig_%s_' % sid) and f_.endswith('.png'))
+        zust = ([{'satz': 0}] + s.get('folge', [])) if figs else []
+        st = ZT.get(sid, {}).get('starts', [0.0] * 20)
+        ins_, ch_ = ['-i', f], []
+        cur = '[0]pad=1080:1920:140:%d:color=0x0B0F0C[b0]' % PHONE_Y if width(f) == 800 else '[0]null[b0]'
+        ch_.append(cur); last = 'b0'; k = 1
+        if os.path.exists(ov): ins_ += ['-i', ov]; ch_.append('[%s][%d:v]overlay[b1]' % (last, k)); last = 'b1'; k += 1
+        for j, fg in enumerate(figs):
+            t0 = max(0.0, LEAD + st[min(zust[j]['satz'], len(st) - 1)] - 0.15)
+            t1 = (LEAD + st[min(zust[j + 1]['satz'], len(st) - 1)] - 0.15) if j + 1 < len(figs) else 9999
+            y = "y='130*max(0,1-(t-%.2f)/0.28)+6*sin(t*6.5)'" % t0
+            ins_ += ['-i', fg]; nxt = 'f%d' % j
+            ch_.append("[%s][%d:v]overlay=0:%s:eval=frame:enable='between(t,%.2f,%.2f)'[%s]" % (last, k, y, t0, t1, nxt)); last = nxt; k += 1
+        run(ins_ + ['-filter_complex', ';'.join(ch_), '-map', '[%s]' % last] + ENC + [o])
         wav = sid + '.wav'
         clips.append((o, wav if i == 0 and os.path.exists(wav) else None, sid))
 

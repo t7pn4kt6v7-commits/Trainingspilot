@@ -1,57 +1,59 @@
 // Figur „Coach“ (Karikatur einer älteren Trainerlegende mit Schiebermütze und Trillerpfeife; der Spruch auf dem Shirt
 // steht auch auf der Bande im Titelbild der App). Liefert SVG-Text; Schriften (Anton, Work Sans) lädt die einbettende Seite.
 // Posen: zeigen · karte · winken. Vorschau: node tools/video/figur.mjs [datei.png]  (braucht Playwright)
-const SK = '#f0c9a0', SK2 = '#e3ae80', DK = '#2a2f2b';
+const SK = '#f7dfc4', INK = '#1d1d1b', SW = 3.4, BODY = '#3d4a40';
+const ln = `stroke="${INK}" stroke-width="${SW}" stroke-linecap="round" stroke-linejoin="round"`;
+const hand = (x, y, extra = '') => `<circle cx="${x}" cy="${y}" r="13" fill="${SK}" ${ln}/>${extra}`;
 const arm = {
-  zeigen: `<path d="M140 258 C190 232 232 205 268 168" stroke="${DK}" stroke-width="20" stroke-linecap="round" fill="none"/><circle cx="272" cy="164" r="13" fill="${SK}"/><path d="M280 158 L296 146" stroke="${SK}" stroke-width="7" stroke-linecap="round"/>`,
-  karte: `<path d="M140 258 C206 244 262 214 264 158" stroke="${DK}" stroke-width="20" stroke-linecap="round" fill="none"/><circle cx="264" cy="150" r="13" fill="${SK}"/><rect x="255" y="106" width="18" height="30" rx="3" fill="#F2B134" transform="rotate(8 264 121)"/>`,
-  winken: `<path d="M140 258 C196 240 244 214 254 170" stroke="${DK}" stroke-width="20" stroke-linecap="round" fill="none"/><circle cx="256" cy="160" r="14" fill="${SK}"/><path d="M247 148 L243 134 M255 146 L255 130 M263 148 L267 134" stroke="${SK}" stroke-width="6" stroke-linecap="round"/>`,
+  zeigen: `<path d="M172 218 C206 210 240 186 264 156" fill="none" stroke="${BODY}" stroke-width="22" stroke-linecap="round"/><path d="M172 218 C206 210 240 186 264 156" fill="none" ${ln} stroke-width="1" opacity="0"/>${hand(268, 150, `<path d="M276 142 L292 128" ${ln} fill="none" stroke-width="6"/>`)}`,
+  karte: `<path d="M172 218 C214 224 246 190 248 148" fill="none" stroke="${BODY}" stroke-width="22" stroke-linecap="round"/>${hand(248, 138)}<rect x="238" y="92" width="20" height="32" rx="3" fill="#F2B134" ${ln} transform="rotate(8 248 108)"/>`,
+  winken: `<path d="M172 218 C210 212 240 188 244 146" fill="none" stroke="${BODY}" stroke-width="22" stroke-linecap="round"/>${hand(246, 136, `<path d="M236 124 L230 108 M246 122 L246 104 M256 124 L262 108" ${ln} fill="none" stroke-width="5"/>`)}`,
 };
+// Stil angelehnt an Loriots Zeichnungen: Federstrich, Knollennase, Punktaugen, Körper wie ein Sack, dünne Beine, große Schuhe.
+// Vorbild für Kleidung und Miene: Foto eines älteren Trainers mit Hahnentritt-Schiebermütze, Wollmantel und Schal, schweren Lidern,
+// spitzem Mund und abstehenden Ohren.
 export const figurSvg = (pose) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 420" width="300" height="420">
-  <ellipse cx="116" cy="410" rx="70" ry="8" fill="rgba(0,0,0,.28)"/>
-  <!-- Körper (klein) -->
-  <g transform="translate(117 262) scale(.62) translate(-117 -160)">
-    <rect x="85" y="290" width="26" height="105" rx="10" fill="#1d211e"/><rect x="123" y="290" width="26" height="105" rx="10" fill="#1d211e"/>
-    <ellipse cx="90" cy="397" rx="28" ry="11" fill="#111"/><ellipse cx="146" cy="397" rx="28" ry="11" fill="#111"/>
-    <path d="M62 160 Q117 132 172 160 L184 300 Q117 322 50 300 Z" fill="${DK}"/>
-    <path d="M96 150 L117 175 L138 150 Z" fill="${SK}"/>
-    <text x="117" y="224" text-anchor="middle" font-family="Anton, Impact, sans-serif" font-size="21" fill="#F2B134" letter-spacing=".4">KEIN</text>
-    <text x="117" y="248" text-anchor="middle" font-family="Anton, Impact, sans-serif" font-size="21" fill="#F2B134" letter-spacing=".4">FIRLEFANZ.</text>
-    <text x="117" y="270" text-anchor="middle" font-family="Work Sans, Arial, sans-serif" font-weight="800" font-size="12" fill="#fff">Einfach gutes</text>
-    <text x="117" y="286" text-anchor="middle" font-family="Work Sans, Arial, sans-serif" font-weight="800" font-size="12" fill="#fff">Training.</text>
-    <path d="M66 164 C48 196 46 230 54 258" stroke="${DK}" stroke-width="24" stroke-linecap="round" fill="none"/>
-    <circle cx="54" cy="266" r="14" fill="${SK}"/><rect x="40" y="238" width="18" height="26" rx="3" fill="#d9362c" transform="rotate(-8 49 251)"/>
-  </g>
+  <defs><pattern id="hz" width="12" height="12" patternUnits="userSpaceOnUse"><rect width="12" height="12" fill="#a9a59c"/><rect width="6" height="6" fill="#3b3a38"/><rect x="6" y="6" width="6" height="6" fill="#3b3a38"/><path d="M6 0 L12 6 M0 6 L6 12" stroke="#6a665f" stroke-width="1.6"/></pattern></defs>
+  <ellipse cx="117" cy="410" rx="74" ry="7" fill="rgba(0,0,0,.28)"/>
+  <!-- Beine und Schuhe -->
+  <path d="M96 340 L92 390 M138 340 L142 390" ${ln} fill="none" stroke-width="7"/>
+  <path d="M70 394 C70 382 100 380 104 392 C106 400 72 404 70 394Z M130 392 C134 380 166 382 164 394 C162 404 128 402 130 392Z" fill="#242321" ${ln}/>
+  <!-- Mantel (offen) mit Hemd und Spruch -->
+  <path d="M58 204 C86 188 148 188 176 204 C194 250 194 308 184 346 C146 358 92 358 50 346 C40 308 40 250 58 204Z" fill="#59574f" ${ln}/>
+  <path d="M96 196 L138 196 L146 350 L88 350 Z" fill="${BODY}" ${ln} stroke-width="2.6"/>
+  <path d="M96 196 L84 250 L96 258 M138 196 L150 250 L138 258" fill="none" ${ln} stroke-width="2.6"/>
+  <g fill="#3f3d38" opacity=".55"><circle cx="64" cy="250" r="1.6"/><circle cx="72" cy="290" r="1.6"/><circle cx="60" cy="318" r="1.6"/><circle cx="170" cy="260" r="1.6"/><circle cx="176" cy="300" r="1.6"/><circle cx="166" cy="330" r="1.6"/><circle cx="76" cy="230" r="1.6"/></g>
+  <text x="117" y="272" text-anchor="middle" font-family="Anton, Impact, sans-serif" font-size="15" fill="#F2B134" letter-spacing=".3">KEIN</text>
+  <text x="117" y="289" text-anchor="middle" font-family="Anton, Impact, sans-serif" font-size="15" fill="#F2B134" letter-spacing=".3">FIRLEFANZ.</text>
+  <text x="117" y="307" text-anchor="middle" font-family="Work Sans, Arial, sans-serif" font-weight="800" font-size="8.5" fill="#fff">Einfach gutes</text>
+  <text x="117" y="318" text-anchor="middle" font-family="Work Sans, Arial, sans-serif" font-weight="800" font-size="8.5" fill="#fff">Training.</text>
+  <!-- Schal -->
+  <path d="M68 196 C84 214 150 214 166 196 C170 210 160 222 140 226 L128 244 L106 244 L100 226 C80 222 64 212 68 196Z" fill="#7d6a58" ${ln}/>
+  <path d="M107 232 L127 232" stroke="${INK}" stroke-width="2"/>
+  <!-- linker Arm hängt, rote Karte -->
+  <path d="M62 218 C42 250 40 280 48 304" fill="none" stroke="#59574f" stroke-width="22" stroke-linecap="round"/>
+  ${hand(50, 312)}<rect x="36" y="280" width="18" height="28" rx="3" fill="#d9362c" ${ln} transform="rotate(-10 45 294)"/>
   ${arm[pose]}
-  <!-- Kopf (riesig) -->
-  <g transform="translate(117 246) scale(1.62) translate(-117 -160)">
-    <!-- Ohren -->
-    <ellipse cx="76" cy="108" rx="11" ry="17" fill="${SK2}"/><ellipse cx="158" cy="108" rx="11" ry="17" fill="${SK2}"/>
-    <path d="M74 100 C72 108 74 114 78 118" stroke="#b9855b" stroke-width="2" fill="none"/><path d="M160 100 C162 108 160 114 156 118" stroke="#b9855b" stroke-width="2" fill="none"/>
-    <!-- Gesicht mit Hängebacken -->
-    <path d="M82 76 C70 112 70 148 98 164 C108 170 126 170 136 164 C164 148 164 112 152 76 C146 50 88 50 82 76Z" fill="${SK}"/>
-    <path d="M84 120 C80 150 100 160 106 160" fill="${SK2}" opacity=".5"/><path d="M150 120 C154 150 134 160 128 160" fill="${SK2}" opacity=".5"/>
-    <!-- graue Schläfen -->
-    <path d="M83 92 C77 96 76 108 80 116" stroke="#d6d6d6" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M151 92 C157 96 158 108 154 116" stroke="#d6d6d6" stroke-width="7" fill="none" stroke-linecap="round"/>
-    <!-- Mütze -->
-    <path d="M74 84 C70 50 100 34 120 36 C148 36 166 54 160 84 C140 72 96 72 74 84Z" fill="#6b5b45"/>
-    <path d="M74 84 C100 70 140 70 160 84 C150 92 88 92 74 84Z" fill="#54463a"/>
-    <path d="M96 40 C108 46 130 46 142 40" stroke="#54463a" stroke-width="2.5" fill="none"/><circle cx="118" cy="34" r="4.5" fill="#54463a"/>
-    <path d="M80 86 C66 92 52 98 50 90 C56 80 70 80 82 82Z" fill="#54463a"/>
-    <!-- buschige Brauen, Augen, Tränensäcke -->
-    <path d="M88 94 C98 86 106 86 112 90 L112 95 C104 93 96 94 88 98Z" fill="#8a8a8a"/><path d="M122 90 C128 86 136 86 146 94 L146 98 C138 94 130 93 122 95Z" fill="#8a8a8a"/>
-    <ellipse cx="101" cy="104" rx="6.5" ry="7" fill="#fff"/><ellipse cx="133" cy="104" rx="6.5" ry="7" fill="#fff"/>
-    <circle cx="103" cy="105" r="3.6" fill="#222"/><circle cx="135" cy="105" r="3.6" fill="#222"/>
-    <path d="M92 113 Q101 121 110 113" stroke="#c0906a" stroke-width="2.6" fill="none"/><path d="M124 113 Q133 121 142 113" stroke="#c0906a" stroke-width="2.6" fill="none"/>
-    <!-- große Nase -->
-    <path d="M116 98 C108 124 100 132 108 138 C116 144 130 140 130 132 C126 130 124 124 122 98Z" fill="#e6b389" stroke="#c0906a" stroke-width="2.5" stroke-linejoin="round"/>
-    <circle cx="112" cy="136" r="2" fill="#a56f4c"/><circle cx="124" cy="137" r="2" fill="#a56f4c"/>
-    <!-- Falten, Mund, Pfeife -->
-    <path d="M94 122 C88 138 92 150 102 156" stroke="#c9996f" stroke-width="2.8" fill="none"/><path d="M140 122 C146 138 142 150 132 156" stroke="#c9996f" stroke-width="2.8" fill="none"/>
-    <path d="M100 150 Q112 156 126 149" stroke="#8a4b3c" stroke-width="4.5" fill="none" stroke-linecap="round"/>
-    <rect x="120" y="145" width="27" height="10" rx="5" fill="#dcdcdc" stroke="#9a9a9a" stroke-width="1.4"/><circle cx="142" cy="150" r="2.2" fill="#555"/><rect x="130" y="140" width="10" height="6" rx="2" fill="#bdbdbd"/>
-    <path d="M100 168 Q117 200 134 168" stroke="#bbb" stroke-width="2" fill="none"/>
-  </g>
+  <!-- Kopf: breite Kinnpartie, abstehende Ohren -->
+  <path d="M48 112 C34 102 30 138 46 148 C52 150 56 140 56 128Z M186 112 C200 102 204 138 188 148 C182 150 178 140 178 128Z" fill="${SK}" ${ln}/>
+  <path d="M60 100 C56 150 66 186 96 192 C108 196 126 196 138 192 C168 186 178 150 174 100 C168 60 66 60 60 100Z" fill="${SK}" ${ln}/>
+  <path d="M76 176 C90 190 144 190 158 176" fill="none" ${ln} stroke-width="2"/>
+  <!-- Hahnentritt-Mütze -->
+  <path d="M58 104 C54 68 84 48 118 50 C152 50 182 70 176 104 C150 90 84 90 58 104Z" fill="url(#hz)" ${ln}/>
+  <path d="M58 104 C44 108 26 116 22 108 C32 98 50 94 64 98" fill="url(#hz)" ${ln}/>
+  <circle cx="118" cy="47" r="5" fill="#3b3a38" ${ln}/>
+  <!-- schwere Lider, hängende Brauen -->
+  <path d="M80 112 C90 108 102 108 110 112 M126 112 C134 108 146 108 156 112" fill="none" ${ln} stroke-width="5.5"/>
+  <path d="M88 124 L108 124 M128 124 L148 124" ${ln} fill="none" stroke-width="3"/>
+  <circle cx="98" cy="128" r="3.4" fill="${INK}"/><circle cx="138" cy="128" r="3.4" fill="${INK}"/>
+  <path d="M86 136 Q98 144 110 136 M126 136 Q138 144 150 136" fill="none" ${ln} stroke-width="2"/>
+  <!-- Knollennase -->
+  <circle cx="117" cy="152" r="24" fill="#eaa98a" ${ln}/>
+  <path d="M106 144 Q110 138 116 140" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".55"/>
+  <!-- spitzer Mund mit Pfeife, Falten -->
+  <path d="M92 178 C100 184 108 184 112 180 M122 180 C128 184 136 184 142 178" fill="none" ${ln} stroke-width="3"/>
+  <rect x="106" y="173" width="34" height="13" rx="6.5" fill="#e6e6e6" ${ln} stroke-width="2.6"/><circle cx="132" cy="179.5" r="2.6" fill="${INK}"/>
+  <path d="M74 150 C70 164 74 178 84 186 M160 150 C164 164 160 178 150 186" fill="none" ${ln} stroke-width="2"/>
 </svg>`;
 export const POSEN = Object.keys(arm);
 if (import.meta.url === `file://${process.argv[1]}`) {

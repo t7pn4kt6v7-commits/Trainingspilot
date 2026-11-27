@@ -36,13 +36,15 @@ const BG = `<defs><radialGradient id=g cx=30% cy=15% r=110%><stop offset=0 stop-
   const shot = async (html, name, transparent) => { await p.setContent(`<!doctype html>${FONT}<style>${CSS}</style>${html}`); await p.evaluate(() => document.fonts.ready); await p.waitForTimeout(150); await p.screenshot({ path: `${OUT}/${name}.png`, omitBackground: !!transparent }); };
   for (const s of DB.szenen) {
     const n = s.kapitel;
-    if (s.rahmen === 'keiner') { if (s.figur) await shot(figur(s.figur), 'ov_' + s.id, true); continue; }
-    if (s.rahmen === 'fortschritt') { await shot(prog(n) + figur(s.figur), 'ov_' + s.id, true); continue; }
+    const zust = s.figur ? [Object.assign({ satz: 0 }, s.figur)].concat(s.folge || []) : [];
+    for (let j = 0; j < zust.length; j++) await shot(figur(zust[j]), `fig_${s.id}_${j}`, true);
+    if (s.rahmen === 'keiner') continue;
+    if (s.rahmen === 'fortschritt') { await shot(prog(n), 'ov_' + s.id, true); continue; }
     const outer = rr(SX - BZ, SY - BZ, SW + 2 * BZ, SH + 2 * BZ, 62), inner = rr(SX, SY, SW, SH, 48), full = 'M0,0h1080v1920h-1080z';
     await shot(`<svg viewBox="0 0 1080 1920">${BG}<path d="${full}${inner}" fill="url(#g)" fill-rule=evenodd />
       <path d="${rr(SX - BZ - 3, SY - BZ - 3, SW + 2 * BZ + 6, SH + 2 * BZ + 6, 65)}${inner}" fill="#3d4640" fill-rule=evenodd />
       <path d="${outer}${inner}" fill="#070908" fill-rule=evenodd /></svg>
-      <div class=k>Kapitel ${n} von ${NK} · ${PARTS[n - 1]}</div><div class=h>${s.caption || ''}</div>${prog(n)}${figur(s.figur)}`, 'ov_' + s.id, true);
+      <div class=k>Kapitel ${n} von ${NK} · ${PARTS[n - 1]}</div><div class=h>${s.caption || ''}</div>${prog(n)}`, 'ov_' + s.id, true);
   }
   for (let n = 2; n <= NK; n++) {
     await shot(`<style>body{background:radial-gradient(120% 70% at 30% 20%,#3B7050,#2E5339 50%,#16281c)}
