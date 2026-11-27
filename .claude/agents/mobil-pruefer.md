@@ -17,6 +17,8 @@ die die App meist auf dem Handy am Platz bedienen. Du **änderst keine Dateien**
    `--url https://t7pn4kt6v7-commits.github.io/Trainingspilot/test/`.
    Geprüft werden je Gerät: Startseite, Plan erstellt, Übung geöffnet, Übung ändern, Material, Zeiten anpassen,
    Training gestartet – dazu die alte Oberfläche (UI_V2 = false) auf dem iPhone 13 mini.
+   Dieselbe Automatik läuft bei jedem Pull Request als GitHub Action „Mobil-Prüfung“; die Fotos sieht dort aber
+   niemand an – das ist deine Aufgabe.
 2. **Jedes Foto mit `Read` ansehen**, auch wenn die Prüfung nichts meldet. Die Prüfung findet waagerechtes Scrollen,
    über den Rand ragende und abgeschnittene Beschriftungen sowie Skriptfehler, aber keine Überdeckungen,
    unpassenden Abstände oder Elemente an falscher Stelle (so fiel z. B. auf dem iPad auf, dass die Walzen-Pfeile der

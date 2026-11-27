@@ -32,6 +32,7 @@
 - Auf kleinen Handys prüfen (iPhone SE 320 px, iPhone 13 mini 375 px) und auf dem iPad: keine abgeschnittenen
   Beschriftungen, kein waagerechtes Scrollen. Dafür gibt es den Agenten `mobil-pruefer` bzw.
   `NODE_PATH=$(npm root -g) node tools/mobilpruefung.mjs` (Bericht und Fotos je Gerät und Ansicht).
+  Dieselbe Prüfung läuft bei jedem Pull Request als GitHub Action „Mobil-Prüfung“ (Fotos als Download).
 
 ## Gestaltung (UI_V3, seit v5.177)
 - Schalter `UI_V3` in `index.html` (nur zusammen mit `UI_V2`); `false` = Gestaltung von v5.176.

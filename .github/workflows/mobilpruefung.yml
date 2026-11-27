@@ -1,0 +1,51 @@
+name: Mobil-Prüfung
+
+# Klickt die App bei jedem Pull Request auf iPhone SE (320 px), iPhone 13 mini und iPad durch und prüft auf
+# waagerechtes Scrollen, abgeschnittene Beschriftungen, Skriptfehler und die alte Oberfläche (UI_V2 = false).
+# Ergebnis: Zusammenfassung im Lauf, Fotos je Gerät und Ansicht als Download ("mobil-fotos").
+# Blockiert die Veröffentlichung nicht (die hängt nur an "Übungsbibliothek und Agent prüfen"), zeigt aber rot,
+# wenn etwas auffällt. Kostenlos (öffentliches Repository). Werkzeug: tools/mobilpruefung.mjs
+
+on:
+  pull_request:
+    paths: ['index.html', 'pwa/**', 'tools/mobilpruefung.mjs', '.github/workflows/mobilpruefung.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  mobil:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - name: Playwright mit Chromium bereitstellen
+        run: |
+          npm install --no-save --no-audit --no-fund --prefix "$RUNNER_TEMP/pw" playwright@1.63.0
+          "$RUNNER_TEMP/pw/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Mobil-Prüfung
+        run: |
+          set -o pipefail
+          {
+            echo '### Mobil-Prüfung'
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+          status=0
+          NODE_PATH="$RUNNER_TEMP/pw/node_modules" node tools/mobilpruefung.mjs --out "$RUNNER_TEMP/mobil" \
+            | sed "s#$RUNNER_TEMP/mobil/##" | tee -a "$GITHUB_STEP_SUMMARY" || status=$?
+          {
+            echo '```'
+            echo 'Fotos: unten bei „Artifacts“ → **mobil-fotos** herunterladen. Überdeckungen erkennt die Prüfung nicht, dafür die Fotos ansehen.'
+          } >> "$GITHUB_STEP_SUMMARY"
+          exit $status
+      - name: Fotos hochladen
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: mobil-fotos
+          path: ${{ runner.temp }}/mobil
+          retention-days: 14
