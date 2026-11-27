@@ -29,8 +29,9 @@
   muss die alte Oberfläche unverändert funktionieren.
 - **Prozesshaus** (`haus.html`, …/Trainingspilot/haus.html): Überblick über Systeme, Abläufe und Konten mit Links.
   Kommen Systeme, Workflows, Konten oder Bereiche hinzu oder fallen weg, dort mitpflegen.
-- Auf kleinen Handys prüfen (iPhone SE 320 px, iPhone 13 mini 375 px): keine abgeschnittenen
-  Beschriftungen, kein waagerechtes Scrollen.
+- Auf kleinen Handys prüfen (iPhone SE 320 px, iPhone 13 mini 375 px) und auf dem iPad: keine abgeschnittenen
+  Beschriftungen, kein waagerechtes Scrollen. Dafür gibt es den Agenten `mobil-pruefer` bzw.
+  `NODE_PATH=$(npm root -g) node tools/mobilpruefung.mjs` (Bericht und Fotos je Gerät und Ansicht).
 
 ## Gestaltung (UI_V3, seit v5.177)
 - Schalter `UI_V3` in `index.html` (nur zusammen mit `UI_V2`); `false` = Gestaltung von v5.176.
