@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Trainingspilot v5.215 · TSV Wetschen</title>
+<title>Trainingspilot v5.216 · TSV Wetschen</title>
 <meta name="description" content="Trainingspilot: Trainingspläne für den Jugendfußball in Sekunden – mit 3D-Übungsbildern, Material-Liste und Signal bei jedem Übungswechsel. Ohne Anmeldung.">
 <!-- Link-Vorschau (z. B. WhatsApp): nur für Vorschaukarten in Messengern, in der App selbst nicht sichtbar.
      Bild: pwa/share-preview.png, wird von pages.yml neben die index.html gelegt. -->
@@ -23,7 +23,7 @@
      Link-Vorschau nur den Anfang der Seite. Mit dem Kommentar davor begannen sie erst bei 183 KB (v5.205). -->
 <!--
   Trainingspilot · TSV Wetschen
-  Version: 5.215 (Stand: siehe Chat-Verlauf)
+  Version: 5.216 (Stand: siehe Chat-Verlauf)
 
   Hinweis: Die ausfuehrliche Versionshistorie (v1.0 bis v5.59) wurde aus diesem Kommentar
   entfernt, da sie durch ein wiederholtes Duplizierungsproblem in frueheren Bearbeitungs-
@@ -32,6 +32,8 @@
   Funktionalitaet der App ist davon nicht betroffen - reine Kommentar-Bereinigung.
 
   Changelog (letzte Versionen):
+  v5.216 - Schalter Platz/Halle: Platz heisst jetzt Bolzplatz (nur Beschriftung, Wert bleibt 'platz');
+         About-Text angepasst.
   v5.215 - 31 weitere Hallenuebungen (halle: true, added 2026-11-27) fuer die Kleinsten: jung 16 (G-Jugend
          U6/U7, mit Hallenelementen: Matte, Langbank, Reifen, Wand, Teppichfliesen), mittel 15 (F/E-Jugend
          U8-U11). Felderzahl bei Wand-/Bankuebungen gedeckelt.
@@ -3390,7 +3392,7 @@
         <span class="version-badge-status" id="version-badge-status"></span>
         <div class="hero-title-row">
           <h1>Trainingspilot</h1>
-          <button type="button" class="version-badge-inline" id="version-badge-check-btn" aria-label="Nach Updates suchen">v5.215</button>
+          <button type="button" class="version-badge-inline" id="version-badge-check-btn" aria-label="Nach Updates suchen">v5.216</button>
         </div>
         <p class="hero-tagline">für Jugendmannschaften</p>
       </div>
@@ -3408,7 +3410,7 @@
           <li>⚽ Für U6 bis U19, orientiert an DFB &amp; NFV</li>
           <li>🔀 <span id="about-ex-count">Über 190</span> Übungen in 10 Schwerpunkten – ein Wiederholungsschutz sorgt für Abwechslung<span id="about-ex-new"></span></li>
           <li>⏱️ Einfacher Trainings-Timer: „Training starten“, dann nur noch „Weiter“ – das Signal kommt bei jedem Übungswechsel, auch bei gesperrtem Handy; unter der Uhr steht schon, was als Nächstes aufgebaut wird</li>
-          <li>🏠 Training in der Halle: unter „Dauer und Ort“ auf Halle stellen – die App nimmt hallentaugliche Übungen und ein Abschlussspiel in Hallenform</li>
+          <li>🏠 Training in der Halle: unter „Dauer und Ort“ zwischen Bolzplatz und Halle wählen – bei Halle nimmt die App hallentaugliche Übungen und ein Abschlussspiel in Hallenform</li>
           <li>✏️ Zeiten an einer Stelle anpassen, Übungen wechseln oder per Wischen auslassen</li>
           <li>🧭 Übungsbilder in 3D-Ansicht mit nummerierten Schritten, passend zum Text – Bild antippen zum Vergrößern</li>
           <li>🤝 Plan zu zweit abstimmen: Plan teilen, die Mittrainer*in ändert Übungen und schickt ihn zurück – du siehst „Bisher / Vorschlag“ und entscheidest je Übung. Ohne Konto, nur über den Link</li>
@@ -5320,7 +5322,7 @@ var scriptStartTime = Date.now();
   // Phasen) - die Darstellung und alle Funktionen (Timer, Ausblenden, Bewertung) kommen
   // weiterhin vom aktuellen Code, genau wie bei einem frisch erstellten Plan. So bleiben
   // gespeicherte Plaene automatisch von kuenftigen Bugfixes/Features profitieren.
-  var APP_VERSION = '5.215';
+  var APP_VERSION = '5.216';
 
   // Kurze, NUTZERORIENTIERTE Highlight-Liste dieser Version (2-4 Stichpunkte, nur wenn es
   // wirklich neue Funktionen oder spürbare Änderungen gibt) - bewusst getrennt vom langen
@@ -10739,7 +10741,7 @@ var scriptStartTime = Date.now();
       var ortBox = document.createElement('div'); ortBox.className = 'v2-ort';
       ortBox.innerHTML = '<span class="v2-ort-label" id="v2-ort-label">Wo trainiert ihr?</span>' +
         '<div class="v2-ort-seg" role="radiogroup" aria-labelledby="v2-ort-label">' +
-        '<button type="button" role="radio" data-ort="platz" id="v2-ort-platz">☀ Platz</button>' +
+        '<button type="button" role="radio" data-ort="platz" id="v2-ort-platz">☀ Bolzplatz</button>' +
         '<button type="button" role="radio" data-ort="halle" id="v2-ort-halle">🏠 Halle</button></div>' +
         '<p class="v2-ort-hint" id="v2-ort-hint" hidden>Die App nimmt Übungen, die in der Halle funktionieren, und ein Abschlussspiel in Hallenform.</p>';
       s2.appendChild(ortBox);
