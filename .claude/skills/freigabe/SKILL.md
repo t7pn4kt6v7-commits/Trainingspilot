@@ -26,8 +26,9 @@ Feste Vorgabe des Nutzers: Nichts ausführen, was Kosten verursacht.
 2. **Prüfen** (alles muss grün sein):
    - `node tools/release.mjs check`
    - bei Übungsänderungen: `node tools/exercises.mjs build` und `node tools/exercises.mjs check`, neue Bilder ansehen
-   - Oberfläche: iPhone SE (320 px), iPhone 13 mini (375 px) und iPad – keine abgeschnittenen Beschriftungen, kein
-     waagerechtes Scrollen; bei Oberflächenänderungen kurz `UI_V2 = false` gegenprüfen.
+   - bei Änderungen an der Oberfläche: Agent `mobil-pruefer` (oder direkt
+     `NODE_PATH=$(npm root -g) node tools/mobilpruefung.mjs` und die Fotos ansehen) – iPhone SE, iPhone 13 mini,
+     iPad und die alte Oberfläche (`UI_V2 = false`). Befunde vor dem Pull Request beheben.
 3. **Ausliefern in Test:** auf dem Arbeitsbranch committen und pushen, Pull Request **gegen `test`** öffnen
    (Titel mit Version, z. B. „v5.213: …“). Checks abwarten (nicht mit `sleep` pollen, sondern Monitor), dann
    **squash** mergen. Steht der Arbeitsbranch hinter `test`, vorher `git rebase origin/test`.
