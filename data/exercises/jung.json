@@ -4,6 +4,7 @@
     "ballgewoehnung": [
       {
         "id": "dribbel-zoo",
+        "halle": true,
         "title": "Dribbel-Zoo",
         "goal": "Ziel: Ballkontrolle, jedes Kind mit eigenem Ball in Bewegung",
         "coachTip": "Kurze, bildhafte Kommandos wirken besser als technische Erklärungen.",
@@ -177,6 +178,7 @@
       },
       {
         "id": "ampel-dribbling",
+        "halle": true,
         "title": "Ampel-Dribbling",
         "goal": "Ziel: Ballkontrolle mit Tempowechsel und Reaktionsschulung",
         "coachTip": "Ampelfarben auch mit Handzeichen zeigen, damit auch Kinder mit wenig Konzentration mitkommen.",
@@ -333,6 +335,7 @@
       },
       {
         "id": "autorennen",
+        "halle": true,
         "title": "Autorennen",
         "goal": "Ziel: Ballführung mit Tempowechseln spielerisch verpackt",
         "coachTip": "Die Fantasie der Kinder für eigene Fahrgeräusche nutzen – das steigert die Motivation deutlich.",
@@ -502,6 +505,7 @@
       },
       {
         "id": "ab-in-die-garage",
+        "halle": true,
         "title": "Ab in die Garage",
         "goal": "Ziel: Ballführung mit Tempowechsel und Anhalten des Balls",
         "coachTip": "Langsames, kontrolliertes Einparken ist wichtiger als Tempo – loben, wenn der Ball wirklich ruhig in der Garage liegt.",
@@ -691,6 +695,7 @@
     "passspiel": [
       {
         "id": "zupass-kreis",
+        "halle": true,
         "title": "Zupass-Kreis",
         "goal": "Ziel: Erste Passtechnik, Innenseite, genaues Zuspiel",
         "coachTip": "Immer mit Blick zum Ball passen lassen, nicht einfach draufschießen.",
@@ -799,6 +804,7 @@
       },
       {
         "id": "nummern-pass",
+        "halle": true,
         "title": "Nummern-Pass",
         "goal": "Ziel: Passtechnik mit Reaktion und Namen lernen verbinden",
         "coachTip": "Reihenfolge gelegentlich mischen, damit alle aufmerksam bleiben.",
@@ -899,6 +905,7 @@
       },
       {
         "id": "durch-das-tor-zum-freund",
+        "halle": true,
         "title": "Durch das Tor zum Freund",
         "goal": "Ziel: Erste gezielte Pässe mit festem Partner",
         "coachTip": "Feste Partner machen es Bambini leichter. Mit der Innenseite passen und den Ball vor dem nächsten Pass zuerst stoppen lassen.",
@@ -1080,6 +1087,7 @@
     "torschuss": [
       {
         "id": "wer-kippt-den-huetchen-turm",
+        "halle": true,
         "title": "Wer kippt den Hütchen-Turm?",
         "goal": "Ziel: Torschuss mit Erfolgserlebnis für alle",
         "coachTip": "Laut mitjubeln bei jedem Treffer – das Erfolgserlebnis zählt mehr als die Technik.",
@@ -1177,6 +1185,7 @@
       },
       {
         "id": "schatzsuche-im-tor",
+        "halle": true,
         "title": "Schatzsuche im Tor",
         "goal": "Ziel: Torschuss mit spielerischem Sammel-Anreiz",
         "coachTip": "Am Ende gemeinsam auszählen, wer wie viele „Schätze\" gesammelt hat – ohne Rangliste, nur zum Staunen.",
@@ -1290,6 +1299,7 @@
       },
       {
         "id": "tor-gewitter",
+        "halle": true,
         "title": "Tor-Gewitter",
         "goal": "Ziel: Viele Torschüsse in kurzer Zeit, mit rechts und links",
         "coachTip": "Abstand zum Tor so wählen, dass fast jedes Kind trifft – Erfolgserlebnisse sind in der G-Jugend wichtiger als Schusskraft.",
@@ -1463,6 +1473,7 @@
     "bewegung": [
       {
         "id": "freies-feld-erobern",
+        "halle": true,
         "title": "Freies Feld erobern",
         "goal": "Ziel: Anbieten und Freilaufen spielerisch entdecken",
         "coachTip": "Kinder loben, die sich von Mitspielern lösen, statt dicht daneben stehen zu bleiben.",
@@ -1600,6 +1611,7 @@
       },
       {
         "id": "verstecken-vorm-faenger",
+        "halle": true,
         "title": "Verstecken vorm Fänger",
         "goal": "Ziel: Sich clever positionieren, um anspielbar zu bleiben",
         "coachTip": "Fängerrolle oft wechseln, damit jedes Kind beide Rollen erlebt.",
@@ -1721,6 +1733,7 @@
       },
       {
         "id": "spinne-und-bruecke",
+        "halle": true,
         "title": "Spinne und Brücke",
         "goal": "Ziel: Freilaufen und Ausweichen spielerisch mit Fangspiel verbinden",
         "coachTip": "Fängerrolle regelmäßig wechseln – so bleibt die Motivation für alle hoch.",
@@ -1863,6 +1876,7 @@
       },
       {
         "id": "burgball",
+        "halle": true,
         "title": "Burgball",
         "goal": "Ziel: Freilaufen und Anbieten – ohne Ball den freien Platz finden",
         "coachTip": "Immer wieder fragen: „Wo ist ein freier Platz, an dem dich dein Freund anwerfen kann?“ – genau das ist Freilaufen.",
@@ -2055,6 +2069,7 @@
     "zweikampf": [
       {
         "id": "ball-behaupten",
+        "halle": true,
         "title": "Ball behaupten",
         "goal": "Ziel: Ball im 1-gegen-1 sicher behaupten und erobern",
         "coachTip": "Fair-Play-Regeln vorher klar und einfach erklären, dann selbst vormachen.",
@@ -2158,6 +2173,7 @@
       },
       {
         "id": "rettungsinsel",
+        "halle": true,
         "title": "Rettungsinsel",
         "goal": "Ziel: Zweikampfverhalten mit kurzer Verschnaufpause verbinden",
         "coachTip": "Zeit auf der Insel bewusst kurz halten, damit der Zweikampf im Fokus bleibt.",
@@ -2278,6 +2294,7 @@
       },
       {
         "id": "hund-und-katze",
+        "halle": true,
         "title": "Hund und Katze",
         "goal": "Ziel: Ball im Laufduell behaupten, spielerisch verpackt",
         "coachTip": "Kurze Zeitfenster (ca. 20 Sekunden) wählen, damit die Intensität hochbleibt.",
@@ -2380,6 +2397,7 @@
       },
       {
         "id": "torjaeger-duell",
+        "halle": true,
         "title": "Torjäger-Duell",
         "goal": "Ziel: Erste Torschuss-Erfahrung im spielerischen Zweikampf",
         "coachTip": "Laut mitjubeln bei jedem Torerfolg – der Spaß am Abschluss steht in diesem Alter im Vordergrund, nicht die Zweikampf-Statistik.",
@@ -2494,6 +2512,7 @@
       },
       {
         "id": "linienritter",
+        "halle": true,
         "title": "Linienritter",
         "goal": "Ziel: Mutig ins 1 gegen 1 gehen und an einer Gegenspielerin vorbeidribbeln",
         "coachTip": "Für den Anfang den Ritter nur auf der Linie verteidigen lassen – so gelingt den Angreifern das Dribbling öfter und der Mut wächst.",
@@ -2625,6 +2644,7 @@
     "spielaufbau": [
       {
         "id": "von-huetchen-zu-huetchen",
+        "halle": true,
         "title": "Von Hütchen zu Hütchen",
         "goal": "Ziel: Ersten Pass mit Zielspiel verbinden",
         "coachTip": "Auf sauberen ersten Kontakt in Richtung des nächsten Passes achten.",
@@ -2778,6 +2798,7 @@
       },
       {
         "id": "bruecken-bauen",
+        "halle": true,
         "title": "Brücken bauen",
         "goal": "Ziel: Präzision im Pass spielerisch durch ein „Tor aus Beinen\" schulen",
         "coachTip": "Abstand der Brücken an das Können der Gruppe anpassen – näher für mehr Erfolgserlebnisse.",
@@ -2854,6 +2875,7 @@
     "koordination": [
       {
         "id": "hindernis-rallye",
+        "halle": true,
         "title": "Hindernis-Rallye",
         "goal": "Ziel: Allgemeine Bewegungsschule – Laufen, Springen, Balancieren",
         "coachTip": "Zwei Parcours-Stationen parallel aufbauen, damit niemand lange in der Schlange steht.",
@@ -2990,6 +3012,7 @@
       },
       {
         "id": "zahlen-parcours",
+        "halle": true,
         "title": "Zahlen-Parcours",
         "goal": "Ziel: Reaktionsschnelligkeit und Orientierung im Raum",
         "coachTip": "Mit zwei Zahlen gleichzeitig steigern („Erst zur 3, dann zur 7\"), sobald die Gruppe sicher ist.",
@@ -3126,6 +3149,7 @@
       },
       {
         "id": "umschalt-fangen",
+        "halle": true,
         "title": "Umschalt-Fangen",
         "goal": "Ziel: Schnelles Reagieren und Umschalten spielerisch schulen",
         "coachTip": "Wirkungsvoller als Koordinationsleiter oder Hütchen-Sprünge, weil die Kinder auf echte Bewegungen reagieren statt ein festes Muster abzulaufen.",
@@ -3256,6 +3280,7 @@
       },
       {
         "id": "kaenguru-parcours",
+        "halle": true,
         "title": "Känguru-Parcours",
         "goal": "Ziel: Springen, Laufen und Balancieren mit dem Ball in der Hand",
         "coachTip": "Mehrere Parcours nebeneinander aufbauen, damit nie mehr als 3–4 Kinder anstehen.",
@@ -3413,6 +3438,7 @@
     "torwart": [
       {
         "id": "fang-mich-wenn-du-kannst",
+        "halle": true,
         "title": "Fang mich, wenn du kannst",
         "goal": "Ziel: Erstes Ballgefühl mit den Händen, jeder mal Torwart",
         "coachTip": "Weiche, leichte Bälle verwenden und kurze Distanzen wählen, damit alle Erfolgserlebnisse haben.",
@@ -3515,6 +3541,7 @@
       },
       {
         "id": "zick-zack-faenger",
+        "halle": true,
         "title": "Zick-Zack-Fänger",
         "goal": "Ziel: Seitliche Beweglichkeit als Torwart spielerisch erproben",
         "coachTip": "Rollweite an das Können anpassen – lieber viele Erfolgserlebnisse als schwer zu erreichende Bälle.",
@@ -3619,6 +3646,7 @@
       },
       {
         "id": "torwart-ruf",
+        "halle": true,
         "title": "Torwart-Ruf",
         "goal": "Ziel: Bälle sicher fangen und laut „Torwart!“ rufen",
         "coachTip": "Handschuhe sind in diesem Alter nicht nötig – entscheidend sind Hände, die den Ball „wie eine Schüssel“ umschließen.",
@@ -3706,6 +3734,7 @@
     "kopfball": [
       {
         "id": "ball-hoch-halten",
+        "halle": true,
         "title": "Ball hoch halten",
         "goal": "Ziel: Gefühl für Flugbälle spielerisch entwickeln, ohne echten Kopfballkontakt",
         "coachTip": "Einen Ball bewusst etwas weicher pumpen – echtes Kopfballtraining mit hartem Ball ist in diesem Alter nicht sinnvoll.",
@@ -3803,6 +3832,7 @@
       },
       {
         "id": "ball-tennis-ueber-die-stange",
+        "halle": true,
         "title": "Ball-Tennis über die Stange",
         "goal": "Ziel: Spielerisches Zusammenspiel mit Flugbällen, ohne echten Kopfballkontakt",
         "coachTip": "Einen Ball bewusst etwas weicher pumpen – auch hier ist echtes Kopfballtraining in diesem Alter nicht sinnvoll.",
@@ -3911,6 +3941,7 @@
     "aufwaermen": [
       {
         "id": "drachenschwanz",
+        "halle": true,
         "title": "Drachenschwanz",
         "goal": "Ziel: Aufwärmen, Reaktionsschnelligkeit, Spaß von der ersten Minute",
         "coachTip": "Regel selbst vormachen statt lange erklären. Feld klein halten, damit alle ständig in Aktion sind.",
@@ -4036,6 +4067,7 @@
       },
       {
         "id": "feuer-wasser-blitz",
+        "halle": true,
         "title": "Feuer, Wasser, Blitz",
         "goal": "Ziel: Aufwärmen, Reaktionsschnelligkeit, allgemeine Bewegungsschule",
         "coachTip": "Signale immer selbst vormachen und ruhig übertreiben – je lustiger der Trainer, desto mehr Spaß die Kinder.",
@@ -4185,6 +4217,7 @@
       },
       {
         "id": "balldiebe",
+        "halle": true,
         "title": "Balldiebe",
         "goal": "Ziel: Aufwärmen mit eigenem Ball, Ball abschirmen und wieder einfangen",
         "coachTip": "Die Kinder dürfen ihren Ball mit dem Körper schützen – zeigen, dass „Körper zwischen Dieb und Ball“ die beste Versteck-Idee ist.",
@@ -4344,6 +4377,7 @@
       },
       {
         "id": "fischer-fischer",
+        "halle": true,
         "title": "Fischer, Fischer, wie tief ist das Wasser?",
         "goal": "Ziel: Aufwärmen mit vielen Bewegungsarten, Ausweichen und Antritt",
         "coachTip": "Bewegungsarten vorgeben lassen, die Kinder aus dem Fußball kennen: seitwärts, rückwärts, Hopserlauf, auf einem Bein. Der Fischer muss sich genauso bewegen wie alle anderen.",
@@ -4494,6 +4528,7 @@
       },
       {
         "id": "eisfangen",
+        "halle": true,
         "title": "Eisfangen",
         "goal": "Ziel: Aufwärmen mit Richtungswechseln, Ausweichen und gegenseitigem Helfen",
         "coachTip": "Kurze Runden von 60 bis 90 Sekunden spielen und laut mitzählen, wie viele Kinder am Ende eingefroren sind. So wird daraus ein Wettbewerb zwischen den Fänger-Teams.",
@@ -4648,6 +4683,7 @@
       },
       {
         "id": "huetchen-wirbel",
+        "halle": true,
         "title": "Hütchen-Wirbel",
         "goal": "Ziel: Aufwärmen mit vielen kurzen Sprints, Abbremsen und Überblick",
         "coachTip": "Die Zeit laut herunterzählen („noch zehn, neun …“) – das treibt beide Teams noch einmal an. Nach jeder Runde gemeinsam zählen lassen.",
@@ -4875,6 +4911,7 @@
       },
       {
         "id": "schatzraeuber",
+        "halle": true,
         "title": "Schatzräuber",
         "goal": "Ziel: Aufwärmen mit Sprints, schnellem Umdrehen und Teamgeist",
         "coachTip": "Die Teams ihre Schätze am Ende selbst zählen lassen. Bei vielen Kindern lieber mehr Teams bilden als lange Schlangen – niemand soll länger als zwei Läufe warten.",
@@ -5098,6 +5135,7 @@
       },
       {
         "id": "ochs-am-berg",
+        "halle": true,
         "title": "Ochs am Berg",
         "goal": "Ziel: Aufwärmen mit Antritt, Abstoppen und Körperbeherrschung",
         "coachTip": "Den Ochs mal schnell, mal langsam rufen lassen – so müssen die Kinder genau zuhören. Im Zweifel entscheidet die Trainer*in, wer sich noch bewegt hat.",
@@ -5240,6 +5278,7 @@
       },
       {
         "id": "komm-mit-lauf-weg",
+        "halle": true,
         "title": "Komm mit, lauf weg",
         "goal": "Ziel: Aufwärmen mit Reaktion und kurzen Wettrennen",
         "coachTip": "Bei mehr als zehn Kindern zwei Kreise bilden, sonst warten die Kinder zu lange. Darauf achten, dass jedes Kind einmal antippen darf.",
@@ -5378,6 +5417,7 @@
       },
       {
         "id": "haltet-das-feld-sauber",
+        "halle": true,
         "title": "Haltet das Feld sauber",
         "goal": "Ziel: Aufwärmen mit vielen Ballkontakten und Schüssen aus der Bewegung",
         "coachTip": "Flach schießen lassen – hohe Bälle zählen nicht. Die Mittellinie mit Hütchen gut sichtbar machen, damit niemand ins andere Feld läuft.",
@@ -5607,6 +5647,7 @@
       },
       {
         "id": "brueckenwaechter",
+        "halle": true,
         "title": "Brückenwächter",
         "goal": "Ziel: Aufwärmen mit Antritt, Täuschen und Ausweichen",
         "coachTip": "Die Brücke nicht zu schmal machen – sonst haben die Läufer keine Chance. Mutige Läufe loben: Wer zögert, wird leichter gefangen.",
@@ -5795,6 +5836,7 @@
       },
       {
         "id": "pferderennen",
+        "halle": true,
         "title": "Pferderennen",
         "goal": "Ziel: Aufwärmen mit Sprints im Zweierteam und gemeinsamem Tempo",
         "coachTip": "Die Zügel locker halten lassen, nicht ziehen. Paare ungefähr gleich schnell zusammenstellen und nach jedem Rennen neu mischen.",
@@ -5961,6 +6003,7 @@
       },
       {
         "id": "feuerwehr-staffel",
+        "halle": true,
         "title": "Feuerwehr-Staffel",
         "goal": "Ziel: Aufwärmen mit Sprints, Abbremsen und Anfeuern im Team",
         "coachTip": "Kleine Teams von drei bis vier Kindern bilden, damit niemand lange wartet. Wer fertig ist, setzt sich hin – so sieht jeder sofort, wer gewonnen hat.",
@@ -6169,6 +6212,7 @@
       },
       {
         "id": "dribbel-wettlauf-um-die-welt",
+        "halle": true,
         "title": "Dribbel-Wettlauf um die Welt",
         "goal": "Ziel: Aufwärmen mit Ball am Fuß, Tempo halten und Richtungswechsel",
         "coachTip": "Als Sturm so schnell laufen, dass die Kinder gefordert sind, aber fast alle es schaffen. Den Richtungswechsel oft rufen – dann üben alle beide Füße.",
@@ -6356,6 +6400,7 @@
       },
       {
         "id": "tunnelball",
+        "halle": true,
         "title": "Tunnelball",
         "goal": "Ziel: Aufwärmen mit genauem Passen, Ballannahme und Dribbling im Team",
         "coachTip": "Die Reihe soll die Beine weit grätschen und eng zusammenstehen – dann rollt der Ball gerade durch. Bleibt er stecken, darf das nächste Kind ihn mit der Hand weiterrollen.",

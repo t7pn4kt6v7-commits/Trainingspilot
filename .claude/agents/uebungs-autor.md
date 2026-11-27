@@ -35,6 +35,9 @@ und alles, was dir unsicher vorkam.
 
 - `title` eindeutig in der Kategorie; bestehende Titel **nie umbenennen** (Bewertungen und Wiederholungsschutz hängen daran).
 - `id` nur `a-z 0-9 -`, bleibt dauerhaft gleich.
+- `"halle": true` setzen, wenn die Übung in der Sporthalle funktioniert: kompaktes Feld (etwa bis 30 × 20 m),
+  keine Flanken, langen oder hohen Bälle, kein Großfeld oder Strafraum. Hallenübungen dürfen Wand, Langbank,
+  Matten, Kästen und Handballtore nutzen; dann im Text sagen, was man draußen ersatzweise nimmt (z. B. Hütchentor).
 - `goal` beginnt mit `Ziel: `.
 - `aufbau`, `ablauf`, `regeln`: Listen kurzer, ganzer Sätze. `ablauf` sind die nummerierten Schritte – **jede Nummer im
   Bild (`step`) muss genau zu diesem Schritt passen**, und jeder Schritt mit Bewegung sollte seine Nummer im Bild haben.

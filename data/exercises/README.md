@@ -56,6 +56,7 @@ Wird `index.html` von Hand oder anderswo bearbeitet, darf der Block zwischen `EX
 | `dims` | Textvorlage für Feldgröße oder Stationen. |
 | `diagram` | Skizze, siehe unten. |
 | `custom` | Optional `true`: Übung wurde von einer Trainer*in vorgeschlagen (Badge 👥). |
+| `halle` | Optional `true`: Übung funktioniert in der Sporthalle (kompaktes Feld, keine Flanken, langen oder hohen Bälle, kein Großfeld). Bei „Halle“ nimmt die App nur solche Übungen. |
 | `aufbau`, `ablauf`, `regeln` | Gegliederter Text (seit v5.182, Listen kurzer Sätze). `ablauf` sind die nummerierten Schritte, die Nummern müssen zu den Schritten im Bild passen. Mit `ablauf` entfällt `desc`. Nur `<b>…</b>` als Auszeichnung (z. B. für Rollen **A**, **V**). Keine Feldgrößen hineinschreiben, die stehen schon in `dims`. |
 | `leichter`, `schwerer` | Je ein Satz, wie die Übung leichter bzw. schwerer wird. |
 

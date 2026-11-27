@@ -33,7 +33,8 @@ const TEXT_FIELDS = ['title', 'goal', 'desc', 'coachTip', 'materials', 'dims'];
 // Mit "ablauf" ist "desc" (Fließtext) nicht mehr nötig. Erlaubtes HTML in diesen Feldern: nur <b>…</b>.
 const DETAIL_LISTS = ['aufbau', 'ablauf', 'regeln'];
 const DETAIL_TEXTS = ['leichter', 'schwerer'];
-const ALLOWED_FIELDS = new Set(['id', ...TEXT_FIELDS, 'diagram', 'custom', 'added', 'origin', 'sources', ...DETAIL_LISTS, ...DETAIL_TEXTS]);
+// halle: true = funktioniert in der Sporthalle (kleines Feld, keine Flanken/langen Bälle). Bei „Halle“ nimmt die App nur solche Übungen.
+const ALLOWED_FIELDS = new Set(['id', ...TEXT_FIELDS, 'diagram', 'custom', 'added', 'origin', 'sources', 'halle', ...DETAIL_LISTS, ...DETAIL_TEXTS]);
 const SCENE_ITEM_TYPES = new Set(['p', 'cone', 'ball', 'goal', 'ladder', 'hoop', 'bench', 'pole']);
 const SCENE_MOVE_TYPES = new Set(['pass', 'dribble', 'run']);
 function onlyBoldTags(t) { return !/<(?!\/?b>)/.test(t); }
@@ -127,6 +128,7 @@ export function validate(data, html = fs.readFileSync(HTML, 'utf8')) {
         if ('custom' in ex && ex.custom !== true) err(where, '"custom" nur als true angeben (oder weglassen)');
         if ('added' in ex && !/^\d{4}-\d{2}-\d{2}$/.test(ex.added)) err(where, '"added" im Format JJJJ-MM-TT angeben');
         if ('origin' in ex && ex.origin !== 'agent') err(where, '"origin" ist nur als "agent" vorgesehen');
+        if ('halle' in ex && ex.halle !== true) err(where, '"halle" ist entweder true oder fehlt');
         if ('sources' in ex && (!Array.isArray(ex.sources) || ex.sources.length > 5 || !ex.sources.every((u) => typeof u === 'string' && /^https:\/\/[^\s"<>]+$/.test(u)))) {
           err(where, '"sources" muss eine Liste von höchstens 5 https-Adressen sein');
         }
