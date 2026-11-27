@@ -135,7 +135,11 @@
     "Du erstellst in Sekunden einen Trainingsplan für deine Jugendmannschaft, kostenlos und ohne Anmeldung.",
     "Die Übungen orientieren sich an den Grundsätzen des DFB und den Vorgaben des Niedersächsischen Fußballverbands.",
     "Jedes Kapitel kannst du einzeln ansehen."
-   ]
+   ],
+   "figur": {
+    "pose": "winken",
+    "text": "Kein Firlefanz. Einfach gutes Training."
+   }
   },
   {
    "id": "c2",
@@ -153,7 +157,11 @@
     "Wähle „Zum Home-Bildschirm“.",
     "Und bestätige mit „Hinzufügen“.",
     "Das ist wichtig: Sonst löscht Safari deine gespeicherten Pläne nach sieben Tagen."
-   ]
+   ],
+   "figur": {
+    "pose": "zeigen",
+    "text": "Einmal einrichten, dann nie wieder suchen."
+   }
   },
   {
    "id": "c3",
@@ -171,7 +179,11 @@
     "Wähle „App installieren“.",
     "Und bestätige mit „Installieren“.",
     "Starte ihn ab jetzt immer über das neue Symbol, nicht über den Link im Chat."
-   ]
+   ],
+   "figur": {
+    "pose": "zeigen",
+    "text": "Android geht auch. Ohne Firlefanz."
+   }
   },
   {
    "id": "c4",
@@ -193,7 +205,11 @@
     "Die passende Trainingsdauer trägt die App automatisch ein.",
     "Dann gibst du ein, wie viele Kinder und wie viele Trainer heute da sind.",
     "Danach richten sich Spielfeld, Gruppen und Material. Das kleine i erklärt dir, wie die App rechnet."
-   ]
+   ],
+   "figur": {
+    "pose": "zeigen",
+    "text": "Zahlen rein, Plan raus. Mehr braucht's nicht."
+   }
   },
   {
    "id": "c5",
@@ -212,7 +228,11 @@
    "saetze": [
     "Zum Schluss wählst du bis zu drei Schwerpunkte, zum Beispiel Passspiel oder Zweikämpfe.",
     "Und tippst auf „Trainingsplan erstellen“."
-   ]
+   ],
+   "figur": {
+    "pose": "karte",
+    "text": "Höchstens drei Schwerpunkte. Wir sind ja nicht beim Zehnkampf."
+   }
   },
   {
    "id": "c6",
@@ -236,7 +256,11 @@
     "Fertig! Dein Plan hat für jede Übung eine Ablaufzeit.",
     "Tippe eine Übung an: Du siehst ein Bild in 3D, den Aufbau und den Ablauf in einfachen Schritten.",
     "Unter „DFB-Tipps“ findest du die Grundsätze für die Altersstufe."
-   ]
+   ],
+   "figur": {
+    "pose": "zeigen",
+    "text": "Jede Übung mit Bild. Selbst ich versteh das."
+   }
   },
   {
    "id": "c7",
@@ -256,7 +280,11 @@
    "saetze": [
     "Passt eine Übung nicht, wechsle sie einfach aus.",
     "Oder lass sie weg. Die Zeit verteilt sich dann auf die anderen Übungen."
-   ]
+   ],
+   "figur": {
+    "pose": "karte",
+    "text": "Gefällt dir nicht? Weg damit."
+   }
   },
   {
    "id": "c8",
@@ -282,7 +310,11 @@
     "Unter „Material“ setzt du Häkchen, damit nichts fehlt.",
     "Über „Zeiten anpassen“ stellst du die Dauer der Übungen ein.",
     "Und mit „Speichern“ legst du den Plan für das nächste Mal ab."
-   ]
+   ],
+   "figur": {
+    "pose": "zeigen",
+    "text": "Hütchen zählen ist auch Arbeit. Hier wird abgehakt."
+   }
   },
   {
    "id": "c9",
@@ -307,7 +339,11 @@
     "Er kann Übungen ändern oder weglassen und schickt den Plan zurück.",
     "Bei dir siehst du genau, was vorher war und was er vorschlägt.",
     "Bei jeder Übung entscheidest du selbst, ganz ohne Konto."
-   ]
+   ],
+   "figur": {
+    "pose": "zeigen",
+    "text": "Zwei Trainer, ein Plan. Das nennt man Mannschaftsgeist."
+   }
   },
   {
    "id": "c10",
@@ -327,7 +363,11 @@
     "Am Trainingstag tippst du auf „Training starten“.",
     "Unter der Uhr siehst du schon, was als Nächstes aufgebaut wird.",
     "Danach tippst du immer nur auf „Weiter“."
-   ]
+   ],
+   "figur": {
+    "pose": "zeigen",
+    "text": "Weiter drücken. Mehr ist nicht zu tun."
+   }
   },
   {
    "id": "c11",
@@ -342,7 +382,11 @@
    "saetze": [
     "Du kannst das Handy sperren und einstecken.",
     "Am Ende jeder Übung ertönt ein Signal – auch bei gesperrtem Bildschirm."
-   ]
+   ],
+   "figur": {
+    "pose": "karte",
+    "text": "Piept auch in der Hosentasche."
+   }
   },
   {
    "id": "c12",
@@ -354,7 +398,15 @@
    "saetze": [
     "Der Trainingspilot ist kostenlos und braucht keine Anmeldung.",
     "Viel Spaß beim Training!"
-   ]
+   ],
+   "figur": {
+    "pose": "winken",
+    "text": "Jetzt raus auf den Platz."
+   }
   }
- ]
+ ],
+ "layout": {
+  "phone_y": 240
+ },
+ "_figur": "figur: Coach-Figur mit Sprechblase (reiner Bildtext, wird nicht gesprochen). Ton: trocken, kurz, höchstens zwei Zeilen."
 }

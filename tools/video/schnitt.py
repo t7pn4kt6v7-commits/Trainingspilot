@@ -18,6 +18,7 @@ if '--out' in a: OUT = os.path.abspath(a[a.index('--out') + 1])
 DB = json.load(open(os.path.join(HERE, 'drehbuch.json'), encoding='utf-8'))
 os.chdir(OUT)
 
+PHONE_Y = DB.get('layout', {}).get('phone_y', 240)
 LEAD, X, CARD = 0.8, 0.4, 2.6          # Vorlauf vor dem ersten Satz, Überblendung, Dauer der Kapitelkarte
 TITLES = {k['nr']: k['titel'] for k in DB['kapitel']}
 FIRST = {}                              # erste Szene je Kapitel
@@ -41,7 +42,7 @@ for s in DB['szenen']:
     if not segs: sys.exit('Keine Aufnahme für Szene %s (seg_%s_*.mp4) – zuerst aufnahme.mjs ausführen.' % (sid, sid))
     for i, f in enumerate(segs):
         o = 'k_%s_%d.mp4' % (sid, i); ov = 'ov_%s.png' % sid
-        if width(f) == 800: run(['-i', f, '-i', ov, '-filter_complex', '[0]pad=1080:1920:140:350:color=0x0B0F0C[b];[b][1]overlay'] + ENC + [o])
+        if width(f) == 800: run(['-i', f, '-i', ov, '-filter_complex', '[0]pad=1080:1920:140:%d:color=0x0B0F0C[b];[b][1]overlay' % PHONE_Y] + ENC + [o])
         elif os.path.exists(ov): run(['-i', f, '-i', ov, '-filter_complex', '[0][1]overlay'] + ENC + [o])
         else: run(['-i', f] + ENC + [o])
         wav = sid + '.wav'
