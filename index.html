@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Trainingspilot v5.212 · TSV Wetschen</title>
+<title>Trainingspilot v5.213 · TSV Wetschen</title>
 <meta name="description" content="Trainingspilot: Trainingspläne für den Jugendfußball in Sekunden – mit 3D-Übungsbildern, Material-Liste und Signal bei jedem Übungswechsel. Ohne Anmeldung.">
 <!-- Link-Vorschau (z. B. WhatsApp): nur für Vorschaukarten in Messengern, in der App selbst nicht sichtbar.
      Bild: pwa/share-preview.png, wird von pages.yml neben die index.html gelegt. -->
@@ -23,7 +23,7 @@
      Link-Vorschau nur den Anfang der Seite. Mit dem Kommentar davor begannen sie erst bei 183 KB (v5.205). -->
 <!--
   Trainingspilot · TSV Wetschen
-  Version: 5.212 (Stand: siehe Chat-Verlauf)
+  Version: 5.213 (Stand: siehe Chat-Verlauf)
 
   Hinweis: Die ausfuehrliche Versionshistorie (v1.0 bis v5.59) wurde aus diesem Kommentar
   entfernt, da sie durch ein wiederholtes Duplizierungsproblem in frueheren Bearbeitungs-
@@ -32,6 +32,10 @@
   Funktionalitaet der App ist davon nicht betroffen - reine Kommentar-Bereinigung.
 
   Changelog (letzte Versionen):
+  v5.213 - Training in der Halle: Schalter Platz/Halle unter "Dauer und Ort" (UI_V2). Uebungen mit halle:true
+         (142 eingestuft), sonst voller Pool mit Hinweis; Abschlussspiel in Hallenform (Minitore bleiben, sonst
+         max. 4+1 gegen 4+1 auf Handballtore, Variante 'halle'); Hinweis Halle im Plankopf; Ort wird
+         gespeichert, geteilt (Link-Feld 11 = 'h') und im Formular gemerkt. Mobil-Pruefung um Halle ergaenzt.
   v5.212 - iPad/Tablet (ab 601 px): Schwerpunkte ohne Walzen-Pfeile (lagen unten links in der Auswahl), mit Innenabstand.
          Handy-Ansicht unveraendert (Regel nur @media min-width:601px).
   v5.211 - 8 weitere Aufwaermspiele mit 3D-Bild. G-Jugend (jung.json): Brueckenwaechter, Pferderennen,
@@ -3207,6 +3211,17 @@
   .ui-v3 .v3-meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13.5px;color:#E3ECE0;margin:0 0 14px;}
   .ui-v3 .v3-meta > span{display:inline-flex;align-items:center;gap:5px;}
   .ui-v3 .v3-meta .ic{width:15px;height:15px;margin:0 !important;color:var(--sun);}
+  /* v5.213: Platz oder Halle (Abschnitt „Dauer und Ort“) und Hinweis im Plankopf */
+  .ui-v2 .v2-ort{margin-top:14px;}
+  .ui-v2 .v2-ort-label{display:block;margin:0 0 8px;font-size:14px;font-weight:600;opacity:.8;}
+  .ui-v2 .v2-ort-seg{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:5px;border-radius:14px;background:rgba(0,0,0,.22);}
+  .ui-v2 .v2-ort-seg button{display:flex;align-items:center;justify-content:center;gap:8px;min-height:46px;border:0;border-radius:10px;background:transparent;color:inherit;font:inherit;font-size:16px;font-weight:700;cursor:pointer;}
+  .ui-v2 .v2-ort-seg button.on{background:var(--sun);color:var(--ink);}
+  .ui-v2 .v2-ort-seg button:focus-visible{outline:2px solid var(--sun);outline-offset:2px;}
+  .ui-v2 .v2-ort-seg .ic{width:20px;height:20px;margin:0 !important;}
+  .ui-v2 .v2-ort-hint{margin:8px 2px 0;font-size:12.5px;line-height:1.4;opacity:.75;}
+  .ui-v3 .v3-meta .v3-ort{color:var(--sun);font-weight:700;}
+  .ui-v3 .v3-hall-note{margin:-4px 0 14px;padding:9px 12px;border-radius:10px;background:rgba(0,0,0,.2);font-size:13px;line-height:1.4;color:#E9F1E4;}
   .ui-v3 .v3-head .v2-start{margin:0 !important;width:100%;}
   .ui-v3 .v3-tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:10px;}
   .ui-v3 .v3-tile{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-height:64px;padding:11px 2px 10px;border-radius:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#fff;font-family:'Work Sans',sans-serif;font-size:12.5px;font-weight:700;line-height:1.1;white-space:nowrap;cursor:pointer;}
@@ -3369,7 +3384,7 @@
         <span class="version-badge-status" id="version-badge-status"></span>
         <div class="hero-title-row">
           <h1>Trainingspilot</h1>
-          <button type="button" class="version-badge-inline" id="version-badge-check-btn" aria-label="Nach Updates suchen">v5.212</button>
+          <button type="button" class="version-badge-inline" id="version-badge-check-btn" aria-label="Nach Updates suchen">v5.213</button>
         </div>
         <p class="hero-tagline">für Jugendmannschaften</p>
       </div>
@@ -3387,6 +3402,7 @@
           <li>⚽ Für U6 bis U19, orientiert an DFB &amp; NFV</li>
           <li>🔀 <span id="about-ex-count">Über 190</span> Übungen in 10 Schwerpunkten – ein Wiederholungsschutz sorgt für Abwechslung<span id="about-ex-new"></span></li>
           <li>⏱️ Einfacher Trainings-Timer: „Training starten“, dann nur noch „Weiter“ – das Signal kommt bei jedem Übungswechsel, auch bei gesperrtem Handy; unter der Uhr steht schon, was als Nächstes aufgebaut wird</li>
+          <li>🏠 Training in der Halle: unter „Dauer und Ort“ auf Halle stellen – die App nimmt hallentaugliche Übungen und ein Abschlussspiel in Hallenform</li>
           <li>✏️ Zeiten an einer Stelle anpassen, Übungen wechseln oder per Wischen auslassen</li>
           <li>🧭 Übungsbilder in 3D-Ansicht mit nummerierten Schritten, passend zum Text – Bild antippen zum Vergrößern</li>
           <li>🤝 Plan zu zweit abstimmen: Plan teilen, die Mittrainer*in ändert Übungen und schickt ihn zurück – du siehst „Bisher / Vorschlag“ und entscheidest je Übung. Ohne Konto, nur über den Link</li>
@@ -3861,6 +3877,9 @@ var scriptStartTime = Date.now();
   // überall dort, wo stationCount() verwendet wird.
   var CURRENT_TRAINER_COUNT = 2;
   function setTrainerCount(n){ CURRENT_TRAINER_COUNT = Math.max(1, Math.round(n) || 2); }
+  // v5.213: Trainingsort. 'halle' = nur hallentaugliche Übungen (Feld "halle" in der Bibliothek) und Hallen-Abschlussspiel.
+  var CURRENT_ORT = 'platz';
+  function setOrt(o){ CURRENT_ORT = o === 'halle' ? 'halle' : 'platz'; }
 
   // Nie mehr parallele Stationen/Felder, als Trainer*innen vor Ort sind - eine Person kann
   // nicht mehrere gleichzeitig laufende Aufbauten gleichzeitig betreuen. Gleichzeitig aber
@@ -4323,7 +4342,7 @@ var scriptStartTime = Date.now();
     var det = exerciseDetail(d);
     return {
       id: d.id, title: d.title, goal: d.goal, desc: d.desc || (det ? plainExerciseText(det) : ''), coachTip: d.coachTip, detail: det,
-      custom: !!d.custom, added: d.added || null,
+      custom: !!d.custom, added: d.added || null, halle: !!d.halle,
       materials: compileTemplate(d.materials), dims: compileTemplate(d.dims), diagram: compileDiagram(d.diagram)
     };
   }
@@ -4732,6 +4751,7 @@ var scriptStartTime = Date.now();
   // (Standard-)Variante der Altersklasse.
   function getGameFormat(altersklasse, variantId){
     var variants = getGameFormatVariants(altersklasse);
+    if(variantId === 'halle'){ return hallGameFormat(variants[0], /G-Jugend/.test(altersklasse) ? 'jung' : null, null); }
     if(variantId){
       for(var i = 0; i < variants.length; i++){
         if(variants[i].id === variantId){ return variants[i]; }
@@ -4929,6 +4949,7 @@ var scriptStartTime = Date.now();
     });
     var arr = [2, payload.shareId, tier, payload.altersklasse, payload.jahrgaenge, payload.kinder, payload.trainerCount, payload.dauer, payload.trainingsdatum || '', phases];
     if(payload.verein && payload.verein !== CLUB_NAME){ arr.push(payload.verein); }
+    if(payload.ort === 'halle'){ if(arr.length === 10){ arr.push(''); } arr.push('h'); } // v5.213, ältere Versionen ignorieren den Eintrag
     return arr;
   }
   function payloadFromCompact(arr){
@@ -4945,7 +4966,7 @@ var scriptStartTime = Date.now();
       if(byCode){ base.category = byCode.cat; base.title = byCode.ex.title; base.shownTitles = [base.title]; }
       return base;
     });
-    return { shareId: arr[1], tier: tier, altersklasse: alters, jahrgaenge: arr[4], kinder: arr[5], trainerCount: arr[6], dauer: arr[7], trainingsdatum: arr[8] || '', verein: arr[10] || CLUB_NAME, phases: phases };
+    return { shareId: arr[1], tier: tier, altersklasse: alters, jahrgaenge: arr[4], kinder: arr[5], trainerCount: arr[6], dauer: arr[7], trainingsdatum: arr[8] || '', verein: arr[10] || CLUB_NAME, ort: arr[11] === 'h' ? 'halle' : 'platz', phases: phases };
   }
   async function encodeShareLink(payload){
     var json = JSON.stringify(compactFromPayload(payload));
@@ -4997,7 +5018,7 @@ var scriptStartTime = Date.now();
       tier: plan.tier, altersklasse: (plan.meta && plan.meta.altersklasse) || '',
       jahrgaenge: (plan.meta && plan.meta.jahrgaenge) || '', kinder: plan.kinder,
       trainerCount: plan.trainerCount, dauer: plan.dauer, verein: (plan.meta && plan.meta.verein) || CLUB_NAME,
-      trainingsdatum: plan.trainingsdatum || '',
+      trainingsdatum: plan.trainingsdatum || '', ort: plan.ort === 'halle' ? 'halle' : 'platz',
       phases: planSkeletonPhases(plan)
     };
     setShareBase(payload);
@@ -5009,6 +5030,7 @@ var scriptStartTime = Date.now();
   // buildPlan(), nutzt aber rebuildPhaseFromSkeleton() statt zufällig neue Übungen zu wählen.
   async function buildPlanFromSkeleton(skeleton){
     var tier = skeleton.tier, kinder = skeleton.kinder, verein = skeleton.verein;
+    setOrt(skeleton.ort);
     var phasePromises = (skeleton.phases || []).map(function(skel){
       return rebuildPhaseFromSkeleton(skel, tier, kinder, verein);
     });
@@ -5031,7 +5053,7 @@ var scriptStartTime = Date.now();
       sub: 'Geteilter Trainingsplan.',
       phases: timed, tier: tier, kinder: kinder, dauer: skeleton.dauer, trainerCount: skeleton.trainerCount,
       notes: [], gesperrt: [], usedCategories: timed.filter(function(p){ return p.category; }).map(function(p){ return p.category; }),
-      redistributableTotal: redistributableTotal, trainingsdatum: skeleton.trainingsdatum, shareId: skeleton.shareId || null,
+      redistributableTotal: redistributableTotal, trainingsdatum: skeleton.trainingsdatum, shareId: skeleton.shareId || null, ort: CURRENT_ORT,
       meta: { altersklasse: skeleton.altersklasse, jahrgaenge: skeleton.jahrgaenge, kinder: kinder, dauer: skeleton.dauer, verein: verein }
     };
   }
@@ -5292,13 +5314,14 @@ var scriptStartTime = Date.now();
   // Phasen) - die Darstellung und alle Funktionen (Timer, Ausblenden, Bewertung) kommen
   // weiterhin vom aktuellen Code, genau wie bei einem frisch erstellten Plan. So bleiben
   // gespeicherte Plaene automatisch von kuenftigen Bugfixes/Features profitieren.
-  var APP_VERSION = '5.212';
+  var APP_VERSION = '5.213';
 
   // Kurze, NUTZERORIENTIERTE Highlight-Liste dieser Version (2-4 Stichpunkte, nur wenn es
   // wirklich neue Funktionen oder spürbare Änderungen gibt) - bewusst getrennt vom langen
   // technischen Changelog weiter unten, das für Entwicklungszwecke gedacht ist. Wird beim
   // Update-Check per einfachem Marker-Block ausgelesen und im Update-Popup angezeigt.
   // USER_CHANGELOG_START
+  // - Training in der Halle: unter „Dauer und Ort“ auf Halle stellen – die App wählt passende Übungen und ein Hallenspiel
   // - iPad: Die Auswahl der Schwerpunkte wird sauber dargestellt
   // - 18 neue Aufwärmspiele für U6 bis U9, die meisten ohne Ball und mit Wettbewerb
   // - Plan zu zweit abstimmen: Plan ändern und zurückschicken – die andere Seite sieht „Bisher / Vorschlag“ und entscheidet je Übung
@@ -6010,15 +6033,21 @@ var scriptStartTime = Date.now();
     if(badge){ var n = materialCountV3(plan); badge.textContent = String(n); badge.hidden = !n; }
   }
 
-  function getExercisePool(tier, category){
+  function getExercisePool(tier, category, ort){
     var pool = getVariants(tier, category).slice();
     if(tier === 'mittel' && EXERCISES.jung[category]){
       EXERCISES.jung[category].forEach(function(v){
         if(!pool.some(function(p){ return p.title === v.title; })){ pool.push(v); }
       });
     }
+    // v5.213: In der Halle nur hallentaugliche Übungen – gibt es (noch) keine, bleibt der volle Pool.
+    if(ort === 'halle'){
+      var hall = pool.filter(function(v){ return v.halle; });
+      if(hall.length){ return hall; }
+    }
     return pool;
   }
+  function hasHallExercises(tier, category){ return getExercisePool(tier, category).some(function(v){ return v.halle; }); }
 
   // ===================== Bewertungssystem (👍/👎 je Übung) =====================
   // Zählt Rückmeldungen pro Übungsvariante geräteweise (siehe Speicherschicht oben),
@@ -6080,7 +6109,7 @@ var scriptStartTime = Date.now();
 
   async function buildExercisePhase(tier, key, kinder, duration, range){
     // v5.160: voller Pool (inkl. G-Jugend-Basispool bei "mittel"), wie bei "Alternative Übungen"
-    var variants = getExercisePool(tier, key);
+    var variants = getExercisePool(tier, key, CURRENT_ORT);
     var ex = await pickVariant(tier, key, variants);
     var ratingKey = ratingKeyFor(tier, key, ex.title);
     var counts = await getRatingCounts(ratingKey);
@@ -6110,11 +6139,32 @@ var scriptStartTime = Date.now();
   // Baut das garantierte Abschlussspiel im offiziellen Wettkampfformat der gewählten
   // Altersklasse (siehe GAME_FORMATS). Kein "category"-Feld, da es keine austauschbare
   // Übungsvariante ist, sondern das für diese Altersklasse verbindliche Spielformat.
+  // v5.213: Abschlussspiel in der Halle. Kleinfeldformate auf Minitore bleiben (passen in jede Halle), alle anderen
+  // werden zu einer kompakten Hallenform mit höchstens 4 Feldspieler*innen je Team auf Handballtore.
+  var HALL_SAFETY_NOTE = 'Halle: Abstand zu Wänden und Geräten halten, keine Grätschen, Hallenschuhe. Sprungreduzierter Ball, falls vorhanden.';
+  function hallGameFormat(base, tier, kinder){
+    if(base.tore.indexOf('4 Minitore') === 0 && base.teamA <= 3){
+      return Object.assign({}, base, { id: 'halle', isHall: true, isAdapted: true, adaptedNote: 'In der Halle bleibt es beim Kleinfeldspiel:', feld: 'Hallenfläche, ca. 20 × 15 m', exception: null });
+    }
+    var keeper = tier !== 'jung';
+    var n = clamp(Math.floor((kinder || 10) / 2) - (keeper ? 1 : 0), 2, 4);
+    var label = keeper ? n + '+1 gegen ' + n + '+1' : n + ' gegen ' + n;
+    return {
+      id: 'halle', formatLabel: label, shortLabel: label + ' (Halle)', teamA: n, teamB: n, keeper: keeper,
+      tore: keeper ? '2 Handballtore (3 × 2 m)' : '4 Minitore (ca. 1,20 × 0,80 m)', feld: 'Hallenfläche (z. B. Handballfeld)',
+      ball: base.ball + ', möglichst sprungreduziert', torschusszone: null, rotation: 'Wechsel alle 3–4 Minuten oder nach jedem Tor',
+      isHall: true, isAdapted: true, adaptedNote: 'In der Halle wird in einer kompakten Hallenform gespielt:', exception: null
+    };
+  }
   async function buildGameFormatPhase(altersklasse, kinder, duration, range, variantId, tier){
-    var fmt = variantId ? getGameFormat(altersklasse, variantId) : selectGameFormatForAttendance(altersklasse, kinder, tier);
+    var fmt = (variantId === 'halle' || (!variantId && CURRENT_ORT === 'halle'))
+      ? hallGameFormat(selectGameFormatForAttendance(altersklasse, kinder, tier), tier, kinder)
+      : (variantId ? getGameFormat(altersklasse, variantId) : selectGameFormatForAttendance(altersklasse, kinder, tier));
     var label = fmt.formatLabel || (fmt.teamA + ' gegen ' + fmt.teamB);
-    var title = 'Abschlussspiel: ' + label + (fmt.isAdapted ? ' (angepasstes Format)' : ' im echten Spielformat');
-    var goal = fmt.isAdapted
+    var title = 'Abschlussspiel: ' + label + (fmt.isHall ? ' in der Halle' : (fmt.isAdapted ? ' (angepasstes Format)' : ' im echten Spielformat'));
+    var goal = fmt.isHall
+      ? 'Ziel: Zum Abschluss frei spielen – in einer Hallenform mit vielen Ballkontakten'
+      : fmt.isAdapted
       ? 'Ziel: Ein Fußballspiel in einem an die heutige Teilnehmerzahl angepassten Format'
       : 'Ziel: Ein "richtiges" Fußballspiel im offiziellen Format der eigenen Altersklasse erleben';
     var desc = (fmt.isAdapted ? fmt.adaptedNote + ' ' : 'Zum Abschluss wird im echten Wettkampfformat der Altersklasse gespielt: ') + label +
@@ -6144,6 +6194,7 @@ var scriptStartTime = Date.now();
     var altersklasse = input.altersklasse;
     var trainerCount = Math.max(1, Math.round(input.trainerCount) || 2);
     setTrainerCount(trainerCount);
+    setOrt(input.ort);
     var ratio = kinder / trainerCount;
 
     var recentCategories = [];
@@ -6174,6 +6225,13 @@ var scriptStartTime = Date.now();
       notes.push('Bei ' + Math.round(ratio) + ' Kindern pro Trainer*in: Parallele Stationen wurden automatisch auf max. ' + trainerCount + ' begrenzt, damit alle Gruppen im Blick bleiben.');
     }
 
+    if(CURRENT_ORT === 'halle'){
+      var ohneHalle = ['aufwaermen'].concat(keys).filter(function(k){ return !hasHallExercises(tier, k); });
+      if(ohneHalle.length){
+        notes.push('Für ' + ohneHalle.map(function(k){ return EXERCISE_LABELS[k] || k; }).join(', ') + ' gibt es noch keine Hallenübung. Dafür wurde eine Übung vom Platz gewählt – bitte vor Ort prüfen, ob sie in eure Halle passt.');
+      }
+      if(!UI_V3){ notes.push(HALL_SAFETY_NOTE); }
+    }
     var warmupRange = WARMUP_DURATION_RANGES[tier] || WARMUP_DURATION_RANGES.mittel;
     var gameRange = GAME_DURATION_RANGES[tier] || GAME_DURATION_RANGES.mittel;
     var d = buildDurations(dauer, keys, tier, warmupRange, gameRange);
@@ -6208,7 +6266,7 @@ var scriptStartTime = Date.now();
       title: 'Trainingsplan für ' + kinder + ' Kinder',
       sub: 'Fokus dieser Einheit: ' + (focusLabels.length ? focusLabels.join(', ') : 'Grundlagen') + '.',
       phases: timed, tier: tier, kinder: kinder, dauer: dauer, trainerCount: trainerCount, notes: notes,
-      gesperrt: input.gesperrt || [], usedCategories: keys.slice(), redistributableTotal: redistributableTotal
+      gesperrt: input.gesperrt || [], usedCategories: keys.slice(), redistributableTotal: redistributableTotal, ort: CURRENT_ORT
     };
   }
 
@@ -6380,7 +6438,7 @@ var scriptStartTime = Date.now();
     if(UI_V2 && (p.category || p.hideable)){ html += '<p class="cf-label">Übung ändern</p>'; }
     html += '<div class="card-quick-row">';
     if(p.category){
-      var pool = getExercisePool(tier, p.category);
+      var pool = getExercisePool(tier, p.category, CURRENT_ORT);
       html += '<div class="alt-row">';
       html += '<select class="ex-select" aria-label="Übung wechseln">';
       html += '<option value="" selected disabled hidden>' + (UI_V3 ? 'Wechseln' : '🔄 Übung wechseln') + '</option>';
@@ -6394,7 +6452,7 @@ var scriptStartTime = Date.now();
       if(otherCategories.length){
         html += '<optgroup label="Andere Schwerpunkte">';
         otherCategories.forEach(function(c){
-          getExercisePool(tier, c).forEach(function(v){
+          getExercisePool(tier, c, CURRENT_ORT).forEach(function(v){
             var suffix = (isRecentlyAdded(v) ? ' 🆕' : '') + (v.custom ? ' 👥' : '');
             html += '<option value="' + escapeHtml(v.title) + '" data-category="' + c + '">' + escapeHtml(CHIP_LABELS[c]) + ': ' + escapeHtml(v.title) + suffix + '</option>';
           });
@@ -6407,7 +6465,7 @@ var scriptStartTime = Date.now();
     } else if(p.isGameFormat){
       var variants = getGameFormatVariants(p.gameFormatAltersklasse);
       var currentFmt = getGameFormat(p.gameFormatAltersklasse, p.gameFormatVariantId);
-      if(variants.length > 1){
+      if(variants.length > 1 && p.gameFormatVariantId !== 'halle'){
         html += '<div class="alt-row">';
         html += '<label class="gameformat-select-label" for="gameformat-select-' + p.num + '">Spielform:</label>';
         html += '<select class="ex-select gameformat-select" id="gameformat-select-' + p.num + '" aria-label="Spielform gezielt wählen">';
@@ -6554,6 +6612,7 @@ var scriptStartTime = Date.now();
   }
 
   function renderPlan(plan, meta, opts){
+    setOrt(plan && plan.ort);
     var html = '';
     // v5.155: Frisch erstellte, noch ungespeicherte Plaene bekommen direkt unter dem Plan-Kopf
     // "Training starten" / "Teilen" / Datum (opts.quickActions). Der Speichern-Block unten
@@ -6602,7 +6661,7 @@ var scriptStartTime = Date.now();
 
     if(plan.notes && plan.notes.length){
       html += '<div class="coach-note-box">';
-      plan.notes.forEach(function(n){ html += '<p>👥 ' + escapeHtml(n) + '</p>'; });
+      plan.notes.forEach(function(n){ html += '<p>' + (/Halle/.test(n) ? '🏠 ' : '👥 ') + escapeHtml(n) + '</p>'; });
       html += '</div>';
     }
 
@@ -6709,7 +6768,9 @@ var scriptStartTime = Date.now();
     }
     html += '<p class="v3-meta"><span>' + v3Svg('users-round') + escapeHtml(String(meta.kinder)) + ' Kinder · ' + plan.trainerCount + ' Trainer*in' + (plan.trainerCount === 1 ? '' : 'nen') + '</span>' +
       '<span>' + v3Svg('clock') + escapeHtml(String(meta.dauer)) + ' Min.</span>' +
-      '<span>' + v3Svg('list-checks') + '<span><span id="visible-phase-count">' + visibleCount + '</span> Übungen</span></span></p>';
+      '<span>' + v3Svg('list-checks') + '<span><span id="visible-phase-count">' + visibleCount + '</span> Übungen</span></span>' +
+      (plan.ort === 'halle' ? '<span class="v3-ort">' + v3Svg('house') + 'Halle</span>' : '') + '</p>' +
+      (plan.ort === 'halle' ? '<p class="v3-hall-note">' + escapeHtml(HALL_SAFETY_NOTE).replace(/^Halle:/, '<b>Halle:</b>') + '</p>' : '');
     if(!running){
       if(quick){
         html += '<button type="button" class="quick-start-btn v2-start" id="quick-start-btn"><span aria-hidden="true">▶</span> Training starten</button>';
@@ -6795,7 +6856,7 @@ var scriptStartTime = Date.now();
       html += '</div>';
       if(plan.notes && plan.notes.length){
         html += '<div class="coach-note-box">';
-        plan.notes.forEach(function(n){ html += '<p>👥 ' + escapeHtml(n) + '</p>'; });
+        plan.notes.forEach(function(n){ html += '<p>' + (/Halle/.test(n) ? '🏠 ' : '👥 ') + escapeHtml(n) + '</p>'; });
         html += '</div>';
       }
     } else if(!running){
@@ -6827,7 +6888,7 @@ var scriptStartTime = Date.now();
 
       if(plan.notes && plan.notes.length){
         html += '<div class="coach-note-box">';
-        plan.notes.forEach(function(n){ html += '<p>👥 ' + escapeHtml(n) + '</p>'; });
+        plan.notes.forEach(function(n){ html += '<p>' + (/Halle/.test(n) ? '🏠 ' : '👥 ') + escapeHtml(n) + '</p>'; });
         html += '</div>';
       }
     } else {
@@ -7212,6 +7273,7 @@ var scriptStartTime = Date.now();
   // eingetragen werden muss.
   var FORM_STATE_KEY = 'form:last-state';
 
+  var formOrt = 'platz'; // v5.213: Platz oder Halle (Schalter unter „Dauer und Ort“, nur neue Oberfläche)
   function saveFormState(){
     try{
       var chips = document.querySelectorAll('.chip input[type="checkbox"]:checked');
@@ -7222,7 +7284,8 @@ var scriptStartTime = Date.now();
         kinder: document.getElementById('kinder').value,
         trainer: document.getElementById('trainer').value,
         dauer: dauerInput.value,
-        schwerpunkte: schwerpunkte
+        schwerpunkte: schwerpunkte,
+        ort: formOrt
       };
       storageSet(FORM_STATE_KEY, JSON.stringify(state));
     }catch(e){ /* Speichern der letzten Auswahl ist nicht kritisch für die Funktion */ }
@@ -10248,7 +10311,7 @@ var scriptStartTime = Date.now();
       var plan = await buildPlan({
         tier: opt.getAttribute('data-tier'), altersklasse: opt.value,
         kinder: kinder, dauer: dauer, verein: verein, schwerpunktKeys: keys, gesperrt: gesperrt,
-        trainerCount: trainerCount
+        trainerCount: trainerCount, ort: UI_V2 ? formOrt : 'platz'
       });
 
       var elapsedClick = Date.now() - clickStartTime;
@@ -10288,11 +10351,19 @@ var scriptStartTime = Date.now();
   // Trainer*innen/Minuten sind −/+-Felder nebeneinander (die Eingabefelder selbst bleiben, damit
   // alle bisherigen Listener greifen). Nach „Plan erstellen“ klappt das Formular zu einer Zeile
   // zusammen; „Ändern“ öffnet es wieder.
+  function setFormOrt(o){
+    formOrt = o === 'halle' ? 'halle' : 'platz';
+    [].forEach.call(document.querySelectorAll('.v2-ort-seg [data-ort]'), function(b){
+      var on = b.getAttribute('data-ort') === formOrt;
+      b.classList.toggle('on', on); b.setAttribute('aria-checked', on ? 'true' : 'false');
+    });
+    var h = document.getElementById('v2-ort-hint'); if(h){ h.hidden = formOrt !== 'halle'; }
+  }
   function formSummaryTextV2(){
     var opt = currentOption();
     var ak = String(opt.value).split(' ')[0];
     var k = document.getElementById('kinder').value, t = document.getElementById('trainer').value;
-    return '<b>' + escapeHtml(ak + ' · ' + dauerInput.value + ' Min.') + '</b>' + escapeHtml(k + ' Kinder · ' + t + (String(t) === '1' ? ' Trainer*in' : ' Trainer*innen'));
+    return '<b>' + escapeHtml(ak + ' · ' + dauerInput.value + ' Min.' + (formOrt === 'halle' ? ' · Halle' : '')) + '</b>' + escapeHtml(k + ' Kinder · ' + t + (String(t) === '1' ? ' Trainer*in' : ' Trainer*innen'));
   }
   function collapseFormV2(){
     if(!UI_V2){ return; }
@@ -10645,7 +10716,7 @@ var scriptStartTime = Date.now();
       var fA = fieldOf('altersklasse'), fK = fieldOf('kinder'), fT = fieldOf('trainer'), fD = fieldOf('dauer');
       var fS = document.getElementById('chips-list') && document.getElementById('chips-list').closest('.field');
       var s1 = sec('v2-sec-team', 1, 'Mannschaft');
-      var s2 = sec('v2-sec-dauer', 2, 'Trainingsdauer');
+      var s2 = sec('v2-sec-dauer', 2, 'Dauer und Ort');
       var s3 = sec('v2-sec-themen', 3, 'Schwerpunkte');
       var row2 = document.createElement('div'); row2.className = 'v2-sec-row';
       if(fA){ s1.appendChild(fA); }
@@ -10658,6 +10729,18 @@ var scriptStartTime = Date.now();
         if(st && plusBtn){ var unit = document.createElement('span'); unit.className = 'v2-unit'; unit.textContent = 'Min.'; st.insertBefore(unit, plusBtn); }
         s2.appendChild(fD);
       }
+      // v5.213: Platz oder Halle
+      var ortBox = document.createElement('div'); ortBox.className = 'v2-ort';
+      ortBox.innerHTML = '<span class="v2-ort-label" id="v2-ort-label">Wo trainiert ihr?</span>' +
+        '<div class="v2-ort-seg" role="radiogroup" aria-labelledby="v2-ort-label">' +
+        '<button type="button" role="radio" data-ort="platz" id="v2-ort-platz">☀ Platz</button>' +
+        '<button type="button" role="radio" data-ort="halle" id="v2-ort-halle">🏠 Halle</button></div>' +
+        '<p class="v2-ort-hint" id="v2-ort-hint" hidden>Die App nimmt Übungen, die in der Halle funktionieren, und ein Abschlussspiel in Hallenform.</p>';
+      s2.appendChild(ortBox);
+      [].forEach.call(ortBox.querySelectorAll('[data-ort]'), function(b){
+        b.addEventListener('click', function(){ setFormOrt(b.getAttribute('data-ort')); saveFormState(); });
+      });
+      setFormOrt(formOrt);
       if(fS){ s3.appendChild(fS); }
       grid.appendChild(s1); grid.appendChild(s2); grid.appendChild(s3);
       // ⓘ-Erklärungen (Texte entsprechen der Rechenlogik in buildPlan/computeMaxSchwerpunkte)
@@ -10738,7 +10821,7 @@ var scriptStartTime = Date.now();
     ['⚙️', 'settings'], ['⏸', 'pause'], ['■', 'square'], ['⚠️', 'triangle-alert'], ['⚠', 'triangle-alert'], ['📐', 'ruler'],
     ['📨', 'send'], ['💡', 'lightbulb'], ['📤', 'share-2'], ['📅', 'calendar'], ['🔔', 'bell'], ['🏠', 'house'],
     ['🧑‍✈️', 'info'], ['👍', 'thumbs-up'], ['👎', 'thumbs-down'], ['🔁', 'repeat-2'], ['✓', 'check'], ['✕', 'x'],
-    ['‹', 'chevron-left'], ['⏱', 'timer'], ['👥', 'users-round'], ['📋', 'list-checks'], ['☀', 'sun'], ['📘', 'book-open'], ['🔓', 'lock-open'], ['🔀', 'shuffle'], ['✏️', 'pencil'], ['⚽', 'goal']
+    ['‹', 'chevron-left'], ['⏱', 'timer'], ['👥', 'users-round'], ['📋', 'list-checks'], ['☀', 'sun'], ['🏠', 'house'], ['📘', 'book-open'], ['🔓', 'lock-open'], ['🔀', 'shuffle'], ['✏️', 'pencil'], ['⚽', 'goal']
   ];
   var V3_FEAT = { '✕': 'x', '🧭': 'route', '🔓': 'lock-open', '⚽': 'goal', '🔀': 'shuffle', '⏱️': 'timer', '✏️': 'pencil', '🎒': 'backpack', '💬': 'message-circle', '📲': 'smartphone', '💾': 'save' };
   function v3SwapLead(el){
@@ -11009,6 +11092,7 @@ var scriptStartTime = Date.now();
       if(savedFormState.kinder){ document.getElementById('kinder').value = savedFormState.kinder; }
       if(savedFormState.trainer){ document.getElementById('trainer').value = savedFormState.trainer; }
       if(savedFormState.dauer){ dauerInput.value = savedFormState.dauer; } // überschreibt bewusst den Alterklassen-Standardwert
+      if(UI_V2 && savedFormState.ort === 'halle'){ setFormOrt('halle'); }
       if(savedFormState.schwerpunkte && savedFormState.schwerpunkte.length){
         var restoreChips = document.querySelectorAll('.chip input[type="checkbox"]');
         for(var ci = 0; ci < restoreChips.length; ci++){

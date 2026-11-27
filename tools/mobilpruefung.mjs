@@ -101,6 +101,14 @@ const SCHRITTE = [
       if (!(await p.$('#quick-start-btn'))) return 'nicht gefunden';
       await p.$eval('#quick-start-btn', x => { x.scrollIntoView({ block: 'center' }); x.click(); }); await p.waitForTimeout(1200);
       await p.evaluate(() => { const w = document.getElementById('tmv2-weiter-btn'); if (w) w.scrollIntoView({ block: 'end' }); }); await p.waitForTimeout(300); } },
+  { id: 'ort', titel: 'Dauer und Ort (Halle gewählt)', tu: async p => {
+      await p.reload(); await p.waitForTimeout(1500);
+      if (!(await p.$('#v2-ort-halle'))) return 'nicht gefunden';
+      await p.$eval('#v2-ort-halle', x => { x.scrollIntoView({ block: 'center' }); x.click(); }); await p.waitForTimeout(300); } },
+  { id: 'halle', titel: 'Plan in der Halle', tu: async p => {
+      await p.$$eval('.chip input', els => els.forEach(x => { if (['passspiel', 'zweikampf'].includes(x.value) && !x.checked) x.click(); }));
+      await p.$eval('#generate-btn', x => x.click()); await p.waitForTimeout(1800);
+      await p.$eval('.v2-head', x => x.scrollIntoView({ block: 'start' })).catch(() => {}); await p.waitForTimeout(200); } },
 ];
 
 fs.mkdirSync(opt.out, { recursive: true });
