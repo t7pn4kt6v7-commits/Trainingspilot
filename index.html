@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Trainingspilot v5.216 · TSV Wetschen</title>
+<title>Trainingspilot v5.217 · TSV Wetschen</title>
 <meta name="description" content="Trainingspilot: Trainingspläne für den Jugendfußball in Sekunden – mit 3D-Übungsbildern, Material-Liste und Signal bei jedem Übungswechsel. Ohne Anmeldung.">
 <!-- Link-Vorschau (z. B. WhatsApp): nur für Vorschaukarten in Messengern, in der App selbst nicht sichtbar.
      Bild: pwa/share-preview.png, wird von pages.yml neben die index.html gelegt. -->
@@ -23,7 +23,7 @@
      Link-Vorschau nur den Anfang der Seite. Mit dem Kommentar davor begannen sie erst bei 183 KB (v5.205). -->
 <!--
   Trainingspilot · TSV Wetschen
-  Version: 5.216 (Stand: siehe Chat-Verlauf)
+  Version: 5.217 (Stand: siehe Chat-Verlauf)
 
   Hinweis: Die ausfuehrliche Versionshistorie (v1.0 bis v5.59) wurde aus diesem Kommentar
   entfernt, da sie durch ein wiederholtes Duplizierungsproblem in frueheren Bearbeitungs-
@@ -32,6 +32,9 @@
   Funktionalitaet der App ist davon nicht betroffen - reine Kommentar-Bereinigung.
 
   Changelog (letzte Versionen):
+  v5.217 - Versteckter Knopf im Vereinswappen: Tipp auf das Wappen teilt den Link zur App (nur URL, ohne
+         Begleittext; ohne Teilen-Fenster wird kopiert). Wappen ist Button (role, Tastatur). About-Zeile
+         ergaenzt, bewusst kein USER_CHANGELOG-Eintrag.
   v5.216 - Schalter Platz/Halle: Platz heisst jetzt Bolzplatz (nur Beschriftung, Wert bleibt 'platz');
          About-Text angepasst.
   v5.215 - 31 weitere Hallenuebungen (halle: true, added 2026-11-27) fuer die Kleinsten: jung 16 (G-Jugend
@@ -3392,7 +3395,7 @@
         <span class="version-badge-status" id="version-badge-status"></span>
         <div class="hero-title-row">
           <h1>Trainingspilot</h1>
-          <button type="button" class="version-badge-inline" id="version-badge-check-btn" aria-label="Nach Updates suchen">v5.216</button>
+          <button type="button" class="version-badge-inline" id="version-badge-check-btn" aria-label="Nach Updates suchen">v5.217</button>
         </div>
         <p class="hero-tagline">für Jugendmannschaften</p>
       </div>
@@ -3418,7 +3421,7 @@
           <li>☑️ Material zum Abhaken: in der Materialübersicht antippen, was schon eingepackt ist</li>
           <li>🎒 Materialübersicht auf einen Blick – direkt im Plankopf unter „Training starten“</li>
           <li>✕ Neu erstellte Pläne lassen sich mit „Verwerfen“ wieder schließen, deine Eingaben bleiben erhalten</li>
-          <li>📲 Als App auf dem Home-Bildschirm nutzbar</li>
+          <li>📲 Als App auf dem Home-Bildschirm nutzbar – und mit einem Tipp auf das Wappen oben rechts lässt sich der Link zur App weitergeben</li>
           <li>💾 Pläne speichern &amp; teilen <svg class="whatsapp-icon whatsapp-icon-inline" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="16" cy="16" r="16" fill="#25D366"/><path d="M22.7 9.3a9 9 0 0 0-14.2 10.8L7 24l4-1.5a9 9 0 0 0 13.5-11.2zm-6.7 13a7.4 7.4 0 0 1-3.8-1l-.3-.2-2.8 1 1-2.7-.2-.3a7.4 7.4 0 1 1 13.7-4 7.4 7.4 0 0 1-7.6 7.2zm4.1-5.5c-.2-.1-1.3-.7-1.5-.7-.2-.1-.4-.1-.5.1s-.6.7-.7.9-.3.2-.5.1a6 6 0 0 1-1.8-1.1 6.7 6.7 0 0 1-1.2-1.5c-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.2.2-.4a.4.4 0 0 0 0-.4c-.1-.1-.5-1.2-.7-1.7-.2-.4-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3 2.7 2.7 0 0 0-.8 2 4.7 4.7 0 0 0 1 2.5 10.6 10.6 0 0 0 4.1 3.6c.6.2 1 .4 1.4.5a3.3 3.3 0 0 0 1.5.1 2.5 2.5 0 0 0 1.6-1.1c.2-.3.2-.6.1-.8s-.2-.2-.4-.3z" fill="#fff"/></svg></li>
         </ul>
         <button type="button" class="intro-toggle-close" data-close-target="about" aria-label="Schließen">▴</button>
@@ -5322,7 +5325,7 @@ var scriptStartTime = Date.now();
   // Phasen) - die Darstellung und alle Funktionen (Timer, Ausblenden, Bewertung) kommen
   // weiterhin vom aktuellen Code, genau wie bei einem frisch erstellten Plan. So bleiben
   // gespeicherte Plaene automatisch von kuenftigen Bugfixes/Features profitieren.
-  var APP_VERSION = '5.216';
+  var APP_VERSION = '5.217';
 
   // Kurze, NUTZERORIENTIERTE Highlight-Liste dieser Version (2-4 Stichpunkte, nur wenn es
   // wirklich neue Funktionen oder spürbare Änderungen gibt) - bewusst getrennt vom langen
@@ -5509,6 +5512,46 @@ var scriptStartTime = Date.now();
   }
 
   var heroTaglineResizeTimer = null;
+  // v5.217: Versteckter „App weitergeben“-Knopf im Vereinswappen. Tippen teilt NUR den Link zur App (ohne Begleittext,
+  // sonst zeigt WhatsApp den Link zusätzlich unter der Vorschaukarte); ohne Teilen-Fenster wird der Link kopiert.
+  function appShareUrl(){
+    if(location.protocol !== 'https:' && location.protocol !== 'http:'){ return ''; }
+    return location.origin + location.pathname.replace(/index\.html$/, '');
+  }
+  function appShareToast(msg){
+    var t = document.getElementById('app-share-toast');
+    if(!t){
+      t = document.createElement('div'); t.id = 'app-share-toast'; t.setAttribute('role', 'status');
+      t.style.cssText = 'position:fixed;left:50%;bottom:max(22px,env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:2147483000;max-width:min(92vw,420px);padding:12px 18px;border-radius:14px;background:#F2B134;color:#1B2A1F;font:700 15px/1.3 "Work Sans",sans-serif;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.4);opacity:0;transition:opacity .25s;pointer-events:none;';
+      document.body.appendChild(t);
+    }
+    t.textContent = msg; t.style.opacity = '1';
+    clearTimeout(appShareToast.t); appShareToast.t = setTimeout(function(){ t.style.opacity = '0'; }, 2600);
+  }
+  async function shareAppLink(){
+    var url = appShareUrl();
+    if(!url){ appShareToast('Der Link zur App ist nur online verfügbar.'); return; }
+    if(navigator.share){
+      try{ await navigator.share({ url: url }); return; }
+      catch(e){ if(e && e.name === 'AbortError'){ return; } /* sonst Link kopieren */ }
+    }
+    try{ await navigator.clipboard.writeText(url); appShareToast('Link zur App kopiert'); }
+    catch(e){ appShareToast(url); }
+  }
+  function bindAppShare(){
+    [].forEach.call(document.querySelectorAll('.club-logo'), function(el){
+      el.setAttribute('role', 'button'); el.setAttribute('tabindex', '0'); el.setAttribute('aria-label', 'Link zur App weitergeben');
+      el.style.cursor = 'pointer'; el.style.webkitTapHighlightColor = 'transparent';
+    });
+    document.addEventListener('click', function(e){
+      var el = e.target && e.target.closest ? e.target.closest('.club-logo') : null;
+      if(el){ e.preventDefault(); shareAppLink(); }
+    });
+    document.addEventListener('keydown', function(e){
+      var el = e.target && e.target.classList && e.target.classList.contains('club-logo') ? e.target : null;
+      if(el && (e.key === 'Enter' || e.key === ' ')){ e.preventDefault(); shareAppLink(); }
+    });
+  }
   function bindHeroTaglineSync(){
     syncHeroTaglineWidth();
     if(document.fonts && document.fonts.ready){
@@ -11086,6 +11129,7 @@ var scriptStartTime = Date.now();
     versionBadgeBtn.addEventListener('click', function(){ checkForUpdates(true, 'version-badge-status'); });
   }
   bindHeroTaglineSync();
+  bindAppShare();
 
   // beim Laden Hinweistext korrekt initialisieren + zuletzt genutzte Auswahl wiederherstellen
   try{
