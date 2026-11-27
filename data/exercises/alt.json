@@ -4,6 +4,7 @@
     "ballgewoehnung": [
       {
         "id": "finte-parcours",
+        "halle": true,
         "title": "Finte-Parcours",
         "goal": "Ziel: Enge Ballführung, Richtungswechsel, einfache Finten",
         "coachTip": "Tempo vor Perfektion – erst wenn der Ablauf sitzt, auf saubere Ausführung achten.",
@@ -143,6 +144,7 @@
       },
       {
         "id": "doppelkontakt-slalom",
+        "halle": true,
         "title": "Doppelkontakt-Slalom",
         "goal": "Ziel: Enge Ballführung unter Zeitdruck festigen",
         "coachTip": "Erst ohne Zeitdruck einüben, dann stoppen – sauberer Doppelkontakt geht vor Schnelligkeit.",
@@ -260,6 +262,7 @@
       },
       {
         "id": "dribbel-torschuss-duell",
+        "halle": true,
         "title": "Dribbel-Torschuss-Duell",
         "goal": "Ziel: Schnelle Ballführung mit beiden Füßen und Abschluss nach einer Finte",
         "coachTip": "Im Slalom kurze Kontakte mit Innen- und Außenseite fordern; vor dem Schuss den Kopf heben und die Torhüter*in anschauen.",
@@ -432,6 +435,7 @@
     "passspiel": [
       {
         "id": "klatsch-steil-kombination",
+        "halle": true,
         "title": "Klatsch-Steil-Kombination",
         "goal": "Ziel: Passschärfe, Pass-Timing, Kombinationsspiel",
         "coachTip": "Auf exakten ersten Kontakt in Laufrichtung achten, nicht nur auf den Pass selbst.",
@@ -559,6 +563,7 @@
       },
       {
         "id": "doppelraute",
+        "halle": true,
         "title": "Doppelraute",
         "goal": "Ziel: Passfolge mit Körpertäuschung und Ballmitnahme",
         "coachTip": "Nach ein paar Durchgängen die Laufrichtung umdrehen, um beide Seiten zu schulen.",
@@ -684,6 +689,7 @@
       },
       {
         "id": "zick-zack-rundlauf",
+        "halle": true,
         "title": "Zick-Zack-Rundlauf",
         "goal": "Ziel: Flaches, genaues Passspiel mit Nachlaufen und Zielpass",
         "coachTip": "Den Ball in den Lauf des Mitspielers auf den „richtigen“ Fuß spielen – also auf den Fuß, der vom Passgeber weiter weg ist.",
@@ -833,6 +839,7 @@
     "torschuss": [
       {
         "id": "abschluss-nach-kombination",
+        "halle": true,
         "title": "Abschluss nach Kombination",
         "goal": "Ziel: Torabschluss nach Doppelpass unter Zeitdruck",
         "coachTip": "Klar ansagen: erst sauberer Doppelpass, dann erst der Abschluss zählt.",
@@ -987,6 +994,7 @@
       },
       {
         "id": "konter-abschluss",
+        "halle": true,
         "title": "Konter-Abschluss",
         "goal": "Ziel: Schnelles Umschalten und Abschluss in Überzahl",
         "coachTip": "Auf das erste Kontakt Tempo nach der Balleroberung achten – das entscheidet über die Überzahlsituation.",
@@ -1158,6 +1166,7 @@
       },
       {
         "id": "diagonalpass-kombination-beidfuessig",
+        "halle": true,
         "title": "Diagonalpass-Kombination beidfüßig",
         "goal": "Ziel: Ballannahme mit beiden Füßen vor dem Torabschluss festigen",
         "coachTip": "Beide Seiten gleich oft trainieren – der schwache Fuß braucht bewusst mehr Wiederholungen als der starke.",
@@ -1461,6 +1470,7 @@
     "bewegung": [
       {
         "id": "positionsspiel-mit-neutralen",
+        "halle": true,
         "title": "Positionsspiel mit Neutralen",
         "goal": "Ziel: Freilaufen, Anbieten, Lösen vom Gegner",
         "coachTip": "Spiel bewusst unterbrechen und fragen: „Wo hättest du dich noch anbieten können?\"",
@@ -1625,6 +1635,7 @@
       },
       {
         "id": "blindpass-vorbereitung",
+        "halle": true,
         "title": "Blindpass-Vorbereitung",
         "goal": "Ziel: Schulterblick und Orientierung vor der Ballannahme",
         "coachTip": "Bewusst fragen: „Wo war der freie Mitspieler, bevor du den Ball bekommen hast?\"",
@@ -1927,6 +1938,7 @@
     "zweikampf": [
       {
         "id": "1-gegen-1-auf-minitore",
+        "halle": true,
         "title": "1 gegen 1 auf Minitore",
         "goal": "Ziel: Zweikampfverhalten mit direktem Zielspiel verbinden",
         "coachTip": "Auf faires, konsequentes Verteidigen achten statt nur auf den Torerfolg.",
@@ -2043,6 +2055,7 @@
       },
       {
         "id": "zangenzweikampf",
+        "halle": true,
         "title": "Zangenzweikampf",
         "goal": "Ziel: Gemeinsames Verteidigen und Doppeln im 2-gegen-2",
         "coachTip": "Nach Ballgewinn loben, wenn beide Verteidiger zusammengearbeitet haben, nicht nur wer den Ball erobert hat.",
@@ -2366,6 +2379,7 @@
       },
       {
         "id": "abdraengen-zur-seitenlinie",
+        "halle": true,
         "title": "Abdrängen zur Seitenlinie",
         "goal": "Ziel: Im 1 gegen 1 seitlich stehen und den Angreifer vom Tor wegdrängen",
         "coachTip": "Nicht sofort hineingrätschen: auf den Fußballen bleiben, Abstand von etwa einer Armlänge halten und zugreifen, wenn der Ball zu weit vom Fuß springt.",
@@ -2938,6 +2952,7 @@
       },
       {
         "id": "herausspielen-3-plus-1-gegen-2",
+        "halle": true,
         "title": "Herausspielen im 3+1 gegen 2",
         "goal": "Ziel: Ruhiger Spielaufbau mit Torhüter*in gegen zwei anlaufende Gegenspieler",
         "coachTip": "Breite geben: Die beiden äußeren Kinder stellen sich weit an die Seiten – so entstehen Lücken für den Pass.",
@@ -3107,6 +3122,7 @@
     "koordination": [
       {
         "id": "leiter-spruenge",
+        "halle": true,
         "title": "Leiter & Sprünge",
         "goal": "Ziel: Schnelle Fußarbeit und koordinative Grundlagen",
         "coachTip": "Saubere Ausführung geht vor Tempo – erst wenn die Schrittmuster sitzen, das Tempo erhöhen.",
@@ -3204,6 +3220,7 @@
       },
       {
         "id": "reaktionslauf-mit-partner",
+        "halle": true,
         "title": "Reaktionslauf mit Partner",
         "goal": "Ziel: Schnelle Richtungswechsel auf ein Signal reagieren",
         "coachTip": "Rollen regelmäßig tauschen, damit beide sowohl reagieren als auch Signale geben.",
@@ -3289,6 +3306,7 @@
       },
       {
         "id": "hasenjagd",
+        "halle": true,
         "title": "Hasenjagd",
         "goal": "Ziel: Reaktionsschnelligkeit, Antritt und Richtungswechsel im Wettkampf",
         "coachTip": "Startpositionen variieren (Bauchlage, Sitz, rückwärts) – das schult Reaktion und Koordination zugleich.",
@@ -3548,6 +3566,7 @@
       },
       {
         "id": "reflexparcours",
+        "halle": true,
         "title": "Reflexparcours",
         "goal": "Ziel: Schnelle Reflexe auf Distanzschüsse aus verschiedenen Winkeln",
         "coachTip": "Weiche Unterlage (Matte/Rasen) sicherstellen, bevor Abtauchen geübt wird.",
@@ -3820,6 +3839,7 @@
     "kopfball": [
       {
         "id": "kopfball-basics",
+        "halle": true,
         "title": "Kopfball-Basics",
         "goal": "Ziel: Einfache Kopfballtechnik aus kurzer Distanz, geringer Umfang",
         "coachTip": "Umfang bewusst gering halten und auf saubere Technik statt Härte achten – Qualität vor Menge.",
@@ -3905,6 +3925,7 @@
       },
       {
         "id": "kopfball-nach-zuspiel-im-sprung",
+        "halle": true,
         "title": "Kopfball nach Zuspiel im Sprung",
         "goal": "Ziel: Timing des Absprungs mit kontrolliertem Kopfballkontakt verbinden",
         "coachTip": "Fokus auf sauberes Timing statt Sprunghöhe – Qualität vor Menge bleibt oberste Priorität.",
@@ -3991,6 +4012,7 @@
       },
       {
         "id": "kopfball-ins-huetchentor",
+        "halle": true,
         "title": "Kopfball ins Hütchentor",
         "goal": "Ziel: Saubere Kopfballtechnik aus dem Stand mit der Stirn",
         "coachTip": "Augen offen, Mund geschlossen, Oberkörper leicht zurück und den Ball mit der Stirn nach vorn „stoßen“.",
@@ -4474,6 +4496,7 @@
       },
       {
         "id": "konter-auf-vier-dribbeltore",
+        "halle": true,
         "title": "Konter auf vier Dribbeltore",
         "goal": "Ziel: Nach dem Ballgewinn sofort den Weg nach vorn suchen",
         "coachTip": "Nach Ballgewinn den ersten Kontakt nach vorn mitnehmen – wer erst stoppt und schaut, hat die Konterchance schon verpasst.",
@@ -4679,6 +4702,7 @@
     "aufwaermen": [
       {
         "id": "lauf-abc-aktivierung",
+        "halle": true,
         "title": "Lauf-ABC & Aktivierung",
         "goal": "Ziel: Aufwärmen, Aktivierung, Verletzungsprävention",
         "coachTip": "Aktivierung konsequent durchziehen – sie senkt nachweislich das Verletzungsrisiko.",
@@ -4815,6 +4839,7 @@
       },
       {
         "id": "partner-reaktionsstaffel",
+        "halle": true,
         "title": "Partner-Reaktionsstaffel",
         "goal": "Ziel: Aufwärmen mit Sprintanteilen und Reaktionsschnelligkeit",
         "coachTip": "Auf lockeres, dynamisches Tempo achten – es geht ums Warmwerden, nicht um maximale Sprints.",
@@ -4919,6 +4944,7 @@
       },
       {
         "id": "ballzirkulation-in-drei-farben",
+        "halle": true,
         "title": "Ballzirkulation in drei Farben",
         "goal": "Ziel: Aufwärmen mit vielen Pässen, Orientierung und Anbieten im Raum",
         "coachTip": "Vor der Ballannahme über die Schulter schauen lassen – wer weiß, wo der nächste Mitspieler steht, spielt schneller weiter.",

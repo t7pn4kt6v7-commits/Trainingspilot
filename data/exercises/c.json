@@ -4,6 +4,7 @@
     "ballgewoehnung": [
       {
         "id": "1-gegen-1-finten-battle",
+        "halle": true,
         "title": "1-gegen-1-Finten-Battle",
         "goal": "Ziel: Individualtechnik unter echtem Gegnerdruck festigen",
         "coachTip": "Bewusst unterschiedliche Finten vorgeben (Übersteiger, Ausfallschritt, Ballanziehen), damit nicht jeder nur seine Lieblingsfinte übt.",
@@ -144,6 +145,7 @@
       },
       {
         "id": "doppelpass-dribbling-unter-zeitdruck",
+        "halle": true,
         "title": "Doppelpass-Dribbling unter Zeitdruck",
         "goal": "Ziel: Enge Ballführung mit Kombinationselement unter Tempo",
         "coachTip": "Sauberer erster Kontakt nach dem Doppelpass geht vor Schnelligkeit – erst wenn das sitzt, auf Zeit steigern.",
@@ -297,6 +299,7 @@
       },
       {
         "id": "ball-schneller-als-laeufer",
+        "halle": true,
         "title": "Ball schneller als Läufer",
         "goal": "Ziel: Schnelles Dribbling unter Zeitdruck mit Abschluss",
         "coachTip": "Bei hohem Tempo den Ball mit der Außenseite des Spanns weiter vorlegen – aber nur so weit, dass er erreichbar bleibt.",
@@ -570,6 +573,7 @@
       },
       {
         "id": "passfolge-mit-tempowechsel",
+        "halle": true,
         "title": "Passfolge mit Tempowechsel",
         "goal": "Ziel: Passschärfe und Timing bei wechselndem Spieltempo",
         "coachTip": "Tempowechsel bewusst unangekündigt und unregelmäßig einstreuen – das schult echte Spielintelligenz statt reines Reagieren auf Muster.",
@@ -680,6 +684,7 @@
       },
       {
         "id": "ueber-den-dritten-in-die-tiefe",
+        "halle": true,
         "title": "Über den Dritten in die Tiefe",
         "goal": "Ziel: Kombination über eine dritte Spieler*in, um einen Laufweg in die Tiefe zu bedienen",
         "coachTip": "Das Signal für den Tiefenlauf ist der Pass auf B – genau in diesem Moment losgehen, nicht früher und nicht später.",
@@ -833,6 +838,7 @@
     "torschuss": [
       {
         "id": "abschluss-aus-der-bewegung",
+        "halle": true,
         "title": "Abschluss aus der Bewegung",
         "goal": "Ziel: Torabschluss nach Ballannahme im Lauf, verschiedene Anlaufwinkel",
         "coachTip": "Auf den letzten Schritt vor dem Abschluss achten – kurze, kontrollierte Schritte statt Vollgas bis zum Ball.",
@@ -962,6 +968,7 @@
       },
       {
         "id": "distanzschuss-nach-ballmitnahme",
+        "halle": true,
         "title": "Distanzschuss nach Ballmitnahme",
         "goal": "Ziel: Schusstechnik aus größerer Distanz mit vorbereitendem Kontakt",
         "coachTip": "Vor allem auf den vorbereitenden Kontakt achten – der entscheidet, ob der Distanzschuss überhaupt sauber gelingen kann.",
@@ -1405,6 +1412,7 @@
       },
       {
         "id": "tiefenlaeufe-hinter-die-kette",
+        "halle": true,
         "title": "Tiefenläufe hinter die Kette",
         "goal": "Ziel: Timing von Tiefenläufen im größeren Raum des Großfelds",
         "coachTip": "Bewusst betonen: Der Lauf beginnt erst, wenn der Passgeber wirklich spielbereit ist – zu frühes Starten wird konsequent als „Abseits\" gewertet.",
@@ -1738,6 +1746,7 @@
     "zweikampf": [
       {
         "id": "1-gegen-1-mit-koerperkontakt-schulung",
+        "halle": true,
         "title": "1 gegen 1 mit Körperkontakt-Schulung",
         "goal": "Ziel: Faires, konsequentes Zweikampfverhalten mit legalem Körpereinsatz",
         "coachTip": "Klar zwischen fairem Körpereinsatz und Foulspiel unterscheiden – gerade in dieser Altersstufe wichtig, da der Körperkontakt spürbar zunimmt.",
@@ -2747,6 +2756,7 @@
     "koordination": [
       {
         "id": "athletische-grundlagen-sprung-und-sprintkoordination",
+        "halle": true,
         "title": "Athletische Grundlagen: Sprung- und Sprintkoordination",
         "goal": "Ziel: Koordinative Basis für die anstehende Kraft-/Schnelligkeitsentwicklung legen",
         "coachTip": "Gerade im Wachstumsschub auf saubere Landungen achten – lieber ein Element weniger, aber technisch korrekt.",
@@ -2868,6 +2878,7 @@
       },
       {
         "id": "reaktionsparcours-mit-ball",
+        "halle": true,
         "title": "Reaktionsparcours mit Ball",
         "goal": "Ziel: Koordinative Schulung direkt mit Ballkontakt verbinden",
         "coachTip": "Kommandos unregelmäßig und ohne Muster geben – so bleibt es eine echte Reaktionsaufgabe.",
@@ -3693,6 +3704,7 @@
       },
       {
         "id": "kopfball-mit-anlauf",
+        "halle": true,
         "title": "Kopfball mit Anlauf",
         "goal": "Ziel: Kopfball nach kurzem Anlauf und einbeinigem Absprung",
         "coachTip": "Absprung mit dem Kniehub des Schwungbeins, im Flug Bogenspannung aufbauen und den Ball am höchsten Punkt treffen.",
@@ -4393,6 +4405,7 @@
     "aufwaermen": [
       {
         "id": "athletisches-aufwaermen-mit-koordinationsanteil",
+        "halle": true,
         "title": "Athletisches Aufwärmen mit Koordinationsanteil",
         "goal": "Ziel: Aufwärmen, Aktivierung und koordinative Vorbereitung auf den Wachstumsschub",
         "coachTip": "Konsequent durchziehen, gerade jetzt sinnvoll – der Körper verändert sich in dieser Phase spürbar, das erhöht das Verletzungsrisiko ohne gute Aktivierung.",
@@ -4668,6 +4681,7 @@
       },
       {
         "id": "rondo-treppe",
+        "halle": true,
         "title": "Rondo-Treppe",
         "goal": "Ziel: Aktivierung mit Ball, saubere Ballannahme und schnelle Entscheidungen",
         "coachTip": "Offene Körperstellung vor der Annahme: Wer seitlich zum Passgeber steht, sieht beide Anspielstationen.",

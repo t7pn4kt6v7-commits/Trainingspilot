@@ -4,6 +4,7 @@
     "ballgewoehnung": [
       {
         "id": "1-gegen-1-unter-wettkampfbedingungen",
+        "halle": true,
         "title": "1-gegen-1 unter Wettkampfbedingungen",
         "goal": "Ziel: Höchstes Tempo und Entscheidungsqualität im direkten Duell",
         "coachTip": "Bewusst wettkampfnahe Sprache nutzen (\"Jetzt zählt es!\") – die Übung soll sich wie eine echte Spielsituation anfühlen.",
@@ -124,6 +125,7 @@
       },
       {
         "id": "technik-unter-maximalem-gegnerdruck",
+        "halle": true,
         "title": "Technik unter maximalem Gegnerdruck",
         "goal": "Ziel: Ballsicherheit auch bei intensivem Doppel-Anlaufen bewahren",
         "coachTip": "Auf Körperabschirmung und schnelle Entscheidungen unter Druck fokussieren – genau das entscheidet Zweikämpfe im Erwachsenenfußball.",
@@ -232,6 +234,7 @@
       },
       {
         "id": "erster-kontakt-weg-vom-druck",
+        "halle": true,
         "title": "Erster Kontakt weg vom Druck",
         "goal": "Ziel: Mit dem ersten Kontakt in die freie Richtung mitnehmen",
         "coachTip": "Vor dem Ball schon den Kopf drehen: Wer weiß, woher der Druck kommt, entscheidet beim ersten Kontakt richtig.",
@@ -618,6 +621,7 @@
       },
       {
         "id": "passgenauigkeit-unter-wettkampftempo",
+        "halle": true,
         "title": "Passgenauigkeit unter Wettkampftempo",
         "goal": "Ziel: Präzision und Entscheidungsschnelligkeit bei hohem Grundtempo sichern",
         "coachTip": "Bewusst auf hohem Tempo bestehen – Präzision unter Belastung ist hier das eigentliche Trainingsziel, nicht die Technik in Ruhe.",
@@ -972,6 +976,7 @@
     "torschuss": [
       {
         "id": "abschlussqualitaet-unter-maximaldruck",
+        "halle": true,
         "title": "Abschlussqualität unter Maximaldruck",
         "goal": "Ziel: Torabschluss auf Wettkampfniveau bei vollem Verteidigerdruck sichern",
         "coachTip": "Wettkampfsprache und -tempo einfordern – die Übung soll sich wie die letzten Minuten eines echten Spiels anfühlen.",
@@ -1129,6 +1134,7 @@
       },
       {
         "id": "variantenreicher-distanzabschluss",
+        "halle": true,
         "title": "Variantenreicher Distanzabschluss",
         "goal": "Ziel: Verschiedene Abschlusstechniken aus Distanz sicher beherrschen",
         "coachTip": "Auf Variantenreichtum bestehen – im Erwachsenenfußball entscheidet oft die unerwartete Abschlussform über den Torerfolg.",
@@ -2048,6 +2054,7 @@
     "zweikampf": [
       {
         "id": "zweikampfhaerte-auf-wettkampfniveau",
+        "halle": true,
         "title": "Zweikampfhärte auf Wettkampfniveau",
         "goal": "Ziel: Zweikampfstärke und -intelligenz unter realen Belastungsbedingungen",
         "coachTip": "Auf faire, aber konsequente Zweikampfführung bestehen – genau dieses Niveau wird im Herrenbereich erwartet.",
@@ -2143,6 +2150,7 @@
       },
       {
         "id": "zweikampfintelligenz-im-kollektiv",
+        "halle": true,
         "title": "Zweikampfintelligenz im Kollektiv",
         "goal": "Ziel: Zweikampf im Kontext koordinierter Verteidigungsarbeit verstehen",
         "coachTip": "Individuelles Zweikampfverhalten immer im Mannschaftskontext einordnen – wer deckt wen ab, wenn der Zweikampf verloren geht?",
@@ -3002,6 +3010,7 @@
     "koordination": [
       {
         "id": "athletik-und-praevention-auf-wettkampfniveau",
+        "halle": true,
         "title": "Athletik und Prävention auf Wettkampfniveau",
         "goal": "Ziel: Rumpfstabilität, Sprintkraft und Verletzungsprävention systematisch trainieren",
         "coachTip": "Konsequent durchziehen, auch wenn es zeitlich knapp wird – Präventionsarbeit auf diesem Niveau zahlt sich langfristig messbar aus (weniger Ausfallzeiten).",
@@ -3103,6 +3112,7 @@
       },
       {
         "id": "spielnahe-schnelligkeitsschulung",
+        "halle": true,
         "title": "Spielnahe Schnelligkeitsschulung",
         "goal": "Ziel: Antritts- und Richtungswechselschnelligkeit unter Ballkontakt trainieren",
         "coachTip": "Auf vollständige Erholung zwischen den Versuchen achten – Schnelligkeitstraining verliert seinen Wert, wenn es ermüdet durchgeführt wird.",
@@ -3514,6 +3524,7 @@
       },
       {
         "id": "reflex-und-antizipationstraining",
+        "halle": true,
         "title": "Reflex- und Antizipationstraining",
         "goal": "Ziel: Schnelle Reflexe mit vorausschauendem Stellungsspiel verbinden",
         "coachTip": "Bewusst auch mal ohne Ankündigung schießen lassen – echte Spielsituationen sind selten vorhersehbar.",
@@ -3929,6 +3940,7 @@
       },
       {
         "id": "kopfball-nach-eckball-variante",
+        "halle": true,
         "title": "Kopfball nach Eckball-Variante",
         "goal": "Ziel: Eingeübte Eckball-Laufwege mit Kopfballabschluss verbinden",
         "coachTip": "Laufwege so lange wiederholen, bis sie zum Automatismus werden – Standardsituationen leben von eingespielten Abläufen.",
@@ -4421,6 +4433,7 @@
       },
       {
         "id": "konter-gegen-unsortierte-abwehr",
+        "halle": true,
         "title": "Konter gegen unsortierte Abwehr",
         "goal": "Ziel: Konsequentes Ausspielen von Überzahlsituationen nach Ballgewinn",
         "coachTip": "Auf Tempo und klare Anspielentscheidung bestehen – Zögern lässt jede Überzahlsituation verpuffen.",
@@ -4900,6 +4913,7 @@
       },
       {
         "id": "taktische-aktivierung-mit-ball",
+        "halle": true,
         "title": "Taktische Aktivierung mit Ball",
         "goal": "Ziel: Körperliches Aufwärmen direkt mit taktischer Schärfung verbinden",
         "coachTip": "Die Ansagen kurz und konkret halten – das Aufwärmen soll aktivieren, nicht mit langen Erklärungen Zeit kosten.",
@@ -5033,6 +5047,7 @@
       },
       {
         "id": "passdreieck-mit-anschlusssprint",
+        "halle": true,
         "title": "Passdreieck mit Anschlusssprint",
         "goal": "Ziel: Wettkampfnahe Aktivierung mit Passspiel und kurzen Sprints",
         "coachTip": "Erst Qualität, dann Tempo: Der Ball muss auf den vorderen Fuß kommen, sonst stockt der ganze Kreis.",

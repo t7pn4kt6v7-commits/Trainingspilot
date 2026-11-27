@@ -4,6 +4,7 @@
     "torschuss": [
       {
         "id": "abschluss-gegen-torhueter",
+        "halle": true,
         "title": "Abschluss gegen Torhüter",
         "goal": "Ziel: Torschuss unter echten Bedingungen mit Torhüter*in",
         "coachTip": "Torhüterrolle bewusst oft wechseln – ab der F-Jugend soll jedes Kind Torwarterfahrung sammeln.",
@@ -168,6 +169,7 @@
       },
       {
         "id": "1-gegen-1-zum-abschluss",
+        "halle": true,
         "title": "1 gegen 1 zum Abschluss",
         "goal": "Ziel: Torschuss nach Eins-gegen-Eins mit Entscheidung unter Druck",
         "coachTip": "Klare Reihenfolge betonen: erst der Zweikampf, dann erst zählt der Abschluss.",
@@ -316,6 +318,7 @@
       },
       {
         "id": "pass-pass-tor",
+        "halle": true,
         "title": "Pass, Pass, Tor!",
         "goal": "Ziel: Schneller Abschluss nach einer kurzen Passfolge",
         "coachTip": "Darauf achten, dass jedes Kind einmal den Abschluss macht – die Reihenfolge der Pässe dafür von Runde zu Runde wechseln.",
@@ -815,6 +818,7 @@
       },
       {
         "id": "pass-in-die-endzone",
+        "halle": true,
         "title": "Pass in die Endzone",
         "goal": "Ziel: Freilaufen in den freien Raum und Anbieten für den Pass",
         "coachTip": "Wer gerade nicht am Ball ist, ist trotzdem im Spiel: Lob gezielt für gutes Freilaufen geben, nicht nur für Punkte.",
@@ -997,6 +1001,7 @@
     "spielaufbau": [
       {
         "id": "aufbau-ueber-den-torhueter",
+        "halle": true,
         "title": "Aufbau über den Torhüter",
         "goal": "Ziel: Ersten Aufbau-Pass vom Torhüter sicher verarbeiten",
         "coachTip": "Auf offene Körperstellung des anspielbereiten Kindes achten, bevor der Torhüter abgibt.",
@@ -1152,6 +1157,7 @@
       },
       {
         "id": "dreieckspaesse-zum-aufbau",
+        "halle": true,
         "title": "Dreieckspässe zum Aufbau",
         "goal": "Ziel: Sicheren ersten Pass im Dreieck vor dem eigenen Tor finden",
         "coachTip": "Bewusst auch den Rückpass zum Torhüter als gültige, sichere Option anerkennen.",
@@ -1329,6 +1335,7 @@
       },
       {
         "id": "funino-mit-aufbauzone",
+        "halle": true,
         "title": "Funino mit Aufbauzone",
         "goal": "Ziel: Ruhig von hinten herausspielen und das Feld breit machen",
         "coachTip": "Nach dem Eindribbeln fragen: „Welches der beiden Tore ist gerade frei?“ – die Kinder lernen so, das Spiel auf die andere Seite zu verlagern.",
@@ -1527,6 +1534,7 @@
     "zweikampf": [
       {
         "id": "2-gegen-2-um-den-ball",
+        "halle": true,
         "title": "2 gegen 2 um den Ball",
         "goal": "Ziel: Gemeinsames Verteidigen im größeren Spielformat erproben",
         "coachTip": "Nach Ballgewinn bewusst loben, wenn beide Kinder gemeinsam den Umschaltmoment nutzen.",
@@ -1689,6 +1697,7 @@
       },
       {
         "id": "verteidigen-mit-rueckendeckung",
+        "halle": true,
         "title": "Verteidigen mit Rückendeckung",
         "goal": "Ziel: Kommunikation beim gemeinsamen Verteidigen fördern",
         "coachTip": "Kommunikation einfordern: Das absichernde Kind soll laut ansagen, wenn es unterstützt.",
@@ -1814,6 +1823,7 @@
       },
       {
         "id": "torjaeger-duell",
+        "halle": true,
         "title": "Torjäger-Duell",
         "goal": "Ziel: Zweikampfverhalten mit klarer Abschluss-Chance verbinden",
         "coachTip": "Der DFB empfiehlt gerade bei jüngeren Kindern kleine Spielformen wie diese, weil dadurch viele 1-gegen-1-Situationen und Ballaktionen entstehen.",
@@ -1928,6 +1938,7 @@
       },
       {
         "id": "drei-linien-duell",
+        "halle": true,
         "title": "Drei-Linien-Duell",
         "goal": "Ziel: Im 1 gegen 1 entschlossen Richtung Tor dribbeln",
         "coachTip": "Finten vorgeben, z. B. „Heute zählt ein Punkt extra, wer mit einer Körpertäuschung vorbeikommt“.",
@@ -2095,6 +2106,7 @@
     "umschalten": [
       {
         "id": "blitzkonter-nach-ballgewinn",
+        "halle": true,
         "title": "Blitzkonter nach Ballgewinn",
         "goal": "Ziel: Nach Ballgewinn sofort schnell und zielstrebig nach vorne spielen",
         "coachTip": "Laut mitzählen (\"6 – 5 – 4 – 3 – 2 – 1!\") – das erzeugt echten Zeitdruck und macht das schnelle Umschalten erlebbar.",
@@ -2498,6 +2510,7 @@
       },
       {
         "id": "ballhalten-mit-konter-toren",
+        "halle": true,
         "title": "Ballhalten mit Konter-Toren",
         "goal": "Ziel: Nach dem Ballgewinn sofort den schnellsten Weg zum Tor suchen",
         "coachTip": "Laut „Konter!“ rufen lassen, wenn ein Kind den Ball erobert – das macht den Umschaltmoment für alle hörbar.",
@@ -2688,6 +2701,7 @@
     "aufwaermen": [
       {
         "id": "zahlenfangen",
+        "halle": true,
         "title": "Zahlenfangen",
         "goal": "Ziel: Aufwärmen mit Reaktionsschnelligkeit und Orientierung",
         "coachTip": "Immer nur kurze Runden (20–30 Sekunden), dann kurze Pause und neue Zuordnung – hält die Intensität hoch.",
@@ -2858,6 +2872,7 @@
       },
       {
         "id": "dribbel-baendchenjagd",
+        "halle": true,
         "title": "Dribbel-Bändchenjagd",
         "goal": "Ziel: Aufwärmen mit erstem Ballkontakt und Ballkontrolle unter Druck",
         "coachTip": "Betonen, dass der Ball während der ganzen Übung am Fuß bleiben soll – das schult nebenbei die Ballkontrolle unter Ablenkung.",
@@ -3025,6 +3040,7 @@
       },
       {
         "id": "loewe-und-tiger",
+        "halle": true,
         "title": "Löwe und Tiger",
         "goal": "Ziel: Aufwärmen mit Reaktionsschnelligkeit und Sprintstarts",
         "coachTip": "Den Ruf bewusst verzögern oder mit ähnlich klingenden Wörtern einleiten (z. B. „Löwen…zahn!\") – das schult zusätzlich das genaue Zuhören, nicht nur die reine Schnelligkeit.",
@@ -3184,6 +3200,7 @@
       },
       {
         "id": "dribbelfangen",
+        "halle": true,
         "title": "Dribbelfangen",
         "goal": "Ziel: Aufwärmen mit Ball am Fuß, Kopf hoch und schnelle Richtungswechsel",
         "coachTip": "Fängt ein Kind nur, weil es den eigenen Ball liegen lässt, zählt der Treffer nicht – der Ball muss am Fuß bleiben.",
@@ -3349,6 +3366,7 @@
       },
       {
         "id": "kettenfangen",
+        "halle": true,
         "title": "Kettenfangen",
         "goal": "Ziel: Aufwärmen mit Ausweichen, Absprache und gemeinsamem Tempo",
         "coachTip": "Die Ketten daran erinnern, sich abzusprechen: „Wen jagen wir?“ Reißt eine Kette, zählt der Fang nicht – das verhindert wildes Ziehen.",
@@ -3522,6 +3540,7 @@
       },
       {
         "id": "schnick-schnack-schnuck-rennen",
+        "halle": true,
         "title": "Schnick-Schnack-Schnuck-Rennen",
         "goal": "Ziel: Aufwärmen mit Sprints, schnellem Reagieren und Teamwettkampf",
         "coachTip": "Das wartende Team soll laut anfeuern und genau hinschauen: Sobald das eigene Kind verliert, startet sofort das nächste. Bei mehr als zwölf Kindern zwei Bahnen aufbauen.",
@@ -3692,6 +3711,7 @@
       },
       {
         "id": "nummern-sprint-zum-ball",
+        "halle": true,
         "title": "Nummern-Sprint zum Ball",
         "goal": "Ziel: Aufwärmen mit Reaktion, Sprint zum Ball und erstem Zweikampf",
         "coachTip": "Die Nummern durcheinander rufen und ab und zu zwei Nummern gleichzeitig – dann entsteht ein 2 gegen 2. Jede Aktion nach spätestens 20 Sekunden beenden.",
@@ -3887,6 +3907,7 @@
       },
       {
         "id": "linienfangen",
+        "halle": true,
         "title": "Linienfangen",
         "goal": "Ziel: Aufwärmen mit Abstoppen, Richtungswechseln und Überblick",
         "coachTip": "Am einfachsten auf einem Platz mit vorhandenen Linien spielen. Ohne Linien ein Kreuz aus Hütchen legen – die Kinder laufen dann von Hütchen zu Hütchen.",
@@ -4082,6 +4103,7 @@
       },
       {
         "id": "sanitaeter",
+        "halle": true,
         "title": "Sanitäter",
         "goal": "Ziel: Aufwärmen mit Ausweichen, Zielen und Zusammenhalt im Team",
         "coachTip": "Nur weiche Bälle nehmen und nur unterhalb der Hüfte zielen lassen. Die Teams sollen selbst überlegen, wie sie ihre Sanitäter*in schützen.",
@@ -4292,6 +4314,7 @@
       },
       {
         "id": "tor-duell-auf-zuruf",
+        "halle": true,
         "title": "Tor-Duell auf Zuruf",
         "goal": "Ziel: Aufwärmen mit Reaktion, schnellem Dribbling und Torabschluss",
         "coachTip": "Nummern durcheinander rufen, damit alle wach bleiben. Geschossen werden darf erst hinter dem Hütchen – sonst wird aus dem Dribbling ein Weitschuss.",
@@ -4454,6 +4477,7 @@
     "ballgewoehnung": [
       {
         "id": "huetchen-kegeln",
+        "halle": true,
         "title": "Hütchen-Kegeln",
         "goal": "Ziel: Dribbeln mit Blick nach vorn und gezieltes Abspiel aus dem Dribbling",
         "coachTip": "Den Kopf beim Dribbeln immer wieder heben lassen – nur wer sieht, wo ein Kegel steht, kann ihn treffen.",
@@ -4634,6 +4658,7 @@
     "passspiel": [
       {
         "id": "huetchentor-wettpassen",
+        "halle": true,
         "title": "Hütchentor-Wettpassen",
         "goal": "Ziel: Genaue Pässe mit der Innenseite und sicheres Ballstoppen",
         "coachTip": "Standbein neben den Ball, Fußspitze hoch, Innenseite zum Ziel – kurze Hinweise reichen, dann spielen lassen.",
@@ -4758,6 +4783,7 @@
     "koordination": [
       {
         "id": "leiter-staffel",
+        "halle": true,
         "title": "Leiter-Staffel",
         "goal": "Ziel: Schnelle Füße, Rhythmus und Ballführung im Wettbewerb",
         "coachTip": "Kleine Teams (3–4 Kinder) bilden, damit Wartezeiten kurz bleiben. Sauberkeit vor Tempo: Wer auf die Leiter tritt, macht das Feld noch einmal.",
@@ -4956,6 +4982,7 @@
     "torwart": [
       {
         "id": "doppelpack-keeper",
+        "halle": true,
         "title": "Doppelpack-Keeper",
         "goal": "Ziel: Schnell wieder bereit sein und zwei Bälle nacheinander sichern",
         "coachTip": "Nach jedem Fang kurz in die „Bereitschaftsstellung“ zurück: Füße schulterbreit, Knie leicht gebeugt, Hände vor dem Körper.",
@@ -5086,6 +5113,7 @@
     "kopfball": [
       {
         "id": "kopfball-kegeln",
+        "halle": true,
         "title": "Kopfball-Kegeln",
         "goal": "Ziel: Behutsamer Einstieg ins Kopfballspiel mit der Stirn (nur E-Jugend)",
         "coachTip": "Augen offen, Mund zu, Ball mit der Stirn „stoßen“ statt nur hinhalten. Die geringe Wiederholungszahl ist Absicht – Qualität vor Menge.",

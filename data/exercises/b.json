@@ -4,6 +4,7 @@
     "ballgewoehnung": [
       {
         "id": "isolationsdribbling-unter-hohem-tempo",
+        "halle": true,
         "title": "Isolationsdribbling unter hohem Tempo",
         "goal": "Ziel: Technik unter wettkampfnahem Zeit- und Gegnerdruck sichern",
         "coachTip": "Auf Körperabschirmung unter Vollgas achten – genau das unterscheidet Wettkampftempo von Trainingstempo.",
@@ -117,6 +118,7 @@
       },
       {
         "id": "spielnahe-isolationsuebung-mit-abschluss",
+        "halle": true,
         "title": "Spielnahe Isolationsübung mit Abschluss",
         "goal": "Ziel: 1-gegen-1-Technik direkt mit Torabschluss verbinden",
         "coachTip": "Klar herausstellen: Das Startsignal entscheidet über Angreifer/Verteidiger – volle Konzentration von der ersten Sekunde an fordern.",
@@ -258,6 +260,7 @@
       },
       {
         "id": "aufdrehen-mit-gegner-im-ruecken",
+        "halle": true,
         "title": "Aufdrehen mit Gegner im Rücken",
         "goal": "Ziel: Ball mit Gegnerdruck im Rücken annehmen, abschirmen und aufdrehen",
         "coachTip": "Vor der Annahme Kontakt zur Verteidigerin suchen – so spürt man, auf welcher Seite Platz zum Aufdrehen ist.",
@@ -921,6 +924,7 @@
     "torschuss": [
       {
         "id": "abschluss-unter-wettkampfdruck",
+        "halle": true,
         "title": "Abschluss unter Wettkampfdruck",
         "goal": "Ziel: Torabschlussqualität bei echtem Verteidigerdruck sichern",
         "coachTip": "Auf die Entscheidung „schnell abschließen oder Tempo rausnehmen\" achten – beide Lösungen können richtig sein, je nach Situation.",
@@ -1891,6 +1895,7 @@
     "zweikampf": [
       {
         "id": "zweikampf-im-pressing-kontext",
+        "halle": true,
         "title": "Zweikampf im Pressing-Kontext",
         "goal": "Ziel: Zweikampfverhalten als Teil eines koordinierten Anlaufens erleben",
         "coachTip": "Betonen, dass der Zweikampf nur der letzte Baustein ist – das gemeinsame Zustellen davor entscheidet oft schon.",
@@ -2043,6 +2048,7 @@
       },
       {
         "id": "zweikampfintensitaet-im-direkten-duell",
+        "halle": true,
         "title": "Zweikampfintensität im direkten Duell",
         "goal": "Ziel: Zweikampfhärte und -intelligenz bei hoher Intensität festigen",
         "coachTip": "Auf saubere Stellungsspiel-Technik statt reiner Härte achten – Intensität ja, unfaires Spiel nein.",
@@ -2829,6 +2835,7 @@
     "koordination": [
       {
         "id": "funktionelle-athletik-mit-ball",
+        "halle": true,
         "title": "Funktionelle Athletik mit Ball",
         "goal": "Ziel: Athletiktraining direkt mit Ballkontakt statt isoliert durchführen",
         "coachTip": "Auf saubere Rumpfspannung bei allen Übungen achten – das ist die Basis für Verletzungsprävention in dieser Belastungsstufe.",
@@ -2985,6 +2992,7 @@
       },
       {
         "id": "reaktionsschnelligkeit-unter-belastung",
+        "halle": true,
         "title": "Reaktionsschnelligkeit unter Belastung",
         "goal": "Ziel: Koordinative Schulung bei erhöhter läuferischer Vorbelastung",
         "coachTip": "Auf saubere Ausführung auch nach der Vorbelastung achten – genau das simuliert echte Spielsituationen im späteren Spielverlauf.",
@@ -3072,6 +3080,7 @@
       },
       {
         "id": "farbsignal-agility",
+        "halle": true,
         "title": "Farbsignal-Agility",
         "goal": "Ziel: Reaktive Richtungswechsel mit Ball auf ein visuelles Signal",
         "coachTip": "Blick nach vorn, nicht auf den Ball – das Signal kommt kurz vor dem Wendepunkt und will gesehen werden.",
@@ -3350,6 +3359,7 @@
       },
       {
         "id": "reflexparcours-mit-nachfassen",
+        "halle": true,
         "title": "Reflexparcours mit Nachfassen",
         "goal": "Ziel: Schnelle Reflexe und sicheres Nachfassen bei Abprallern",
         "coachTip": "Sicheres Abfangen des Abprallers genauso wichtig nehmen wie den ersten Reflex selbst.",
@@ -3882,6 +3892,7 @@
       },
       {
         "id": "kopfball-verlaengerung",
+        "halle": true,
         "title": "Kopfball-Verlängerung",
         "goal": "Ziel: Den Ball mit dem Kopf gezielt in den Lauf einer Mitspieler*in verlängern",
         "coachTip": "Beim Verlängern den Ball nur leicht mit der Stirn „anstreifen“ – die Richtung kommt aus der Kopfdrehung, nicht aus der Kraft.",
@@ -4525,6 +4536,7 @@
     "aufwaermen": [
       {
         "id": "leistungsorientiertes-aufwaermprogramm",
+        "halle": true,
         "title": "Leistungsorientiertes Aufwärmprogramm",
         "goal": "Ziel: Aktivierung mit steigender Intensität, direkt wettkampfnah aufgebaut",
         "coachTip": "Intensität wirklich bis zum Trainingsniveau steigern – ein zu lasches Aufwärmen bereitet nicht ausreichend auf intensive Trainingsinhalte vor.",
@@ -4653,6 +4665,7 @@
       },
       {
         "id": "ballzirkulation-mit-pressing-einstieg",
+        "halle": true,
         "title": "Ballzirkulation mit Pressing-Einstieg",
         "goal": "Ziel: Aufwärmen direkt mit taktischer Aktivierung verbinden",
         "coachTip": "Schrittweise steigern statt sofort volles Tempo – der Körper braucht diese Übergangsphase.",
@@ -4755,6 +4768,7 @@
       },
       {
         "id": "rondo-mit-seitenwechsel",
+        "halle": true,
         "title": "Rondo mit Seitenwechsel",
         "goal": "Ziel: Aktivierung mit Ball, Spielverlagerung und Pressing-Auslöser",
         "coachTip": "Den langen Ball flach und scharf spielen – ein hoher Ball gibt den Pressenden die Zeit, rüberzukommen.",
