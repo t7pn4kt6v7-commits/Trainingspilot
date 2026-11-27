@@ -1,3 +1,4 @@
 node_modules/
 .mobilpruefung-ui-v1.html
 .claude/worktrees/
+__pycache__/
