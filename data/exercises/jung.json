@@ -690,6 +690,320 @@
         ],
         "leichter": "Mehr Garagen aufstellen.",
         "schwerer": "In jede Garage passt nur ein Auto."
+      },
+      {
+        "id": "luftballon-zirkus",
+        "halle": true,
+        "title": "Luftballon-Zirkus",
+        "goal": "Ziel: Gefühl für Flugbahnen und Berührungen mit verschiedenen Körperteilen entwickeln",
+        "coachTip": "Luftballons nur halb prall aufblasen, dann fliegen sie langsam und die Kinder haben Zeit. Ein paar Ersatzballons mitbringen.",
+        "materials": "{k + 2} Luftballons · {pylonCountForBoundary(fieldWidthMeters(10, 0.4, k))} gelbe Pilonen zur Feldmarkierung · {floor(k/2)} Leibchen",
+        "dims": "{fieldDims(10, 0.4, k)}",
+        "diagram": {
+          "scene": {
+            "w": 12,
+            "l": 9,
+            "caption": "Bälle in der Luft = Luftballons",
+            "items": [
+              {
+                "t": "p",
+                "x": 2,
+                "y": 3,
+                "team": "b"
+              },
+              {
+                "t": "ball",
+                "x": 2.5,
+                "y": 3,
+                "z": 2.1
+              },
+              {
+                "t": "p",
+                "x": 5.5,
+                "y": 2,
+                "team": "r"
+              },
+              {
+                "t": "ball",
+                "x": 6,
+                "y": 2,
+                "z": 2.1
+              },
+              {
+                "t": "p",
+                "x": 9,
+                "y": 3.5,
+                "team": "b"
+              },
+              {
+                "t": "ball",
+                "x": 9.5,
+                "y": 3.5,
+                "z": 2.1
+              },
+              {
+                "t": "p",
+                "x": 3,
+                "y": 6.2,
+                "team": "r"
+              },
+              {
+                "t": "ball",
+                "x": 3.5,
+                "y": 6.2,
+                "z": 2.1
+              },
+              {
+                "t": "p",
+                "x": 8,
+                "y": 6.8,
+                "team": "b"
+              },
+              {
+                "t": "ball",
+                "x": 8.5,
+                "y": 6.8,
+                "z": 2.1
+              },
+              {
+                "t": "p",
+                "x": 11,
+                "y": 5.5,
+                "team": "r"
+              },
+              {
+                "t": "ball",
+                "x": 11.5,
+                "y": 5.5,
+                "z": 2.1
+              },
+              {
+                "t": "p",
+                "x": 6,
+                "y": 8.4,
+                "team": "t",
+                "step": 3
+              }
+            ],
+            "moves": [
+              {
+                "t": "run",
+                "from": [
+                  2.6,
+                  3.4
+                ],
+                "to": [
+                  4.2,
+                  4.6
+                ],
+                "step": 1,
+                "at": 0.5
+              },
+              {
+                "t": "run",
+                "from": [
+                  8.4,
+                  4.2
+                ],
+                "to": [
+                  6.7,
+                  4.6
+                ],
+                "step": 2,
+                "at": 0.5
+              }
+            ]
+          }
+        },
+        "sources": [
+          "https://www.badischer-turner-bund.de/fileadmin/user_upload/DOKUMENTE/02-Jugend/Kinderturnen/Kinderturnstiftung/Kinderturnstiftung-Bewegungspaeckchen-Luftballon.pdf",
+          "https://www.sbfv.de/fileadmin/user_upload/Nav_Fussball/Kinder/Trainingsformen/G-Jugend/G-Jugend_Phase_1_Spielerisches_UEben_Ballschule_0.pdf"
+        ],
+        "added": "2026-11-27",
+        "aufbau": [
+          "Jedes Kind hat einen Luftballon, die Hälfte der Kinder trägt ein Leibchen. So entstehen zwei Teams: mit und ohne Leibchen.",
+          "Alle verteilen sich frei im Feld. Fehlen Luftballons, nimmt man leichte Softbälle."
+        ],
+        "ablauf": [
+          "Alle halten ihren Ballon mit der Hand in der Luft und laufen dabei durch das Feld.",
+          "Auf Zuruf der Trainer*in wechselt die Berührung: nur Fuß, nur Knie, nur Schulter, nur Kopf (sanft, ohne Sprung).",
+          "Auf „Stopp!“ friert jedes Kind ein. Wessen Ballon noch in der Luft ist, zählt für sein Team einen Punkt."
+        ],
+        "regeln": [
+          "Der Ballon darf den Boden nicht berühren. Fällt er doch, hebt man ihn schnell auf und macht weiter.",
+          "Nicht festhalten, nur schlagen und tippen."
+        ],
+        "leichter": "Der Ballon darf zwischendurch einmal den Boden berühren.",
+        "schwerer": "Zwei Ballons gleichzeitig oder eine Hand hinter dem Rücken."
+      },
+      {
+        "id": "fischzug-im-hafen",
+        "halle": true,
+        "title": "Fischzug im Hafen",
+        "goal": "Ziel: Ball führen und mit der Sohle im Ziel stoppen, mit Teamwettbewerb",
+        "coachTip": "Darauf achten, dass der Ball im Reifen wirklich liegen bleibt (Sohle drauf). Wer einen „Fisch“ verliert, holt ihn einfach zurück.",
+        "materials": "{k + 4} Bälle · 2 Reifen · {floor(k/2)} Leibchen · {pylonCountForBoundary(fieldWidthMeters(10, 0.4, k))} gelbe Pilonen zur Feldmarkierung",
+        "dims": "{fieldDims(10, 0.4, k)}",
+        "diagram": {
+          "scene": {
+            "w": 16,
+            "l": 10,
+            "caption": "Reifen = Boot · Bälle in der Mitte = Fische",
+            "items": [
+              {
+                "t": "hoop",
+                "x": 1.5,
+                "y": 5
+              },
+              {
+                "t": "hoop",
+                "x": 14.5,
+                "y": 5
+              },
+              {
+                "t": "ball",
+                "x": 6.5,
+                "y": 4
+              },
+              {
+                "t": "ball",
+                "x": 8,
+                "y": 5.5
+              },
+              {
+                "t": "ball",
+                "x": 9.5,
+                "y": 4.2
+              },
+              {
+                "t": "ball",
+                "x": 7.4,
+                "y": 6.8
+              },
+              {
+                "t": "ball",
+                "x": 9,
+                "y": 7.2
+              },
+              {
+                "t": "ball",
+                "x": 8.2,
+                "y": 3
+              },
+              {
+                "t": "ball",
+                "x": 6.4,
+                "y": 6
+              },
+              {
+                "t": "p",
+                "x": 0.8,
+                "y": 2.2,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 0.8,
+                "y": 7.8,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 2.6,
+                "y": 3,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 15.2,
+                "y": 2.2,
+                "team": "r"
+              },
+              {
+                "t": "p",
+                "x": 15.2,
+                "y": 7.8,
+                "team": "r"
+              },
+              {
+                "t": "p",
+                "x": 13.4,
+                "y": 3,
+                "team": "r"
+              },
+              {
+                "t": "p",
+                "x": 8,
+                "y": 9.4,
+                "team": "t",
+                "step": 4
+              }
+            ],
+            "moves": [
+              {
+                "t": "run",
+                "from": [
+                  2.6,
+                  3.4
+                ],
+                "to": [
+                  6,
+                  4.2
+                ],
+                "step": 1,
+                "at": 0.5
+              },
+              {
+                "t": "dribble",
+                "from": [
+                  10,
+                  5.8
+                ],
+                "to": [
+                  13.2,
+                  5.2
+                ],
+                "step": 2,
+                "at": 0.5
+              },
+              {
+                "t": "run",
+                "from": [
+                  14.2,
+                  3.3
+                ],
+                "to": [
+                  10.6,
+                  4.1
+                ],
+                "step": 3,
+                "at": 0.5
+              }
+            ]
+          }
+        },
+        "sources": [
+          "https://www.mobilesport.ch/wp-content/uploads/2016/05/Fussball_in_der_Schule_d.pdf",
+          "https://www.sbfv.de/fileadmin/user_upload/Nav_Fussball/Kinder/Trainingsformen/G-Jugend/G-Jugend_Phase_1_Spielerisches_UEben_Ballschule_0.pdf"
+        ],
+        "added": "2026-11-27",
+        "aufbau": [
+          "In der Mitte des Feldes liegen viele Bälle als „Fische“ verstreut.",
+          "An den beiden Schmalseiten liegt je ein Reifen als Boot. Die Kinder bilden zwei Teams (Leibchen) und stellen sich bei ihrem Boot auf.",
+          "Fehlt der Reifen, legt man vier Hütchen als Quadrat."
+        ],
+        "ablauf": [
+          "Auf das Startsignal läuft jedes Kind zur Mitte und nimmt sich einen Fisch (Ball).",
+          "Es dribbelt den Fisch zum eigenen Boot und stoppt ihn mit der Sohle im Reifen.",
+          "Danach läuft es ohne Ball zurück zur Mitte und holt den nächsten Fisch.",
+          "Nach 2 Minuten zählt die Trainer*in die Bälle in beiden Booten."
+        ],
+        "regeln": [
+          "Es wird immer nur ein Ball gleichzeitig geführt, nicht getragen.",
+          "Bälle, die im Boot liegen, dürfen nicht weggenommen werden."
+        ],
+        "leichter": "Der Ball darf mit der Hand in den Reifen gelegt werden, sobald man das Boot erreicht hat.",
+        "schwerer": "Der Ball muss mit der schwächeren Fußseite geführt werden."
       }
     ],
     "passspiel": [
@@ -1082,6 +1396,335 @@
         ],
         "leichter": "Ball vor dem Pass auf die Torlinie legen und aus dem Stand spielen.",
         "schwerer": "Nur mit dem schwächeren Fuß passen."
+      },
+      {
+        "id": "wand-echo",
+        "halle": true,
+        "title": "Wand-Echo",
+        "goal": "Ziel: Flach passen, den Ball annehmen und sicher zurückspielen, die Wand ist Mitspielerin",
+        "coachTip": "Auf die Innenseite des Fußes achten und darauf, dass die Kinder den Ball vor dem nächsten Pass kurz stoppen. Wer zu hart schießt, geht einen Schritt weiter weg.",
+        "materials": "{ceil(k/2)} Bälle · {ceil(k/2) + 1} Hütchen",
+        "dims": "Wand ca. {min(20, round(ceil(k/2) * 2.5))} m lang, davor ca. 5 m Platz",
+        "diagram": {
+          "scene": {
+            "w": 15,
+            "l": 9,
+            "caption": "A / B = Paar · Wand hinten (draußen: Bank hochkant)",
+            "zones": [
+              {
+                "x": 0,
+                "y": 7.6,
+                "w": 15,
+                "h": 1.3,
+                "label": "WAND"
+              }
+            ],
+            "items": [
+              {
+                "t": "cone",
+                "x": 2.5,
+                "y": 3
+              },
+              {
+                "t": "cone",
+                "x": 5,
+                "y": 3
+              },
+              {
+                "t": "cone",
+                "x": 7.5,
+                "y": 3
+              },
+              {
+                "t": "cone",
+                "x": 10,
+                "y": 3
+              },
+              {
+                "t": "cone",
+                "x": 12.5,
+                "y": 3
+              },
+              {
+                "t": "p",
+                "x": 1.2,
+                "y": 3.3,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "ball",
+                "x": 1.8,
+                "y": 3.1
+              },
+              {
+                "t": "p",
+                "x": 3.7,
+                "y": 3.3,
+                "team": "b",
+                "label": "B"
+              },
+              {
+                "t": "p",
+                "x": 6.2,
+                "y": 3.3,
+                "team": "r"
+              },
+              {
+                "t": "ball",
+                "x": 6.8,
+                "y": 3.1
+              },
+              {
+                "t": "p",
+                "x": 8.7,
+                "y": 3.3,
+                "team": "r"
+              },
+              {
+                "t": "p",
+                "x": 11.2,
+                "y": 3.3,
+                "team": "b"
+              },
+              {
+                "t": "ball",
+                "x": 11.8,
+                "y": 3.1
+              },
+              {
+                "t": "p",
+                "x": 13.7,
+                "y": 3.3,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 14.6,
+                "y": 5.6,
+                "team": "t",
+                "step": 4
+              }
+            ],
+            "moves": [
+              {
+                "t": "pass",
+                "from": [
+                  1.8,
+                  3.9
+                ],
+                "to": [
+                  2.4,
+                  7.4
+                ],
+                "step": 1,
+                "at": 0.45
+              },
+              {
+                "t": "pass",
+                "from": [
+                  2.8,
+                  7.4
+                ],
+                "to": [
+                  3.6,
+                  4
+                ],
+                "step": 2,
+                "at": 0.6
+              },
+              {
+                "t": "pass",
+                "from": [
+                  8.6,
+                  3.9
+                ],
+                "to": [
+                  7.6,
+                  7.4
+                ],
+                "step": 3,
+                "at": 0.5
+              }
+            ]
+          }
+        },
+        "sources": [
+          "https://www.mobilesport.ch/wp-content/uploads/2016/05/Fussball_in_der_Schule_d.pdf",
+          "https://dfb.de/fileadmin/_dfbdam/49939-353-bam-sp1-01.pdf"
+        ],
+        "added": "2026-11-27",
+        "aufbau": [
+          "Zu zweit arbeiten, jedes Paar bekommt einen Ball und einen Streifen vor der Wand, getrennt durch Hütchen.",
+          "Das Paar steht etwa 3 m von der Wand entfernt, die Kinder stehen nebeneinander.",
+          "Draußen nimmt man eine Prellwand oder eine hochkant gestellte Bank."
+        ],
+        "ablauf": [
+          "<b>A</b> passt den Ball flach gegen die Wand.",
+          "Der Ball prallt zurück zu <b>B</b>, das ihn mit der Fußinnenseite stoppt.",
+          "<b>B</b> passt zurück gegen die Wand, jetzt bekommt <b>A</b> den Ball. So geht es hin und her.",
+          "Das Paar zählt seine Pässe in 1 Minute und trägt sie in die Wertung des Teams ein."
+        ],
+        "regeln": [
+          "Der Ball wird immer flach gespielt, nicht hochgehoben.",
+          "Der Ball darf nur einmal gestoppt werden, dann geht er zurück an die Wand."
+        ],
+        "leichter": "Näher an die Wand stellen oder den Ball mit der Hand zurückrollen.",
+        "schwerer": "Den Ball ohne Stoppen direkt zurückspielen (Direktspiel)."
+      },
+      {
+        "id": "insel-wechsel",
+        "halle": true,
+        "title": "Insel-Wechsel",
+        "goal": "Ziel: Passen und gleich danach den freien Platz suchen (Passen und Laufen verbinden)",
+        "coachTip": "Das Kind soll zuerst den Pass spielen und erst dann loslaufen. Sagt es laut „Pass – lauf!“, stimmen Reihenfolge und Rhythmus.",
+        "materials": "{ceil(k/2)} Bälle · {3 * ceil(k/2)} Hütchen",
+        "dims": "{fieldDims(10, 0.4, k)}",
+        "diagram": {
+          "scene": {
+            "w": 15,
+            "l": 9,
+            "caption": "A / B = Paar · 3 Hütchen = Inseln",
+            "items": [
+              {
+                "t": "cone",
+                "x": 1.5,
+                "y": 6
+              },
+              {
+                "t": "cone",
+                "x": 5.5,
+                "y": 6
+              },
+              {
+                "t": "cone",
+                "x": 3.5,
+                "y": 2
+              },
+              {
+                "t": "cone",
+                "x": 8.5,
+                "y": 6
+              },
+              {
+                "t": "cone",
+                "x": 12.5,
+                "y": 6
+              },
+              {
+                "t": "cone",
+                "x": 10.5,
+                "y": 2
+              },
+              {
+                "t": "p",
+                "x": 1.1,
+                "y": 6,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "p",
+                "x": 6.1,
+                "y": 6,
+                "team": "b",
+                "label": "B"
+              },
+              {
+                "t": "ball",
+                "x": 1.7,
+                "y": 5.8
+              },
+              {
+                "t": "p",
+                "x": 9,
+                "y": 6,
+                "team": "r"
+              },
+              {
+                "t": "p",
+                "x": 13,
+                "y": 6,
+                "team": "r"
+              },
+              {
+                "t": "ball",
+                "x": 9.6,
+                "y": 5.8
+              },
+              {
+                "t": "p",
+                "x": 14.2,
+                "y": 8.6,
+                "team": "t",
+                "step": 4
+              }
+            ],
+            "moves": [
+              {
+                "t": "pass",
+                "from": [
+                  2.2,
+                  5.8
+                ],
+                "to": [
+                  5.6,
+                  5.8
+                ],
+                "step": 1,
+                "at": 0.5
+              },
+              {
+                "t": "run",
+                "from": [
+                  1.4,
+                  5.4
+                ],
+                "to": [
+                  3.4,
+                  2.6
+                ],
+                "step": 2,
+                "at": 0.5
+              },
+              {
+                "t": "pass",
+                "from": [
+                  5.6,
+                  5.4
+                ],
+                "to": [
+                  3.8,
+                  2.6
+                ],
+                "step": 3,
+                "at": 0.5
+              }
+            ]
+          }
+        },
+        "sources": [
+          "https://training-service.fussball.de/fileadmin/_dfbdam/51856-355-bam-te.pdf",
+          "https://www.sbfv.de/fileadmin/user_upload/Nav_Fussball/Kinder/Trainingsformen/G-Jugend/G-Jugend_Phase_1_Spielerisches_UEben_Ballschule_0.pdf"
+        ],
+        "added": "2026-11-27",
+        "aufbau": [
+          "Zu zweit spielen, jedes Paar hat einen Ball und drei Inseln in einem Dreieck.",
+          "Je Insel liegt ein Hütchen. In der Halle gehen auch Reifen oder Teppichfliesen.",
+          "Zwei Kinder stehen auf zwei der drei Inseln, die dritte ist frei."
+        ],
+        "ablauf": [
+          "<b>A</b> passt den Ball zu <b>B</b> auf die andere Insel.",
+          "<b>A</b> läuft sofort auf die freie dritte Insel.",
+          "<b>B</b> passt den Ball zu <b>A</b> und läuft ebenfalls auf die jetzt freie Insel.",
+          "So geht es weiter. Das Paar zählt seine Pässe in 1 Minute, das Team mit den meisten Pässen gewinnt."
+        ],
+        "regeln": [
+          "Der Ball wird flach gespielt.",
+          "Wer zu früh losläuft, bevor der Pass gespielt ist, fängt neu an zu zählen."
+        ],
+        "leichter": "Zuerst gehen statt laufen, der Ball wird mit der Hand zugerollt.",
+        "schwerer": "Der Ball darf nur einmal gestoppt werden, dann kommt der nächste Pass sofort."
       }
     ],
     "torschuss": [
@@ -1468,6 +2111,388 @@
         ],
         "leichter": "Schusslinie näher ans Tor.",
         "schwerer": "Ball vor dem Schuss einmal mit der Sohle stoppen."
+      },
+      {
+        "id": "mattenwand-treffer",
+        "halle": true,
+        "title": "Mattenwand-Treffer",
+        "goal": "Ziel: Flach und mit Gefühl auf ein großes Ziel schießen, Teams zählen ihre Treffer",
+        "coachTip": "Gefühl vor Kraft: Wer nur drauflosschlägt, bekommt den Ball hart zurück. Nur schießen, wenn niemand vor der Matte steht.",
+        "materials": "2 Matten · {k} Bälle · {pylonCountForBoundary(fieldWidthMeters(10, 0.4, k))} gelbe Pilonen zur Feldmarkierung · {floor(k/2)} Leibchen",
+        "dims": "{fieldDims(10, 0.4, k)}",
+        "diagram": {
+          "scene": {
+            "w": 15,
+            "l": 10,
+            "caption": "Matten lehnen an der Wand · Linie = Schusslinie",
+            "lines": [
+              {
+                "x1": 0,
+                "y1": 4,
+                "x2": 15,
+                "y2": 4,
+                "dash": true
+              }
+            ],
+            "zones": [
+              {
+                "x": 1.5,
+                "y": 8.8,
+                "w": 5,
+                "h": 1,
+                "label": "MATTE ROT"
+              },
+              {
+                "x": 8.5,
+                "y": 8.8,
+                "w": 5,
+                "h": 1,
+                "label": "MATTE BLAU"
+              }
+            ],
+            "items": [
+              {
+                "t": "p",
+                "x": 2.5,
+                "y": 2.2,
+                "team": "r"
+              },
+              {
+                "t": "ball",
+                "x": 3.2,
+                "y": 2.4
+              },
+              {
+                "t": "p",
+                "x": 4.6,
+                "y": 2.2,
+                "team": "r"
+              },
+              {
+                "t": "ball",
+                "x": 5.2,
+                "y": 2.4
+              },
+              {
+                "t": "p",
+                "x": 9.5,
+                "y": 2.2,
+                "team": "b"
+              },
+              {
+                "t": "ball",
+                "x": 10.2,
+                "y": 2.4
+              },
+              {
+                "t": "p",
+                "x": 11.7,
+                "y": 2.2,
+                "team": "b",
+                "step": 3
+              },
+              {
+                "t": "ball",
+                "x": 12.3,
+                "y": 2.4
+              },
+              {
+                "t": "p",
+                "x": 7.6,
+                "y": 0.6,
+                "team": "t",
+                "step": 4
+              }
+            ],
+            "moves": [
+              {
+                "t": "pass",
+                "from": [
+                  3.2,
+                  4.3
+                ],
+                "to": [
+                  3.6,
+                  8.6
+                ],
+                "step": 1,
+                "at": 0.6
+              },
+              {
+                "t": "pass",
+                "from": [
+                  9.8,
+                  4.3
+                ],
+                "to": [
+                  10.6,
+                  8.6
+                ],
+                "step": 1,
+                "at": 0.6
+              },
+              {
+                "t": "run",
+                "from": [
+                  7.5,
+                  4.6
+                ],
+                "to": [
+                  7.5,
+                  8.2
+                ],
+                "step": 2,
+                "at": 0.5
+              }
+            ]
+          }
+        },
+        "sources": [
+          "https://www.dtb.de/fileadmin/user_upload/dtb.de/Kinderturnen/Kinderturn-Club/PDFs/2022_2_PT_Weichbodenmatten-Spiele.pdf",
+          "https://www.mobilesport.ch/wp-content/uploads/2016/05/Fussball_in_der_Schule_d.pdf"
+        ],
+        "added": "2026-11-27",
+        "aufbau": [
+          "Zwei Matten (Weichbodenmatten oder Turnmatten) lehnen an der Wand. Sie sind die großen Tore der Teams Rot und Blau. Draußen ersetzt man sie durch zwei Hütchentore.",
+          "Etwa 5 m davor liegt eine Schusslinie (Hallenlinie oder Hütchenreihe). Jedes Team steht mit allen Bällen hinter seiner Linie."
+        ],
+        "ablauf": [
+          "Auf das Zeichen schießt jedes Kind seinen Ball flach auf die Matte seines Teams.",
+          "Sobald alle geschossen haben, rufen alle „Holen!“ und holen ihren Ball ab.",
+          "Alle kehren hinter die Schusslinie zurück, jedes Team zählt die Treffer laut mit.",
+          "Nach 3 Durchgängen gewinnt das Team mit den meisten Treffern."
+        ],
+        "regeln": [
+          "Nur flach schießen, nicht hoch.",
+          "Nach dem Schuss bleibt jeder hinter der Linie, bis alle geschossen haben.",
+          "Zum Holen geht man, man rennt nicht."
+        ],
+        "leichter": "Näher an die Matte stellen, ein Treffer zählt, sobald der Ball die Matte berührt.",
+        "schwerer": "Ein Hütchen vor der Matte zählt als Bonusziel (3 Punkte) oder es wird mit dem schwächeren Fuß geschossen."
+      },
+      {
+        "id": "raketen-start",
+        "halle": true,
+        "title": "Raketen-Start",
+        "goal": "Ziel: Ball führen, kurz stoppen und dann gezielt auf ein kleines Tor schießen, mit Gruppenwettbewerb",
+        "coachTip": "Die Kinder dürfen laut zählen („3, 2, 1, Start!“), das schafft Ruhe vor dem Schuss. Auf den Stopp mit der Sohle im Reifen achten.",
+        "materials": "{min(5, ceil(k/3))} Bälle · {min(5, ceil(k/3))} Reifen · {3 * min(5, ceil(k/3))} Hütchen",
+        "dims": "{min(5, ceil(k/3))} Bahnen, je ca. 3 m breit und 10 m lang",
+        "diagram": {
+          "scene": {
+            "w": 14,
+            "l": 11,
+            "caption": "Je Gruppe eine Bahn · Reifen = Tankstelle",
+            "items": [
+              {
+                "t": "cone",
+                "x": 1.05,
+                "y": 10.8
+              },
+              {
+                "t": "cone",
+                "x": 2.45,
+                "y": 10.8
+              },
+              {
+                "t": "hoop",
+                "x": 1.75,
+                "y": 5.6
+              },
+              {
+                "t": "cone",
+                "x": 1.75,
+                "y": 0.8,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 4.55,
+                "y": 10.8
+              },
+              {
+                "t": "cone",
+                "x": 5.95,
+                "y": 10.8
+              },
+              {
+                "t": "hoop",
+                "x": 5.25,
+                "y": 5.6
+              },
+              {
+                "t": "cone",
+                "x": 5.25,
+                "y": 0.8,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 8.05,
+                "y": 10.8
+              },
+              {
+                "t": "cone",
+                "x": 9.45,
+                "y": 10.8
+              },
+              {
+                "t": "hoop",
+                "x": 8.75,
+                "y": 5.6
+              },
+              {
+                "t": "cone",
+                "x": 8.75,
+                "y": 0.8,
+                "color": "#F2B134"
+              },
+              {
+                "t": "cone",
+                "x": 11.55,
+                "y": 10.8
+              },
+              {
+                "t": "cone",
+                "x": 12.95,
+                "y": 10.8
+              },
+              {
+                "t": "hoop",
+                "x": 12.25,
+                "y": 5.6
+              },
+              {
+                "t": "cone",
+                "x": 12.25,
+                "y": 0.8,
+                "color": "#F2B134"
+              },
+              {
+                "t": "p",
+                "x": 1.75,
+                "y": 0.2,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "ball",
+                "x": 2.4,
+                "y": 0.3
+              },
+              {
+                "t": "p",
+                "x": 5.25,
+                "y": 0.2,
+                "team": "r"
+              },
+              {
+                "t": "ball",
+                "x": 5.9,
+                "y": 0.3
+              },
+              {
+                "t": "p",
+                "x": 8.75,
+                "y": 0.2,
+                "team": "b"
+              },
+              {
+                "t": "ball",
+                "x": 9.4,
+                "y": 0.3
+              },
+              {
+                "t": "p",
+                "x": 12.25,
+                "y": 0.2,
+                "team": "r"
+              },
+              {
+                "t": "ball",
+                "x": 12.9,
+                "y": 0.3
+              }
+            ],
+            "moves": [
+              {
+                "t": "dribble",
+                "from": [
+                  2.3,
+                  1.2
+                ],
+                "to": [
+                  2.2,
+                  5
+                ],
+                "step": 1,
+                "at": 0.5
+              },
+              {
+                "t": "dribble",
+                "from": [
+                  2.2,
+                  6.2
+                ],
+                "to": [
+                  1.9,
+                  9.6
+                ],
+                "step": 2,
+                "at": 0.3
+              },
+              {
+                "t": "pass",
+                "from": [
+                  1.9,
+                  9.9
+                ],
+                "to": [
+                  1.8,
+                  10.8
+                ],
+                "step": 3,
+                "at": 0.5
+              },
+              {
+                "t": "run",
+                "from": [
+                  3.3,
+                  9
+                ],
+                "to": [
+                  3.3,
+                  1.8
+                ],
+                "step": 4,
+                "at": 0.6
+              }
+            ]
+          }
+        },
+        "sources": [
+          "https://www.sbfv.de/fileadmin/user_upload/Nav_Fussball/Kinder/Trainingsformen/G-Jugend/G-Jugend_Phase_1_Spielerisches_UEben_Ballschule_0.pdf",
+          "https://training-service.fussball.de/fileadmin/_dfbdam/51856-355-bam-te.pdf"
+        ],
+        "added": "2026-11-27",
+        "aufbau": [
+          "Die Kinder bilden Gruppen mit je 3–4 Kindern, jede Gruppe hat eine Bahn mit einem Ball.",
+          "In der Bahn liegt in der Mitte ein Reifen (die Raketen-Tankstelle), am Ende steht ein Tor aus zwei Hütchen, am besten vor einer Wand.",
+          "Am Start liegt ein Hütchen als Startlinie."
+        ],
+        "ablauf": [
+          "Das erste Kind dribbelt vom Start bis zum Reifen und stoppt den Ball mit der Sohle darin.",
+          "Es zählt laut „3, 2, 1, Start!“ und dribbelt weiter bis kurz vor das Tor.",
+          "Dann schießt es flach ins Tor. Jedes Tor ist ein Punkt für die Gruppe.",
+          "Das Kind holt den Ball, dribbelt zurück zur Gruppe, übergibt ihn und stellt sich hinten an."
+        ],
+        "regeln": [
+          "Das nächste Kind startet, wenn das vorige den Reifen verlässt.",
+          "Nur in der eigenen Bahn bleiben.",
+          "Nach 3 Runden gewinnt die Gruppe mit den meisten Toren."
+        ],
+        "leichter": "Der Reifen entfällt, der Schuss kommt direkt nach dem Dribbling.",
+        "schwerer": "Das Tor wird schmaler gestellt oder man schießt mit dem schwächeren Fuß."
       }
     ],
     "bewegung": [
@@ -2064,6 +3089,333 @@
         ],
         "leichter": "Burg tiefer machen (3 m).",
         "schwerer": "Mit dem Fuß statt mit der Hand spielen."
+      },
+      {
+        "id": "tierhaus-wettlauf",
+        "halle": true,
+        "title": "Tierhaus-Wettlauf",
+        "goal": "Ziel: Schnell reagieren und sich auf viele Arten bewegen, ohne Ball",
+        "coachTip": "Tiere wählen, die ganz unterschiedliche Bewegungen verlangen (kriechen, hüpfen, flattern). So üben die Kinder viele Bewegungsformen.",
+        "materials": "1 Matte · 1 Reifen · 1 Bank · 4 Hütchen · {floor(k/2)} Leibchen",
+        "dims": "{fieldDims(12, 0.4, k)}",
+        "diagram": {
+          "scene": {
+            "w": 16,
+            "l": 10,
+            "caption": "Matte = Bär · Reifen = Frosch · Bank = Schlange · Hütchen = Vogel",
+            "zones": [
+              {
+                "x": 0.5,
+                "y": 0.5,
+                "w": 3.5,
+                "h": 2.5,
+                "label": "BÄR"
+              }
+            ],
+            "items": [
+              {
+                "t": "hoop",
+                "x": 13,
+                "y": 1.8
+              },
+              {
+                "t": "bench",
+                "x": 3,
+                "y": 8.6,
+                "len": 3
+              },
+              {
+                "t": "cone",
+                "x": 12,
+                "y": 7.2
+              },
+              {
+                "t": "cone",
+                "x": 15,
+                "y": 7.2
+              },
+              {
+                "t": "cone",
+                "x": 12,
+                "y": 9
+              },
+              {
+                "t": "cone",
+                "x": 15,
+                "y": 9
+              },
+              {
+                "t": "p",
+                "x": 6.5,
+                "y": 4.6,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 8,
+                "y": 5.2,
+                "team": "r"
+              },
+              {
+                "t": "p",
+                "x": 9.5,
+                "y": 4.4,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 7.5,
+                "y": 3.6,
+                "team": "r"
+              },
+              {
+                "t": "p",
+                "x": 5.5,
+                "y": 5.8,
+                "team": "r"
+              },
+              {
+                "t": "p",
+                "x": 9,
+                "y": 9.6,
+                "team": "t",
+                "step": 1
+              },
+              {
+                "t": "p",
+                "x": 3.4,
+                "y": 2.6,
+                "team": "b",
+                "step": 3
+              }
+            ],
+            "moves": [
+              {
+                "t": "run",
+                "from": [
+                  13.6,
+                  3.2
+                ],
+                "to": [
+                  10.6,
+                  4.2
+                ],
+                "step": 4,
+                "at": 0.5
+              },
+              {
+                "t": "run",
+                "from": [
+                  6.2,
+                  4.2
+                ],
+                "to": [
+                  4.4,
+                  2.8
+                ],
+                "step": 2,
+                "at": 0.5
+              },
+              {
+                "t": "run",
+                "from": [
+                  9.8,
+                  3.8
+                ],
+                "to": [
+                  12.4,
+                  2.4
+                ],
+                "step": 2,
+                "at": 0.5
+              }
+            ]
+          }
+        },
+        "sources": [
+          "https://www.vibss.de/fileadmin/co_theme/Default/Media/Sportpraxis/Sport_und_Praxis/KiJu/PH_2016_Kinder_Bewegungslandschaften_Drehen_Klettern_Rollen_Gymnastikreifen.pdf",
+          "https://www.htj.de/fileadmin/01_kinderturnen/04_aktuelle_angebote_und_aktionen/2023_kinderturnkarteikarten_hauptteil.pdf"
+        ],
+        "added": "2026-11-27",
+        "aufbau": [
+          "In den vier Ecken stehen die Tierhäuser: Matte (Bärenhöhle), Reifen (Froschteich), Bank (Schlangengrube) und ein Hütchenquadrat (Vogelnest).",
+          "Draußen werden die Häuser mit Seilen, Jacken oder Hütchen markiert.",
+          "Zwei Teams (Leibchen) laufen frei in der Mitte."
+        ],
+        "ablauf": [
+          "Die Trainer*in ruft ein Tier, zum Beispiel „Bär!“.",
+          "Alle bewegen sich wie dieses Tier zu seinem Haus (Bär: auf allen Vieren, Frosch: hüpfen, Schlange: kriechen, Vogel: flattern).",
+          "Das erste Kind jedes Teams, das im richtigen Haus ankommt, ruft „Da!“ und bekommt einen Punkt für sein Team.",
+          "Zurück in die Mitte, dann ruft die Trainer*in das nächste Tier."
+        ],
+        "regeln": [
+          "Wer im falschen Haus ankommt, läuft zum richtigen weiter.",
+          "Nicht schubsen, an jedem Haus ist Platz für alle."
+        ],
+        "leichter": "Nur zwei Häuser benutzen und die Tiere nacheinander ankündigen.",
+        "schwerer": "Auf „Wald!“ rennen alle zurück in die Mitte und machen eine Statue."
+      },
+      {
+        "id": "eisschollen-rennen",
+        "halle": true,
+        "title": "Eisschollen-Rennen",
+        "goal": "Ziel: Gleichgewicht und Körperbeherrschung im Wettkampf, ohne den Boden zu berühren",
+        "coachTip": "Kinder, die ins „Wasser“ steigen, einfach lachend neu starten lassen. Der Wettkampf soll Spaß machen, nicht Druck.",
+        "materials": "{2 * min(6, k)} Teppichfliesen · {floor(k/2)} Leibchen",
+        "dims": "{min(6, k)} Bahnen, je ca. 2 m breit und 10 m lang",
+        "diagram": {
+          "scene": {
+            "w": 14,
+            "l": 9,
+            "caption": "Fliesen = Schollen · Start links, Ziel rechts",
+            "zones": [
+              {
+                "x": 0,
+                "y": 0,
+                "w": 1.8,
+                "h": 9
+              },
+              {
+                "x": 12.2,
+                "y": 0,
+                "w": 1.8,
+                "h": 9
+              },
+              {
+                "x": 2.6,
+                "y": 1.1,
+                "w": 0.8,
+                "h": 0.8
+              },
+              {
+                "x": 3.8,
+                "y": 1.1,
+                "w": 0.8,
+                "h": 0.8
+              },
+              {
+                "x": 4.800000000000001,
+                "y": 3.1,
+                "w": 0.8,
+                "h": 0.8
+              },
+              {
+                "x": 6,
+                "y": 3.1,
+                "w": 0.8,
+                "h": 0.8
+              },
+              {
+                "x": 2.6,
+                "y": 5.1,
+                "w": 0.8,
+                "h": 0.8
+              },
+              {
+                "x": 3.8,
+                "y": 5.1,
+                "w": 0.8,
+                "h": 0.8
+              },
+              {
+                "x": 2.6,
+                "y": 7.1,
+                "w": 0.8,
+                "h": 0.8
+              },
+              {
+                "x": 3.8,
+                "y": 7.1,
+                "w": 0.8,
+                "h": 0.8
+              }
+            ],
+            "items": [
+              {
+                "t": "p",
+                "x": 1.2,
+                "y": 1.5,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 3.4000000000000004,
+                "y": 3.5,
+                "team": "r"
+              },
+              {
+                "t": "p",
+                "x": 1.2,
+                "y": 5.5,
+                "team": "b",
+                "step": 3
+              },
+              {
+                "t": "p",
+                "x": 1.2,
+                "y": 7.5,
+                "team": "r"
+              },
+              {
+                "t": "p",
+                "x": 7,
+                "y": 8.6,
+                "team": "t",
+                "step": 4
+              }
+            ],
+            "moves": [
+              {
+                "t": "run",
+                "from": [
+                  4.8,
+                  1.5
+                ],
+                "to": [
+                  11,
+                  1.5
+                ],
+                "step": 1,
+                "at": 0.4
+              },
+              {
+                "t": "run",
+                "from": [
+                  6.5,
+                  3.9
+                ],
+                "to": [
+                  11,
+                  3.9
+                ],
+                "step": 2,
+                "at": 0.3
+              }
+            ]
+          }
+        },
+        "sources": [
+          "https://www.htj.de/fileadmin/01_kinderturnen/04_aktuelle_angebote_und_aktionen/2023_kinderturnkarteikarten_hauptteil.pdf",
+          "https://www.vibss.de/fileadmin/co_theme/Default/Media/Sportpraxis/Sport_und_Praxis/KiJu/PH_2016_Kinder_Bewegungslandschaften_Drehen_Klettern_Rollen_Gymnastikreifen.pdf"
+        ],
+        "added": "2026-11-27",
+        "aufbau": [
+          "Auf dem Hallenboden ist ein Eismeer: Start- und Ziellinie liegen etwa 10 m auseinander.",
+          "Je Kind gibt es zwei Teppichfliesen (Eisschollen). Draußen nimmt man Pappen, Zeitungsblätter oder Reifen. Der Boden dazwischen ist das Wasser.",
+          "Bis zu 6 Kinder starten gleichzeitig, jedes in seiner Bahn. Die anderen feuern an. Zwei Teams (Leibchen) sammeln Punkte."
+        ],
+        "ablauf": [
+          "Jedes Kind stellt sich auf eine Scholle und legt die zweite vor sich ab.",
+          "Es steigt auf die zweite, nimmt die erste auf, legt sie wieder vor sich ab und so weiter bis zum Ziel.",
+          "Wer ins Wasser tritt, bleibt dort stehen, bis eine Scholle wieder unter den Füßen ist.",
+          "Platz 1 im Ziel bringt 3 Punkte für das Team, Platz 2 bringt 2 Punkte, Platz 3 einen Punkt. Dann starten die Nächsten."
+        ],
+        "regeln": [
+          "Die Schollen werden nur getragen, nicht geschoben oder geworfen.",
+          "Jedes Kind bleibt in seiner Bahn."
+        ],
+        "leichter": "Die Strecke wird kürzer oder die Schollen dürfen im Wasser abgelegt werden.",
+        "schwerer": "Ein Softball wird auf dem Weg mitgetragen."
       }
     ],
     "zweikampf": [
@@ -2639,6 +3991,159 @@
         ],
         "leichter": "Linie breiter machen.",
         "schwerer": "Ritter*in darf von Anfang an ins Feld."
+      },
+      {
+        "id": "reifen-duell",
+        "halle": true,
+        "title": "Reifen-Duell",
+        "goal": "Ziel: Im 1 gegen 1 den Ball schützen, den Gegner umspielen und sicher im Ziel stoppen",
+        "coachTip": "Der Ball bleibt am Fuß, der Körper schiebt sich zwischen Ball und Gegner. Kein Festhalten, kein Treten.",
+        "materials": "{ceil(k/2)} Bälle · {2 * ceil(k/2)} Reifen",
+        "dims": "{ceil(k/2)} Felder, je ca. 6 × 4 m (nebeneinander oder in zwei Reihen)",
+        "diagram": {
+          "scene": {
+            "w": 14,
+            "l": 5,
+            "caption": "2 Felder · Reifen = Ziel",
+            "noField": true,
+            "lines": [
+              {
+                "x1": 0,
+                "y1": 0,
+                "x2": 6,
+                "y2": 0
+              },
+              {
+                "x1": 0,
+                "y1": 4,
+                "x2": 6,
+                "y2": 4
+              },
+              {
+                "x1": 8,
+                "y1": 0,
+                "x2": 14,
+                "y2": 0
+              },
+              {
+                "x1": 8,
+                "y1": 4,
+                "x2": 14,
+                "y2": 4
+              }
+            ],
+            "items": [
+              {
+                "t": "hoop",
+                "x": 0.8,
+                "y": 2
+              },
+              {
+                "t": "hoop",
+                "x": 5.2,
+                "y": 2
+              },
+              {
+                "t": "hoop",
+                "x": 8.8,
+                "y": 2
+              },
+              {
+                "t": "hoop",
+                "x": 13.2,
+                "y": 2
+              },
+              {
+                "t": "p",
+                "x": 2.2,
+                "y": 2,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "p",
+                "x": 3.8,
+                "y": 2.4,
+                "team": "r",
+                "label": "V"
+              },
+              {
+                "t": "ball",
+                "x": 3,
+                "y": 2
+              },
+              {
+                "t": "p",
+                "x": 10.2,
+                "y": 2.4,
+                "team": "b",
+                "step": 3
+              },
+              {
+                "t": "p",
+                "x": 11.8,
+                "y": 1.6,
+                "team": "r",
+                "step": 4
+              },
+              {
+                "t": "ball",
+                "x": 11,
+                "y": 2
+              }
+            ],
+            "moves": [
+              {
+                "t": "dribble",
+                "from": [
+                  2.4,
+                  1.6
+                ],
+                "to": [
+                  0.9,
+                  1.6
+                ],
+                "step": 2,
+                "at": 0.5
+              },
+              {
+                "t": "run",
+                "from": [
+                  3.6,
+                  3
+                ],
+                "to": [
+                  2.6,
+                  2.4
+                ],
+                "step": 1,
+                "at": 0.4
+              }
+            ]
+          }
+        },
+        "sources": [
+          "https://www.mobilesport.ch/wp-content/uploads/2016/05/Fussball_in_der_Schule_d.pdf",
+          "https://dfb.de/fileadmin/_dfbdam/49939-353-bam-sp1-01.pdf"
+        ],
+        "added": "2026-11-27",
+        "aufbau": [
+          "Zu zweit spielen, jedes Paar hat ein Feld mit einem Reifen an jedem Ende. Fehlen Reifen, legt man zwei Hütchen als Tor.",
+          "Jedes Kind verteidigt den Reifen hinter seinem Rücken.",
+          "Ein Ball liegt in der Mitte des Feldes."
+        ],
+        "ablauf": [
+          "Auf das Zeichen läuft jedes Kind zum Ball, beide kämpfen darum.",
+          "Wer den Ball erobert, führt ihn und stoppt ihn im Reifen des Gegners mit der Sohle.",
+          "Das andere Kind verteidigt und versucht, den Ball wegzuspielen.",
+          "Ein Ball im Reifen ist ein Punkt. Danach geht es mit dem Ball in der Mitte von vorn los."
+        ],
+        "regeln": [
+          "Ohne Schubsen, ohne Festhalten, ohne Grätschen.",
+          "Gespielt wird bis 3 Punkte, wer gewinnt, geht ein Feld weiter."
+        ],
+        "leichter": "Der Ball darf mit der Hand im Reifen abgelegt werden.",
+        "schwerer": "Ein Punkt zählt nur, wenn der Ball 3 Sekunden ruhig im Reifen liegt."
       }
     ],
     "spielaufbau": [
@@ -2870,6 +4375,178 @@
         ],
         "leichter": "Näher an die Brücken.",
         "schwerer": "Abwechselnd durch beide Brücken passen."
+      },
+      {
+        "id": "fluss-fussball",
+        "halle": true,
+        "title": "Fluss-Fußball",
+        "goal": "Ziel: Den Ball sicher über den Fluss zu einer Mitspielerin passen (Aufbau aus der Abwehr)",
+        "coachTip": "Auf den Blick der Verteidiger*innen achten: Wer vor dem Pass nach vorn schaut, findet sein Ziel besser. Auch einen Pass loben, der nicht ankommt.",
+        "materials": "2 Bälle · 4 Hütchen · 1 Bank · {floor(k/2)} Leibchen",
+        "dims": "{fieldDims(12, 0.4, k)}",
+        "diagram": {
+          "scene": {
+            "w": 16,
+            "l": 10,
+            "caption": "V = Verteidiger*in · S = Stürmer*in",
+            "zones": [
+              {
+                "x": 7.4,
+                "y": 0,
+                "w": 1.2,
+                "h": 10,
+                "label": "FLUSS"
+              }
+            ],
+            "items": [
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 3.5
+              },
+              {
+                "t": "cone",
+                "x": 0,
+                "y": 6.5
+              },
+              {
+                "t": "cone",
+                "x": 16,
+                "y": 3.5
+              },
+              {
+                "t": "cone",
+                "x": 16,
+                "y": 6.5
+              },
+              {
+                "t": "p",
+                "x": 2.4,
+                "y": 4.2,
+                "team": "r",
+                "label": "V"
+              },
+              {
+                "t": "p",
+                "x": 2.4,
+                "y": 6.4,
+                "team": "r",
+                "label": "V"
+              },
+              {
+                "t": "ball",
+                "x": 3.1,
+                "y": 5.4
+              },
+              {
+                "t": "p",
+                "x": 4.6,
+                "y": 3.6,
+                "team": "b",
+                "label": "S"
+              },
+              {
+                "t": "p",
+                "x": 4.6,
+                "y": 6.8,
+                "team": "b",
+                "label": "S"
+              },
+              {
+                "t": "p",
+                "x": 12,
+                "y": 3.4,
+                "team": "r",
+                "label": "S"
+              },
+              {
+                "t": "p",
+                "x": 12,
+                "y": 6.6,
+                "team": "r",
+                "label": "S"
+              },
+              {
+                "t": "p",
+                "x": 14.2,
+                "y": 5,
+                "team": "b",
+                "label": "V"
+              },
+              {
+                "t": "p",
+                "x": 10,
+                "y": 9.6,
+                "team": "t",
+                "step": 4
+              }
+            ],
+            "moves": [
+              {
+                "t": "pass",
+                "from": [
+                  3.2,
+                  5.3
+                ],
+                "to": [
+                  11.2,
+                  4
+                ],
+                "step": 2,
+                "at": 0.5,
+                "arc": 1.2
+              },
+              {
+                "t": "dribble",
+                "from": [
+                  12.6,
+                  3.6
+                ],
+                "to": [
+                  14.8,
+                  4.6
+                ],
+                "step": 3,
+                "at": 0.5
+              },
+              {
+                "t": "run",
+                "from": [
+                  3.6,
+                  4.4
+                ],
+                "to": [
+                  3,
+                  5.2
+                ],
+                "step": 1,
+                "at": 0.4
+              }
+            ]
+          }
+        },
+        "sources": [
+          "https://training-service.fussball.de/fileadmin/_dfbdam/51856-355-bam-te.pdf",
+          "https://www.mobilesport.ch/wp-content/uploads/2016/05/Fussball_in_der_Schule_d.pdf"
+        ],
+        "added": "2026-11-27",
+        "aufbau": [
+          "Ein Feld wird durch einen Fluss (Langbank, Seil oder Hallenlinie) in zwei Hälften geteilt, an jedem Ende steht ein Tor aus zwei Hütchen.",
+          "Zwei Teams (Leibchen). Jedes Team teilt sich in <b>V</b> (Verteidiger*innen) und <b>S</b> (Stürmer*innen).",
+          "Die V von Team Rot spielen links, die S von Team Rot spielen rechts, bei Team Blau ist es genau umgekehrt."
+        ],
+        "ablauf": [
+          "Links spielen die Verteidiger*innen von Rot gegen die Stürmer*innen von Blau.",
+          "Gewinnt Rot den Ball, spielt ein <b>V</b> ihn über den Fluss zu den <b>S</b> von Rot.",
+          "Rechts spielen die <b>S</b> von Rot gegen die V von Blau und versuchen, ein Tor zu schießen.",
+          "Nach 3 Minuten tauschen V und S ihre Rollen, am Ende gewinnt das Team mit den meisten Toren."
+        ],
+        "regeln": [
+          "Der Ball geht nur per Pass über den Fluss, niemand darf hinüberlaufen.",
+          "Nach einem Tor startet das Team, das es kassiert hat, mit einem Anstoß seiner V."
+        ],
+        "leichter": "Der Ball darf mit der Hand zugerollt werden.",
+        "schwerer": "Vor dem Pass über den Fluss muss jede V den Ball einmal berührt haben."
       }
     ],
     "koordination": [
@@ -3433,6 +5110,309 @@
         ],
         "leichter": "Beidbeinig durch alle Reifen.",
         "schwerer": "Ball hinter dem Rücken oder über dem Kopf halten."
+      },
+      {
+        "id": "schatzinsel-rundlauf",
+        "halle": true,
+        "title": "Schatzinsel-Rundlauf",
+        "goal": "Ziel: Gleichgewicht, Sprungkraft und Ballführung in drei Stationen im Wechsel trainieren",
+        "coachTip": "An der Bank stehen und den Kindern bei Bedarf die Hand reichen. Nach dem Wechsel kurz ansagen, welche Station als Nächstes kommt.",
+        "materials": "1 Bank · 4 Reifen · 3 Hütchen · 2 Bälle",
+        "dims": "3 Stationen, je ca. 6 × 4 m",
+        "diagram": {
+          "scene": {
+            "w": 20,
+            "l": 7,
+            "caption": "1 Bank · 2 Reifen · 3 Hütchen-Slalom",
+            "items": [
+              {
+                "t": "bench",
+                "x": 3.5,
+                "y": 3.5,
+                "len": 4.5
+              },
+              {
+                "t": "hoop",
+                "x": 8.4,
+                "y": 3.5
+              },
+              {
+                "t": "hoop",
+                "x": 9.6,
+                "y": 3.5
+              },
+              {
+                "t": "hoop",
+                "x": 10.8,
+                "y": 3.5
+              },
+              {
+                "t": "hoop",
+                "x": 12,
+                "y": 3.5
+              },
+              {
+                "t": "cone",
+                "x": 15,
+                "y": 2.4
+              },
+              {
+                "t": "cone",
+                "x": 16.5,
+                "y": 4.6
+              },
+              {
+                "t": "cone",
+                "x": 18,
+                "y": 2.4
+              },
+              {
+                "t": "p",
+                "x": 0.5,
+                "y": 3.5,
+                "team": "b"
+              },
+              {
+                "t": "ball",
+                "x": 1.1,
+                "y": 3.4
+              },
+              {
+                "t": "p",
+                "x": 7.4,
+                "y": 4.5,
+                "team": "r"
+              },
+              {
+                "t": "p",
+                "x": 14.3,
+                "y": 3.5,
+                "team": "b"
+              },
+              {
+                "t": "ball",
+                "x": 14.6,
+                "y": 3.2
+              },
+              {
+                "t": "p",
+                "x": 12,
+                "y": 6.5,
+                "team": "t",
+                "step": 4
+              }
+            ],
+            "moves": [
+              {
+                "t": "run",
+                "from": [
+                  1.4,
+                  2.5
+                ],
+                "to": [
+                  5.6,
+                  2.5
+                ],
+                "step": 1,
+                "at": 0.5
+              },
+              {
+                "t": "run",
+                "from": [
+                  7.8,
+                  2.5
+                ],
+                "to": [
+                  12.6,
+                  2.5
+                ],
+                "step": 2,
+                "at": 0.5
+              },
+              {
+                "t": "dribble",
+                "from": [
+                  14.8,
+                  3.4
+                ],
+                "to": [
+                  18.4,
+                  3.4
+                ],
+                "step": 3,
+                "at": 0.5
+              }
+            ]
+          }
+        },
+        "sources": [
+          "https://www.vibss.de/fileadmin/co_theme/Default/Media/Sportpraxis/Sport_und_Praxis/KiJu/PH_2016_Kinder_Bewegungslandschaften_Drehen_Klettern_Rollen_Gymnastikreifen.pdf",
+          "https://training-service.fussball.de/fileadmin/_dfbdam/51856-355-bam-te.pdf",
+          "https://www.htj.de/fileadmin/01_kinderturnen/04_aktuelle_angebote_und_aktionen/2023_kinderturnkarteikarten_hauptteil.pdf"
+        ],
+        "added": "2026-11-27",
+        "aufbau": [
+          "Drei Stationen nebeneinander: Station 1 ist die Bank (Brücke) mit einem Ball zum Tragen, Station 2 sind vier Reifen (Inselhüpfen), Station 3 ist ein Hütchen-Slalom mit Ball.",
+          "Draußen ersetzt man die Bank durch eine Linie aus Seilen oder Hütchen.",
+          "Die Kinder bilden drei Gruppen, jede beginnt an einer Station."
+        ],
+        "ablauf": [
+          "Station 1: Über die Bank balancieren und den Ball in den Händen tragen.",
+          "Station 2: Von Reifen zu Reifen hüpfen, mit beiden Füßen.",
+          "Station 3: Den Ball im Slalom um die Hütchen führen.",
+          "Nach dem Pfiff (etwa alle 2 Minuten) wechselt jede Gruppe zur nächsten Station im Uhrzeigersinn."
+        ],
+        "regeln": [
+          "Das nächste Kind startet, sobald das vorige das erste Hindernis geschafft hat.",
+          "Wer etwas verfehlt, versucht es direkt noch einmal.",
+          "Die Gruppe mit den meisten Runden in 2 Minuten bekommt einen Punkt."
+        ],
+        "leichter": "Die Bank wird ohne Ball balanciert.",
+        "schwerer": "Beim Hüpfen jeden zweiten Reifen auslassen oder auf einem Bein hüpfen."
+      },
+      {
+        "id": "schatten-dribbler",
+        "halle": true,
+        "title": "Schatten-Dribbler",
+        "goal": "Ziel: Ball führen und gleichzeitig die Bewegungen eines Partners genau nachmachen",
+        "coachTip": "Die Anführer*innen sollen ruhig und abwechslungsreich dribbeln (Kurven, Tempowechsel, Stopp). Zu schnelle Anführer*innen verlieren den Schatten, dann kurz bremsen.",
+        "materials": "{k} Bälle · {pylonCountForBoundary(fieldWidthMeters(10, 0.4, k))} gelbe Pilonen zur Feldmarkierung",
+        "dims": "{fieldDims(10, 0.4, k)}",
+        "diagram": {
+          "scene": {
+            "w": 14,
+            "l": 9,
+            "caption": "A = Anführer*in · S = Schatten",
+            "items": [
+              {
+                "t": "p",
+                "x": 2.5,
+                "y": 3,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "ball",
+                "x": 3.2,
+                "y": 3.2
+              },
+              {
+                "t": "p",
+                "x": 1.2,
+                "y": 3.2,
+                "team": "r",
+                "label": "S"
+              },
+              {
+                "t": "ball",
+                "x": 1.9,
+                "y": 3.4
+              },
+              {
+                "t": "p",
+                "x": 8,
+                "y": 2.5,
+                "team": "b"
+              },
+              {
+                "t": "ball",
+                "x": 8.7,
+                "y": 2.7
+              },
+              {
+                "t": "p",
+                "x": 6.6,
+                "y": 2.6,
+                "team": "r"
+              },
+              {
+                "t": "ball",
+                "x": 7.3,
+                "y": 2.8
+              },
+              {
+                "t": "p",
+                "x": 10.5,
+                "y": 6.5,
+                "team": "b",
+                "step": 4
+              },
+              {
+                "t": "ball",
+                "x": 11.2,
+                "y": 6.7
+              },
+              {
+                "t": "p",
+                "x": 9,
+                "y": 7,
+                "team": "r"
+              },
+              {
+                "t": "ball",
+                "x": 9.7,
+                "y": 7.2
+              },
+              {
+                "t": "p",
+                "x": 5,
+                "y": 8.4,
+                "team": "t",
+                "step": 3
+              }
+            ],
+            "moves": [
+              {
+                "t": "dribble",
+                "from": [
+                  3.4,
+                  3.3
+                ],
+                "to": [
+                  5.6,
+                  5
+                ],
+                "step": 1,
+                "at": 0.5
+              },
+              {
+                "t": "dribble",
+                "from": [
+                  2,
+                  3.7
+                ],
+                "to": [
+                  4,
+                  5.4
+                ],
+                "step": 2,
+                "at": 0.5
+              }
+            ]
+          }
+        },
+        "sources": [
+          "https://www.sbfv.de/fileadmin/user_upload/Nav_Fussball/Kinder/Trainingsformen/G-Jugend/G-Jugend_Phase_1_Spielerisches_UEben_Ballschule_0.pdf",
+          "https://www.mobilesport.ch/wp-content/uploads/2016/05/Fussball_in_der_Schule_d.pdf"
+        ],
+        "added": "2026-11-27",
+        "aufbau": [
+          "Paare bilden, jedes Kind hat einen Ball.",
+          "Ein Kind ist <b>A</b> (Anführer*in), das andere <b>S</b> (Schatten).",
+          "Alle Paare verteilen sich im Feld."
+        ],
+        "ablauf": [
+          "<b>A</b> dribbelt frei durch das Feld, mit Kurven, Tempowechseln und Stopps.",
+          "<b>S</b> bleibt dicht dahinter und macht alles genau nach.",
+          "Auf den Pfiff der Trainer*in bleibt jedes Paar stehen. <b>S</b> zählt: Wie viele Schritte Abstand sind es?",
+          "Die Rollen wechseln. Bei 3 Schritten oder weniger gibt es einen Punkt für das Paar."
+        ],
+        "regeln": [
+          "Paare weichen anderen Paaren immer aus.",
+          "Der Ball bleibt am Fuß."
+        ],
+        "leichter": "Zuerst ohne Ball mitlaufen, später mit Ball.",
+        "schwerer": "Der Schatten dribbelt mit dem schwächeren Fuß."
       }
     ],
     "torwart": [
@@ -3729,6 +5709,133 @@
         ],
         "leichter": "Nur rollen.",
         "schwerer": "Abwechselnd flach, halbhoch und etwas seitlich werfen."
+      },
+      {
+        "id": "koerbchen-faenger",
+        "halle": true,
+        "title": "Körbchen-Fänger",
+        "goal": "Ziel: Rollende Bälle sicher mit den Händen fangen (Körbchen-Griff) und am Körper sichern",
+        "coachTip": "Vormachen: Hände wie ein Körbchen unter den Ball, Ball an die Brust ziehen. Nur rollen und locker, damit kein Kind Angst bekommt.",
+        "materials": "{2 * max(1, floor(k/3))} Bälle · {2 * max(1, floor(k/3))} Hütchen",
+        "dims": "{max(1, floor(k/3))} Tore, je ca. 3 m breit, Schützen 4 m davor",
+        "diagram": {
+          "scene": {
+            "w": 16,
+            "l": 8,
+            "caption": "T = Torwart*in · 2 Schützen rollen den Ball",
+            "items": [
+              {
+                "t": "cone",
+                "x": 13,
+                "y": 1.6
+              },
+              {
+                "t": "cone",
+                "x": 13,
+                "y": 4.6
+              },
+              {
+                "t": "p",
+                "x": 12.2,
+                "y": 3.1,
+                "team": "y",
+                "label": "T"
+              },
+              {
+                "t": "p",
+                "x": 7.5,
+                "y": 1.5,
+                "team": "b"
+              },
+              {
+                "t": "ball",
+                "x": 8.2,
+                "y": 1.6
+              },
+              {
+                "t": "p",
+                "x": 7.5,
+                "y": 4.8,
+                "team": "b"
+              },
+              {
+                "t": "ball",
+                "x": 8.2,
+                "y": 4.9
+              },
+              {
+                "t": "p",
+                "x": 0.6,
+                "y": 7.2,
+                "team": "t",
+                "step": 4
+              }
+            ],
+            "moves": [
+              {
+                "t": "pass",
+                "from": [
+                  8.5,
+                  1.6
+                ],
+                "to": [
+                  12,
+                  2.2
+                ],
+                "step": 1,
+                "at": 0.4
+              },
+              {
+                "t": "run",
+                "from": [
+                  12.9,
+                  3.9
+                ],
+                "to": [
+                  12.9,
+                  2.3
+                ],
+                "step": 2,
+                "at": 0.5
+              },
+              {
+                "t": "pass",
+                "from": [
+                  11.6,
+                  3.6
+                ],
+                "to": [
+                  8.7,
+                  4.6
+                ],
+                "step": 3,
+                "at": 0.5
+              }
+            ]
+          }
+        },
+        "sources": [
+          "https://training-service.fussball.de/fileadmin/_dfbdam/51856-355-bam-te.pdf",
+          "https://www.sbfv.de/fileadmin/user_upload/Nav_Fussball/Kinder/Trainingsformen/G-Jugend/G-Jugend_Phase_1_Spielerisches_UEben_Ballschule_0.pdf"
+        ],
+        "added": "2026-11-27",
+        "aufbau": [
+          "Gruppen mit je 3 Kindern, jede Gruppe hat ein Tor aus zwei Hütchen. In der Halle geht auch ein Handballtor.",
+          "Ein Kind ist <b>T</b> (Torwart*in) im Tor, die anderen zwei sind Schützen mit je einem Ball und stehen etwa 4 m davor."
+        ],
+        "ablauf": [
+          "Der erste Schütze rollt den Ball flach auf das Tor.",
+          "<b>T</b> bewegt sich zum Ball und fängt ihn mit dem Körbchen-Griff.",
+          "<b>T</b> rollt den Ball zurück zu einem Schützen und macht sich für den nächsten Ball bereit.",
+          "Jeder Schütze rollt 5 Bälle, dann wechseln die Rollen im Uhrzeigersinn."
+        ],
+        "regeln": [
+          "Nur rollen, nicht schießen.",
+          "Fängt T den Ball, gibt es einen Punkt für T, rollt er durchs Tor, einen für den Schützen.",
+          "Am Ende hat jedes Kind einmal im Tor gestanden."
+        ],
+        "leichter": "Das Tor schmaler machen, die Schützen rollen etwas langsamer.",
+        "schwerer": "Die Schützen rollen abwechselnd, T bekommt den Ball ohne Vorwarnung."
       }
     ],
     "kopfball": [
@@ -3936,6 +6043,157 @@
         ],
         "leichter": "Fangen und zurückwerfen erlaubt.",
         "schwerer": "Ball darf nicht aufspringen."
+      },
+      {
+        "id": "stirn-tipp-im-reifen",
+        "halle": true,
+        "title": "Stirn-Tipp im Reifen",
+        "goal": "Ziel: Einen langsamen Ball fangen und sanft mit der Stirn berühren, ganz ohne Sprung",
+        "coachTip": "Die Stirn-Berührung bleibt Nebensache. Augen offen, Mund zu, Hals fest: Wer nicht will, fängt einfach weiter. Nur leichte Bälle (Softbälle) benutzen.",
+        "materials": "{ceil(k/2)} Reifen · {ceil(k/2)} Bälle",
+        "dims": "{fieldDims(8, 0.3, k)}",
+        "diagram": {
+          "scene": {
+            "w": 12,
+            "l": 7,
+            "caption": "A im Reifen · B wirft weich zu",
+            "noField": true,
+            "items": [
+              {
+                "t": "hoop",
+                "x": 2,
+                "y": 4.6
+              },
+              {
+                "t": "hoop",
+                "x": 6,
+                "y": 4.6
+              },
+              {
+                "t": "hoop",
+                "x": 10,
+                "y": 4.6
+              },
+              {
+                "t": "p",
+                "x": 2,
+                "y": 4.6,
+                "team": "b",
+                "label": "A"
+              },
+              {
+                "t": "p",
+                "x": 2,
+                "y": 1.6,
+                "team": "r",
+                "label": "B"
+              },
+              {
+                "t": "p",
+                "x": 6,
+                "y": 4.6,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 6,
+                "y": 1.6,
+                "team": "r"
+              },
+              {
+                "t": "p",
+                "x": 10,
+                "y": 4.6,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 10,
+                "y": 1.6,
+                "team": "r"
+              },
+              {
+                "t": "p",
+                "x": 6,
+                "y": 6.8,
+                "team": "t",
+                "step": 4
+              }
+            ],
+            "moves": [
+              {
+                "t": "pass",
+                "from": [
+                  2.5,
+                  2.3
+                ],
+                "to": [
+                  2.5,
+                  4.1
+                ],
+                "step": 1,
+                "at": 0.5,
+                "arc": 0.4,
+                "z0": 1,
+                "z1": 1
+              },
+              {
+                "t": "pass",
+                "from": [
+                  6.5,
+                  2.3
+                ],
+                "to": [
+                  6.5,
+                  4.1
+                ],
+                "step": 2,
+                "at": 0.5,
+                "arc": 1.4,
+                "z0": 1,
+                "z1": 1.5
+              },
+              {
+                "t": "pass",
+                "from": [
+                  10.5,
+                  4.1
+                ],
+                "to": [
+                  10.5,
+                  2.3
+                ],
+                "step": 3,
+                "at": 0.5,
+                "arc": 0.6,
+                "z0": 1.5,
+                "z1": 1
+              }
+            ]
+          }
+        },
+        "sources": [
+          "https://www.sbfv.de/fileadmin/user_upload/Nav_Fussball/Kinder/Trainingsformen/G-Jugend/G-Jugend_Phase_1_Spielerisches_UEben_Ballschule_0.pdf",
+          "https://www.badischer-turner-bund.de/fileadmin/user_upload/DOKUMENTE/02-Jugend/Kinderturnen/Kinderturnstiftung/Kinderturnstiftung-Bewegungspaeckchen-Luftballon.pdf"
+        ],
+        "added": "2026-11-27",
+        "aufbau": [
+          "Paare bilden, jedes Paar hat einen Reifen und einen leichten Ball (Softball oder entlüfteter Ball). Draußen markiert man den Platz mit einem Hütchenkreis.",
+          "<b>A</b> steht im Reifen und darf ihn nicht verlassen. <b>B</b> steht etwa 2 m davor."
+        ],
+        "ablauf": [
+          "<b>B</b> wirft den Ball flach und sanft auf <b>A</b>, der ihn mit beiden Händen fängt.",
+          "Nach 5 Fängen wirft <b>B</b> den Ball in einem hohen, weichen Bogen auf die Stirn von <b>A</b>.",
+          "<b>A</b> berührt den Ball sanft mit der Stirn zurück zu <b>B</b>, der ihn fängt.",
+          "Danach wechseln die Rollen. Wie viele Berührungen schafft das Paar in 2 Minuten?"
+        ],
+        "regeln": [
+          "Die Füße bleiben im Reifen, nicht springen.",
+          "Wer sich nicht traut, fängt den Ball weiter mit den Händen.",
+          "Bälle immer weich und langsam werfen."
+        ],
+        "leichter": "Die Wurfhöhe wird niedriger, A fängt den Ball und berührt ihn dann mit der Stirn aus der Hand.",
+        "schwerer": "Der Ball wird nach der Stirn-Berührung noch einmal vom anderen Kind mit der Stirn zurückgeschickt."
       }
     ],
     "aufwaermen": [
@@ -6551,6 +8809,362 @@
         ],
         "leichter": "Den Ball mit der Hand durch den Tunnel rollen.",
         "schwerer": "Nur mit dem schwächeren Fuß passen."
+      },
+      {
+        "id": "loewen-auf-den-linien",
+        "halle": true,
+        "title": "Löwen auf den Linien",
+        "goal": "Ziel: Aufwärmen ohne Ball – Laufen, Ausweichen und Stoppen auf engem Raum",
+        "coachTip": "Auf Kinder achten, die sich nur am Rand trauen: Ein Mutmacher-Zuruf („Du bist schnell!“) hilft. Nach jeder Runde neue Löwen bestimmen.",
+        "materials": "{max(1, floor(k/6))} Leibchen · {pylonCountForBoundary(fieldWidthMeters(10, 0.4, k))} gelbe Pilonen zur Feldmarkierung",
+        "dims": "{fieldDims(10, 0.4, k)}",
+        "diagram": {
+          "scene": {
+            "w": 14,
+            "l": 10,
+            "caption": "L = Löwe · Zebras laufen nur auf den Linien",
+            "lines": [
+              {
+                "x1": 0,
+                "y1": 2.5,
+                "x2": 14,
+                "y2": 2.5
+              },
+              {
+                "x1": 0,
+                "y1": 6.5,
+                "x2": 14,
+                "y2": 6.5
+              },
+              {
+                "x1": 4,
+                "y1": 0,
+                "x2": 4,
+                "y2": 10
+              },
+              {
+                "x1": 10,
+                "y1": 0,
+                "x2": 10,
+                "y2": 10
+              }
+            ],
+            "items": [
+              {
+                "t": "p",
+                "x": 2,
+                "y": 2.5,
+                "team": "r",
+                "label": "L"
+              },
+              {
+                "t": "p",
+                "x": 7,
+                "y": 2.5,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 4,
+                "y": 5,
+                "team": "r",
+                "label": "L",
+                "step": 3
+              },
+              {
+                "t": "p",
+                "x": 10,
+                "y": 4.5,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 12,
+                "y": 6.5,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 7,
+                "y": 6.5,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 4,
+                "y": 8,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 10,
+                "y": 9,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 13,
+                "y": 2.5,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 1.5,
+                "y": 6.5,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 7,
+                "y": 9.4,
+                "team": "t",
+                "step": 4
+              }
+            ],
+            "moves": [
+              {
+                "t": "run",
+                "from": [
+                  2.6,
+                  2.5
+                ],
+                "to": [
+                  6.2,
+                  2.5
+                ],
+                "step": 2,
+                "at": 0.5
+              },
+              {
+                "t": "run",
+                "from": [
+                  7.6,
+                  2.5
+                ],
+                "to": [
+                  11.2,
+                  2.5
+                ],
+                "step": 1,
+                "at": 0.5
+              }
+            ]
+          }
+        },
+        "sources": [
+          "https://www.sbfv.de/fileadmin/user_upload/Nav_Fussball/Kinder/Trainingsformen/G-Jugend/G-Jugend_Phase_1_Spielerisches_UEben_Ballschule_0.pdf",
+          "https://www.mobilesport.ch/wp-content/uploads/2016/05/Fussball_in_der_Schule_d.pdf"
+        ],
+        "added": "2026-11-27",
+        "aufbau": [
+          "Die Linien in der Halle sind die Straßen der Savanne. Draußen legt man Seile oder Hütchenreihen als Straßen aus.",
+          "Ein bis zwei Kinder sind <b>Löwen</b> und ziehen ein Leibchen an, alle anderen sind Zebras."
+        ],
+        "ablauf": [
+          "Die Zebras laufen oder hüpfen nur auf den Linien.",
+          "Die <b>Löwen</b> jagen sie und dürfen ebenfalls nur auf den Linien laufen.",
+          "Wer abgeschlagen wird, zieht ein Leibchen an und jagt als weiterer Löwe mit.",
+          "Nach 2 Minuten zählt die Trainer*in laut: Wie viele Zebras sind noch frei?"
+        ],
+        "regeln": [
+          "Abschlagen nur sanft mit der flachen Hand am Rücken.",
+          "Wer von der Linie tritt, wird ebenfalls Löwe."
+        ],
+        "leichter": "Die Zebras dürfen kurz auf einer Kreuzung ausruhen, dort sind sie sicher.",
+        "schwerer": "Die Zebras müssen auf einem Bein hüpfen, sobald ein Löwe in ihrer Nähe ist."
+      },
+      {
+        "id": "dschungel-expedition",
+        "halle": true,
+        "title": "Dschungel-Expedition",
+        "goal": "Ziel: Aufwärmen mit Spielgeschichte – Kriechen, Balancieren, Hüpfen und Laufen im Wechsel",
+        "coachTip": "Die Geschichte laufend erzählen („Jetzt kommt der wackelige Baumstamm!“) und auf Abstand zwischen den Kindern achten, sonst entsteht Gedränge.",
+        "materials": "1 Matte · 1 Bank · 5 Reifen · 4 Hütchen · {ceil(k/2)} Bälle",
+        "dims": "{fieldDims(12, 0.4, k)}",
+        "diagram": {
+          "scene": {
+            "w": 20,
+            "l": 8,
+            "caption": "Matte = Sumpf · Bank = Baumstamm · Reifen = Steine · Hütchen = Lianen",
+            "zones": [
+              {
+                "x": 3,
+                "y": 1.5,
+                "w": 3,
+                "h": 3
+              }
+            ],
+            "items": [
+              {
+                "t": "bench",
+                "x": 8.5,
+                "y": 3,
+                "len": 3.5
+              },
+              {
+                "t": "hoop",
+                "x": 12.6,
+                "y": 3
+              },
+              {
+                "t": "hoop",
+                "x": 13.8,
+                "y": 3
+              },
+              {
+                "t": "hoop",
+                "x": 15,
+                "y": 3
+              },
+              {
+                "t": "cone",
+                "x": 16.5,
+                "y": 2
+              },
+              {
+                "t": "cone",
+                "x": 17.5,
+                "y": 4
+              },
+              {
+                "t": "cone",
+                "x": 18.5,
+                "y": 2
+              },
+              {
+                "t": "hoop",
+                "x": 19,
+                "y": 6.2
+              },
+              {
+                "t": "hoop",
+                "x": 17.2,
+                "y": 6.6
+              },
+              {
+                "t": "p",
+                "x": 0.8,
+                "y": 2.4,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 0.8,
+                "y": 3.4,
+                "team": "r"
+              },
+              {
+                "t": "p",
+                "x": 0.8,
+                "y": 4.4,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 4.5,
+                "y": 3,
+                "team": "r",
+                "arms": true
+              },
+              {
+                "t": "p",
+                "x": 10.2,
+                "y": 3,
+                "team": "b"
+              },
+              {
+                "t": "p",
+                "x": 14,
+                "y": 3,
+                "team": "r"
+              },
+              {
+                "t": "p",
+                "x": 7,
+                "y": 7.4,
+                "team": "t"
+              }
+            ],
+            "moves": [
+              {
+                "t": "run",
+                "from": [
+                  1.6,
+                  3.2
+                ],
+                "to": [
+                  7,
+                  3.2
+                ],
+                "step": 1,
+                "at": 0.5,
+                "bend": 0.5
+              },
+              {
+                "t": "run",
+                "from": [
+                  7.8,
+                  3.2
+                ],
+                "to": [
+                  11.2,
+                  3.2
+                ],
+                "step": 2,
+                "at": 0.5
+              },
+              {
+                "t": "run",
+                "from": [
+                  11.8,
+                  3.9
+                ],
+                "to": [
+                  15.6,
+                  3.9
+                ],
+                "step": 3,
+                "at": 0.45
+              },
+              {
+                "t": "run",
+                "from": [
+                  16,
+                  3
+                ],
+                "to": [
+                  19,
+                  5.4
+                ],
+                "step": 4,
+                "at": 0.5,
+                "bend": 0.3
+              }
+            ]
+          }
+        },
+        "sources": [
+          "https://www.vibss.de/fileadmin/co_theme/Default/Media/Sportpraxis/Sport_und_Praxis/KiJu/PH_2016_Kinder_Bewegungslandschaften_Drehen_Klettern_Rollen_Gymnastikreifen.pdf",
+          "https://training-service.fussball.de/fileadmin/_dfbdam/51856-355-bam-te.pdf"
+        ],
+        "added": "2026-11-27",
+        "aufbau": [
+          "Eine Runde mit vier Stationen aufbauen: Matte (Sumpf), Bank (Baumstamm), drei Reifen (Steine im Fluss) und eine Hütchenreihe (Lianen). Draußen ersetzt man Matte und Bank durch ausgelegte Jacken und eine Linie.",
+          "Am Ende liegt ein Reifen als Schatzkiste für das Team Rot, ein weiterer für das Team Blau, die Schatz-Bälle liegen in der Mitte dazwischen.",
+          "Zwei Teams bilden, alle stellen sich in einer Reihe am Start auf."
+        ],
+        "ablauf": [
+          "Durch den Sumpf (Matte) auf allen Vieren kriechen.",
+          "Über den Baumstamm (Bank) balancieren.",
+          "Über die Steine im Fluss (Reifen) hüpfen, ohne daneben zu treten.",
+          "Um die Lianen (Hütchen) im Slalom laufen, einen Schatz-Ball nehmen, in die Schatzkiste des eigenen Teams legen und zurück zum Start laufen."
+        ],
+        "regeln": [
+          "Das nächste Kind startet, sobald das vorige den Baumstamm erreicht hat.",
+          "Nach 5 Minuten gewinnt das Team mit den meisten Schätzen."
+        ],
+        "leichter": "Die Bank wird gelaufen statt balanciert, oder ein Kind balanciert an der Hand der Trainer*in.",
+        "schwerer": "Zusätzlich beim Hüpfen einen Ball in beiden Händen tragen."
       }
     ]
   }
