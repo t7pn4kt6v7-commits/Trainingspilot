@@ -55,6 +55,8 @@ Der aktuelle Stand reicht dem Nutzer. Nur auf ausdrücklichen Wunsch wieder aufg
   (z. B. `trainingspilot.github.io`) oder gekaufte Domain (ca. 10–15 € im Jahr; der Verein hat keine eigene).
   Folgen: Die App zieht um, alte Links und Home-Bildschirm-Symbole müssen neu eingerichtet werden (an der alten
   Adresse Hinweis mit Weiterleitung vorsehen); `og:image`/`og:url` in `index.html` und `plan.html` anpassen.
+  Stand Nov. 2026: Nutzer braucht weder eigene Adresse noch QR-Code zur App; der Link zur App wird über das Wappen (versteckter
+  Teilen-Knopf, v5.217) weitergegeben.
 - **Echter Kurzlink (`…/p/abc123`):** Geht nur mit einem kleinen Speicher/Server (z. B. kostenloses Konto bei
   Cloudflare). Abgelehnt, solange nichts Kosten oder Betriebsaufwand verursachen soll. Ohne Server bleibt der
   Plan im Link (rund 200 Zeichen, `encodeShareLink`).
