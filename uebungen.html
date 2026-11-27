@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0B0F0C">
+<title>Übungskatalog · Trainingspilot</title>
+<!-- Übungskatalog: alle Übungen der Bibliothek zum Durchgehen (Bild, Aufbau, Ablauf, Material), mit Filtern.
+     Liest die Übungen und den Zeichner direkt aus index.html derselben Umgebung, ist also immer auf dem Stand der App.
+     Nicht aus der App verlinkt. Siehe CLAUDE.md. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+:root{--bg:#0B0F0C;--pitch:#16281c;--pitch-2:#1f3a28;--line:rgba(233,241,228,.14);--fg:#E9F1E4;--mute:#9fb3a3;--sun:#F2B134;--ink:#1B2A1F;--card:#fff;--cardfg:#1c241e;--cardmute:#5b665e;
+  --f:'Work Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f);font-size:15px;line-height:1.45;-webkit-text-size-adjust:100%}
+.wrap{max-width:1240px;margin:0 auto;padding-block:20px 60px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.top{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 16px}
+h1{margin:0;font-size:22px;font-weight:800}
+.top a{color:var(--sun);font-weight:700;text-decoration:none;font-size:14px}
+.sub{margin:4px 0 14px;color:var(--mute);font-size:13px}
+.bar{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0 12px;border-bottom:1px solid var(--line);display:grid;gap:10px;margin-bottom:16px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+select,input[type=search],input[type=number]{min-height:44px;border-radius:10px;border:1.5px solid var(--line);background:var(--pitch);color:var(--fg);font:inherit;padding:0 12px;min-width:0}
+input[type=search]{flex:1 1 180px}
+select{flex:1 1 150px}
+input[type=number]{width:74px}
+.tg{min-height:44px;padding:0 14px;border-radius:999px;border:1.5px solid var(--line);background:transparent;color:var(--fg);font:inherit;font-weight:700;cursor:pointer}
+.tg[aria-pressed=true]{background:var(--sun);border-color:var(--sun);color:var(--ink)}
+label.k{display:flex;align-items:center;gap:8px;color:var(--mute);font-size:13px}
+.count{color:var(--mute);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+.ex{background:var(--card);color:var(--cardfg);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.eh{padding:12px 14px 8px}
+.meta{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--cardmute);font-weight:700}
+.ex h2{margin:2px 0 6px;font-size:18px;line-height:1.2;font-weight:800}
+.bd{display:inline-block;margin:0 6px 0 0;padding:2px 9px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.03em}
+.bd.h{background:#dff0e6;color:#1d5c2c}.bd.n{background:#fdecc3;color:#7a5200}
+.scene{background:#2E5339;margin:0}
+.scene svg{display:block;width:100%;height:auto}
+.mat{padding:8px 14px;font-size:12.5px;color:var(--cardmute);border-bottom:1px solid #e8ece6}
+.eb{padding:10px 14px 14px;font-size:13.5px}
+.eb b.t{display:block;margin:10px 0 2px;font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--cardmute)}
+.eb b.t:first-child{margin-top:0}
+.eb ul,.eb ol{margin:0;padding-left:20px}
+.eb li{margin:2px 0}
+.eb p{margin:4px 0}
+.tip{background:#f4efe3;border-left:3px solid #E8B13C;padding:7px 10px;border-radius:6px;margin-top:10px}
+.src{font-size:11.5px;color:var(--cardmute);margin-top:8px;overflow-wrap:anywhere}
+.src a{color:#2b5d8a}
+.more{display:block;margin:22px auto 0;min-height:48px;padding:0 24px;border-radius:999px;border:1.5px solid var(--sun);background:transparent;color:var(--sun);font:inherit;font-weight:800;cursor:pointer}
+.msg{padding:30px 0;color:var(--mute)}
+@media (max-width:700px){.bar{position:static}}
+@media (max-width:420px){.grid{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><h1>Übungskatalog</h1><a href="./">← Zur App</a></div>
+  <p class="sub" id="stand">Lädt die Übungen …</p>
+  <div class="bar">
+    <div class="row">
+      <select id="f-tier" aria-label="Altersstufe"><option value="">Alle Altersstufen</option></select>
+      <select id="f-cat" aria-label="Schwerpunkt"><option value="">Alle Schwerpunkte</option></select>
+      <input type="search" id="f-q" placeholder="Suchen (Titel, Text)" aria-label="Suchen">
+    </div>
+    <div class="row">
+      <button type="button" class="tg" id="f-halle" aria-pressed="false">🏠 Nur Halle</button>
+      <button type="button" class="tg" id="f-neu" aria-pressed="false">🆕 Nur neue</button>
+      <label class="k">Kinder <input type="number" id="f-k" min="4" max="30" value="14" aria-label="Zahl der Kinder für Material und Feldgröße"></label>
+      <span class="count" id="count"></span>
+    </div>
+  </div>
+  <div class="grid" id="grid"></div>
+  <button type="button" class="more" id="more" hidden>Weitere anzeigen</button>
+  <p class="msg" id="msg" hidden></p>
+</div>
+<script>
+(function(){
+  var TIERS = [['jung','G-Jugend (U6/U7)'],['mittel','F/E-Jugend (U8–U11)'],['alt','D-Jugend (U12/U13)'],['c','C-Jugend (U14/U15)'],['b','B-Jugend (U16/U17)'],['a','A-Jugend (U18/U19)']];
+  var CATS = [['aufwaermen','Aufwärmen'],['ballgewoehnung','Ballgewöhnung & Dribbling'],['passspiel','Passspiel'],['torschuss','Torschuss'],['bewegung','Bewegung ohne Ball & Taktik'],['zweikampf','Zweikämpfe gewinnen'],['spielaufbau','Passwege & Spielaufbau'],['umschalten','Kontern nach Ballgewinn'],['koordination','Koordination & Beweglichkeit'],['torwart','Torwart-Grundlagen'],['kopfball','Kopfball & Luftduell']];
+  var TIER_NAME = {}, CAT_NAME = {}; TIERS.forEach(function(t){ TIER_NAME[t[0]] = t[1]; }); CATS.forEach(function(c){ CAT_NAME[c[0]] = c[1]; });
+  var BATCH = 24, all = [], list = [], shown = 0, eng = null;
+  var $ = function(id){ return document.getElementById(id); };
+  // wie in der App: 60 Tage lang als neu markiert
+  function isNeu(e){ if(!e.added){ return false; } var t = Date.parse(e.added + 'T00:00:00'); if(isNaN(t)){ return false; } var d = (Date.now() - t) / 86400000; return d >= 0 && d <= 60; }
+  function esc(s){ return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function rich(s){ return esc(s).replace(/&lt;(\/?)b&gt;/g, '<$1b>'); }
+  function fail(t){ var m = $('msg'); m.hidden = false; m.textContent = t; $('stand').textContent = ''; }
+
+  // Übungen und Zeichner aus index.html lesen (gleiche Umgebung: Test liest Test, Produktiv liest Produktiv)
+  fetch('index.html', { cache: 'no-store' }).then(function(r){ return r.text(); }).then(function(html){
+    var a = html.indexOf('// EXERCISE_ENGINE_START'), b = html.indexOf('// EXERCISE_ENGINE_END');
+    var m = html.match(/<script type="application\/json" id="exercise-data">([\s\S]*?)<\/script>/);
+    if(a < 0 || b < a || !m){ fail('Die Übungen konnten in index.html nicht gefunden werden.'); return; }
+    eng = new Function(html.slice(a, b) + ';return { compileTemplate: compileTemplate, diagramScene: diagramScene, setTrainerCount: typeof setTrainerCount === "function" ? setTrainerCount : null };')();
+    var v = html.match(/var APP_VERSION = '([0-9.]+)'/);
+    var data = JSON.parse(m[1]).tiers || {};
+    TIERS.forEach(function(t){
+      var cats = data[t[0]] || {};
+      CATS.forEach(function(c){ (cats[c[0]] || []).forEach(function(e){ all.push({ tier: t[0], cat: c[0], e: e }); }); });
+    });
+    var tiersEl = $('f-tier'), catsEl = $('f-cat');
+    TIERS.forEach(function(t){ var o = document.createElement('option'); o.value = t[0]; o.textContent = t[1]; tiersEl.appendChild(o); });
+    CATS.forEach(function(c){ var o = document.createElement('option'); o.value = c[0]; o.textContent = c[1]; catsEl.appendChild(o); });
+    var nHalle = all.filter(function(x){ return x.e.halle; }).length, nNeu = all.filter(function(x){ return isNeu(x.e); }).length;
+    $('stand').textContent = all.length + ' Übungen · davon ' + nHalle + ' für die Halle · ' + nNeu + ' neu (letzte 60 Tage)' + (v ? ' · App-Version ' + v[1] : '');
+    apply();
+  }).catch(function(){ fail('Die Übungen konnten nicht geladen werden. Bitte die Seite neu laden.'); });
+
+  function card(x){
+    var e = x.e, k = Math.max(4, Math.min(30, parseInt($('f-k').value, 10) || 14));
+    var dims = '', mat = '', svg = '';
+    try{ if(eng.setTrainerCount){ eng.setTrainerCount(2); } dims = eng.compileTemplate(e.dims || '')(k); }catch(err){ dims = e.dims || ''; }
+    try{ mat = eng.compileTemplate(e.materials || '')(k); }catch(err){ mat = e.materials || ''; }
+    try{ if(e.diagram && e.diagram.scene){ svg = eng.diagramScene(e.diagram.scene); } }catch(err){ svg = ''; }
+    var h = '<article class="ex" id="ex-' + esc(x.tier + '-' + e.id) + '"><div class="eh"><div class="meta">' + esc(TIER_NAME[x.tier]) + ' · ' + esc(CAT_NAME[x.cat]) + '</div>' +
+      '<h2>' + esc(e.title) + '</h2><div>' + (e.halle ? '<span class="bd h">🏠 Halle</span>' : '') + (isNeu(e) ? '<span class="bd n">🆕 neu ' + esc(e.added) + '</span>' : '') + '</div></div>';
+    if(svg){ h += '<div class="scene">' + svg + '</div>'; }
+    h += '<div class="mat">' + esc(dims) + (dims && mat ? ' · ' : '') + esc(mat) + ' <i>(bei ' + k + ' Kindern)</i></div><div class="eb">';
+    if(e.goal){ h += '<p><b>' + esc(e.goal) + '</b></p>'; }
+    function lst(t, a, ord){ if(a && a.length){ h += '<b class="t">' + t + '</b><' + (ord ? 'ol' : 'ul') + '>' + a.map(function(s){ return '<li>' + rich(s) + '</li>'; }).join('') + '</' + (ord ? 'ol' : 'ul') + '>'; } }
+    lst('Aufbau', e.aufbau); lst('Ablauf', e.ablauf, true); lst('Regeln', e.regeln);
+    if(!e.ablauf && e.desc){ h += '<p>' + esc(e.desc) + '</p>'; }
+    if(e.leichter){ h += '<p><b>Leichter:</b> ' + rich(e.leichter) + '</p>'; }
+    if(e.schwerer){ h += '<p><b>Schwerer:</b> ' + rich(e.schwerer) + '</p>'; }
+    if(e.coachTip){ h += '<div class="tip"><b>Darauf achten:</b> ' + esc(e.coachTip) + '</div>'; }
+    if(e.sources && e.sources.length){ h += '<div class="src">Quellen (Anregung): ' + e.sources.map(function(u){ return '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(u.replace(/^https?:\/\/(www\.)?/, '').slice(0, 44)) + '</a>'; }).join(' · ') + '</div>'; }
+    return h + '</div></article>';
+  }
+  function apply(){
+    var t = $('f-tier').value, c = $('f-cat').value, q = $('f-q').value.trim().toLowerCase();
+    var hh = $('f-halle').getAttribute('aria-pressed') === 'true', nn = $('f-neu').getAttribute('aria-pressed') === 'true';
+    list = all.filter(function(x){
+      if(t && x.tier !== t){ return false; }
+      if(c && x.cat !== c){ return false; }
+      if(hh && !x.e.halle){ return false; }
+      if(nn && !isNeu(x.e)){ return false; }
+      if(q){ var s = (x.e.title + ' ' + JSON.stringify([x.e.aufbau, x.e.ablauf, x.e.regeln, x.e.desc, x.e.goal])).toLowerCase(); if(s.indexOf(q) < 0){ return false; } }
+      return true;
+    });
+    // Neueste zuerst, sonst in der Reihenfolge der Bibliothek
+    list.sort(function(a, b){ return String(b.e.added || '').localeCompare(String(a.e.added || '')); });
+    $('grid').innerHTML = ''; shown = 0; more();
+    $('count').textContent = list.length + ' Übung' + (list.length === 1 ? '' : 'en');
+    $('msg').hidden = list.length > 0; if(!list.length){ $('msg').textContent = 'Keine Übung passt zu den Filtern.'; }
+  }
+  function more(){
+    var end = Math.min(list.length, shown + BATCH), h = '';
+    for(var i = shown; i < end; i++){ h += card(list[i]); }
+    $('grid').insertAdjacentHTML('beforeend', h); shown = end;
+    $('more').hidden = shown >= list.length; $('more').textContent = 'Weitere anzeigen (' + (list.length - shown) + ' übrig)';
+  }
+  ['f-tier','f-cat'].forEach(function(id){ $(id).addEventListener('change', apply); });
+  $('f-q').addEventListener('input', function(){ clearTimeout(apply.t); apply.t = setTimeout(apply, 200); });
+  $('f-k').addEventListener('change', apply);
+  ['f-halle','f-neu'].forEach(function(id){ $(id).addEventListener('click', function(){ this.setAttribute('aria-pressed', this.getAttribute('aria-pressed') === 'true' ? 'false' : 'true'); apply(); }); });
+  $('more').addEventListener('click', more);
+})();
+</script>
+</body>
+</html>

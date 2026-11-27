@@ -66,6 +66,8 @@ jobs:
           if [ -f prod/plan.html ]; then cp prod/plan.html _site/; fi
           # Prozesshaus (Überblick über Systeme und Abläufe, nicht aus der App verlinkt)
           if [ -f prod/haus.html ]; then cp prod/haus.html _site/; fi
+          # Übungskatalog (alle Übungen zum Durchgehen, liest index.html derselben Umgebung)
+          if [ -f prod/uebungen.html ]; then cp prod/uebungen.html _site/; fi
           # Dateien für „Als App installieren“ (Android), sofern im jeweiligen Branch vorhanden
           if [ -d prod/pwa ]; then cp prod/pwa/manifest.webmanifest prod/pwa/sw.js prod/pwa/*.png _site/; fi
           if [ -d testenv ]; then
@@ -74,6 +76,7 @@ jobs:
               cp testenv/index.html _site/test/
               if [ -f testenv/plan.html ]; then cp testenv/plan.html _site/test/; fi
               if [ -f testenv/haus.html ]; then cp testenv/haus.html _site/test/; fi
+              if [ -f testenv/uebungen.html ]; then cp testenv/uebungen.html _site/test/; fi
               if [ -d testenv/pwa ]; then
                 cp testenv/pwa/manifest.webmanifest testenv/pwa/sw.js testenv/pwa/*.png _site/test/
                 # Eigener Name, damit Test- und Produktiv-App auf dem Handy unterscheidbar sind
