@@ -25,6 +25,10 @@
   Nach dem Umstellen alle Bilder ansehen (Überdeckungen, abgeschnittene Beschriftungen).
   Neue oder überarbeitete Übungen über den Agenten `uebungs-autor` (`.claude/agents/uebungs-autor.md`);
   Prüfbilder: `NODE_PATH=$(npm root -g) node tools/uebungsbilder.mjs <id>,<id>`.
+- **Erklärvideo** (Werkstatt `tools/video/`, Anleitung `tools/video/README.md`): Das Video entsteht aus `drehbuch.json` + der echten App.
+  Agent `video-produzent` (`.claude/agents/video-produzent.md`, Skill `/erklaervideo`) hält es aktuell; `node tools/video/pruefung.mjs [--technik]`
+  zeigt, was veraltet ist (läuft bei PRs auch als Action „Video-Aktualität“). **Bei Änderungen an Knöpfen, Beschriftungen oder neuen
+  Funktionen** den Hinweis der Prüfung beachten (Drehbuch anpassen oder „bewusst nicht“ eintragen). Das Video ist noch nicht in der App.
 - Die vereinfachte Oberfläche hängt am Schalter `UI_V2` in `index.html`; mit `UI_V2 = false`
   muss die alte Oberfläche unverändert funktionieren.
 - **Prozesshaus** (`haus.html`, …/Trainingspilot/haus.html): Überblick über Systeme, Abläufe und Konten mit Links.
@@ -55,6 +59,8 @@ Der aktuelle Stand reicht dem Nutzer. Nur auf ausdrücklichen Wunsch wieder aufg
   (z. B. `trainingspilot.github.io`) oder gekaufte Domain (ca. 10–15 € im Jahr; der Verein hat keine eigene).
   Folgen: Die App zieht um, alte Links und Home-Bildschirm-Symbole müssen neu eingerichtet werden (an der alten
   Adresse Hinweis mit Weiterleitung vorsehen); `og:image`/`og:url` in `index.html` und `plan.html` anpassen.
+  Stand Nov. 2026: Nutzer braucht weder eigene Adresse noch QR-Code zur App; der Link zur App wird über das Wappen (versteckter
+  Teilen-Knopf, v5.217) weitergegeben.
 - **Echter Kurzlink (`…/p/abc123`):** Geht nur mit einem kleinen Speicher/Server (z. B. kostenloses Konto bei
   Cloudflare). Abgelehnt, solange nichts Kosten oder Betriebsaufwand verursachen soll. Ohne Server bleibt der
   Plan im Link (rund 200 Zeichen, `encodeShareLink`).
