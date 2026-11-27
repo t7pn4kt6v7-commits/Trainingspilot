@@ -22,6 +22,8 @@
   Nach dem Umstellen alle Bilder ansehen (Überdeckungen, abgeschnittene Beschriftungen).
 - Die vereinfachte Oberfläche hängt am Schalter `UI_V2` in `index.html`; mit `UI_V2 = false`
   muss die alte Oberfläche unverändert funktionieren.
+- **Prozesshaus** (`haus.html`, …/Trainingspilot/haus.html): Überblick über Systeme, Abläufe und Konten mit Links.
+  Kommen Systeme, Workflows, Konten oder Bereiche hinzu oder fallen weg, dort mitpflegen.
 - Auf kleinen Handys prüfen (iPhone SE 320 px, iPhone 13 mini 375 px): keine abgeschnittenen
   Beschriftungen, kein waagerechtes Scrollen.
 
@@ -57,4 +59,4 @@ Der aktuelle Stand reicht dem Nutzer. Nur auf ausdrücklichen Wunsch wieder aufg
   Chatterbox hängt an kurze Sätze Kauderwelsch an. Zoom schneidet App-Ränder ab, Abdunkeln um das Tipp-Ziel
   wirkt besser. Aussichtsreichster Weg beim Wiederaufgreifen: Text von einem Menschen einsprechen lassen und das
   Bild an die Aufnahme anpassen. Kapitel-Seite (`video.html`, Sprungmarken, Direktlinks wie `#teilen`) war
-  fertig und getestet, wurde wieder entfernt (Stand im Git-Verlauf, Commit 01af50f).
+  fertig und getestet, wurde wieder entfernt (Stand im Git-Verlauf, Commit 494637b).

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0B0F0C">
+<title>Trainingspilot Prozesshaus</title>
+<!-- Prozesshaus: Überblick über Systeme, Abläufe und Konten des Projekts. Nicht aus der App verlinkt.
+     Bei neuen Systemen, Workflows oder Konten hier ergänzen (siehe CLAUDE.md). -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: ein Prozesshaus von oben nach unten – Dach (Leitbild), Steuerung, Kernprozess als Pfeilkette, fünf Säulen, Fundament (Konten). Farben wie in der App. */
+:root{
+  --bg:#0B0F0C;          /* Seitenhintergrund (App: Schwarz) */
+  --pitch:#16281c;       /* Flächen (App: Grün) */
+  --pitch-2:#1f3a28;
+  --line:rgba(233,241,228,.14);
+  --fg:#E9F1E4;
+  --mute:#9fb3a3;
+  --sun:#F2B134;         /* Hervorhebung (App: Gelb) */
+  --act:#E8622C;         /* Hauptaktion (App: Orange) */
+  --ok:#5fbf7a;
+  --off:#7d8a80;
+  --f-brand:'Anton',Impact,'Arial Narrow',sans-serif;
+  --f-body:'Work Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --r-s:10px;--r-m:14px;--r-l:20px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.45}
+.wrap{max-width:1180px;margin:0 auto;padding-block:28px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:14px}
+a{color:inherit}
+.head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 16px;margin-bottom:4px}
+.head p{margin:0;color:var(--mute);font-size:13px}
+.kicker{font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--sun)}
+h2{margin:0;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+
+/* Dach */
+.roof{position:relative;padding:58px 24px 26px;text-align:center;background:linear-gradient(180deg,var(--pitch-2),var(--pitch));clip-path:polygon(50% 0,100% 36%,100% 100%,0 100%,0 36%);border-radius:0 0 var(--r-m) var(--r-m)}
+.brand{font-family:var(--f-brand);font-size:clamp(34px,6vw,58px);letter-spacing:.02em;line-height:1;color:var(--sun);text-transform:uppercase}
+.mission{max-width:60ch;margin:10px auto 14px;font-size:16px;font-weight:500;text-wrap:balance}
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.chip{border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:600;background:rgba(0,0,0,.18)}
+
+/* Bänder */
+.band{background:var(--pitch);border:1px solid var(--line);border-radius:var(--r-m);padding:14px 16px;display:grid;gap:10px}
+.band-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.cell{min-width:0;border-radius:var(--r-s);background:rgba(0,0,0,.2);padding:10px 12px;display:grid;gap:4px;align-content:start}
+.cell b{font-size:14px}
+.cell span{color:var(--mute);font-size:13px}
+
+/* Kernprozess */
+.chain{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px}
+.step{position:relative;min-width:0;background:var(--pitch-2);padding:12px 22px 12px 26px;clip-path:polygon(0 0,calc(100% - 14px) 0,100% 50%,calc(100% - 14px) 100%,0 100%,14px 50%);display:grid;gap:3px;align-content:start;cursor:default;transition:background .2s;outline:none}
+.step:first-child{clip-path:polygon(0 0,calc(100% - 14px) 0,100% 50%,calc(100% - 14px) 100%,0 100%);padding-left:14px;border-radius:var(--r-s) 0 0 var(--r-s)}
+.step .n{font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--sun)}
+.step b{font-size:14px;line-height:1.2}
+.step span{font-size:12px;color:var(--mute);line-height:1.3}
+.step.release{background:#3a2a10}
+.step.release .n{color:var(--sun)}
+.step:hover,.step:focus-visible,.step.on{background:#2c5539}
+.step.release:hover,.step.release:focus-visible,.step.release.on{background:#5a3f14}
+.hint{margin:0;font-size:12px;color:var(--mute)}
+
+/* Säulen */
+.pillars{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.pillar{min-width:0;background:var(--pitch);border:1px solid var(--line);border-radius:var(--r-m);padding:14px 12px;display:grid;gap:10px;align-content:start}
+.pillar h3{margin:0;font-size:15px;font-weight:800;display:flex;align-items:center;gap:8px}
+.pillar h3 i{font-style:normal;width:26px;height:26px;border-radius:8px;background:rgba(242,177,52,.16);color:var(--sun);display:inline-flex;align-items:center;justify-content:center;font-size:14px;flex:0 0 26px}
+.pillar p{margin:0;font-size:12.5px;color:var(--mute)}
+.links{display:grid;gap:6px;margin:0;padding:0;list-style:none}
+.lk{position:relative;display:block;min-width:0;min-height:40px;padding:7px 28px 7px 10px;overflow-wrap:anywhere;border-radius:var(--r-s);background:rgba(0,0,0,.22);border:1px solid transparent;text-decoration:none;font-size:13.5px;font-weight:600;transition:border-color .15s,background .15s,opacity .2s}
+.lk small{display:block;font-weight:400;font-size:11.5px;color:var(--mute)}
+.lk::after{content:"↗";position:absolute;right:10px;top:50%;transform:translateY(-50%);color:var(--sun);font-size:13px}
+.lk:hover,.lk:focus-visible{border-color:var(--sun);background:rgba(242,177,52,.08);outline:none}
+.lk.main{background:var(--act);color:#fff}
+.lk.main small{color:rgba(255,255,255,.85)}
+.lk.main::after{color:#fff}
+.note{display:block;padding:7px 10px;border-radius:var(--r-s);border:1px dashed var(--line);font-size:13px;font-weight:600}
+.note small{display:block;font-weight:400;font-size:11.5px;color:var(--mute)}
+body.focus .lk,body.focus .note{opacity:.28}
+body.focus .hit{opacity:1;border-color:var(--sun)}
+
+/* Fundament */
+.found{background:repeating-linear-gradient(135deg,#121a14 0 10px,#141e17 10px 20px);border:1px solid var(--line);border-radius:var(--r-m);padding:14px 16px;display:grid;gap:10px}
+.found .links{grid-template-columns:repeat(4,minmax(0,1fr))}
+.state{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:999px;font-size:10.5px;font-weight:700;letter-spacing:.04em;vertical-align:1px}
+.state.ok{background:rgba(95,191,122,.18);color:var(--ok)}
+.state.off{background:rgba(125,138,128,.2);color:var(--off)}
+.park{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:12.5px;color:var(--mute)}
+.park .chip{font-weight:500;color:var(--fg);border-style:dashed}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 16px;font-size:12px;color:var(--mute);margin-top:4px}
+
+@media (max-width:980px){
+  .pillars{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .chain{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:6px}
+  .found .links{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:620px){
+  .band-row,.pillars,.found .links{grid-template-columns:minmax(0,1fr)}
+  .chain{grid-template-columns:minmax(0,1fr)}
+  .step,.step:first-child{clip-path:none;border-radius:var(--r-s);padding:10px 12px}
+  .roof{clip-path:polygon(50% 0,100% 22%,100% 100%,0 100%,0 22%);padding-top:46px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap" id="haus">
+  <div class="head">
+    <span class="kicker">Prozesshaus</span>
+    <p>Produktiv <b id="v-prod">…</b> · Test <b id="v-test">…</b> · alle Kacheln mit ↗ öffnen das System in einem neuen Tab</p>
+  </div>
+
+  <!-- DACH -->
+  <section class="roof" aria-label="Leitbild">
+    <div class="brand">Trainingspilot</div>
+    <p class="mission">Trainingspläne für U6 bis U19 in Sekunden – kostenlos, ohne Anmeldung, orientiert an DFB und NFV.</p>
+    <div class="chips">
+      <span class="chip">Keine laufenden Kosten</span>
+      <span class="chip">Einfachheit vor Funktionsfülle</span>
+      <span class="chip">Erst Test, dann Produktiv</span>
+    </div>
+  </section>
+
+  <!-- STEUERUNG -->
+  <section class="band" aria-labelledby="h-steuer">
+    <h2 id="h-steuer">Steuerung</h2>
+    <div class="band-row">
+      <div class="cell"><b>Produktverantwortung</b><span>Du entscheidest, was gebaut wird, und gibst jede Version für Produktiv frei.</span></div>
+      <div class="cell"><b>Entwicklung</b><span>Claude Code setzt um, testet und öffnet Pull Requests.</span><a class="lk" data-p="2" href="https://claude.ai/code" target="_blank" rel="noopener">Claude Code<small>Sitzungen und Verlauf</small></a></div>
+      <div class="cell"><b>Regelwerk</b><span>Arbeitsregeln, Umgebungen, zurückgestellte Ideen.</span>
+        <a class="lk" data-p="2" href="https://github.com/t7pn4kt6v7-commits/Trainingspilot/blob/main/CLAUDE.md" target="_blank" rel="noopener">CLAUDE.md<small>Regeln für jede Änderung</small></a>
+        <a class="lk" data-p="4 5 6" href="https://github.com/t7pn4kt6v7-commits/Trainingspilot/blob/main/UMGEBUNGEN.md" target="_blank" rel="noopener">UMGEBUNGEN.md<small>Test und Produktiv</small></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- KERNPROZESS -->
+  <section class="band" aria-labelledby="h-kern">
+    <h2 id="h-kern">Kernprozess · von der Idee bis aufs Handy</h2>
+    <div class="chain" id="chain">
+      <div class="step" tabindex="0" data-s="1"><span class="n">1</span><b>Idee &amp; Rückmeldung</b><span>Trainerteam, Gespräch mit Claude, Issues</span></div>
+      <div class="step" tabindex="0" data-s="2"><span class="n">2</span><b>Entwicklung</b><span>Claude Code auf dem Arbeitsbranch</span></div>
+      <div class="step" tabindex="0" data-s="3"><span class="n">3</span><b>Automatische Prüfung</b><span>Übungen und Agent prüfen</span></div>
+      <div class="step" tabindex="0" data-s="4"><span class="n">4</span><b>Test</b><span>Pull Request gegen test, Testumgebung</span></div>
+      <div class="step release" tabindex="0" data-s="5"><span class="n">5</span><b>Freigabe durch dich</b><span>Pull Request test → main</span></div>
+      <div class="step" tabindex="0" data-s="6"><span class="n">6</span><b>Betrieb</b><span>Veröffentlichung, Update-Hinweis</span></div>
+    </div>
+    <p class="hint">Fahre über einen Schritt (oder tippe ihn an), dann leuchten die Systeme auf, die dabei im Spiel sind.</p>
+  </section>
+
+  <!-- SÄULEN -->
+  <section class="pillars" aria-label="Bereiche">
+    <div class="pillar">
+      <h3><i>▶</i>App</h3>
+      <p>Eine Datei (index.html), läuft im Browser und als App auf dem Home-Bildschirm.</p>
+      <ul class="links">
+        <li><a class="lk main" data-p="6" href="https://t7pn4kt6v7-commits.github.io/Trainingspilot/" target="_blank" rel="noopener">Produktiv<small>für alle Trainer*innen</small></a></li>
+        <li><a class="lk" data-p="4" href="https://t7pn4kt6v7-commits.github.io/Trainingspilot/test/" target="_blank" rel="noopener">Testumgebung<small>roter Balken „TESTUMGEBUNG“</small></a></li>
+        <li><a class="lk" data-p="6" href="https://t7pn4kt6v7-commits.github.io/Trainingspilot/plan.html" target="_blank" rel="noopener">Einstieg geteilte Pläne<small>plan.html, Vorschaukarte</small></a></li>
+        <li><a class="lk" data-p="4" href="https://t7pn4kt6v7-commits.github.io/Trainingspilot/test/sperrbildschirm-test.html" target="_blank" rel="noopener">Sperrbildschirm-Test<small>Signal bei gesperrtem Handy</small></a></li>
+      </ul>
+    </div>
+
+    <div class="pillar">
+      <h3><i>⚽</i>Übungsbibliothek</h3>
+      <p>210 Übungen in 6 Dateien, je Altersstufe eine. Wird beim Veröffentlichen in die App eingebaut.</p>
+      <ul class="links">
+        <li><a class="lk" data-p="2 3" href="https://github.com/t7pn4kt6v7-commits/Trainingspilot/tree/main/data/exercises" target="_blank" rel="noopener">Übungen (Produktiv)<small>data/exercises</small></a></li>
+        <li><a class="lk" data-p="2" href="https://github.com/t7pn4kt6v7-commits/Trainingspilot/blob/main/data/exercises/README.md" target="_blank" rel="noopener">Aufbau einer Übung<small>3D-Bild, Ablauf, Regeln</small></a></li>
+        <li><a class="lk" data-p="1 2" href="https://github.com/t7pn4kt6v7-commits/Trainingspilot/actions/workflows/uebungs-agent.yml" target="_blank" rel="noopener">Übungs-Agent<small>nur von Hand, Probelauf kostenlos</small></a></li>
+        <li><a class="lk" data-p="2" href="https://github.com/t7pn4kt6v7-commits/Trainingspilot/blob/main/tools/agent/README.md" target="_blank" rel="noopener">Anleitung Agent<small>Kosten, Ablauf</small></a></li>
+      </ul>
+    </div>
+
+    <div class="pillar">
+      <h3><i>⎇</i>Code &amp; Versionen</h3>
+      <p>Alles liegt im GitHub-Repository. main = Produktiv, test = Testumgebung.</p>
+      <ul class="links">
+        <li><a class="lk" data-p="2 4 5" href="https://github.com/t7pn4kt6v7-commits/Trainingspilot" target="_blank" rel="noopener">Repository<small>Startseite</small></a></li>
+        <li><a class="lk" data-p="4 5" href="https://github.com/t7pn4kt6v7-commits/Trainingspilot/pulls?q=is%3Apr" target="_blank" rel="noopener">Pull Requests<small>offen und erledigt</small></a></li>
+        <li><a class="lk" data-p="5" href="https://github.com/t7pn4kt6v7-commits/Trainingspilot/compare/main...test" target="_blank" rel="noopener">Unterschied test → main<small>was bei der Freigabe live geht</small></a></li>
+        <li><a class="lk" data-p="2" href="https://github.com/t7pn4kt6v7-commits/Trainingspilot/branches" target="_blank" rel="noopener">Branches<small>main, test, Arbeitsbranches</small></a></li>
+        <li><a class="lk" data-p="1" href="https://github.com/t7pn4kt6v7-commits/Trainingspilot/issues" target="_blank" rel="noopener">Issues<small>Rückmeldungen und Ideen</small></a></li>
+      </ul>
+    </div>
+
+    <div class="pillar">
+      <h3><i>⚙</i>Automatisierung</h3>
+      <p>GitHub Actions prüfen jede Änderung und veröffentlichen nur, was die Prüfung besteht.</p>
+      <ul class="links">
+        <li><a class="lk" data-p="3 6" href="https://github.com/t7pn4kt6v7-commits/Trainingspilot/actions" target="_blank" rel="noopener">Alle Abläufe<small>Actions-Übersicht</small></a></li>
+        <li><a class="lk" data-p="3" href="https://github.com/t7pn4kt6v7-commits/Trainingspilot/actions/workflows/exercises.yml" target="_blank" rel="noopener">Prüfen<small>Übungsbibliothek und Agent</small></a></li>
+        <li><a class="lk" data-p="6" href="https://github.com/t7pn4kt6v7-commits/Trainingspilot/actions/workflows/pages.yml" target="_blank" rel="noopener">Veröffentlichen<small>Produktiv und Test</small></a></li>
+        <li><a class="lk" data-p="6" href="https://github.com/t7pn4kt6v7-commits/Trainingspilot/settings/pages" target="_blank" rel="noopener">Pages-Einstellungen<small>Hosting der App</small></a></li>
+      </ul>
+    </div>
+
+    <div class="pillar">
+      <h3><i>▤</i>Daten &amp; Speicher</h3>
+      <p>Es gibt keine Datenbank und keinen Server. Darum kostet der Betrieb nichts.</p>
+      <ul class="links">
+        <li><span class="note" data-p="6">Gespeicherte Pläne<small>im Browser-Speicher des Handys, Test und Produktiv getrennt</small></span></li>
+        <li><span class="note" data-p="6">Geteilte Pläne<small>stecken im Link (#p=…, rund 200 Zeichen)</small></span></li>
+        <li><span class="note" data-p="2 3">Übungen<small>JSON-Dateien im Repository, siehe Übungsbibliothek</small></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FUNDAMENT -->
+  <section class="found" aria-labelledby="h-found">
+    <h2 id="h-found">Fundament · Konten und Dienste</h2>
+    <ul class="links">
+      <li><a class="lk" data-p="2 4 5 6" href="https://github.com/t7pn4kt6v7-commits" target="_blank" rel="noopener"><span>GitHub-Konto <span class="state ok">aktiv</span><small>t7pn4kt6v7-commits, Eigentümer</small></span></a></li>
+      <li><a class="lk" data-p="6" href="https://github.com/t7pn4kt6v7-commits/Trainingspilot/settings/pages" target="_blank" rel="noopener"><span>GitHub Pages <span class="state ok">kostenlos</span><small>Hosting für Test und Produktiv</small></span></a></li>
+      <li><a class="lk" data-p="1 2" href="https://claude.ai/code" target="_blank" rel="noopener"><span>Claude <span class="state ok">aktiv</span><small>claude.ai, Claude Code</small></span></a></li>
+      <li><a class="lk" data-p="1" href="https://github.com/t7pn4kt6v7-commits/Trainingspilot/settings/secrets/actions" target="_blank" rel="noopener"><span>Claude API <span class="state off">aus</span><small>nur für den Übungs-Agenten, kostenpflichtig</small></span></a></li>
+    </ul>
+    <div class="park"><span>Parkplatz, bewusst zurückgestellt:</span><span class="chip">Eigene Adresse</span><span class="chip">Kurzlink-Server</span><span class="chip">Vorschaukarte je Plan</span><span class="chip">Erklärvideo</span></div>
+  </section>
+
+  <div class="foot"><span>Trainingspilot · internes Prozesshaus</span><span>Links führen zu GitHub, Claude und den beiden App-Umgebungen</span></div>
+</div>
+
+<script>
+(function(){
+  var steps = document.querySelectorAll('.step'), items = document.querySelectorAll('[data-p]'), pinned = null;
+  function show(s){
+    document.body.classList.toggle('focus', !!s);
+    steps.forEach(function(x){ x.classList.toggle('on', x.dataset.s === s); });
+    items.forEach(function(el){ el.classList.toggle('hit', !!s && el.dataset.p.split(' ').indexOf(s) >= 0); });
+  }
+  steps.forEach(function(st){
+    st.addEventListener('mouseenter', function(){ if(!pinned){ show(st.dataset.s); } });
+    st.addEventListener('mouseleave', function(){ if(!pinned){ show(null); } });
+    st.addEventListener('focus', function(){ show(st.dataset.s); });
+    st.addEventListener('blur', function(){ if(!pinned){ show(null); } });
+    st.addEventListener('click', function(){ pinned = pinned === st.dataset.s ? null : st.dataset.s; show(pinned); });
+  });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape'){ pinned = null; show(null); } });
+  // Aktuelle Versionen direkt aus den beiden Umgebungen lesen (gleiche Adresse, kein Server nötig)
+  var inTest = /\/test\//.test(location.pathname);
+  function ver(url, id){
+    var el = document.getElementById(id);
+    try{
+      fetch(url, { cache:'no-store' }).then(function(r){ return r.text(); }).then(function(t){
+        var m = t.match(/var APP_VERSION = '([0-9.]+)'/); el.textContent = m ? 'v' + m[1] : 'unbekannt';
+      }).catch(function(){ el.textContent = 'nicht erreichbar'; });
+    }catch(e){ el.textContent = 'nicht erreichbar'; }
+  }
+  ver(inTest ? '../index.html' : './index.html', 'v-prod');
+  ver(inTest ? './index.html' : './test/index.html', 'v-test');
+})();
+</script>
+</body>
+</html>
