@@ -29,6 +29,9 @@
   muss die alte Oberfläche unverändert funktionieren.
 - **Prozesshaus** (`haus.html`, …/Trainingspilot/haus.html): Überblick über Systeme, Abläufe und Konten mit Links.
   Kommen Systeme, Workflows, Konten oder Bereiche hinzu oder fallen weg, dort mitpflegen.
+- **Übungskatalog** (`uebungen.html`, …/Trainingspilot/uebungen.html bzw. /test/uebungen.html): alle Übungen mit Bild, Aufbau, Ablauf und
+  Material zum Durchgehen, Filter Altersstufe, Schwerpunkt, Halle, neu. Liest `index.html` derselben Umgebung, muss also nicht gepflegt werden.
+  Zum Prüfen neuer Übungen durch Menschen (Link im Prozesshaus).
 - Auf kleinen Handys prüfen (iPhone SE 320 px, iPhone 13 mini 375 px) und auf dem iPad: keine abgeschnittenen
   Beschriftungen, kein waagerechtes Scrollen. Dafür gibt es den Agenten `mobil-pruefer` bzw.
   `NODE_PATH=$(npm root -g) node tools/mobilpruefung.mjs` (Bericht und Fotos je Gerät und Ansicht).
